@@ -2,7 +2,7 @@
 
 ## groepleden
 
-- Kevin Strijboss
+- Kevin Strijbos
 - Bram Van Vleymen
 - Rudy Mas
 - Joran Claessens
