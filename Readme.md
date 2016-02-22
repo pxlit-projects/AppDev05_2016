@@ -2,23 +2,16 @@
 
 ## groepleden
 
-- nn1
-- nn2
-- nn3
-- nn4
+- Kevin Strijbos
+- Bram Van Vleymen
+- Rudy Mas
+- Joran Claessens
+- Frédérique Van Wonterghem
+- Sacha Reyskens
 
 ## omschrijving
 
-_zet hier een korte omschrijving van de mappen in de repo_:
-
 - analyse: de analysedocumenten
 - scrum: de scrumverslagen
-- ...
 
 ## installatie
-
-_zet hier een korte gids, omschrijving die helpt om de projecten uit te kunnen voeren_.
-
-## itemX
-
-_jullie mogen ook nieuwe items toevoegen._
