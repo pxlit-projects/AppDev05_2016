@@ -1,8 +1,8 @@
-# AppDev05_2016
+﻿# AppDev05_2016
 
 ## groepleden
 
-- Kevin Strijbos
+- Kevin Strijboss
 - Bram Van Vleymen
 - Rudy Mas
 - Joran Claessens
