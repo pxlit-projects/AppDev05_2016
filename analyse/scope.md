@@ -89,8 +89,8 @@ Een ander aspect van onze aanpak is het werken naargelang onze specialiteiten. W
 De teamverdeling is als volgt:
 Kevin Strijbos - organisator
 Rudy Mas - verslaggever
-Bram Van Vleymen - Communicatie met derden
-Sacha Reyskens, Joran Claessens en Frédérique Van Wonterghem zullen bijspringen waar nodig.
+Joran Claessens - Communicatie met derden
+Sacha Reyskens, Bram Van Vleymen en Frédérique Van Wonterghem zullen bijspringen waar nodig.
 
 ### Bronnen
 
