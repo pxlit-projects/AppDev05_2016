@@ -17,6 +17,7 @@ Het stuurprogramma voor drugpreventie heeft een nadrukkelijke aanwezigheid op he
 ### Businessrequirements
 
 Het stuur programma wilt een web-app om:
+
 1. Meer studenten te kunnen bereiken
 2. Geînteresseerden beter op de hoogte houden van hun acties
 3. Een beter overzicht krijgen van het alcoholgebruik van de Hasseltse en Diepenbeekse studenten.
