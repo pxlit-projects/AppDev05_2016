@@ -1,7 +1,7 @@
 # Use Case ID: Aanwezigheidsstatistieken
 
 **Actoren**: Administrator
-**Trigger**: De Aanwezigheidsstatistieken worden opgevraagt.
+**Trigger**: De Aanwezigheidsstatistieken worden opgevraagd.
 
 ## Omschrijving
 
@@ -9,7 +9,7 @@ Een administrator kan de Aanwezigheidsstatistieken van elk evenement opvragen. D
 
 ## Precondities
 
-1. Er moeten teminste één evenement in de database staan
+1. Er moet tenminste één evenement in de database staan
 2. ingelogt als administrator
 
 ## Postcondities
