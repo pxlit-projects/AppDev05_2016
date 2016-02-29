@@ -19,9 +19,9 @@ Bij evenementen bestaat er de keuze voor de student om je aan te bieden als BOB.
 
 ## Normale flow
 
-1. De student  zich aan voor het geselecteerde evenement.
+1. De student biedt zich aan voor het geselecteerde evenement.
 2. Zijn gegevens worden geëvalueerd door het systeem.
-2. De studentbiedt kan ingeven hoeveel personen hij kan meenemen.
+2. De student kan ingeven hoeveel personen hij kan meenemen.
 3. De student accepteert de voorwaarden en slaat de gegevens op.
 4. De gegevens van de student worden opgenomen voor het geselecteerde evenement.
 
