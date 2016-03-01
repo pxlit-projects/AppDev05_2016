@@ -1,6 +1,6 @@
 # Use Case ID: Evenementenlijst van standpunt student
 
-**Actoren**: Student
+**Actoren**: Student<br>
 **Trigger**: De student zoekt naar informatie over geplande evenementen
 
 ## Omschrijving
@@ -27,13 +27,13 @@ De student kan een evenementenlijst raadplegen op de hoofdpagina van de website.
 
 ## Alternatieve flow
 
-3.1 De student klikt op de link die hem naar de evenementenpagina brengt
-3.2 Het systeem toont hem een lijst van alle toekomstige evenementen
+3.1 De student klikt op de link die hem naar de evenementenpagina brengt<br>
+3.2 Het systeem toont hem een lijst van alle toekomstige evenementen<br>
 3.3 De student klikt op het evenement dat hem boeit
 
 ## Uitzonderingen
 
-1E1. Geen toekomstige evenementen beschikbaar, het systeem geeft hier een melding van
+1E1. Geen toekomstige evenementen beschikbaar, het systeem geeft hier een melding van<br>
 1E2. De databank is niet beschikbaar, het systeem geeft hier een foutpagina
 
 ## Inclusief
