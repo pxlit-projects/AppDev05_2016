@@ -24,7 +24,9 @@ Bij evenementen bestaat er de keuze voor de student om op zoek te gaan naar een 
 2. Zijn gegevens worden geëvalueerd door het systeem.
 2. De student selecteert de persoon waar hij mee wil gaan naar het evenement.
 3. De student accepteert de voorwaarden en slaat de gegevens op.
-4. De gegevens van de student worden opgenomen, samen met de BOB, voor het geselecteerde evenement.
+4. De aanvraag wordt gestuurd naar de geselecteerde BOB.
+5. De BOB accepteert de aanvraag.
+6. De gegevens van de student worden opgenomen, samen met de BOB, voor het geselecteerde evenement.
 
 ## Alternatieve flow
 
@@ -40,7 +42,9 @@ Bij evenementen bestaat er de keuze voor de student om op zoek te gaan naar een 
 
 **1E2.**	Er zijn geen beschikbare plaatsen meer voor de geselecteerde BOB.
 
-**1E3.**	De database is niet beschikbaar, het systeem geeft een errormessage.
+**1E3.**	De aanvraag wordt geannuleerd.
+
+**1E4.**	De database is niet beschikbaar, het systeem geeft een errormessage.
 
 ## Inclusief
 
