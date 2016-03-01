@@ -10,7 +10,7 @@ Een administrator kan de Aanwezigheidsstatistieken van elk evenement opvragen. D
 ## Precondities
 
 1. Er moet tenminste één evenement in de database staan
-2. ingelogt als administrator
+2. De administrator is ingelogd
 
 ## Postcondities
 
