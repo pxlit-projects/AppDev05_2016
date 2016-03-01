@@ -1,6 +1,6 @@
 # Use Case ID: Mutual friends
 
-**Actoren**: Bezoeker, vrienden van bezoeker.
+**Actoren**: Bezoeker.
 **Trigger**: Weergave van een event.
 
 ## Omschrijving
