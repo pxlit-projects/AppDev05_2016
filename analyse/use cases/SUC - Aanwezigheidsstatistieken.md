@@ -18,22 +18,22 @@ Een administrator kan de Aanwezigheidsstatistieken van elk evenement opvragen. D
 
 ## Normale flow
 
-1. Het systeem toont een lijst van evenementen
+1. Het systeem toont een lijst van evenementen of bezoekers
 2. De administrator kan hier door scrollen
-3. De administrator klikt op een evenement waar hij/zij de Aanwezigheidsstatistieken wilt zien
-4. Het systeem toont de aanwezigheidsstatistieken van dit evenement(geslacht, leeftijd,...)
+3. De administrator klikt op een evenement of bezoeker waar hij/zij de aanwezigheidsstatistieken wilt zien
+4. Het systeem toont de aanwezigheidsstatistieken van dit evenement of bezoeker (geslacht, leeftijd,...)
 
 ## Alternatieve flow
 
-1. Het systeem toont een lijst van evenementen
-2. De administrator zoekt naar een bepaalt evenement met de zoekfunctie
-3. De administrator klikt op het evenement waar hij/zij de Aanwezigheidsstatistieken wilt zien
-4. Het systeem toont de aanwezigheidsstatistieken van dit evenement(geslacht, leeftijd,...)
+1. Het systeem toont een lijst van evenementen of bezoekers
+2. De administrator zoekt naar een bepaald evenement of bezoeker via het filteringssysteem
+3. De administrator klikt op het evenement of bezoeker waar hij/zij de aanwezigheidsstatistieken wilt zien
+4. Het systeem toont de aanwezigheidsstatistieken van dit evenement of bezoeker (geslacht, leeftijd,...)
 
 ## Uitzonderingen
 
 1E1. De database is niet beschikbaar, het systeem geeft een errormessage
-1E2. Het evenement heeft nog geen statistieken, het systeem geeft een errormessage("Er zijn nog geen statistieken beschikbaar voor dit evenement.")
+1E2. Het evenement of bezoeker heeft nog geen statistieken, het systeem geeft een errormessage("Er zijn nog geen statistieken beschikbaar voor dit evenement.")
 
 ## Inclusief
 

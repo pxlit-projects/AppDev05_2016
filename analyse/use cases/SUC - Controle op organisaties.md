@@ -1,7 +1,7 @@
 # Use Case ID: Controle op organisaties
 
-**Actoren**: Organisatie, Admin 
-**Trigger**: Een organisatie wilt zich registreren / Een organisatie gedraagt zich niet naar de normen van de admin
+**Actoren**: Administrator 
+**Trigger**: Een organisatie wilt zich registreren / een organisatie gedraagt zich niet naar de normen van de admin
 
 ## Omschrijving
 
