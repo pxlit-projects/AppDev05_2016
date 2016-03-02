@@ -22,15 +22,16 @@ Bij het plaatsen van een review zal deze geaccepteerd of verwijderd worden als d
 
 1. De student plaatst een review.
 2. De review wordt in een wachtrij gezet om gecontroleerd te worden.
-2. De admin controleert de review
-3a. De admin accepteert de review.
-4a. De review verschijnt op de website.
+3. De admin controleert de review
+4. De admin accepteert de review.
+5. De review verschijnt op de website.
 
 
 ## Alternatieve flow
-
-3b. De admin weigert de review. 
-4b. De review verschijnt niet op de website.
+1. De student plaatst een review.
+2. De review wordt in een wachtrij gezet om gecontroleerd te worden.
+3. De admin weigert de review. 
+4. De review verschijnt niet op de website.
 
 ## Uitzonderingen
 
