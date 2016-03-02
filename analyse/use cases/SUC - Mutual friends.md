@@ -11,7 +11,6 @@ Een bezoeker kan zien welke gemeenschappelijke vrienden naar een bepaald event g
 
 1. De bezoeker zijn profiel is gelinkt aan een sociaal medium.
 2. De bezoeker is ingelogd.
-3. De bezoeker bekijkt een bepaald event.
 
 ## Postcondities
 
@@ -19,18 +18,18 @@ Een bezoeker kan zien welke gemeenschappelijke vrienden naar een bepaald event g
 
 ## Normale flow
 
-1. Bezoeker logt in.
+1. Het systeem toont een lijst met events.
 2. Bezoeker bekijkt een event.
 
 ## Alternatieve flow
 
-1. Bezoeker logt in.
-2. Bezoeker linkt zijn profiel aan een sociaal medium.
+1. Bezoeker linkt zijn profiel aan een sociaal medium.
+2. Het systeem toont een lijst met events.
 3. Bezoeker bekijkt een event.
 
 ## Uitzonderingen
 
-/
+1E1. Er zijn geen evenementen beschikbaar, het systeem geeft een errormessage.
 
 ## Inclusief
 

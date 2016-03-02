@@ -1,7 +1,7 @@
 # Use Case ID: Filteringsysteem
 
 **Actoren**: Bezoekers.
-**Trigger**: Bij bepaling van eventementkeuzes.
+**Trigger**: Bij de persoonlijke instellingen van de bezoeker.
 
 ## Omschrijving
 
@@ -13,13 +13,12 @@ Een bezoeker kan aan de hand van een filteringsysteem bepalen welk soort eveneme
 
 ## Postcondities
 
-1. De bezoeker ziet het type evenement waarvoor hij gekozen heeft.
+1. De bezoeker ziet enkel een lijst met events afhankelijk van de gekozen criteria.
 
 ## Normale flow
 
-1. De bezoeker logt in.
-2. De bezoeker klikt op het filteringsysteem.
-3. De bezoeker kiest welk type evenements hij wilt weergeven.
+2. De bezoeker gaat naar de persoonlijke instellingen van zijn profiel.
+3. De bezoeker kiest het type evenement door middel van verschillende criteria.
 
 ## Alternatieve flow
 
