@@ -13,5 +13,8 @@
 
 - analyse: de analysedocumenten
 - scrum: de scrumverslagen
+- reports: notules per bijeenkomst
+- docs: algemene documenten 
+- source: bevat de source code
 
 ## installatie
