@@ -10,7 +10,6 @@ Mogelijke categorieën:
 * Sport
 * Cultuur
 
-
 Nadat de gebruiker zijn persoonlijke keuzes gemaakt heeft afhankelijk van deze criteria zal de website enkel deze events weergeven.
 
-Op deze manier krijgt de gebruiker een beknoptere lijst van events waarvoor hij interesse heeft en vergroot dit het potentieel dat hij ook aanwezig zal zijn met bepaalde events.
+Op deze manier krijgt de gebruiker een beknoptere lijst van events waarvoor hij interesse heeft en vergroot dit het potentieel dat hij ook aanwezig zal zijn op bepaalde events.
