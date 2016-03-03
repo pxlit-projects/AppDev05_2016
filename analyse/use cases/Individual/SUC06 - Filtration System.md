@@ -1,33 +1,33 @@
-# Use Case ID: Filteringsysteem
+# Use Case ID: UC06
 
-**Actoren**: Bezoekers.
-**Trigger**: Bij de persoonlijke instellingen van de bezoeker.
+**Actoren**: Gebruiker.<br>
+**Trigger**: Bij de persoonlijke instellingen van de gebruiker.
 
 ## Omschrijving
 
-Een bezoeker kan aan de hand van een filteringsysteem bepalen welk soort evenementen hij te zien wil krijgen.
+Een gebruiker kan aan de hand van een filteringsysteem bepalen welk soort evenementen hij te zien wil krijgen.
 
 ## Precondities
 
-1. De bezoeker is ingelogd.
+1. De gebruiker is ingelogd.
 
 ## Postcondities
 
-1. De bezoeker ziet enkel een lijst met events afhankelijk van de gekozen criteria.
+1. De gebruiker ziet enkel een lijst met events afhankelijk van de gekozen criteria.
 
 ## Normale flow
 
-2. De bezoeker gaat naar de persoonlijke instellingen van zijn profiel.
-3. De bezoeker kiest het type evenement door middel van verschillende criteria.
+1. De gebruiker gaat naar de persoonlijke instellingen van zijn profiel.
+2. De gebruiker kiest het type evenement door middel van verschillende criteria.
 
 ## Alternatieve flow
 
-/
+Geen alternatief
 
 ## Uitzonderingen
 
-/
+Geen uitzonderingen
 
 ## Inclusief
 
-/
+Geen

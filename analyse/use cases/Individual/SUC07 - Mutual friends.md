@@ -1,6 +1,6 @@
 # Use Case ID: UC07
 
-**Actoren**: Bezoeker<br>
+**Actoren**: Gebruiker<br>
 **Trigger**: Weergave van een event.
 
 ## Omschrijving
