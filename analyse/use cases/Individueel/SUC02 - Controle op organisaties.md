@@ -1,43 +1,42 @@
-# Use Case ID: Controle op organisaties
+# Use Case ID: UC02
 
-**Actoren**: Organisatie, Admin 
-**Trigger**: Een organisatie wilt zich registreren / Een organisatie gedraagt zich niet naar de normen van de admin
+**Actoren**: Organisator, Administrator<br>
+**Trigger**: Een organisator wilt zich registreren / Een organisator gedraagt zich niet naar de normen van de administrator
 
 ## Omschrijving
 
-Een organisatie kan zich registreren, maar moet hierbij geaccepteerd worden door de admin(a). Een organisatie kan ook verwijderd worden wegens het breken van de overeenkomst met de site eigenaar, zelfs na de registratie (b).
+Een organisator kan zich registreren, maar moet hierbij geaccepteerd worden door de administrator (a). Een organisator kan ook verwijderd worden wegens het breken van de overeenkomst met de site-eigenaar, zelfs na de registratie (b).
 
 ## Precondities
 
-1a. De organisatie moet geregistreerd zijn.
-1b. De organisatie moet geaccepteerd zijn op de website.
-2. De admin moet ingelogd zijn.
+1a. De organisator moet geregistreerd zijn.<br>
+1b. De organisator moet geaccepteerd zijn op de website.<br>
+2. De administrator moet ingelogd zijn.
 
 
 ## Postcondities
 
-1a. De organisatie werd geaccepteerd en staat tussen de lijst van actieve organisaties.
-1b. De organisatie werd verwijderd en heeft geen toegang meer tot de website.
+1a. De organisator werd geaccepteerd en staat tussen de lijst van actieve organisaties.<br>
+1b. De organisator werd verwijderd en heeft geen toegang meer tot de website.
 
 ## Normale flow
-// Registratie
-1. De organisatie registreert zich.
-2. De admin kijkt de gegevens van de organisatie na.
-3. De admin accepteert de organisatie.
-4. De organisatie kan nu events aanmaken op de website.
 
-// Slecht gedrag
-1. De admin verwijdert de organisatie wegens slecht gedrag, niet conform aan de regels.
-2. De organisatie heeft geen toegang meer tot de website.
+1. De organisator registreert zich.
+2. De administrator kijkt de gegevens van de organisator na.
+3. De administrator accepteert de organisator.
+4. De organisator kan nu evenementen aanmaken op de website.
 
 ## Alternatieve flow
 
-Geen alternatieven.
+1. De administrator verwijdert de organisator wegens slecht gedrag wanneer deze zich niet gedraagt conform de regels.
+2. De organisator heeft geen toegang meer tot de website.
 
 ## Uitzonderingen
 
-**1E1.**	De organisatie kiest er zelf voor te verdwijnen van de website, betekende dat de organisatie zichzelf verwijdert.
+**1E1.** De organisator kan zich uitschrijven van de website, oude evenementengegevens worden wel bewaard.
 
-**1E2.**	De organisatie wordt bij de registratie al verwijderd wegens fraude/foute informatie.
+**1E2.** De organisator wordt bij de registratie al verwijderd wegens fraude of foute informatie.
 
 ## Inclusief
+
+Geen
