@@ -8,54 +8,54 @@ Het stuurprogramma voor drugpreventie is niet aanwezig op het web. Ze voeren cam
 
 ### Gewenste situatie
 
-Het stuurprogramma voor drugpreventie heeft een nadrukkelijke aanwezigheid op het web. Dit via een dynamische web-app met enkele extra's. Zo bevat de website een newsfeed, een event kalender, een alcoholtester enzovoort.
+Het stuurprogramma voor drugpreventie heeft een nadrukkelijke aanwezigheid op het web. Dit via een dynamische webapplicatie met enkele extra's. Zo bevat de website een newsfeed, een evenement kalender, een alcoholtester, enzovoort.
 
 ### Businessrequirements
 
-Het stuur programma wilt een web-app om:
+Het stuurprogramma wilt een webapplicatie om:
 
 1. Meer studenten te kunnen bereiken
-2. Geînteresseerden beter op de hoogte houden van hun acties
+2. Geïnteresseerden beter op de hoogte houden van hun acties
 3. Een beter overzicht krijgen van het alcoholgebruik van de Hasseltse en Diepenbeekse studenten.
 
 ## Belanghebbenden
 
 ### Eindgebruikers
 
-1. De studenten: het is de bedoeling dat studenten de web-app actief gaan gebruiken. Zowel om events op te zoeken als om hun alcoholgebruik te dempen.
-2. Het stuurprogramma: zij zullen de website gebruiken om zich beter kenbaar te maken. Ook zullen ze statistieken verzamelen over bv. het aantal studenten dat op stap gaat, de gemiddelde hoeveelheid acohol enzovoort.
+1. De gebruikers: het is de bedoeling dat gebruikers de webapplicatie actief gaan gebruiken. Zowel om evenementen op te zoeken als om hun alcoholgebruik te dempen.
+2. Het stuurprogramma: zij zullen de website gebruiken om zich beter kenbaar te maken. Ook zullen ze statistieken verzamelen over bijvoorbeeld het aantal studenten dat op stap gaat, de gemiddelde hoeveelheid acohol, enzovoort.
 
 ### Gebruikersomgeving
 
-Alle studenten zullen toegang hebben tot de website. Het is de bedoeling dat zoveel mogelijk studenten de website gebruiken, daarvoor is het nodig dat ze er ook daadwerkelijk voordeel uit halen bij het gebruik van de web app. Verder zullen de rechthebbenden toegang hebben tot de administratie van de website. Basiskennis van de gebruikte browser en administratie termen zijn gekend.
+Alle studenten zullen toegang hebben tot de website. Het is de bedoeling dat zoveel mogelijk studenten de website gebruiken, daarvoor is het nodig dat ze er ook daadwerkelijk voordeel uit halen bij het gebruik van de webapplicatie. Verder zullen de rechthebbenden toegang hebben tot de administratie van de website. Basiskennis van de gebruikte browser en administratie termen zijn gekend.
 
 ### Overige belanghebbenden
 
 1. Studentenverenigingen: dit zijn de verenigingen die de meeste fuiven organiseren. Zij kunnen hun fuiven op de website zetten.
-2. De PXL: De PXL zit in de stuurgroep en wilt voor haar studenten zorgen, dit is het uiteindelijke doel van de hoge school.
+2. De PXL: De PXL zit in de stuurgroep en wilt voor haar studenten zorgen, dit is het uiteindelijke doel van de hogeschool.
 3. De UHasselt: zie PXL.
 4. De KHLIM: Zie PXL.
 5. De stad Hasselt: Zij hebben er baat bij om de overlast door studenten te beperken. Ze hebben er dus belang bij om de website te laten aanslaan.
-6. De ouders: ouders willen het beste voor hun kinderen. Overmatig alcoholgebruik wordt op neergekeken en kan getracked worden via de web-app.
+6. De ouders: ouders willen het beste voor hun kinderen. Overmatig alcoholgebruik wordt op neergekeken en kan getraceerd worden via de web-app.
 
 ## Systeemscope
 
 ### Omschrijving van het systeem
 
-De belangrijkste functionaliteit van het systeem is de event kalender. Via deze kalender zullen de bezoekers kunnen zien wat er te doen is in hun nabije omgeving op een intuïtieve wijze. Verder zal er een optie zijn om carpooling te organiseren. Dit om het rijden onder invloed te voorkomen en ervoor te zorgen dat de studenten een manier hebben om veilig thuis te geraken. Een andere, vereiste functie is de newsfeed. De newsfeed zal zich bevonden op de hoofdpagina en is dynamisch. Deze wordt dus automatisch geupdated met tweets en facebook-posts van het stuurprogramma. Verdere mogelijke functies zijn een alcoholtester, een lifesaver-pagina en een FAQ-pagina. Verder is het nodig dat het systeem volledig geïntegreed is met Facebook. Dit om de login te vereenvoudigen, en om op een simpele manier events toe te voegen.
+De belangrijkste functionaliteit van het systeem is de evenement kalender. Via deze kalender zullen de bezoekers kunnen zien wat er te doen is in hun nabije omgeving op een intuïtieve wijze. Verder zal er een optie zijn om carpooling te organiseren. Dit om het rijden onder invloed te voorkomen en ervoor te zorgen dat de studenten een manier hebben om veilig thuis te geraken. Een andere, vereiste functie is de newsfeed. De newsfeed zal zich bevonden op de hoofdpagina en is dynamisch. Deze wordt dus automatisch geupdated met tweets en facebook-posts van het stuurprogramma. Verdere mogelijke functies zijn een alcoholtester, een lifesaver-pagina en een FAQ-pagina. Verder is het nodig dat het systeem volledig geïntegreed is met Facebook. Dit om de login te vereenvoudigen en om op een simpele manier evenementen toe te voegen.
 
 ### Positionering van het systeem
 
-De web-app zal draaien via een externe service provider. De keuze hiervoor valt bij het stuurprogramma. Het stuurprogramma heeft een administratie-interface om de website te beheren. Een technische beperking is dat de back-end geprogrammeerd wordt door middel van ASP.NET en de database beheerd wordt door MySQL.
+De webapplicatie zal draaien via een externe service provider. De keuze hiervoor valt bij het stuurprogramma. Het stuurprogramma heeft een administratie-interface om de website te beheren. Een technische beperking is dat de back-end geprogrammeerd wordt door middel van ASP.NET en de database beheerd wordt door MySQL.
 
 ### Globale gebruikersrequirements
 
-1. Studenten willen kijken welke events er zijn
-2. Studenten willen vervoer regelen via de web-app
+1. Gebruikers willen kijken welke evenementen er zijn
+2. Gebruikers willen vervoer regelen via de webapplicatie
 3. Gebruikers kunnen kijken welke acties het stuurprogramma gepland heeft
-4. Studenten kunnen hun alcoholgebruik opvolgen via de website
+4. Gebruikers kunnen hun alcoholgebruik opvolgen via de website
 5. Het stuurprogramma kan het algemene alcoholgebruik in het uitgaansleven tracken
-6. Het stuurprogramma kan events goed- of afkeuren
+6. Het stuurprogramma kan evenementen goed- of afkeuren
 7. Het stuurprogramma kan de newsfeed beheren
 
 ### Niet-functionele requirements
