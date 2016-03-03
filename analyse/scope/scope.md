@@ -1,9 +1,5 @@
 # Visie en scope
 
-Deze template is gebaseerd op het document `"01 visie en scope(1).pdf"`uit de
-voorbeeldcase _Sweet Dreams_ van het vak Software Analysis, aangevuld met
-enkele extra rubrieken.
-
 ## Visie
 
 ### Huidige situatie
