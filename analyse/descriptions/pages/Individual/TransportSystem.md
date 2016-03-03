@@ -1,0 +1,11 @@
+# Vervoerssysteem #
+
+Wanneer een persoon zich als aanwezig heeft opgegeven voor een bepaald evenement kan een student zich opgeven als BOB of zoeken naar een BOB voor dat evenement.
+
+Op deze pagina zal een lijst tevoorschijn komen van alle BOB’s waar nog plaatsen beschikbaar zijn. Wanneer een student op een van deze BOB’s klikt, zal hij meer informatie krijgen over deze persoon en daarna kan deze student zijn aanwezigheid bevestigen. Er zal een email worden gestuurd naar de BOB om hem te informeren dat er een persoon zich aangeboden heeft. De BOB Kan hierop beslissen of hij de desbetreffende persoon wilt mee nemen of niet via een eenvoudige knop. Wanneer de student opgenomen is bij de geselecteerde BOB kan deze persoon zichzelf terugvinden bij deze geselecteerde BOB groep.
+
+Na afloop van het event kan een gebruiker een bepaalde BOB een rating geven. Hiervoor moet de gebruiker echter wel ingeschreven zijn geweest op de vervoerslijst van deze BOB. Ook is het mogelijk om een review te schrijven over deze BOB. Dit reviewsysteem zal hetzelfde werken als het systeem beschreven in ControleReviews.md.
+
+Daarnaast zal er een optie zijn voor de persoon om zichzelf aan te bieden als BOB. Hierdoor zal er een nieuwe pagina verschijnen waarbij deze persoon enkele voorwaarden moet accepteren en invoeren hoeveel personen de student kan meenemen. Daarna kan hij alles opslaan en komt deze persoon in de lijst te staan met beschikbare BOB’s.
+
+Deze pagina zal op een gebruiksvriendelijke manier worden gepresenteerd. Dit systeem zal op een snelle en makkelijke manier moeten functioneren, opdat de studenten niet te veel hoeven te klikken of overbodige gegevens moeten invoeren. Er ligt een grote verantwoordelijkheid op deze pagina, omdat iedereen die gebruik zal maken van dit systeem de regels zal moeten naleven. Omdat er bepaalde regels nageleefd moeten worden, zullen er voorwaarden opgesteld worden die de persoon moet accepteren voor deelname. Dit zal ervoor zorgen dat er minder klachten zullen binnenkomen bij misbruik van het systeem.

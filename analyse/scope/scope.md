@@ -1,9 +1,5 @@
 # Visie en scope
 
-Deze template is gebaseerd op het document `"01 visie en scope(1).pdf"`uit de
-voorbeeldcase _Sweet Dreams_ van het vak Software Analysis, aangevuld met
-enkele extra rubrieken.
-
 ## Visie
 
 ### Huidige situatie
@@ -92,7 +88,3 @@ Kevin Strijbos - organisator
 Rudy Mas - verslaggever
 Joran Claessens - Communicatie met derden
 Sacha Reyskens, Bram Van Vleymen en Frédérique Van Wonterghem zullen bijspringen waar nodig.
-
-### Bronnen
-
-Concrete oplijsting van te raadplegen bronnen. Dit is dus meer dan [gewoon Stackoverflow](http://stackoverflow.com).
