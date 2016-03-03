@@ -1,7 +1,7 @@
-# Use Case ID: Controle op reviews
+# Use Case ID: UC03
 
-**Actoren**: Student, Admin 
-**Trigger**: Een review wordt geplaatst door een student
+**Actoren**: Gebruiker, Administrator<br>
+**Trigger**: Een review wordt geplaatst door een gebruiker
 
 ## Omschrijving
 
@@ -9,32 +9,32 @@ Bij het plaatsen van een review zal deze geaccepteerd of verwijderd worden als d
 
 ## Precondities
 
-1. De student moet ingelogd zijn.
-2. De student moet een review plaatsen.
-3. De admin moet ingelogd zijn.
+1. De gebruiker moet ingelogd zijn.
+2. De gebruiker moet een review plaatsen.
+3. De administrator moet ingelogd zijn.
 
 ## Postcondities
 
-1a. De review werd geplaatst.
-1b. De review werd verwijderd.
+1.1 De review werd geplaatst.<br>
+1.2 De review werd verwijderd.
 
 ## Normale flow
 
-1. De student plaatst een review.
+1. De gebruiker plaatst een review.
 2. De review wordt in een wachtrij gezet om gecontroleerd te worden.
-3. De admin controleert de review
-4. De admin accepteert de review.
+3. De administrator controleert de review
+4. De administrator accepteert de review.
 5. De review verschijnt op de website.
 
 
 ## Alternatieve flow
-1. De student plaatst een review.
-2. De review wordt in een wachtrij gezet om gecontroleerd te worden.
-3. De admin weigert de review. 
-4. De review verschijnt niet op de website.
+4.1. De administrator weigert de review.
+4.2. De review verschijnt niet op de website.
 
 ## Uitzonderingen
 
-**1E1.**	De student kiest zelf zijn review te wissen, waardoor de request om deze te controleren ook verwijderd wordt.
+**1E1.** De gebruiker kiest zelf zijn review te wissen, waardoor de request om deze te controleren ook verwijderd wordt.
 
 ## Inclusief
+
+Geen
