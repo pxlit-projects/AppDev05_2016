@@ -1,4 +1,4 @@
-# Use Case ID: rating events vanuit standpunt bezoekers
+# Use Case ID: UC05
 
 **Actoren**: bezoekers   
 **Trigger**: het event is afgelopen

@@ -1,4 +1,4 @@
-# Use Case ID: Evenementenlijst van standpunt student
+# Use Case ID: UC04
 
 **Actoren**: Student<br>
 **Trigger**: De student zoekt naar informatie over geplande evenementen
