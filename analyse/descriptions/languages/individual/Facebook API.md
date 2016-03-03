@@ -12,7 +12,7 @@ Er zijn verschillende soorten objecten binnen Facebook:
 - Foto's
 - ...
 
-Elk object binnen Facebook heeft zijn eigen ID, binnen dat ID hebben ze afhankelijk van welk soort object ze zijn ook specifieke keys zoals bijvoorbeeld voor een profiel de naam, vrienden, interesses, ....
+Elk object binnen Facebook heeft zijn eigen ID, binnen dat ID hebben ze afhankelijk van welk soort object ze zijn ook specifieke keys zoals bijvoorbeeld voor hun profiel, hun naam, hun vrienden, hun interesses, ....
 
 Er zijn 3 commando's om data te manipuleren:
 - GET -> Opvragen van data.
@@ -22,10 +22,10 @@ Er zijn 3 commando's om data te manipuleren:
 ## Terms of Use ##
 
 1. Vraag toestemming bij het posten op iemand zijn profiel.
-2. Voorzie een duidelijke privacy policy voor gebruiker en hoe wij deze data zullen gebruiken.
+2. Voorzie een duidelijke privacy policy voor de gebruiker en vermeldt ook hoe hun informatie gebruikt zal worden.
 3. Hou je ook aan je eigen privacy policy.
-4. Verwijder al de gebruiker zijn gegevens indien dit door de gebruiker gevraagd wordt.
-5. Vraag toestemming bij het gebruiken van deze data voor reclamedoeleinden.
+4. Verwijder de gebruiker zijn gegevens indien dit door de gebruiker gevraagd wordt.
+5. Vraag toestemming bij het gebruiken van de gebruiker zijn data voor reclamedoeleinden.
 6. Vraag toestemming voor het verdelen van deze data.
 7. Indien je een persoon zijn activiteiten volgt, zorg altijd voor een opt-outsysteem. (*)
 8. Zorg voor een goede klantenservice van je applicatie en maak het makkelijk om contact met je op te nemen.
@@ -33,7 +33,7 @@ Er zijn 3 commando's om data te manipuleren:
 10. Indien gebruikers via de Facebook applicatie op Android op je applicatie komen, zorg dat ze terug op de Facebook applicatie kunnen komen via de terugknop.
 
 ## Ons Project ##
-Binnen ons project zal deze taal gebruikt worden om gebruikers te laten inloggen via Facebook, doordat ze toestemming geven tot de data van hun profiel kunnen wij die data gebruiken om doelgerichter naar de gebruiker te werken.
+Binnen ons project zal deze API gebruikt worden om gebruikers in te laten loggen via Facebook. Doordat ze toestemming geven tot de data van hun profiel kunnen wij die data gebruiken om doelgerichter naar de gebruiker toe te werken.
 
 ## Links ##
 (*) https://nl.wikipedia.org/wiki/Opt-outsysteem
