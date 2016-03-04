@@ -411,6 +411,12 @@ Deze pagina zal op een gebruiksvriendelijke manier worden gepresenteerd. Dit sys
 
 ---
 
+# Contextdiagram
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/diagram.png)
+
+---
+
 # Use cases
 # Use Case ID: UC01
 
@@ -814,12 +820,6 @@ Bij evenementen bestaat er de keuze voor de gebruiker om op zoek te gaan naar ee
 Geen
 
 ![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/TransportSystem.PNG)
-
----
-
-# Contextdiagram
-
-![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/diagram.png)
 
 ---
 
