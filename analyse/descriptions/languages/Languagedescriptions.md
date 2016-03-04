@@ -26,6 +26,8 @@
 ## Ons project ##
 Wij zullen de ADO .Net gebruiken op onze (web)-applicatie te verbinden met onze databank, en zo een gegevensstroom creëren waarmee we gegevens kunnen opslaan en ook gegevens kunnen vertonen op onze website/applicatie. Als IDE gebruiken we Visual Studio 2015 Community version.
 
+---
+
 # SQL #
 
 ## Omschrijving ##
@@ -38,6 +40,7 @@ SQL oftewel Structured Query Language is een taal voor een relationeel databasem
 ## Ons project ##
 We gebruiken SQL in ons project om met onze database aan gegevensuitwisseling te doen. We gebruiken hierbij ook het ADO .Net framework om de databank te connecteren aan onze applicatie zelf.
 
+---
 
 # ASP.NET #
 
@@ -59,6 +62,7 @@ De voordelen van MVC zijn talrijk. Zo zal je code beter gestructureerd zijn, wor
 ## Ons project ##
 Wij zullen de complete back-end schrijven in ASP.NET. Als framework gebruiken we het MVC framework samen met de web API van .NET. Elke HTTP request zal dus via een controller gebeuren, waarop deze controller de gevraagde functie uitvoert. Als IDE gebruiken we Visual Studio 2015 Community.
 
+---
 
 # Bootstrap Framework (JavaScript / JQuery) #
 
@@ -78,6 +82,7 @@ Op dit moment is men druk aan het werk met versie 4 en die zit momenteel al in d
 ## Ons Project ##
 Wij gaan Bootstrap Versie 3 gebruiken in ons project. We gebruiken dit om een responsive-design te creëren op de website. Via deze weg willen we zorgen dat de website gebruikt kan worden op smartphones en tablets, alsook op een laptop of desktop PC.
 
+---
 
 # Facebook API #
 
@@ -122,6 +127,7 @@ Uitgebreidere Terms of Use: https://developers.facebook.com/policy/
 Data manipulatie: https://graph.facebook.com/<name>
 Facebook for Developers: https://developers.facebook.com/
 
+---
 
 # HTML5 #
 
@@ -149,13 +155,11 @@ CSS3 is de nieuwste versie van de CSS standaard. Net als HTML5 is CSS3 nog geen 
 * border-radius
 * box-shadow
 
-
 **Backgrounds**
 
 * background-origin en background-clip
 * background-size
 * multiple backgrounds
- 
 
 **Color**
 
@@ -163,14 +167,12 @@ CSS3 is de nieuwste versie van de CSS standaard. Net als HTML5 is CSS3 nog geen 
 * HSLA colors
 * opacity
 * RGBA colors
- 
 
 **Text effects**
 
 * text-shadow
 * text-overflow
 * word-wrap
- 
 
 **User-interface**
 
@@ -179,7 +181,6 @@ CSS3 is de nieuwste versie van de CSS standaard. Net als HTML5 is CSS3 nog geen 
 * outline
 * nav-top, nav-right, nav-bottom, nav-left
 
-
 **Selectors**
 
 * attribute selectors
@@ -187,7 +188,7 @@ CSS3 is de nieuwste versie van de CSS standaard. Net als HTML5 is CSS3 nog geen 
 ## Ons Project ##
 Voor ons project zullen we voor bijna elke webpagina gebruik moeten maken van Cascading Style Sheets. Dit zal ervoor zorgen dat onze pagina’s een betere vorm zullen krijgen en dat deze aantrekkelijk zullen worden gepresenteerd.
 
-
+---
 
 # Twitter API #
 
