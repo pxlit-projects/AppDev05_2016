@@ -90,6 +90,7 @@ Rudy Mas - verslaggever
 Joran Claessens - Communicatie met derden
 Sacha Reyskens, Bram Van Vleymen en Frédérique Van Wonterghem zullen bijspringen waar nodig.
 
+---
 
 # Talen
 # ADO .Net #
@@ -311,6 +312,9 @@ In ons project gebruiken we de Twitter API om een korte newsfeed te laten zien o
 Een link naar de Twitter API documentation: [https://dev.twitter.com/overview/documentation](https://dev.twitter.com/overview/documentation).
 
 Een link naar de Twitter API: [https://dev.twitter.com/](https://dev.twitter.com/).
+
+---
+
 # Pagina's 
 # Controle Organisatie #
 
@@ -404,6 +408,8 @@ Na afloop van het event kan een gebruiker een bepaalde BOB een rating geven. Hie
 Daarnaast zal er een optie zijn voor de persoon om zichzelf aan te bieden als BOB. Hierdoor zal er een nieuwe pagina verschijnen waarbij deze persoon enkele voorwaarden moet accepteren en invoeren hoeveel personen de student kan meenemen. Daarna kan hij alles opslaan en komt deze persoon in de lijst te staan met beschikbare BOB’s.
 
 Deze pagina zal op een gebruiksvriendelijke manier worden gepresenteerd. Dit systeem zal op een snelle en makkelijke manier moeten functioneren, opdat de studenten niet te veel hoeven te klikken of overbodige gegevens moeten invoeren. Er ligt een grote verantwoordelijkheid op deze pagina, omdat iedereen die gebruik zal maken van dit systeem de regels zal moeten naleven. Omdat er bepaalde regels nageleefd moeten worden, zullen er voorwaarden opgesteld worden die de persoon moet accepteren voor deelname. Dit zal ervoor zorgen dat er minder klachten zullen binnenkomen bij misbruik van het systeem.
+
+---
 
 # Use cases
 # Use Case ID: UC01
@@ -808,6 +814,8 @@ Bij evenementen bestaat er de keuze voor de gebruiker om op zoek te gaan naar ee
 Geen
 
 ![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/TransportSystem.PNG)
+
+---
 
 # Woordenlijst
 
