@@ -817,6 +817,12 @@ Geen
 
 ---
 
+# Contextdiagram
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/diagram.png)
+
+---
+
 # Woordenlijst
 
 * administrator: **gebruiker die het programma beheert.**
