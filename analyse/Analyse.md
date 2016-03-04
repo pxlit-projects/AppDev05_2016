@@ -219,13 +219,7 @@ Binnen ons project zal deze API gebruikt worden om gebruikers in te laten loggen
 (*) https://nl.wikipedia.org/wiki/Opt-outsysteem
 
 Uitgebreidere Terms of Use: https://developers.facebook.com/policy/
-<<<<<<< HEAD
 Data manipulatie: https://graph.facebook.com/`<name>`
-=======
-
-Data manipulatie: https://graph.facebook.com/<name>
-
->>>>>>> origin/master
 Facebook for Developers: https://developers.facebook.com/
 
 ---
