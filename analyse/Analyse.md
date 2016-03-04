@@ -182,9 +182,9 @@ Wij gaan Bootstrap Versie 3 gebruiken in ons project. We gebruiken dit om een re
 
 ## Omschrijving ##
 Met het Facebook API is het mogelijk om data van Facebook te kunnen verkrijgen, deze informatie krijgen we binnen via JSON, het is daarna mogelijk om deze data te gebruiken in JavaScript om applicaties rond Facebook uit te bouwen.
-Met de juiste authorisation key is het mogelijk om data te verkrijgen door middel van volgende link: https://graph.facebook.com/<name>.
+Met de juiste authorisation key is het mogelijk om data te verkrijgen door middel van volgende link: https://graph.facebook.com/`<name>`.
 
-Op de plaats van <name> dient met een objectnaam in te vullen.
+Op de plaats van `<name>` dient met een objectnaam in te vullen.
 Er zijn verschillende soorten objecten binnen Facebook:
 - Profielen
 - Groepen
@@ -218,7 +218,7 @@ Binnen ons project zal deze API gebruikt worden om gebruikers in te laten loggen
 ## Links ##
 (*) https://nl.wikipedia.org/wiki/Opt-outsysteem
 Uitgebreidere Terms of Use: https://developers.facebook.com/policy/
-Data manipulatie: https://graph.facebook.com/<name>
+Data manipulatie: https://graph.facebook.com/`<name>`
 Facebook for Developers: https://developers.facebook.com/
 
 ---
@@ -228,12 +228,12 @@ Facebook for Developers: https://developers.facebook.com/
 ## Omschrijving ##
 HTML5 (HyperText Markup Language 5) is de laatste versie van de HTML-standaard. HTML5 zorgt ervoor dat alle kleine foutjes van zijn voorganger worden verbeterd.
 
-HTML5 introduceert nieuwe tags die ervoor zorgen dat er meer structuur in het document komt zoals &lt;header&gt; om het header-gedeelte aan te duiden , &lt;nav&gt; voor navigatie en &lt;article&gt; om het artikeldeel aan te duiden. Verder komen er tags die het mogelijk maken om interactieve content af te spelen zonder gebruik te maken van een Flash Player-plug-in, zoals de &lt;video&gt;-tag.
+HTML5 introduceert nieuwe tags die ervoor zorgen dat er meer structuur in het document komt zoals &lt;header&gt; om het header-gedeelte aan te duiden , `<nav>` voor navigatie en `<article>` om het artikeldeel aan te duiden. Verder komen er tags die het mogelijk maken om interactieve content af te spelen zonder gebruik te maken van een Flash Player-plug-in, zoals de `<video>`-tag.
 
 HTML5 zorgt er ook voor dat webapplicaties offline beschikbaar kunnen worden, bij het eerste bezoek aan de applicatie download je dan automatisch de benodigde files voor de webapp en dan kun je deze later offline gebruiken. Als je in zo’n offline applicatie dan veranderingen aanbrengt dan worden deze naar de server doorgestuurd op het eerstvolgende moment dat er weer internetverbinding is. Verder is er nu een mogelijkheid om drag and drop te implementeren.
 
-## Ons Project ## 
-HTML5 zal voor ons project standaard gebruikt worden om pagina’s op te stellen. Hierbij zullen we ook gebruik maken van de nieuwe tags zoals <header> en <nav>.
+## Ons Project ##
+HTML5 zal voor ons project standaard gebruikt worden om pagina’s op te stellen. Hierbij zullen we ook gebruik maken van de nieuwe tags zoals `<header>` en `<nav>`.
 
 # CSS3 #
 
@@ -794,15 +794,13 @@ Geen
 # Woordenlijst
 # Woordenlijst
 
-<ul>
-<li> administrator: <b> gebruiker die het programma beheert. </b> </li>
-<li> evenementen: <b> een activiteit die wordt ingevoerd door een organisatie. </b> </li>
-<li> foutmelding: <b> een boodschap die wordt getoond als er iets mis is gegaan. </b> </li>
-<li> organisator: <b> een soort gebruiker die evenementen kan aanmaken. </b> </li>
-<li> pagina: <b> een sectie van de website. </b> </li>
-<li> database: <b> een verzameling van alle gegevens. </b> </li>
-<li> cloud: <b> online platform voor gegevens op te slaan en te bewerken. </b> </li>
-<li> webapplicatie: <b> een programma via het internet. </b> </li>
-</ul>
+* administrator: **gebruiker die het programma beheert.**
+* evenementen: **een activiteit die wordt ingevoerd door een organisatie.**
+* foutmelding: **een boodschap die wordt getoond als er iets mis is gegaan.**
+* organisator: **een soort gebruiker die evenementen kan aanmaken.**
+* pagina: **een sectie van de website.**
+* database: **een verzameling van alle gegevens.**
+* cloud: **online platform voor gegevens op te slaan en te bewerken.**
+* webapplicatie: **een programma via het internet.**
 
 We hebben gemerkt dat we Engelse en Nederlandse woorden door elkaar gebruiken. Deze woordenlijst moet ervoor zorgen dat we weten wanneer we welk woord moeten gebruiken. Verder bevat de woordenlijst enkele definities. Dit om de klant extra uitleg te geven over de gebruikte termen.
