@@ -240,6 +240,7 @@ Een gebruiker kan aan de hand van een filteringsysteem bepalen welk soort evenem
 
 1. De gebruiker gaat naar de persoonlijke instellingen van zijn profiel
 2. De gebruiker kiest het type evenement door middel van verschillende criteria
+3. Deze veranderingen worden opgeslagen in de database
 
 ## Alternatieve flow
 
@@ -247,7 +248,7 @@ Geen alternatief
 
 ## Uitzonderingen
 
-Geen uitzonderingen
+**1E1.** De database is niet beschikbaar, het systeem geeft een foutmelding
 
 ## Inclusief
 
@@ -262,8 +263,7 @@ Geen
 
 ## Omschrijving
 
-Bij de selectie van een evenement kan de gebruiker zien welke gemeenschappelijke vrienden naar dat bepaald evenement gaan.
-Een gebruiker kan zien welke gemeenschappelijke vrienden naar een bepaald evenement gaan.
+Bij de selectie van een evenement kan de gebruiker zien welke gemeenschappelijke vrienden naar dat evenement gaan.
 
 ## Precondities
 
@@ -271,7 +271,7 @@ Een gebruiker kan zien welke gemeenschappelijke vrienden naar een bepaald evenem
 
 ## Postcondities
 
-1. De gebruiker ziet welke gemeenschappelijke vrienden die naar een bepaald evenement gaan
+1. De gebruiker ziet welke gemeenschappelijke vrienden naar een bepaald evenement gaan
 
 ## Normale flow
 

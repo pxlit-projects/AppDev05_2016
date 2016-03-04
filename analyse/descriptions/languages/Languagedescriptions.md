@@ -8,7 +8,7 @@
 * Bruikbaar met de talrijke soorten van databanken
 * Stelt gebruiker in staat met willekeurige databanken te communiceren
 
-## Objecten ## 
+## Objecten 
 **Connection** : maakt het contact met een gegevensbron.
 
 **Command** : maakt commando's en query's naar een gegevensbron.
