@@ -1,6 +1,6 @@
 # Controle Organisatie #
 
-Dit is een pagina die enkel de administratot kan zien. Door middel van deze pagina kan de administrator de organisaties toegang tot de website geven of ontzeggen. Dit kan zowel voor als na de registratie.
+Dit is een pagina die enkel de administrator kan zien. Door middel van deze pagina kan de administrator de organisaties toegang tot de website geven of ontzeggen. Dit kan zowel voor als na de registratie.
   
 Na de registratie zal een organisatie een bepaalde tijd moeten wachten, opdat de administrator de organisatie kan controleren en hem toestemming kan geven om evenementen op de website te plaatsen. De organisatie kan zich enkel aanmelden via het ‘form’, dus niet via Facebook. De administrator kan alle informatie zien die de desbetreffende organisatie gebruikt heeft om zich te registreren en kan zo nakijken of de organisatie wel daadwerkelijk past binnen hun criteria.
  
