@@ -6,6 +6,8 @@ Na de registratie zal een organisatie een bepaalde tijd moeten wachten, opdat de
  
 De pagina moet een gebruiksvriendelijke, snelle en zeer intuïtieve interface hebben die het gemakkelijk maakt voor de admin om een organisatie na te kijken en zo snel mogelijk te accepteren of te weigeren. Ook moet de pagina een lijst hebben van de organisaties die actief zijn, zodat men deze de toegang kan ontzeggen in het geval van frauduleuze praktijken. 
 
+---
+
 # Controle Reviews #
 
 Enkel voor de administrator. De administrator kan dankzij deze functionaliteit reviews verwijderen of goedkeuren door middel van het toepassen van regels. Deze functie zorgt ervoor dat een review het imago van de site niet kan beschadigen.
@@ -16,6 +18,8 @@ Om de werklast van de administrator te verminderen, zal gewerkt worden met een p
 
 Deze functionaliteit moet gebruiksvriendelijk en efficiënt zijn opdat het valideren van reviews geen dagen duurt. Een gedeelte van de validatie van de reviews wordt geautomatiseerd. Het programma zal controleren op verboden woorden in de review. Als een verboden woord gevonden wordt, zal er een melding worden gegeven aan de gebruiker en zal de review niet gepubliceerd worden.
 
+---
+
 # Evenementenlijst #
 
 Op deze pagina wordt een overzicht getoond van alle evenementen die er in de komende dagen zullen plaats vinden. Deze lijst bevat de naam van het evenement, de organisator en de plaats, datum en uur van dit evenement.
@@ -24,6 +28,8 @@ Zodra de student op één van de evenementen klikt, wordt de pagina geopend die 
 
 De student heeft dan de mogelijkheid om aan te geven of hij ook gaat of niet.
 Vanaf de informatiepagina van het evenement heeft de student altijd de mogelijkheid om terug te keren naar de pagina die de lijst toont van alle evenementen.
+
+---
 
 # Filteringsysteem #
 
@@ -41,6 +47,8 @@ Nadat de gebruiker zijn persoonlijke keuzes gemaakt heeft afhankelijk van deze c
 
 Op deze manier krijgt de gebruiker een beknoptere lijst van events waarvoor hij interesse heeft en vergroot dit het potentieel dat hij ook aanwezig zal zijn op bepaalde events.
 
+---
+
 # Hoofdpagina #
 
 ## Beschrijving ##
@@ -51,8 +59,9 @@ Het stuurprogramma zal actief zijn op Twitter en Facebook. Hier zullen zij nieuw
 
 Via de evenementen lijst kunnen we de website als vaste waarde vestigen in het Hasseltse/Diepenbeekse nachtleven. Verder maakt een eventementen lijst het mogelijk om het uitgaansleven in kaart te brengen voor de stuurgroep. De evenementen lijst zal dus uitgebreid aangekondigd worden op de hoofdpagina. We kunnen werken met de blok lay-out van Windows 8. Dit geeft een moderne en aantrekkelijke look en nodigt de bezoeker uit om verder te kijken.
 
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/project_voorbeeld.png)
 
-![](http://www.falkondigital.com/wp-content/uploads/2014/01/pixelworkers-flat-web-design.jpg)
+---
 
 # Statistiekenpagina #
 
@@ -67,6 +76,8 @@ Hier zal de administrator de statistieken van alle events en gebruikers kunnen z
 * Hoeveelheid reviews
 * Aantal views
 * ...
+
+---
 
 # Vervoerssysteem #
 
