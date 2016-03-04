@@ -404,7 +404,8 @@ Na afloop van het event kan een gebruiker een bepaalde BOB een rating geven. Hie
 Daarnaast zal er een optie zijn voor de persoon om zichzelf aan te bieden als BOB. Hierdoor zal er een nieuwe pagina verschijnen waarbij deze persoon enkele voorwaarden moet accepteren en invoeren hoeveel personen de student kan meenemen. Daarna kan hij alles opslaan en komt deze persoon in de lijst te staan met beschikbare BOB’s.
 
 Deze pagina zal op een gebruiksvriendelijke manier worden gepresenteerd. Dit systeem zal op een snelle en makkelijke manier moeten functioneren, opdat de studenten niet te veel hoeven te klikken of overbodige gegevens moeten invoeren. Er ligt een grote verantwoordelijkheid op deze pagina, omdat iedereen die gebruik zal maken van dit systeem de regels zal moeten naleven. Omdat er bepaalde regels nageleefd moeten worden, zullen er voorwaarden opgesteld worden die de persoon moet accepteren voor deelname. Dit zal ervoor zorgen dat er minder klachten zullen binnenkomen bij misbruik van het systeem.
-#Use cases
+
+# Use cases
 # Use Case ID: UC01
 
 **Actoren**: Administrator  
@@ -445,6 +446,8 @@ Een administrator kan de aanwezigheidsstatistieken van elk evenement opvragen. D
 ## Inclusief
 
 Geen
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/AttendanceStatistics.PNG)
 
 ---
 
@@ -490,6 +493,8 @@ Een organisator kan zich registreren, maar moet hierbij geaccepteerd worden door
 
 Geen
 
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/ControlReviewsOrganizations.PNG)
+
 ---
 
 # Use Case ID: UC03
@@ -532,6 +537,8 @@ Bij het plaatsen van een review zal deze geaccepteerd of verwijderd worden als d
 ## Inclusief
 
 Geen
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/ControlReviewsOrganizations2.PNG)
 
 ---
 
@@ -576,6 +583,8 @@ De gebruiker kan een evenementenlijst raadplegen op de hoofdpagina van de websit
 ## Inclusief
 
 Geen
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/Eventlist.PNG)
 
 ---
 
@@ -624,6 +633,8 @@ Zodra het evenement is afgelopen zal de ingelogde gebruiker een notificatie krij
 
 Geen
 
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/EventRating.PNG)
+
 ---
 
 # Use Case ID: UC06
@@ -660,6 +671,8 @@ Geen alternatief
 ## Inclusief
 
 Geen
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/FiltrationSystem.PNG)
 
 ---
 
@@ -700,6 +713,8 @@ Bij de selectie van een evenement kan de gebruiker zien welke gemeenschappelijke
 ## Inclusief
 
 Geen
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/MutualFriends.PNG)
 
 ---
 
@@ -791,6 +806,8 @@ Bij evenementen bestaat er de keuze voor de gebruiker om op zoek te gaan naar ee
 ## Inclusief
 
 Geen
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/TransportSystem.PNG)
 
 # Woordenlijst
 
