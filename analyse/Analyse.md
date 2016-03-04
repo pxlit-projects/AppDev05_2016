@@ -217,8 +217,11 @@ Binnen ons project zal deze API gebruikt worden om gebruikers in te laten loggen
 
 ## Links ##
 (*) https://nl.wikipedia.org/wiki/Opt-outsysteem
+
 Uitgebreidere Terms of Use: https://developers.facebook.com/policy/
+
 Data manipulatie: https://graph.facebook.com/<name>
+
 Facebook for Developers: https://developers.facebook.com/
 
 ---
@@ -791,7 +794,6 @@ Bij evenementen bestaat er de keuze voor de gebruiker om op zoek te gaan naar ee
 
 Geen
 
-# Woordenlijst
 # Woordenlijst
 
 <ul>
