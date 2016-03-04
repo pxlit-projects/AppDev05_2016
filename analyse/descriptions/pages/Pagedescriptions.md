@@ -1,10 +1,10 @@
 # Controle Organisatie #
 
-Dit is een pagina die enkel de admin kan zien. Door middel van deze pagina kan de admin de organisaties toegang tot de website geven of ontzeggen. Dit kan zowel voor als na de registratie.
+Dit is een pagina die enkel de administratot kan zien. Door middel van deze pagina kan de administrator de organisaties toegang tot de website geven of ontzeggen. Dit kan zowel voor als na de registratie.
   
-Na de registratie zal een organisatie een bepaalde tijd moeten wachten, opdat de admin de organisatie kan controleren en hem toestemming kan geven om evenementen op de website te plaatsen. De organisatie kan zich enkel aanmelden via het ‘form’, dus niet via Facebook. De admin kan alle informatie zien die de desbetreffende organisatie gebruikt heeft om zich te registreren en kan zo nakijken of de organisatie wel daadwerkelijk past binnen hun criteria.
+Na de registratie zal een organisatie een bepaalde tijd moeten wachten, opdat de administrator de organisatie kan controleren en hem toestemming kan geven om evenementen op de website te plaatsen. De organisatie kan zich enkel aanmelden via het ‘form’, dus niet via Facebook. De administrator kan alle informatie zien die de desbetreffende organisatie gebruikt heeft om zich te registreren en kan zo nakijken of de organisatie wel daadwerkelijk past binnen hun criteria.
  
-De pagina moet een gebruiksvriendelijke, snelle en zeer intuïtieve interface hebben die het gemakkelijk maakt voor de admin om een organisatie na te kijken en zo snel mogelijk te accepteren of te weigeren. Ook moet de pagina een lijst hebben van de organisaties die actief zijn, zodat men deze de toegang kan ontzeggen in het geval van frauduleuze praktijken. 
+De pagina moet een gebruiksvriendelijke, snelle en zeer intuïtieve interface hebben die het gemakkelijk maakt voor de administrator om een organisatie na te kijken en zo snel mogelijk te accepteren of te weigeren. Ook moet de pagina een lijst hebben van de organisaties die actief zijn, zodat men deze de toegang kan ontzeggen in het geval van frauduleuze praktijken. 
 
 ---
 
@@ -33,9 +33,9 @@ Vanaf de informatiepagina van het evenement heeft de student altijd de mogelijkh
 
 # Filteringsysteem #
 
-Dit systeem dient om de gebruikers de mogelijkheid te geven om zelf te bepalen welk type events ze willen zien op de website.
+Dit systeem dient om de gebruikers de mogelijkheid te geven om zelf te bepalen welk type evenement ze willen zien op de website.
 
-Een gebruiker kan via de opties van zijn persoonlijk profiel instellen aan de hand van checkboxes/radiobuttons en drop down menu’s welke events hij wilt weergeven.
+Een gebruiker kan via de opties van zijn persoonlijk profiel instellen aan de hand van checkboxes/radiobuttons en drop down menu’s welke evenementen hij wilt weergeven.
 
 Mogelijke categorieën:
 
@@ -43,9 +43,9 @@ Mogelijke categorieën:
 * Sport
 * Cultuur
 
-Nadat de gebruiker zijn persoonlijke keuzes gemaakt heeft afhankelijk van deze criteria zal de website enkel deze events weergeven.
+Nadat de gebruiker zijn persoonlijke keuzes gemaakt heeft afhankelijk van deze criteria zal de website enkel deze evenementen weergeven.
 
-Op deze manier krijgt de gebruiker een beknoptere lijst van events waarvoor hij interesse heeft en vergroot dit het potentieel dat hij ook aanwezig zal zijn op bepaalde events.
+Op deze manier krijgt de gebruiker een beknoptere lijst van evenementen waarvoor hij interesse heeft en vergroot dit het potentieel dat hij ook aanwezig zal zijn op bepaalde evenementen.
 
 ---
 
@@ -67,12 +67,12 @@ Via de evenementen lijst kunnen we de website als vaste waarde vestigen in het H
 
 Deze pagina is alleen voor de administrator.
  
-Hier zal de administrator de statistieken van alle events en gebruikers kunnen zien. Eerst zal de admin een lijst krijgen met alle evenementen waar hij door kan scrollen. Er zal ook een zoekfunctie aanwezig zijn. Wanneer hij op een event klikt komen de statistieken tevoorschijn. Zo kan de admin gemakkelijk van event wisselen. Hier zal ook een printknop en e-mailknop voorzien zijn zodat hij deze gemakkelijk kan printen en doormailen indien nodig. De statistieken omvangen bijvoorbeeld:
+Hier zal de administrator de statistieken van alle evenementen en gebruikers kunnen zien. Eerst zal de administrator een lijst krijgen met alle evenementen waar hij door kan scrollen. Er zal ook een zoekfunctie aanwezig zijn. Wanneer hij op een evenement klikt komen de statistieken tevoorschijn. Zo kan de administrator gemakkelijk van evenement wisselen. Hier zal ook een printknop en e-mailknop voorzien zijn zodat hij deze gemakkelijk kan printen en doormailen indien nodig. De statistieken omvangen bijvoorbeeld:
 
 * Hoeveelheid mannen en vrouwen
 * Welke leeftijdsgroepen
 * Hoeveel mensen er hebben afgewezen
-* De rating van een event
+* De rating van een evenement
 * Hoeveelheid reviews
 * Aantal views
 * ...
@@ -85,7 +85,7 @@ Wanneer een persoon zich als aanwezig heeft opgegeven voor een bepaald evenement
 
 Op deze pagina zal een lijst tevoorschijn komen van alle BOB’s waar nog plaatsen beschikbaar zijn. Wanneer een student op een van deze BOB’s klikt, zal hij meer informatie krijgen over deze persoon en daarna kan deze student zijn aanwezigheid bevestigen. Er zal een email worden gestuurd naar de BOB om hem te informeren dat er een persoon zich aangeboden heeft. De BOB Kan hierop beslissen of hij de desbetreffende persoon wilt mee nemen of niet via een eenvoudige knop. Wanneer de student opgenomen is bij de geselecteerde BOB kan deze persoon zichzelf terugvinden bij deze geselecteerde BOB groep.
 
-Na afloop van het event kan een gebruiker een bepaalde BOB een rating geven. Hiervoor moet de gebruiker echter wel ingeschreven zijn geweest op de vervoerslijst van deze BOB. Ook is het mogelijk om een review te schrijven over deze BOB. Dit reviewsysteem zal hetzelfde werken als het systeem beschreven in ControleReviews.md.
+Na afloop van het evenement kan een gebruiker een bepaalde BOB een rating geven. Hiervoor moet de gebruiker echter wel ingeschreven zijn geweest op de vervoerslijst van deze BOB. Ook is het mogelijk om een review te schrijven over deze BOB. Dit reviewsysteem zal hetzelfde werken als het systeem beschreven in ControleReviews.md.
 
 Daarnaast zal er een optie zijn voor de persoon om zichzelf aan te bieden als BOB. Hierdoor zal er een nieuwe pagina verschijnen waarbij deze persoon enkele voorwaarden moet accepteren en invoeren hoeveel personen de student kan meenemen. Daarna kan hij alles opslaan en komt deze persoon in de lijst te staan met beschikbare BOB’s.
 
