@@ -1,12 +1,12 @@
 # Planning #
 
-## Groepen
+## Groepen ##
 
 1. Kevin & Bram
 2. Rudy & Frédérique
 3. Joran & Sacha
 
-## 1ste Sprint 11/04
+## 1ste Sprint 11/04 ##
 
 Taken:
 
@@ -19,7 +19,7 @@ Taken:
 * review systeem moet werken (verwerken, nakijken) (G3)
 * review systeem (flaggen) (G1)
 
-## 2de Sprint 09/05
+## 2de Sprint 09/05 ##
 
 Taken:
 
@@ -30,7 +30,7 @@ Taken:
 * vervoerssysteem (valideren) (G3)
 * vervoerssysteem (aanvragen) (G2)
 
-## 3de Sprint 30/05
+## 3de Sprint 30/05 ##
 
 Taken
 
