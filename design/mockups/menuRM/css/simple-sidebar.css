@@ -1,0 +1,164 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+	padding-left: 0;
+	transition: all 0.5s ease;
+}
+#wrapper.toggled {
+	padding-left: 250px;
+}
+#sidebar-wrapper {
+	z-index: 500;
+	position: fixed;
+	left: 200px;
+	width: 0;
+	height: 100%;
+	margin-left: -200px;
+	overflow-y: auto;
+	background: #000;
+	transition: all 0.5s ease;
+}
+#wrapper.toggled #sidebar-wrapper {
+	width: 200px;
+	overflow: hidden;
+}
+#page-content-wrapper {
+	width: 100%;
+	position: absolute;
+	padding: 15px;
+	z-index: 250;
+}
+#wrapper.toggled #page-content-wrapper {
+	position: absolute;
+	margin-right: -250px;
+	z-index: 250;
+}
+/* Sidebar Styles */
+
+.sidebar-nav {
+	position: absolute;
+	top: 45px;
+	width: 200px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sidebar-nav li {
+	line-height: 40px;
+}
+.sidebar-nav li a {
+	display: block;
+	text-decoration: none;
+	color: #999999;
+	padding-left: 45px;
+}
+.sidebar-nav li a:hover {
+	text-decoration: none;
+	color: #fff;
+	background: rgba(255,255,255,0.2);
+}
+
+/* Menu Icons */
+.sidebar-nav li a.iconHome {
+	background: url('../images/home_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconHome:hover {
+	background:rgba(255,255,255,0.2) url('../images/home_hv.png') 7px no-repeat;
+	color: #fff;
+}
+.sidebar-nav li a.iconEvent {
+	background: url('../images/event_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconEvent:hover {
+	background:rgba(255,255,255,0.2) url('../images/event_hv.png') 7px no-repeat;
+	color: #fff;
+}
+.sidebar-nav li a.iconNews {
+	background: url('../images/news_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconNews:hover {
+	background:rgba(255,255,255,0.2) url('../images/news_hv.png') 7px no-repeat;
+	color: #fff;
+}
+.sidebar-nav li a.iconSettings {
+	background: url('../images/settings_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconSettings:hover {
+	background:rgba(255,255,255,0.2) url('../images/settings_hv.png') 7px no-repeat;
+	color: #fff;
+}
+.sidebar-nav li a.iconLogin {
+	background:rgba(2,67,26,1.00) url('../images/login_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconLogin:hover {
+	background:rgba(255,255,255,0.2) url('../images/login_hv.png') 7px no-repeat;
+	color: #fff;
+}
+.sidebar-nav li a.iconLogout {
+	background:darkred url('../images/logout_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconLogout:hover {
+	background:rgba(255,255,255,0.2) url('../images/logout_hv.png') 7px no-repeat;
+	color: #fff;
+}
+
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+	text-decoration: none;
+}
+.sidebar-brand {
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 2000;
+	background-color:#000;
+	margin: 1px;
+}
+.sidebar-brand a {
+	color: #999999;
+}
+.sidebar-brand a:hover {
+	color: #fff;
+	background: none;
+}
+.sidebar-brand img {
+	border: 1px solid white;
+	border-radius:5px;
+}
+
+@media(min-width:768px) {
+	#wrapper {
+		padding-left: 200px;
+	}
+	#wrapper.toggled {
+		padding-left: 45px;
+	}
+	#sidebar-wrapper {
+		width: 200px;
+	}
+	#wrapper.toggled #sidebar-wrapper {
+		width: 45px;
+	}
+	#page-content-wrapper {
+		padding: 20px;
+		position: relative;
+		z-index: 250;
+	}
+	#wrapper.toggled #page-content-wrapper {
+		position: relative;
+		margin-right: 0;
+		z-index: 250;
+	}
+}
