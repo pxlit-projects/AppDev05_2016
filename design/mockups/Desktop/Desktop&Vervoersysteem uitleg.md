@@ -24,6 +24,9 @@ Hierin kan de administrator een mail stuur over een bepaald onderwerp naar de ge
 
 Er wordt een lijst getoond van mogelijke slechte reviews, opgenomen door een tekstverwerken. De administrator bepaald of deze review geaccepteerd wordt of niet. Indien de administrator niet voldoende informatie heeft, kan hij de review ook online bekijken samen met de desbetreffende organisatie. Wanneer hij al zijn taken heeft volbracht kan men klikken op opslaan.
 
+## Desktop - Beheer gebruikers
+
+De administrator krijgt een lijst te zien van allemaal gebruikers. Hij kan de status van de gebruikers sorteren zodat deze op volgorde staan. Indien een gebruiker gerapporteerd is zal er een link gemaakt worden naar het probleem online. Daarnaast kan de administrator rechten intrekken of toevoegen aan gebruikers en kan hij ook gebruikers verwijderen. Na deze wijzigingen kan er geklikt worden op de knop "Opslaan".
 ## Vervoersysteem
 
 Bij elk evenement heb je vervoermogelijkheden. Hierin staat een lijst van verschillende BOB's. Gebruikers kunnen een aanvraag sturen naar een bepaalde BOB om met hem mee te gaan. Wanneer de aanvraag geselecteerd zal worden, zal er een button tevoorschijn komen van jouw groep voor dat evenement, met daarboven een cijfer van bepaalde meldingen. Anderzijds kunnen ze zich ook aanbieden als BOB. Hierin kunnen ze he aantal plaatsen meegeven en moeten ze de voorwaarden accepteren vooraleer ze zich kunnen aanbieden.
