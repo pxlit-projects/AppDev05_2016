@@ -2,6 +2,9 @@
  * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Amended by Rudy Mas
+ * Added Icons to the menu and changed the behavoir slightly
  */
 
 /* Toggle Styles */
@@ -11,7 +14,7 @@
 	transition: all 0.5s ease;
 }
 #wrapper.toggled {
-	padding-left: 250px;
+	padding-left: 200px;
 }
 #sidebar-wrapper {
 	z-index: 500;
@@ -36,7 +39,7 @@
 }
 #wrapper.toggled #page-content-wrapper {
 	position: absolute;
-	margin-right: -250px;
+	margin-right: -200px;
 	z-index: 250;
 }
 /* Sidebar Styles */
@@ -89,6 +92,38 @@
 	background:rgba(255,255,255,0.2) url('../images/news_hv.png') 7px no-repeat;
 	color: #fff;
 }
+.sidebar-nav li a.iconRichtlijnen {
+	background: url('../images/richtlijnen_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconRichtlijnen:hover {
+	background:rgba(255,255,255,0.2) url('../images/richtlijnen_hv.png') 7px no-repeat;
+	color: #fff;
+}
+.sidebar-nav li a.iconContact {
+	background: url('../images/contact_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconContact:hover {
+	background:rgba(255,255,255,0.2) url('../images/contact_hv.png') 7px no-repeat;
+	color: #fff;
+}
+.sidebar-nav li a.iconFAQ {
+	background: url('../images/FAQ_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconFAQ:hover {
+	background:rgba(255,255,255,0.2) url('../images/FAQ_hv.png') 7px no-repeat;
+	color: #fff;
+}
+.sidebar-nav li a.iconDisc {
+	background: url('../images/disclaimer_rs.png') 7px no-repeat;
+	color: #999999;
+}
+.sidebar-nav li a.iconDisc:hover {
+	background:rgba(255,255,255,0.2) url('../images/disclaimer_hv.png') 7px no-repeat;
+	color: #fff;
+}
 .sidebar-nav li a.iconSettings {
 	background: url('../images/settings_rs.png') 7px no-repeat;
 	color: #999999;
@@ -138,18 +173,20 @@
 	border-radius:5px;
 }
 
+
+/* Layout Website Desktop */
 @media(min-width:768px) {
 	#wrapper {
-		padding-left: 200px;
-	}
-	#wrapper.toggled {
 		padding-left: 45px;
 	}
+	#wrapper.toggled {
+		padding-left: 200px;
+	}
 	#sidebar-wrapper {
-		width: 200px;
+		width: 45px;
 	}
 	#wrapper.toggled #sidebar-wrapper {
-		width: 45px;
+		width: 200px;
 	}
 	#page-content-wrapper {
 		padding: 20px;
