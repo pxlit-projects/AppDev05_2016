@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project-appdev", "project-appdev\project-appdev.csproj", "{4A77BA81-A7C8-4D36-939E-9955C22597CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project-appdev.Tests", "project-appdev.Tests\project-appdev.Tests.csproj", "{B6A754A8-BFE0-4E15-8C25-3DC83DC80AEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A77BA81-A7C8-4D36-939E-9955C22597CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A77BA81-A7C8-4D36-939E-9955C22597CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A77BA81-A7C8-4D36-939E-9955C22597CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A77BA81-A7C8-4D36-939E-9955C22597CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A754A8-BFE0-4E15-8C25-3DC83DC80AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A754A8-BFE0-4E15-8C25-3DC83DC80AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A754A8-BFE0-4E15-8C25-3DC83DC80AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A754A8-BFE0-4E15-8C25-3DC83DC80AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
