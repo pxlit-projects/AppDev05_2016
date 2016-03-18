@@ -42,6 +42,12 @@ De administrator krijgt een lijst te zien van allemaal gebruikers. Hij kan de st
 
 ![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/Desktop%20-%20Beheer%20gebruikers.PNG)
 
+## Desktop - Statistiekenpagina
+
+Op deze pagina kunnen statistieken opgevraagd worden over het gebruik van de website en over gebruikers.
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/Desktop%20-%20Statistieken.PNG)
+
 ----------
 
 # Website Mockups
@@ -93,9 +99,3 @@ Op deze pagina kunnen veel gestelde vragen geplaatst worden met een duidelijk an
 Via deze pagina kan de gebruiker een bericht sturen naar de organisatie.
 
 ![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/Contactpagina.png)
-
-## Statistiekenpagina
-
-Op deze pagina kunnen statistieken opgevraagd worden over het gebruik van de website en over gebruikers.
-
-![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/Statistieken.png)
