@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,13 +30,13 @@
   <div id="sidebar-wrapper">
     <div class="sidebar-brand"><a href="#menu-toggle" id="menu-toggle"><img src="images/menu-icon_rs.png"></a></div>
     <ul class="sidebar-nav">
-      <li> <a href="#" title="Home" class="iconHome">Home</a> </li>
+      <li> <a href="index.html" title="Home" class="iconHome">Home</a> </li>
       <li> <a href="#" title="Evenementen" class="iconEvent">Evenementen</a> </li>
       <li> <a href="#" title="Nieuws" class="iconNews">Nieuws</a> </li>
-      <li> <a href="#" title="Richtlijnen">Richtlijnen</a> </li>
-      <li> <a href="#" title="Contact">Contact</a> </li>
-      <li> <a href="#" title="FAQ">FAQ</a> </li>
-      <li> <a href="#" title="Aansprakelijkheid">Aansprakelijkheid</a> </li>
+      <li> <a href="#" title="Richtlijnen" class="iconRichtlijnen">Richtlijnen</a> </li>
+      <li> <a href="#" title="Contact" class="iconContact">Contact</a> </li>
+      <li> <a href="#" title="FAQ" class="iconFAQ">FAQ</a> </li>
+      <li> <a href="#" title="Aansprakelijkheid" class="iconDisc">Aansprakelijkheid</a> </li>
       <li> <a href="#" title="Instellingen" class="iconSettings">Instellingen</a> </li>
       <li> <a href="#" title="Aanmelden" class="iconLogin">Aanmelden</a> </li>
       <li> <a href="#" title="Afmelden" class="iconLogout">Afmelden</a> </li>
@@ -62,17 +62,44 @@
 <!-- /#wrapper --> 
 
 <!-- jQuery --> 
-<script src="js/jquery.js"></script> 
+<script src="js/jquery.js"></script>
+<script src="js/jquery.cookie.js"></script>
 
 <!-- Bootstrap Core JavaScript --> 
 <script src="js/bootstrap.min.js"></script> 
 
 <!-- Menu Toggle Script --> 
 <script>
+	var screenfull = false;
+	if ($.cookie("menuFull") == null) $.cookie("menuFull", "1");
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+		if ($(window).width() >= 768) {
+			if ($.cookie("menuFull") == "1") {
+				$.cookie("menuFull", "0");
+			} else {
+				$.cookie("menuFull", "1");
+			}
+		}
     });
+	
+	function checkSize() {
+		if ($(window).width() >= 768 && screenfull == false && $.cookie("menuFull") == "1") {
+			screenfull = true;
+			$("#wrapper").toggleClass("toggled"); 
+		}
+		else if ($(window).width() < 768 && screenfull == true && $.cookie("menuFull") == "1") {
+			screenfull = false;
+			$("#wrapper").toggleClass("toggled"); 
+		}
+	}
+	
+	checkSize();
+	
+	$(window).resize(function() {
+		checkSize();
+	});
     </script>
 </body>
 </html>
