@@ -41,3 +41,9 @@ Op deze pagina worden de voorwaarden gestipuleerd van hoe de website kan gebruik
 Op deze pagina kunnen veel gestelde vragen geplaatst worden met een duidelijk antwoord. Dit kan nog eens opgeteeld worden volgens bepaalde thema's.
 
 ![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/FAQ.png)
+
+## Contactpagina
+
+Via deze pagina kan de gebruiker een bericht sturen naar de organisatie.
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/Contactpagina.png)
