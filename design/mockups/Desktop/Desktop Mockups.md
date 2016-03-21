@@ -41,3 +41,9 @@ Er wordt een lijst getoond van mogelijke slechte reviews, opgenomen door een tek
 De administrator krijgt een lijst te zien van allemaal gebruikers. Hij kan de status van de gebruikers sorteren zodat deze op volgorde staan. Indien een gebruiker gerapporteerd is zal er een link gemaakt worden naar het probleem online. Daarnaast kan de administrator rechten intrekken of toevoegen aan gebruikers en kan hij ook gebruikers verwijderen. Na deze wijzigingen kan er geklikt worden op de knop "Opslaan".
 
 ![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/Desktop%20-%20Beheer%20gebruikers.PNG)
+
+## Desktop - Statistiekenpagina
+
+Op deze pagina kunnen statistieken opgevraagd worden over het gebruik van de website en over gebruikers.
+
+![](https://dl.dropboxusercontent.com/u/100598706/PXL/AppDev_Project/Desktop%20-%20Statistieken.PNG)
