@@ -5,25 +5,19 @@
 </div>
         @foreach (var item in Model)
     {
-            <table class="">
+            <table class="" style="border: 1px solid black; margin-bottom: 5px;">
                 <tbody>
                     <tr>
                         <td><a href="#"><h4>
-                            @Html.ActionLink(item.Name, "Event", "Events")</h4></a></td>
+                            @Html.ActionLink(item.Name, "Details", new {id=item.Id})</h4></a></td>
                     </tr>
                     <tr>
                         <td>@item.Description</td>
                     </tr>
                     <tr>
-                        <td>@item.Street</td>
+                        <td>Inkom: @item.EntranceFee</td>
                     </tr>
                     <tr>
-                        <td>@item.ZipCode</td>
-                    </tr>
-                    <tr>
-                        <td>@item.Start</td>
-                        <td>@item.End</td>
-                        <td>@item.EntranceFee</td>
                         <td>@item.AlcoholFree</td>
                     </tr>
                 </tbody>
