@@ -2,7 +2,7 @@
 
     <div id="login">
         <h3>Aanmelden</h3>
-        <form action="/Login/VerwerkLogin" method="post">
+        <form action="/Login/Process" method="post">
             <div class="veld">
                 <label for="username">Gebruikersnaam: </label>
                 <input type="text" name="vUsername" id="username" class="widthInput" required />
@@ -11,7 +11,7 @@
                 <label for="password">Wachtwoord: </label>
                 <input type="password" name="vPassword" id="password" class="widthInput" required />
             </div>
-            <div class=".">
+            <div>
                 <input type="button" value="Inzenden" class="button" />
                 <a href="/Login/Register" class="button">Registreren</a>
             </div>

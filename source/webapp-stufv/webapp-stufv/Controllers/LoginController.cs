@@ -15,7 +15,7 @@ namespace webapp_stufv.Controllers
             return View();
         }
 
-        public ActionResult Verwerk()
+        public ActionResult Process()
         {
             return View();
         }
