@@ -236,11 +236,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
-<<<<<<< HEAD
-    <Compile Include="Controllers\EventController.cs" />
-=======
     <Compile Include="Controllers\EventsController.cs" />
->>>>>>> 4eb8a023422c38a9b13297b32a7c03c2d1a2165d
     <Compile Include="Controllers\GuidelinesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -275,12 +271,9 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-<<<<<<< HEAD
     <Content Include="Content\Global.css" />
     <Content Include="Content\img\collapse.png" />
-=======
     <Content Include="Content\LoginIndex.css" />
->>>>>>> 4eb8a023422c38a9b13297b32a7c03c2d1a2165d
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
