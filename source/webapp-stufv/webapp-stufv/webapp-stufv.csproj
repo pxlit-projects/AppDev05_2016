@@ -249,6 +249,7 @@
     <Compile Include="Models\DesDriver.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\FAQ.cs" />
+    <Compile Include="Models\Guideline.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Organisation.cs" />
