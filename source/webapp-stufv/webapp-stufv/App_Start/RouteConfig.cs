@@ -32,7 +32,7 @@ namespace webapp_stufv {
             routes.MapRoute(
                 name: "Events",
                 url: "Events/{action}/{id}",
-                defaults: new { controller = "Event", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Events", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute (
                 name: "Default",

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace webapp_stufv.Models {
-    [Table("Article")]
     public class Article {
-        [Key]
         public int Id { get; set; }
+<<<<<<< HEAD
 
         [ForeignKey("User")]
         public int UserId { get; set; }
@@ -20,15 +17,14 @@ namespace webapp_stufv.Models {
         public virtual Campaign Campaign { get; set; }
 
         [Required, MaxLength(50)]
+=======
+        public int UserId { get; set; }
+        public int CampaignId { get; set; }
+>>>>>>> dc185d7d33333bd2d7331607ed0c2d8043caa3af
         public string Title { get; set; }
-
-        [Required]
         public string Content { get; set; }
-
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public int Rating { get; set; }
-
-        [Required]
         public Boolean Active { get; set; }
     }
 }

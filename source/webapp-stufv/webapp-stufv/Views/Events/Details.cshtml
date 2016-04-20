@@ -1,0 +1,27 @@
+﻿@model webapp_stufv.Models.Event
+@section content{
+<div class="page-header">
+    <h1>@ViewBag.Title</h1>
+</div>
+            <table class="">
+                <tbody>
+                    <tr>
+                    <tr>
+                        <td>@Model.Description</td>
+                    </tr>
+                    <tr>
+                        <td>@Model.Street</td>
+                    </tr>
+                    <tr>
+                        <td>@Model.ZipCode</td>
+                    </tr>
+                    <tr>
+                        <td>@Model.Start</td>
+                        <td>@Model.End</td>
+                        <td>@Model.EntranceFee</td>
+                        <td>@Model.AlcoholFree</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+
