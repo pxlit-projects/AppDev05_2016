@@ -237,8 +237,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GuidelinesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,6 +260,7 @@
     <Compile Include="Models\Organisation.cs" />
     <Compile Include="Models\EventTypes.cs" />
     <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\STUFVModelContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -324,6 +327,7 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Guidelines\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

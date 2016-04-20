@@ -47,6 +47,8 @@ namespace webapp_stufv.Models {
         [Required]
         public Boolean Active { get; set; }
 
+        public virtual ICollection<Attendance> attendances { get; set; }
+
         public virtual ICollection<Review> reviews { get; set; }
 
         public virtual ICollection<DesDriver> desDrivers { get; set; }
