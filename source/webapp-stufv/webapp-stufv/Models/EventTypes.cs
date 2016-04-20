@@ -5,16 +5,17 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace webapp_stufv.Models {
-    [Table("Cities")]
-    public class Cities {
+
+namespace webapp_stufv.Models
+{
+    [Table("EventTypes")]
+    public class EventTypes
+    {
         [Key]
-        public string ZipCode { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public string City { get; set; }
-
-        public virtual ICollection<User> users { get; set; }
+        public string Description { get; set; }
 
         public virtual ICollection<Event> events { get; set; }
     }
