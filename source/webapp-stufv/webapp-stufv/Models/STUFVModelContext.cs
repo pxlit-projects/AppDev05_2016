@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
 namespace webapp_stufv.Models
 {
-    public class STUFVModelContext
+    public class STUFVModelContext : DbContext
     {
         public DbSet<Article> Articles { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
@@ -22,5 +23,10 @@ namespace webapp_stufv.Models
         public DbSet<Review> Reviews { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserTypes> UserTypes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        }
     }
 }

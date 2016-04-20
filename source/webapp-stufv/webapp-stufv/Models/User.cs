@@ -30,7 +30,7 @@ namespace webapp_stufv.Models {
 
         [ForeignKey("Cities")]
         public string ZipCode { get; set; }
-        public virtual ICollection<Cities> cities { get; set; }
+        public virtual Cities Cities { get; set; }
 
         [MaxLength(30), Required]
         public string Email { get; set; }
@@ -38,23 +38,23 @@ namespace webapp_stufv.Models {
         public string TelNr { get; set; }
         public string MobileNr { get; set; }
 
-        [ForeignKey("UserTypes"), Required]
+        [ForeignKey("UserTypes")]
         public int RoleID { get; set; }
-        public virtual UserTypes Usertype { get; set; }
+        public virtual UserTypes UserTypes { get; set; }
 
         [Required]
         public Boolean Active { get; set; }
 
-        public virtual ICollection<Attendance> attendances { get; set; }
+        public virtual ICollection<Attendance> Attendances { get; set; }
 
-        public virtual ICollection<Review> reviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
 
-        public virtual ICollection<Login> logins { get; set; }
+        public virtual ICollection<Login> Logins { get; set; }
 
-        public virtual ICollection<DesDriver> desDrivers { get; set; }
+        public virtual ICollection<DesDriver> DesDrivers { get; set; }
 
-        public virtual ICollection<Article> articles { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
 
-        public virtual ICollection<Organisation> organisations { get; set; }
+        public virtual ICollection<Organisation> Organisations { get; set; }
     }
 }

@@ -29,6 +29,6 @@ namespace webapp_stufv.Models {
         [Required]
         public Boolean Active { get; set; }
 
-        public virtual ICollection<Article> articles { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

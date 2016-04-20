@@ -6,7 +6,6 @@
 	border-radius: 10px;
 	font-size: 15px;
 	cursor: pointer;
-	margin: 5px 10px -3px;
 	text-decoration: none;
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -50,10 +49,19 @@ a.button {
 	display: inline-block;
 	width: 120px;
 	margin: 0 5px;
-    text-align: right;
+    text-align: center;
 }
 
 #login form .veld input.widthInput {
 	width: 150px;
 	height: 20px;
+}
+
+@media(min-width:768px) {
+    .button {
+        margin: 5px 10px -3px;;
+    }
+    #login form .veld label {
+        text-align: right;
+    }
 }

@@ -17,6 +17,6 @@ namespace webapp_stufv.Models
         [Required]
         public string Description { get; set; }
 
-        public virtual ICollection<Event> events { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
     }
 }
