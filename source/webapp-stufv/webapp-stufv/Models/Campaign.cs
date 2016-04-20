@@ -29,8 +29,12 @@ namespace webapp_stufv.Models {
         [Required]
         public Boolean Active { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         public virtual ICollection<Article> articles { get; set; }
+=======
+    
+>>>>>>> d698a12a67ea04139fa139a936bf8e4c72b16a68
 =======
 >>>>>>> 5dde771bac6a6bc8ed81ec91483665846dd5b21f
     }

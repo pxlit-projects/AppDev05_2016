@@ -5,14 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace webapp_stufv.Models {
-    [Table("Login")]
-    public class Login {
+namespace webapp_stufv.Models
+{
+    [Table("UserTypes")]
+    public class UserTypes
+    {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-        [Required]
-        public string DateTime { get; set; }
+        [MaxLength(20), Required]
+        public string Description { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }
