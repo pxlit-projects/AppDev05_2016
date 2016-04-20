@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace webapp_stufv.Controllers
 {
-    public class EventController : Controller
+    public class EventsController : Controller
     {
         public ActionResult Index()
         {
@@ -16,6 +16,7 @@ namespace webapp_stufv.Controllers
                         select r;
             return View(model);
         }
+
         static List<Models.Event> _reviews = new List<Models.Event>
         {
             new Models.Event {
