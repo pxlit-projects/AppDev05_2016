@@ -12,30 +12,47 @@ namespace webapp_stufv.Models {
 
         [MaxLength(30), Required]
         public string FirstName { get; set; }
+
         [MaxLength(30), Required]
         public string LastName { get; set; }
+
         [MaxLength(20), Required]
         public string PassWord { get; set; }
         public string Salt { get; set; }
+
         [Required]
         public DateTime BirthDate { get; set; }
+
         [Required]
         public string BirthPlace { get; set; }
 
         public char Sex { get; set; }
+
         [ForeignKey("Cities")]
         public string ZipCode { get; set; }
+        public virtual ICollection<Cities> cities { get; set; }
+
         [MaxLength(30), Required]
         public string Email { get; set; }
+
         public string TelNr { get; set; }
-        
         public string MobileNr { get; set; }
+
         [ForeignKey("UserTypes"), Required]
         public int RoleID { get; set; }
         public virtual UserTypes Usertype { get; set; }
+
         [Required]
         public Boolean Active { get; set; }
 
-        public virtual ICollection<Organisation> Organisations { get; set; }
+        public virtual ICollection<Review> reviews { get; set; }
+
+        public virtual ICollection<Login> logins { get; set; }
+
+        public virtual ICollection<DesDriver> desDrivers { get; set; }
+
+        public virtual ICollection<Article> articles { get; set; }
+
+        public virtual ICollection<Organisation> organisations { get; set; }
     }
 }

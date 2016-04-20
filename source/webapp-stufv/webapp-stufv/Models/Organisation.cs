@@ -10,15 +10,20 @@ namespace webapp_stufv.Models {
     public class Organisation {
         [Key]
         public int Id { get; set; }
+
         [ForeignKey("User")]
         public int UserId { get; set; }
+        public virtual User user { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public string Description { get; set; }
+
         [Required]
         public Boolean Active { get; set; }
 
-        public virtual User user { get; set; }
+        public virtual ICollection<Event> events { get; set; }
     }
 }
