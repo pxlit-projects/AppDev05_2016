@@ -40,7 +40,12 @@ namespace webapp_stufv.Controllers {
             }
         };
 
+        
+
+
         public ActionResult Index ( ) {
+            /*List<List<IEnumerable<Object>>> _modelList = new List<List<IEnumerable<Object>>>();
+            _modelList.Add(_events);*/
 
             return View ( _articles );
         }
