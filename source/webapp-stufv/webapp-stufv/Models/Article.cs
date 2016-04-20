@@ -10,7 +10,7 @@ namespace webapp_stufv.Models {
         public int CampaignId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public string DateTime { get; set; }
+        public Date DateTime { get; set; }
         public int Rating { get; set; }
         public Boolean Active { get; set; }
     }
