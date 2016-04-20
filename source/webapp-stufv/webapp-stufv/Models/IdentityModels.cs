@@ -29,5 +29,7 @@ namespace webapp_stufv.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<webapp_stufv.Models.Guideline> Guidelines { get; set; }
     }
 }
