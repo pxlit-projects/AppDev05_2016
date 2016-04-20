@@ -15,7 +15,7 @@ namespace webapp_stufv.Models {
         public int UserId { get; set; }
         public virtual User user { get; set; }
 
-        [ForeignKey("Campaign"), Required]
+        [ForeignKey("Campaign")]
         public int CampaignId { get; set; }
         public virtual Campaign campaign { get; set; }
 
