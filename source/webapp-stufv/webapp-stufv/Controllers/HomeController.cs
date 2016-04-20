@@ -32,9 +32,14 @@ namespace webapp_stufv.Controllers {
                 Description = "Beerfest",
                 Type = "Beer",
                 ZipCode = "3500",
-                Start 
+                Start = System.DateTime.Now,
+                End = System.DateTime.Now.AddHours(5),
+                EntranceFee = 5,
+                AlcoholFree = false,
+                Active = true              
             }
-        }
+        };
+
 
         public ActionResult Index ( ) {
 
