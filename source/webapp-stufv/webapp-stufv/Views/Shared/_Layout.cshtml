@@ -33,12 +33,10 @@
             </div>
             <ul class="sidebar-nav">
                 <li id="siteName">
-                    <a href="#">
-                        @Html.ActionLink("STUFV", "Index", "Home")
-                    </a>
+                    @Html.ActionLink("STUFV", "Index", "Home")
                 </li>
                 <li>
-                    <a href="#">Evenementen</a>
+                    @Html.ActionLink( "Evenementen", "Index", "Events" )
                 </li>
                 <li>
                     @Html.ActionLink("Richtlijnen", "Index", "Guidelines")
