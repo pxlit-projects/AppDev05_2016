@@ -236,9 +236,14 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\EventController.cs" />
+=======
+    <Compile Include="Controllers\EventsController.cs" />
+>>>>>>> 4eb8a023422c38a9b13297b32a7c03c2d1a2165d
     <Compile Include="Controllers\GuidelinesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,6 +263,7 @@
     <Compile Include="Models\Organisation.cs" />
     <Compile Include="Models\EventTypes.cs" />
     <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\STUFVModelContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -269,8 +275,12 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+<<<<<<< HEAD
     <Content Include="Content\Global.css" />
     <Content Include="Content\img\collapse.png" />
+=======
+    <Content Include="Content\LoginIndex.css" />
+>>>>>>> 4eb8a023422c38a9b13297b32a7c03c2d1a2165d
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -324,8 +334,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Guidelines\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

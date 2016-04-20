@@ -8,10 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace webapp_stufv.Models {
     [Table("Attendance")]
     public class Attendance {
-        [Key]
+        [Key, Column(Order = 0), ForeignKey("Event")]
         public int EventId { get; set; }
+        public virtual Event eventObj { get; set; }
 
-        [ForeignKey("User")]
+        [Key, Column(Order = 1), ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User user { get; set; }
 
