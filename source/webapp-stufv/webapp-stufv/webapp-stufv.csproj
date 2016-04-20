@@ -235,14 +235,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\EventController.cs" />
-=======
     <Compile Include="Controllers\GuidelinesController.cs" />
->>>>>>> 1c73ae266cc6c21dfb23889003f70f52b107bb4e
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Evenementen.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -322,12 +318,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-<<<<<<< HEAD
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Event\Index.cshtml" />
-=======
     <Content Include="Views\Guidelines\Index.cshtml" />
->>>>>>> 1c73ae266cc6c21dfb23889003f70f52b107bb4e
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
