@@ -14,5 +14,10 @@ namespace webapp_stufv.Controllers
             ViewBag.Title = "Aanmelden";
             return View();
         }
+
+        public ActionResult Verwerk()
+        {
+            return View();
+        }
     }
 }
