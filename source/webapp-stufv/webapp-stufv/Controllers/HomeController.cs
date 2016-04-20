@@ -32,9 +32,9 @@ namespace webapp_stufv.Controllers {
                 Description = "Beerfest",
                 Type = "Beer",
                 ZipCode = "3500",
-                Start 
+                
             }
-        }
+        };
 
         public ActionResult Index ( ) {
 
