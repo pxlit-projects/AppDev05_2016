@@ -12,6 +12,6 @@ namespace webapp_stufv.Models {
         public string Start { get; set; }
         public string End { get; set; }
         public Boolean Active { get; set; }
-    }
+    
     }
 }
