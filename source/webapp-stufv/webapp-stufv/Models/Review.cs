@@ -13,11 +13,11 @@ namespace webapp_stufv.Models {
 
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
 
         [ForeignKey("Event")]
         public int EventId { get; set; }
-        public virtual Event eventObj { get; set; }
+        public virtual Event Event { get; set; }
 
         [Required]
         public string Content { get; set; }

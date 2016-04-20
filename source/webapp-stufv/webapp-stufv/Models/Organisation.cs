@@ -13,7 +13,7 @@ namespace webapp_stufv.Models {
 
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -24,6 +24,6 @@ namespace webapp_stufv.Models {
         [Required]
         public Boolean Active { get; set; }
 
-        public virtual ICollection<Event> events { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
     }
 }

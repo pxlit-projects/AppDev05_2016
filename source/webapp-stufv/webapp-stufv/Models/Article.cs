@@ -11,13 +11,13 @@ namespace webapp_stufv.Models {
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("User"), Required]
+        [ForeignKey("User")]
         public int UserId { get; set; }
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
 
         [ForeignKey("Campaign")]
         public int CampaignId { get; set; }
-        public virtual Campaign campaign { get; set; }
+        public virtual Campaign Campaign { get; set; }
 
         [Required, MaxLength(50)]
         public string Title { get; set; }

@@ -13,7 +13,7 @@ namespace webapp_stufv.Models {
 
         [ForeignKey("Organisation")]
         public int OrganisationId { get; set; }
-        public virtual Organisation organisation { get; set; }
+        public virtual Organisation Organisation { get; set; }
 
         [Required, MaxLength(50)]
         public string Name { get; set; }
@@ -21,16 +21,16 @@ namespace webapp_stufv.Models {
         [Required]
         public string Description { get; set; }
 
-        [ForeignKey("EventTypes"), Required]
-        public string Type { get; set; }
-        public virtual EventTypes eventTypes { get; set; }
+        [ForeignKey("EventTypes")]
+        public int Type { get; set; }
+        public virtual EventTypes EventTypes { get; set; }
 
         [Required, MaxLength(35)]
         public string Street { get; set; }
 
-        [ForeignKey("Cities"), Required]
+        [ForeignKey("Cities")]
         public string ZipCode { get; set; }
-        public virtual Cities cities { get; set; }
+        public virtual Cities Cities { get; set; }
 
         [Required]
         public DateTime Start { get; set; }
@@ -47,10 +47,10 @@ namespace webapp_stufv.Models {
         [Required]
         public Boolean Active { get; set; }
 
-        public virtual ICollection<Attendance> attendances { get; set; }
+        public virtual ICollection<Attendance> Attendances { get; set; }
 
-        public virtual ICollection<Review> reviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
 
-        public virtual ICollection<DesDriver> desDrivers { get; set; }
+        public virtual ICollection<DesDriver> DesDrivers { get; set; }
     }
 }
