@@ -32,11 +32,6 @@ namespace webapp_stufv.Controllers {
                 Description = "Beerfest",
                 Type = "Beer",
                 ZipCode = "3500",
-<<<<<<< HEAD
-                
-            }
-        };
-=======
                 Start = System.DateTime.Now,
                 End = System.DateTime.Now.AddHours(5),
                 EntranceFee = 5,
@@ -44,8 +39,6 @@ namespace webapp_stufv.Controllers {
                 Active = true              
             }
         };
-
->>>>>>> d1fbec6bd210b23bab4e10b6213ce193130cf5e7
 
         public ActionResult Index ( ) {
 
