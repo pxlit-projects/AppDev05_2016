@@ -10,8 +10,11 @@ namespace webapp_stufv.Models {
     public class Login {
         [Key]
         public int Id { get; set; }
+
         [ForeignKey("User")]
         public int UserId { get; set; }
+        public virtual User user { get; set; }
+
         [Required]
         public string DateTime { get; set; }
     }
