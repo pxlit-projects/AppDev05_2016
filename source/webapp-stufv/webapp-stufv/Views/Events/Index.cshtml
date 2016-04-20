@@ -5,21 +5,35 @@
 </div>
         @foreach (var item in Model)
     {
-            <table class="" style="border: 1px solid black; margin-bottom: 5px;">
-                <tbody>
-                    <tr>
-                        <td><a href="#"><h4>
-                            @Html.ActionLink(item.Name, "Details", new {id=item.Id})</h4></a></td>
-                    </tr>
-                    <tr>
-                        <td>@item.Description</td>
-                    </tr>
-                    <tr>
-                        <td>Inkom: @item.EntranceFee</td>
-                    </tr>
-                    <tr>
-                        <td>@item.AlcoholFree</td>
-                    </tr>
+                <table class="eventshort">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h4>
+                                   @item.Name 
+                                </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img class="iconimg" src="~/Content/img/info.png" />@item.Description</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @if (item.EntranceFee == 0)
+                                {
+                                    <p><img class="iconimg" src="~/Content/img/euro.png" />Gratis</p>
+                                }
+                                else {
+                                    <p><img class="iconimg" src="~/Content/img/euro.png" />@item.EntranceFee euro</p>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Details","Events", new { id = item.Id})">
+                                <p class="btn btn-info">Meer info</p></a>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
         }

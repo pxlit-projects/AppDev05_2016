@@ -22,3 +22,28 @@
     float: right;
     margin-right: 10%;
 }
+.eventshort {
+    border: 2px groove lightgray; 
+    margin-bottom: 5px;
+    background-color: rgba(23, 234, 248, 0.05);
+    width: 50%;
+}
+.eventshort td {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+}
+    .eventshort .iconimg {
+        width: 2%;
+        margin-right: 4px;
+    }
+    .eventshort a {
+        text-decoration: none;
+    }
+    .eventshort a:hover {
+        text-decoration: none;
+        background-color: rgba(28, 234, 248, 0.05);
+    }
+    .eventshort h4 {
+        color: dodgerblue;
+    }
