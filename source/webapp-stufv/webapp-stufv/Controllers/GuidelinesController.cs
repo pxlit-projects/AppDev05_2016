@@ -20,6 +20,7 @@ namespace webapp_stufv.Controllers {
             List<Guideline> _gls = new List<Guideline> ( );
             _gls.Add ( gl );
             _gls.Add ( gl_2 );
+            ViewBag.Title = "Richtlijnen";
             return View ( _gls );
         }
     }
