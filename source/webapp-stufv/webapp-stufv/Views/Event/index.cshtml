@@ -1,6 +1,26 @@
-﻿@section content{
+﻿@model IEnumerable<webapp_stufv.Models.Event>
+@section content{
 <div class="page-header">
     <h1>@ViewBag.Title</h1>
 </div>
+    <table class="table">
+        @foreach (var item in Model)
+    {
+            <tbody>
+                <tr>
+                    <td><h4>@item.Name</h4></td>
+                    </tr><tr>
+                    <td>@item.Description</td>
+                    <td>@item.Street</td>
+                    <td>@item.Start</td>
+                    <td>@item.End</td>
+                    <td>@item.EntranceFee</td>
+                    <td>@item.AlcoholFree</td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+ 
     }
 

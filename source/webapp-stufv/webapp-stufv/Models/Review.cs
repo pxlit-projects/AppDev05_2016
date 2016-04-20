@@ -10,19 +10,29 @@ namespace webapp_stufv.Models {
     public class Review {
         [Key]
         public int Id { get; set; }
+
         [ForeignKey("User")]
         public int UserId { get; set; }
+        public virtual User user { get; set; }
+
         [ForeignKey("Event")]
         public int EventId { get; set; }
+        public virtual Event eventObj { get; set; }
+
         [Required]
         public string Content { get; set; }
+
         [Required]
         public string Status { get; set; }
+
         [Required]
         public string Flagged { get; set; }
+
         public int Rating { get; set; }
+
         [Required]
         public string DateTime { get; set; }
+
         public Boolean Active { get; set; }
     }
 }

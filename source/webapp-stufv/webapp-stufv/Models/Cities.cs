@@ -13,5 +13,9 @@ namespace webapp_stufv.Models {
 
         [Required]
         public string City { get; set; }
+
+        public virtual ICollection<User> users { get; set; }
+
+        public virtual ICollection<Event> events { get; set; }
     }
 }
