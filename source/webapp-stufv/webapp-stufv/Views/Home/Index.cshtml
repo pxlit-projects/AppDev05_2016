@@ -1,0 +1,28 @@
+﻿@model IEnumerable<webapp_stufv.Models.Article>
+
+@foreach (var item in Model)
+{
+    @section content {        
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    @Html.DisplayFor(ModelItem => item.Title)
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(ModelItem => item.Content)
+                </div>
+            </div>l
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Events today
+                </div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+        </div>
+        <hr />
+    }
+}

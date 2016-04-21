@@ -1,0 +1,18 @@
+﻿@section content{
+
+<div id="login-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Aanmelden</h1><br>
+            <form action="/Login/Process" method="post">
+                <input type="text" name="vUsername" placeholder="Gebruikersnaam">
+                <input type="password" name="vPassword" placeholder="Wachtwoord">
+                <input type="submit" name="login" class="login loginmodal-submit" value="Aanmelden">
+            </form>
+
+            <div class="login-help">
+                <a href="/Login/Register">Registreren</a> - <a href="#">Paswoord vergeten</a>
+            </div>
+        </div>
+    </div>
+</div>
