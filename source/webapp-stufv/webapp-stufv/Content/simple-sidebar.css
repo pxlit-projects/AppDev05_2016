@@ -84,11 +84,11 @@
 .sidebar-brand a {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     visibility: visible;
     z-index: 200;
     background-color: black;
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .sidebar-brand a #smartMenu {
