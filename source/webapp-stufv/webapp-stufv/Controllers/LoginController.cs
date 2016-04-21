@@ -17,6 +17,10 @@ namespace webapp_stufv.Controllers
 
         public ActionResult Process()
         {
+            string vUsername = Request["vUsername"];
+            string vPassword = Request["vPassword"];
+            ViewBag.username = vUsername;
+            ViewBag.password = vPassword;
             return View();
         }
     }
