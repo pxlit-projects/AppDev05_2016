@@ -3,37 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
+
+using System.Web.Mvc;
+using webapp_stufv.Models;
 
 namespace webapp_stufv.Controllers
 {
-    public class FAQController : ApiController
+    public class FAQController : Controller
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        public ActionResult Index()
+        { 
 
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+            FAQ fq = new FAQ();
+            FAQ fq_2 = new FAQ();
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
+            fq.Id = 1;
+            fq.Question = "How do I login?";
+            fq.Answer = "Just do it.";
+            fq_2.Id = 2;
+            fq_2.Question = "Are you sure?";
+            fq_2.Answer = "Yes I am";
+            List<FAQ> _fqs = new List<FAQ>();
+            _fqs.Add(fq);
+            _fqs.Add(fq_2);
+            ViewBag.Title = "Frequente vragen";
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            return View(_fqs);
         }
     }
 }

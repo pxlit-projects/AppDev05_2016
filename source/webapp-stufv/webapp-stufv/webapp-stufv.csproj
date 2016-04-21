@@ -345,6 +345,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Login\Process.cshtml" />
+    <Content Include="Views\FAQ\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<webapp_stufv.Models.FAQ>
+
+@section content{
+
+   
+
+    <div class="page-header"><h1>@ViewBag.Title</h1></div>
+    @foreach (var item in Model)
+    {
+
+        <button type="button" class="btncollapse" data-toggle="collapse" data-target="#@item.Id"></button>
+        <i>@Html.DisplayFor(modelItem => item.Question)</i> <br />
+            <div id="@item.Id" class="collapse">
+                @Html.DisplayFor(modelItem => item.Answer)
+            </div> <br />
+    }
+}
