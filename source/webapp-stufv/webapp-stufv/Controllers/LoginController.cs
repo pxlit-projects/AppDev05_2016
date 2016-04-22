@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using webapp_stufv.Models;
 
 namespace webapp_stufv.Controllers
 {
@@ -11,6 +12,12 @@ namespace webapp_stufv.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            using (var db = new STUFVModelContext())
+            {
+                db.Users.ToList();
+            }
+
+
             ViewBag.Title = "Aanmelden";
             return View();
         }
