@@ -23,5 +23,11 @@ namespace webapp_stufv.Controllers
             ViewBag.password = vPassword;
             return View();
         }
+
+        public ActionResult Register()
+        {
+            ViewBag.Title = "Account aanmaken";
+            return View();
+        }
     }
 }

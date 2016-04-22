@@ -1,0 +1,32 @@
+﻿@section content{
+
+<div id="createAccount">
+    <h1>Een nieuw account aanmaken</h1>
+    <form action="/Login/CreateAccount" method="post">
+        <fieldset>
+            <legend>Aanmeldingsgegevens</legend>
+            <div class="veld">
+                <label for="username">Gebruikersnaam:</label>
+                <input type="text" name="vUsername" id="username" required />
+            </div>
+            <div class="veld">
+                <label for="password">Wachtwoord:</label>
+                <input type="password" name="vPassword" id="password" required />
+            </div>
+            <div class="veld">
+                <label for="checkPassword">Hertyp wachtwoord:</label>
+                <input type="password" name="vCheckPassword" id="checkPassword" required />
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Contactgegevens</legend>
+            <div class="veld">
+                <label for="firstname">Voornaam:</label>
+                <input type="text" name="vFirstname" id="firstname" required />
+            </div>
+        </fieldset>
+        <input type="submit" name="createAccount" value="Account Aanmaken">
+    </form>
+</div>
+
+}
