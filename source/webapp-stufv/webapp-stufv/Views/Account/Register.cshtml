@@ -1,8 +1,71 @@
-﻿@section Content {
+﻿@section content{
 
-    @model webapp_stufv.Models.User
-
-    <h2>@ViewBag.Title</h2>
+    <div id="createAccount">
+        <h1>Een nieuw account aanmaken</h1>
+        <form action="/Login/CreateAccount" method="post">
+            <fieldset class="col-xs-12 col-sm-6 col-md-4">
+                <legend>Aanmeldingsgegevens</legend>
+                <div class="veld">
+                    <label for="username">Gebruikersnaam:</label><br />
+                    <input type="text" name="vUsername" id="username" required />
+                </div>
+                <div class="veld">
+                    <label for="password">Wachtwoord:</label><br />
+                    <input type="password" name="vPassword" id="password" required />
+                </div>
+                <div class="veld">
+                    <label for="checkPassword">Hertyp wachtwoord:</label><br />
+                    <input type="password" name="vCheckPassword" id="checkPassword" required />
+                </div>
+            </fieldset>
+            <fieldset class="col-xs-12 col-sm-6 col-md-4">
+                <legend>Persoonlijke gegevens</legend>
+                <div class="veld">
+                    <label for="firstname">Voornaam:</label><br />
+                    <input type="text" name="vFirstname" id="firstname" required />
+                </div>
+                <div class="veld">
+                    <label for="lastname">Familienaam:</label><br />
+                    <input type="text" name="vLastname" id="lastname" required />
+                </div>
+                <div class="veld">
+                    <label for="sex">Geslacht:</label><br />
+                    <input type="radio" name="vSex" value="1" id="sex" checked /> Man
+                    <input type="radio" name="vSex" value="2" /> Vrouw
+                    <input type="radio" name="vSex" value="0" /> Onzijdig
+                </div>
+                <div class="veld">
+                    <label for="birthday">Geboortedatum:</label><br />
+                    <input type="date" name="vBirthday" id="birthday" required />
+                </div>
+                <div class="veld">
+                    <label for="birthplace">Geboorteplaats:</label><br />
+                    <input type="text" name="vBirthplace" id="birthplace" required />
+                </div>
+                <div class="veld">
+                    <label for="zipcode">Woonplaats:</label><br />
+                    <input type="text" name="vZipcode" id="zipcode" placeholder="xxxx Stad" required />
+                </div>
+            </fieldset>
+            <fieldset class="col-xs-12 col-sm-6 col-md-4">
+                <legend>Contactgegevens</legend>
+                <div class="veld">
+                    <label for="email">Email:</label><br />
+                    <input type="email" name="vEmail" id="email" required />
+                </div>
+                <div class="veld">
+                    <label for="phone">Telefoonnummer:</label><br />
+                    <input type="text" name="vTelNr" id="phone" />
+                </div>
+                <div class="veld">
+                    <label for="mobile">Mobiel nummer:</label><br />
+                    <input type="text" name="vMobilNr" id="mobile" />
+                </div>
+            </fieldset>
+            <div class="clearfix col-xs-12 text-center">
+                <input type="submit" name="createAccount" value="Account Aanmaken" />
+            </div>
+        </form>
+    </div>
 
 }
-
