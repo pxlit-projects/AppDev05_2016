@@ -3,25 +3,60 @@
 <div class="page-header">
     <h1>@ViewBag.Title</h1>
 </div>
-            <table class="">
+<div class="eventpage">
+    <div class="row">
+        <div class="col-lg-2"><img class="eventimg" src="~/Content/img/party.png" /></div>
+        <div class="col-lg-8">
+            <table class="eventshort">
                 <tbody>
                     <tr>
-                    <tr>
-                        <td>@Model.Description</td>
+                        <td>
+                            <h3>
+                                @Model.Name
+                            </h3>
+                        </td>
                     </tr>
                     <tr>
-                        <td>@Model.Street</td>
+                        <td>
+                            @if (Model.EntranceFee == 0)
+                            {
+                                <p class="pclear"><img class="iconimg" src="~/Content/img/euro.png" />Gratis</p>
+                            }
+                            else {
+                                <p class="pclear"><img class="iconimg" src="~/Content/img/euro.png" />@Model.EntranceFee euro</p>
+                            }
+                        </td>
                     </tr>
                     <tr>
-                        <td>@Model.ZipCode</td>
+                        <td>
+                            <img class="iconimg" src="~/Content/img/Calendar.png" />@Model.Start.ToShortDateString()
+                        </td>
                     </tr>
                     <tr>
-                        <td>@Model.Start</td>
-                        <td>@Model.End</td>
-                        <td>@Model.EntranceFee</td>
-                        <td>@Model.AlcoholFree</td>
+                        <td>
+                            <img class="iconimg" src="~/Content/img/Calendar.png" />Start: @Model.Start.ToShortTimeString()
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="iconimg" src="~/Content/img/Calendar.png" />Einde: @Model.End.ToShortTimeString()
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Street, @Model.ZipCode @Model.Cities</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="desciption">
+                                <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@Model.Description</p>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
         }
 

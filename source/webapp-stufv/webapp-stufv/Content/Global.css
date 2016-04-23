@@ -52,6 +52,10 @@
     .eventshort h4 {
         color: dodgerblue;
     }
+        .eventshort h3 {
+        color: dodgerblue;
+        margin-top: 5px;
+    }
     .eventshort .shortdesciption {
         height: 10px;
     }
