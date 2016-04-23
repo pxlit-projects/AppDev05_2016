@@ -11,7 +11,6 @@ namespace webapp_stufv.Models
     {
         public DbSet<Article> Articles { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
-        public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Cities> Cities { get; set; }
         public DbSet<DesDriver> DesDrivers { get; set; }
         public DbSet<Event> Events { get; set; }
