@@ -13,7 +13,6 @@ namespace webapp_stufv.Controllers {
             {
                 Id = 1,
                 UserId = 1,
-                CampaignId = 1,
                 Title = "First Title",
                 Content = "First article, this article is about the first article ever made on the best website of the world. You will remember this first ever article on the best website of the world until the end of your days.",
                 DateTime = System.DateTime.Now,
