@@ -22,20 +22,6 @@ namespace STUFV
         public HomeWindow()
         {
             InitializeComponent();
-
-            //homeItem.MouseEnter += MenuItem_MouseEnter;
-            //artikelItem.MouseEnter += MenuItem_MouseEnter;
-            //controleOrganisatiesItem.MouseEnter += MenuItem_MouseEnter;
-            //controleReviewsItem.MouseEnter += MenuItem_MouseEnter;
-            //beheerGebrItem.MouseEnter += MenuItem_MouseEnter;
-            //statistiekenItem.MouseEnter += MenuItem_MouseEnter;
-            //logoutItem.MouseEnter += MenuItem_MouseEnter;
         }
-
-        //private void MenuItem_MouseEnter(object sender, MouseEventArgs e)
-        //{
-        //    ListBoxItem item = (ListBoxItem)sender;
-        //    item.Background = new SolidColorBrush(Colors.DarkGray);
-        //}
     }
 }
