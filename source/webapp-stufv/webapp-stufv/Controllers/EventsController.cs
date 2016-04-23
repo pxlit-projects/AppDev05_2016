@@ -58,7 +58,7 @@ namespace webapp_stufv.Controllers
         }
         public ActionResult RemoveAttend(int id)
         {
-            //remove attendance
+            Attendance.UnSignAttend((int)Session["userId"], id);
             return View();
         }
     }
