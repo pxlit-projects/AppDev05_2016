@@ -39,6 +39,7 @@ namespace webapp_stufv.Controllers
         }
         public ActionResult Attend(int id) {
             ViewBag.Title = "Attend";
+            ViewBag.id = id;
             if (Session["email"] == null || Session["email"].Equals(""))
             {
                 ViewBag.MyMessageToUsers = "Voor deze functie moet u inloggen.";
@@ -59,6 +60,7 @@ namespace webapp_stufv.Controllers
         public ActionResult RemoveAttend(int id)
         {
             Attendance.UnSignAttend((int)Session["userId"], id);
+            ViewBag.id = id;
             return View();
         }
     }
