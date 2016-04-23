@@ -5,9 +5,11 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace webapp_stufv.Models {
+namespace webapp_stufv.Models
+{
     [Table("Attendance")]
-    public class Attendance {
+    public class Attendance
+    {
         [Key, Column(Order = 0), ForeignKey("Event")]
         public int EventId { get; set; }
         public virtual Event Event { get; set; }
@@ -18,8 +20,9 @@ namespace webapp_stufv.Models {
 
         [Required]
         public Boolean Active { get; set; }
-    
-    public void Attend(int userId, int eventId) {
+
+        public static void SignAttend(int userId, int eventId)
+        {
             var Attendace = new Attendance { EventId = eventId, UserId = userId, Active = true };
             using (var context = new STUFVModelContext())
             {
@@ -27,6 +30,28 @@ namespace webapp_stufv.Models {
                 context.SaveChanges();
             }
 
+        }
+        private static List<Attendance> GetAllAttendance()
+        {
+            using (var context = new STUFVModelContext())
+            {
+                List<Attendance> attendance = new List<Attendance>();
+                attendance = context.Attendances.ToList();
+                return attendance;
+            }
+        }
+        public static bool IsAttending(int userId, int eventId)
+        {
+            List<Attendance> attendance = GetAllAttendance();
+            int x;
+            for (x = 0; x < attendance.Count(); x++)
+            {
+                if (attendance.ElementAt(x).UserId.Equals(userId) && attendance.ElementAt(x).EventId.Equals(eventId))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

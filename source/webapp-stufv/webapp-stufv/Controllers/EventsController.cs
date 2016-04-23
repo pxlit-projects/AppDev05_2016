@@ -12,8 +12,8 @@ namespace webapp_stufv.Controllers
         List<Event> _events;
         public ActionResult Index()
         {
-            ViewBag.Title = "Evenementen";
-            GetEvents();
+                ViewBag.Title = "Evenementen";
+            _events = Event.GetAllEvents();
             var model = from r in _events
                             orderby r.Id
                             select r;
@@ -21,24 +21,45 @@ namespace webapp_stufv.Controllers
             }
         public ActionResult Details(int id)
         {
-            GetEvents();
+            if (Session["email"] == null || Session["email"].Equals(""))
+            { }
+            else {
+                if (Attendance.IsAttending((int)Session["userId"], id))
+                {
+                    ViewBag.attend = true;
+                }
+                else {
+                    ViewBag.attend = false;
+                }
+            }
+            _events = Event.GetAllEvents();
             var _event = _events.Single(r => r.Id == id);
             ViewBag.Title = _event.Name;
             return View(_event);
         }
         public ActionResult Attend(int id) {
-            if (Session["email"] == null || Session["email"].Equals("")){
-                int userid = (int)Session["ID"];
-                Attendance at = new Attendance();
-                at.Attend(userid, id);
-            }
-            return View();
-        }
-        private void GetEvents() {
-            using (var context = new STUFVModelContext())
+            ViewBag.Title = "Attend";
+            if (Session["email"] == null || Session["email"].Equals(""))
             {
-                _events = context.Events.ToList();
+                ViewBag.MyMessageToUsers = "Voor deze functie moet u inloggen.";
+                return View();
             }
+            else {
+                int userid = (int)Session["userId"];
+                try { Attendance.SignAttend(userid, id); }
+                catch(System.Data.Entity.Infrastructure.DbUpdateException e) {
+                    ViewBag.MyMessageToUsers = "Je hebt je al aangemeld voor dit evenement";
+                    return View();
+                }
+                
+                ViewBag.MyMessageToUsers = "U bent aangemeld voor dit evenement";
+                return View();
+            }
+        }
+        public ActionResult RemoveAttend(int id)
+        {
+            //remove attendance
+            return View();
         }
     }
 }

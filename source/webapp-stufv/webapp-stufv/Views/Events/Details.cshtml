@@ -54,7 +54,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Street, @Model.ZipCode [CITY PLACEHOLDER]</p>
+                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Street, @Model.ZipCode @Model.getCity()</p>
                         </td>
                     </tr>
                     <tr>
@@ -69,9 +69,17 @@
                     else {
                         <tr>
                             <td>
+                                @if (ViewBag.attend)
+                                {
+                                    <a href="@Url.Action("RemoveAttend", "Events", new { id = Model.Id })">
+                                        <p class="btn btn-warning">Niet aanwezig</p>
+                                    </a>
+                                }
+                                else {
                                 <a href="@Url.Action("Attend", "Events", new { id = Model.Id })">
                                     <p class="btn btn-info">Aanwezig</p>
                                 </a>
+                                }
                             </td>
                         </tr>
                     }
