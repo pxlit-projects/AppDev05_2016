@@ -1,0 +1,10 @@
+﻿@section Content {
+
+    <div class="page-header"><h1>@ViewBag.Title</h1></div>
+
+    @if ( Session[ "Email" ] == null || Session[ "Email" ].Equals ( "" ) ) {
+        <p> E-mail of wachtwoord klopt niet! </p>
+    } else {
+        <p> Je bent ingelogd! </p>
+    }
+}

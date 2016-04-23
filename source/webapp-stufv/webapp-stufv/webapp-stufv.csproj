@@ -235,11 +235,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmergencyController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GuidelinesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -252,6 +252,7 @@
     <Compile Include="Models\Campaign.cs" />
     <Compile Include="Models\Cities.cs" />
     <Compile Include="Models\DesDriver.cs" />
+    <Compile Include="Models\Emergency.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\FAQ.cs" />
     <Compile Include="Models\Guideline.cs" />
@@ -280,8 +281,6 @@
     <Content Include="Content\img\euro.png" />
     <Content Include="Content\img\info.png" />
     <Content Include="Content\img\pint.png" />
-    <Content Include="Content\LoginIndex.css" />
-    <Content Include="Content\simple-sidebar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -344,11 +343,13 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Guidelines\Index.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
-    <Content Include="Views\Login\Process.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
-    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Emergency\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Process.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

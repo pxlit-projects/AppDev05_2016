@@ -9,6 +9,11 @@ namespace webapp_stufv {
     public class RouteConfig {
         public static void RegisterRoutes ( RouteCollection routes ) {
             routes.IgnoreRoute ( "{resource}.axd/{*pathInfo}" );
+            routes.MapRoute (
+                name: "Emergency",
+                url: "Emergency/{action}/{id}",
+                defaults: new { controller = "Emergency", action = "Index", id = UrlParameter.Optional }
+            );
             routes.MapRoute(
                 name: "Home",
                 url: "Home/{action}/{id}",
@@ -21,8 +26,8 @@ namespace webapp_stufv {
             );
             routes.MapRoute(
                 name: "Login",
-                url: "Login/{action}/{id}",
-                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+                url: "Account/{action}/{id}",
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Guidelines",

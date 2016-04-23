@@ -6,11 +6,11 @@ using System.Web.Mvc;
 using webapp_stufv.Models;
 
 namespace webapp_stufv.Controllers {
-    public class GuidelinesController : Controller {
-        // GET: Guidelines
+    public class EmergencyController : Controller {
+        // GET: Emergency
         public ActionResult Index ( ) {
-            ViewBag.Title = "Richtlijnen";
-            return View ( Guideline.getAllGuideLines() );
+            ViewBag.Title = "Noodnummers";
+            return View ( Emergency.getAllEmergencies ( ) );
         }
     }
 }

@@ -10,8 +10,15 @@ namespace webapp_stufv.Models {
     public class Guideline {
         [Key]
         public int Id { get; set; }
-
         public string Short { get; set; }
         public string Content { get; set; }
+        public Boolean active { get; set; }
+
+        // Methods
+        public static List<Guideline> getAllGuideLines() {
+            using ( var context = new STUFVModelContext ( ) ) {
+                return context.Guidelines.ToList ( );
+            }
+        }
     }
 }

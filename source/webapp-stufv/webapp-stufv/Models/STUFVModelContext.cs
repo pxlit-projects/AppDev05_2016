@@ -23,6 +23,11 @@ namespace webapp_stufv.Models
         public DbSet<Review> Reviews { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserTypes> UserTypes { get; set; }
+        public DbSet<Emergency> Emergencies { get; set; }
+
+        public STUFVModelContext() {
+            Database.SetInitializer<STUFVModelContext> ( null );
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -8,17 +8,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="~/Content/Global.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/LoginIndex.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <title>@ViewBag.Tite</title>
+    <title>@ViewBag.Title</title>
 
 </head>
 
@@ -32,7 +30,7 @@
                 <a href="#menu-toggle" id="menu-toggle"><div id="smartMenu"><div class="line"></div><div class="line"></div><div class="line"></div></div></a>
             </div>
             <ul class="sidebar-nav">
-                <li id="siteName">
+                <li>
                     @Html.ActionLink("STUFV", "Index", "Home")
                 </li>
                 <li>
@@ -48,20 +46,29 @@
                     @Html.ActionLink("FAQ", "Index", "FAQ")
                 </li>
                 <li>
-                    <a href="#">Instellingen</a>
+                    <a href="#">Contact</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    @Html.ActionLink("Noodnummers", "Index", "Emergency")
                 </li>
                 <li>
                     <a href="#">Aansprakelijkheid</a>
                 </li>
-                <li class="login">
-                    @Html.ActionLink("Aanmelden", "Index", "Login")
+                @if ( Session["email"] == null || Session["email"].Equals("")) {
+                <li>
+                    @Html.ActionLink( "Aanmelden", "Login", "Account" )
                 </li>
-                <li class="logout">
-                    <a href="#">Afmelden</a>
+                <li>
+                    @Html.ActionLink( "Registreren", "Register", "Account" )
                 </li>
+                } else {
+                    <li>
+                        @Html.ActionLink("Instellingen", "Index", "Settings")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Afmelden", "Logout", "Account")
+                    </li>
+                }
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
