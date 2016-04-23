@@ -16,7 +16,7 @@ namespace webapp_stufv.Models {
         [MaxLength(30), Required]
         public string LastName { get; set; }
 
-        [MaxLength(20), Required]
+        [MaxLength(40), Required]
         public string PassWord { get; set; }
         public string Salt { get; set; }
 
