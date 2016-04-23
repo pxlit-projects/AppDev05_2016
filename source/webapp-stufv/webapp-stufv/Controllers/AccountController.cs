@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using webapp_stufv.Models;
 
 namespace webapp_stufv.Controllers {
     public class AccountController : Controller {
@@ -11,7 +12,7 @@ namespace webapp_stufv.Controllers {
             ViewBag.Title = "Login";
             return View ( );
         }
-        public ActionResult Register () {
+        public ActionResult Register ( ) {
             ViewBag.Title = "Registratie";
             return View ( );
         }
@@ -31,11 +32,19 @@ namespace webapp_stufv.Controllers {
                 return View ( );
             }
         }
-        public ActionResult Logout() {
+        public ActionResult Logout ( ) {
             Session[ "Email" ] = "";
             Session["userId"] = "";
             ViewBag.Title = "Logout gelukt";
             return View ( );
+        }
+
+        public ActionResult CreateAccount ( ) {
+            User newUser = new User ( );
+            newUser.Active = true;
+            newUser.Email = Request.Form[ "email" ];
+            ViewBag.Title = "Registratie";
+            return View (newUser );
         }
     }
 }
