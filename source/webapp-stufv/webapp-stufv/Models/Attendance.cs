@@ -46,7 +46,7 @@ namespace webapp_stufv.Models
             int x;
             for (x = 0; x < attendance.Count(); x++)
             {
-                if (attendance.ElementAt(x).UserId.Equals(userId) && attendance.ElementAt(x).EventId.Equals(eventId))
+                if (attendance.ElementAt(x).UserId.Equals(userId) && attendance.ElementAt(x).EventId.Equals(eventId) && attendance.ElementAt(x).Active.Equals(true))
                 {
                     return true;
                 }
