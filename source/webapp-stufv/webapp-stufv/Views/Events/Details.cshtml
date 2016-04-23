@@ -54,7 +54,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Street, @Model.ZipCode @Model.Cities</p>
+                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Street, @Model.ZipCode [CITY PLACEHOLDER]</p>
                         </td>
                     </tr>
                     <tr>
@@ -62,6 +62,19 @@
                             <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@Model.Description</p>
                         </td>
                     </tr>
+                    @if (Session["email"] == null || Session["email"].Equals(""))
+                    {
+                        //Login
+                    }
+                    else {
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Attend", "Events", new { id = Model.Id })">
+                                    <p class="btn btn-info">Aanwezig</p>
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

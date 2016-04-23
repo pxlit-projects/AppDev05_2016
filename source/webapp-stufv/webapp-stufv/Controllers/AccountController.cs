@@ -18,19 +18,22 @@ namespace webapp_stufv.Controllers {
         public ActionResult Process ( ) {
             var email = Request.Form[ "Email" ];
             var password = Request.Form[ "Password" ];
-
-            if ( webapp_stufv.Models.User.Login ( email, password ) ) {
+            int userID;
+            if ( webapp_stufv.Models.User.Login ( email, password, out userID) ) {
                 Session[ "email" ] = email;
+                Session["userId"] = userID;
                 ViewBag.Title = "Succes";
                 return View ( );
             } else {
                 ViewBag.Title = "Login mislukt";
                 Session[ "email" ] = "";
+                Session["userId"] = "";
                 return View ( );
             }
         }
         public ActionResult Logout() {
             Session[ "Email" ] = "";
+            Session["userId"] = "";
             ViewBag.Title = "Logout gelukt";
             return View ( );
         }

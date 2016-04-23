@@ -18,5 +18,15 @@ namespace webapp_stufv.Models {
 
         [Required]
         public Boolean Active { get; set; }
+    
+    public void Attend(int userId, int eventId) {
+            var Attendace = new Attendance { EventId = eventId, UserId = userId, Active = true };
+            using (var context = new STUFVModelContext())
+            {
+                context.Attendances.Add(Attendace);
+                context.SaveChanges();
+            }
+
+        }
     }
 }

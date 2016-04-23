@@ -58,17 +58,21 @@ namespace webapp_stufv.Models {
         public virtual ICollection<Organisation> Organisations { get; set; }
 
         // Methods
-        public static Boolean Login (string email, string password) {
+        public static Boolean Login (string email, string password, out int userID) {
             using ( var context = new STUFVModelContext ( ) ) {
                 List<User> users = context.Users.ToList ( );
 
                 int x;
 
                 for (x=0; x < users.Count ( ); x++) {
-                    if ( users.ElementAt ( x ).Email.Equals ( email ) && users.ElementAt ( x ).PassWord.Equals ( password ) )
+                    if ( users.ElementAt ( x ).Email.Equals ( email ) && users.ElementAt ( x ).PassWord.Equals ( password ))
+                    {
+                        userID = (int)users.ElementAt(x).Id;
                         return true;
+                    }
+                        
                 }
-
+                userID = 0;
                 return false;
             }
         }
