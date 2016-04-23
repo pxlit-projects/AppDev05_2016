@@ -27,6 +27,16 @@
                             }
                         </td>
                     </tr>
+                    @if (Model.AlcoholFree)
+    {
+                        <tr>
+                            <td>
+                                <p class="pclear">
+                                    <img class="iconimg" src="~/Content/img/pint.png" />Dit evenement is alcohol vrij.
+                                </p>
+                            </td>
+                        </tr>
+                    }
                     <tr>
                         <td>
                             <img class="iconimg" src="~/Content/img/Calendar.png" />@Model.Start.ToShortDateString()
@@ -49,7 +59,7 @@
                     </tr>
                     <tr>
                         <td class="desciption">
-                                <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@Model.Description</p>
+                            <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@Model.Description</p>
                         </td>
                     </tr>
                 </tbody>

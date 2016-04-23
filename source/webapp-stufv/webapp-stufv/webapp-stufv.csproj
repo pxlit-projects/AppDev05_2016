@@ -279,6 +279,7 @@
     <Content Include="Content\img\collapse.png" />
     <Content Include="Content\img\euro.png" />
     <Content Include="Content\img\info.png" />
+    <Content Include="Content\img\pint.png" />
     <Content Include="Content\LoginIndex.css" />
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="favicon.ico" />
