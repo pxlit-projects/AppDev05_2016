@@ -20,7 +20,6 @@ namespace webapp_stufv.Models
         public virtual User User { get; set; }
         public virtual DesDriver DesDriver { get; set;}
 
-
         public static List<Passenger> GetAllPassengers()
         {
             using (var context = new STUFVModelContext())
