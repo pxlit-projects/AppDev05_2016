@@ -354,6 +354,8 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Events\Attend.cshtml" />
     <Content Include="Views\Events\RemoveAttend.cshtml" />
+    <Content Include="Views\Events\BobProcess.cshtml" />
+    <Content Include="Views\Events\RemoveBob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
