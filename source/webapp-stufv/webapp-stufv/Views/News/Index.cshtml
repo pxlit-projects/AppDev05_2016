@@ -2,44 +2,14 @@
 
     @model IEnumerable<webapp_stufv.Models.Article>
 
-    <h2>@ViewBag.Title</h2>
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor( model => model.Title )
-            </th>
-            <th>
-                @Html.DisplayNameFor( model => model.Content )
-            </th>
-            <th>
-                @Html.DisplayNameFor( model => model.DateTime )
-            </th>
-            <th>
-                @Html.DisplayNameFor( model => model.Rating )
-            </th>
-            <th>
-                @Html.DisplayNameFor( model => model.Active )
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach ( var item in Model ) {
-            <tr>
-                <td>
+    @foreach ( var item in Model ) {
+            <div class="box">
+                <h4>
                     @Html.DisplayFor( modelItem => item.Title )
-                </td>
-                <td>
-                    @Html.DisplayFor( modelItem => item.Content )
-                </td>
-                <td>
-                    @Html.DisplayFor( modelItem => item.DateTime )
-                </td>
-                <td>
-                    @Html.DisplayFor( modelItem => item.Rating )
-                </td>
-            </tr>
-        }
-
-    </table>
+                </h4>
+                <p class="blurry-text">
+                    @Html.ActionLink(@item.Content.Substring( 0, 300 ) + "...", "Details", "News", new { id = item.Id }, null )
+                </p>
+            </div>
+    }
 }

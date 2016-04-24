@@ -1,0 +1,12 @@
+﻿@model webapp_stufv.Models.Article
+
+@section Content {
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="article">
+        <p class="text-muted"> @Html.DisplayFor( model => model.DateTime.Date )
+        <img class="thumbsup" src="~/Content/img/thumbsup.png" /> @Html.DisplayFor(model => model.ThumbsUp) @Html.ActionLink( "Geef dit artikel een like!", "AddThumbsUp", "News", new { id = Html.DisplayFor ( model => model.Id ) }, null ) </p> <br />
+        @Html.DisplayFor( model => model.Content )
+    </div>
+}

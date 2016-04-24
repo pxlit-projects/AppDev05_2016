@@ -16,7 +16,7 @@ namespace webapp_stufv.Controllers {
                 Title = "First Title",
                 Content = "First article, this article is about the first article ever made on the best website of the world. You will remember this first ever article on the best website of the world until the end of your days.",
                 DateTime = System.DateTime.Now,
-                Rating = 10,
+                ThumbsUp = 10,
                 Active = true
             }
         };
