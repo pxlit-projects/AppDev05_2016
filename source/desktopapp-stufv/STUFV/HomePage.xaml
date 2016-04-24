@@ -44,19 +44,19 @@
         <Grid x:Name="homeGrid" Margin="233,0,-0.4,-10">
             <TextBlock Text="Meldingen" FontSize="40" Margin="10,5,0,0"/>
             <TextBlock Text="Artikel plaatsen" Margin="10,80,274,500" FontSize="26"/>
-            <Button Margin="10,150,566,298" >
+            <Button Margin="10,150,566,298" Click="Artikel_Click" >
                 <Button.Background>
                     <ImageBrush ImageSource="Afbeeldingen/artikel-ikon.png" Stretch="Fill" TileMode="None" />
                 </Button.Background>
             </Button>
             <TextBlock Text="Organisaties" Margin="250,81,221,499" FontSize="26"/>
-            <Button Margin="250,150,326,298" >
+            <Button Margin="250,150,326,298" Click="Organisatie_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Afbeeldingen/Organisatie_-_icon.png" Stretch="Fill" TileMode="None" />
                 </Button.Background>
             </Button>
             <TextBlock Text="Reviews" Margin="490,81,29,499" FontSize="26"/>
-            <Button Margin="490,150,86,298" >
+            <Button Margin="490,150,86,298" Click="Review_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Afbeeldingen/Icon-Content-Development.png" Stretch="Fill" TileMode="None" />
                 </Button.Background>

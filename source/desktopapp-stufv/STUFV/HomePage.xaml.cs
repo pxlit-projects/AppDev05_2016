@@ -58,5 +58,22 @@ namespace STUFV
                     break;
             }
         }
+        // Swap pages when any button is pressed.
+        private void Artikel_Click(object sender, RoutedEventArgs e)
+        {
+            scherm.displayFrame.Source = new Uri("ArtikelPage.xaml", UriKind.Relative);
+        }
+
+        private void Organisatie_Click(object sender, RoutedEventArgs e)
+        {
+            scherm.displayFrame.Source = new Uri("OrganisatiePage.xaml", UriKind.Relative);
+        }
+
+        private void Review_Click(object sender, RoutedEventArgs e)
+        {
+
+            scherm.displayFrame.Source = new Uri("ReviewPage.xaml", UriKind.Relative);
+        }
+
     }
 }
