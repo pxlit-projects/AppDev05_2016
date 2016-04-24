@@ -260,6 +260,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Organisation.cs" />
     <Compile Include="Models\EventTypes.cs" />
+    <Compile Include="Models\Passenger.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\STUFVModelContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -280,7 +281,9 @@
     <Content Include="Content\img\collapse.png" />
     <Content Include="Content\img\euro.png" />
     <Content Include="Content\img\info.png" />
+    <Content Include="Content\img\kruisje.jpg" />
     <Content Include="Content\img\pint.png" />
+    <Content Include="Content\img\vinkje.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -354,6 +357,8 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Events\Attend.cshtml" />
     <Content Include="Views\Events\RemoveAttend.cshtml" />
+    <Content Include="Views\Events\BobProcess.cshtml" />
+    <Content Include="Views\Events\RemoveBob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

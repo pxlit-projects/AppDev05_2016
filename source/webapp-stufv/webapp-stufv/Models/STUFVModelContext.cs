@@ -19,6 +19,7 @@ namespace webapp_stufv.Models
         public DbSet<Guideline> Guidelines { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<Organisation> Organisations { get; set; }
+        public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserTypes> UserTypes { get; set; }
