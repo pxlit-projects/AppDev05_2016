@@ -22,7 +22,7 @@ namespace webapp_stufv.Models
         {
             using (var context = new STUFVModelContext())
             {
-                List<Passenger> passengers = new List<Passenger>;
+                List<Passenger> passengers = new List<Passenger>();
                 passengers = context.Passengers.ToList();
                 return passengers;
             }

@@ -359,6 +359,7 @@
     <Content Include="Views\Events\RemoveAttend.cshtml" />
     <Content Include="Views\Events\BobProcess.cshtml" />
     <Content Include="Views\Events\RemoveBob.cshtml" />
+    <Content Include="Views\Events\FindBob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

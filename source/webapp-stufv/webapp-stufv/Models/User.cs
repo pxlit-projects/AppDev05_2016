@@ -57,6 +57,7 @@ namespace webapp_stufv.Models {
 
         public virtual ICollection<Organisation> Organisations { get; set; }
 
+
         // Methods
         public static Boolean Login (string email, string password, out int userID) {
             using ( var context = new STUFVModelContext ( ) ) {
