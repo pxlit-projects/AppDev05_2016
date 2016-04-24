@@ -241,6 +241,7 @@
     <Compile Include="Controllers\GuidelinesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\OrganisationController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -364,10 +365,10 @@
     <Content Include="Views\Events\Attend.cshtml" />
     <Content Include="Views\Events\RemoveAttend.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
-    <Content Include="Views\News\AddThumbsUp.cshtml" />
     <Content Include="Views\Events\BobProcess.cshtml" />
     <Content Include="Views\Events\RemoveBob.cshtml" />
     <Content Include="Views\Events\FindBob.cshtml" />
+    <Content Include="Views\Organisation\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

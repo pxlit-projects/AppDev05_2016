@@ -11,7 +11,7 @@ namespace webapp_stufv {
             routes.IgnoreRoute ( "{resource}.axd/{*pathInfo}" );
             routes.MapRoute (
                 name: "Article",
-                url: "News/{Details}/{id}",
+                url: "News/Details/{id}",
                 defaults: new { controller = "News", action = "Details", id = UrlParameter.Optional }
             );
             routes.MapRoute (

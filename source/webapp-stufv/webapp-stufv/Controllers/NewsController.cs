@@ -21,7 +21,7 @@ namespace webapp_stufv.Controllers {
 
         public ActionResult AddThumbsUp ( int id ) {
             Article.AddThumbsUp ( id );
-            return View ( );
+            return RedirectToAction("Details", "News", new { id = id });
         }
     }
 }
