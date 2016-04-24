@@ -7,7 +7,6 @@ using webapp_stufv.Models;
 
 namespace webapp_stufv.Controllers {
     public class HomeController : Controller {
-<<<<<<< HEAD
         static List<Article> _articles = new List<Article>
         {
             new Article
@@ -36,16 +35,14 @@ namespace webapp_stufv.Controllers {
                 End = System.DateTime.Now.AddHours(5),
                 EntranceFee = 5,
                 AlcoholFree = false,
-                Active = true              
+                Active = true
             }
         };
 
-=======
->>>>>>> origin/master
         public ActionResult Index ( ) {
-            ViewBag.Articles = Article.getAllArticles();
-            ViewBag.Events = Event.GetAllEvents();
-            return View();
+            ViewBag.Articles = Article.getAllArticles ( );
+            ViewBag.Events = Event.GetAllEvents ( );
+            return View ( );
         }
     }
 }
