@@ -33,7 +33,18 @@ namespace webapp_stufv.Models {
 
         public virtual ICollection<Passenger> Passengers { get; set; }
 
+        public string GetDriverName() {
+            string fullName = "";
+            List<User> users = new List<User>();
+            using (var context = new STUFVModelContext())
+            {
+                users = context.Users.ToList();
+                var user = users.Single(r => r.Id == UserId);
+                fullName = user.FirstName + " " + user.LastName;
+            }
+            return fullName;
 
+        }
         public static List<DesDriver> ActiveDriversPerEvent(int eventId) {
             List<DesDriver> allDrivers = GetAllDrivers();
             List<DesDriver> activeDrivers = new List<DesDriver>();

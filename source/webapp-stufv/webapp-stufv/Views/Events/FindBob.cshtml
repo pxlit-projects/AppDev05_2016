@@ -5,8 +5,8 @@
 </div>
 @foreach (var item in Model)
 {
+    @item.GetDriverName()
     @item.NrOfPlaces
-    @item.Passengers.Count()
 
-
+    }
 }
