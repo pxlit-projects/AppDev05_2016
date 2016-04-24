@@ -245,6 +245,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604240920013_InitialMigrations.cs" />
+    <Compile Include="Migrations\201604240920013_InitialMigrations.Designer.cs">
+      <DependentUpon>201604240920013_InitialMigrations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -276,6 +280,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\boxes.css" />
     <Content Include="Content\Global.css" />
     <Content Include="Content\img\Calendar.png" />
     <Content Include="Content\img\collapse.png" />
@@ -283,6 +288,7 @@
     <Content Include="Content\img\info.png" />
     <Content Include="Content\img\kruisje.jpg" />
     <Content Include="Content\img\pint.png" />
+    <Content Include="Content\img\thumbsup.png" />
     <Content Include="Content\img\vinkje.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -357,6 +363,8 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Events\Attend.cshtml" />
     <Content Include="Views\Events\RemoveAttend.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\AddThumbsUp.cshtml" />
     <Content Include="Views\Events\BobProcess.cshtml" />
     <Content Include="Views\Events\RemoveBob.cshtml" />
     <Content Include="Views\Events\FindBob.cshtml" />
@@ -371,6 +379,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604240920013_InitialMigrations.resx">
+      <DependentUpon>201604240920013_InitialMigrations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
