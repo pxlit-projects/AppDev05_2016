@@ -23,6 +23,8 @@ namespace STUFV
         {
             InitializeComponent();
 
+            menuBox.SelectionChanged += MenuBox_SelectionChanged;
+
             List<Organisation> organisations = new List<Organisation>
             {
                 new Organisation {Name = "STUFV", Description = "blabla", Active = true },
@@ -33,6 +35,54 @@ namespace STUFV
 
             nieuwOrganisatieDataGrid.DataContext = organisations;
             beheerOrganisatieDataGrid.DataContext = organisations;
+        }
+
+        private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = menuBox.SelectedIndex;
+
+            switch (index)
+            {
+                case 0:
+                    closeGrids();
+                    homeGrid.Visibility = Visibility.Visible;
+                    break;
+                case 1:
+                    closeGrids();
+                    artikelGrid.Visibility = Visibility.Visible;
+                    break;
+                case 2:
+                    closeGrids();
+                    organisatieGrid.Visibility = Visibility.Visible;
+                    break;
+                case 3:
+                    closeGrids();
+                    reviewsGrid.Visibility = Visibility.Visible;
+                    break;
+                case 4:
+                    closeGrids();
+                    gebruikersGrid.Visibility = Visibility.Visible;
+                    break;
+                case 5:
+                    closeGrids();
+                    statistiekenGrid.Visibility = Visibility.Visible;
+                    break;
+                case 6:
+                    closeGrids();
+                    logoutGrid.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+
+        private void closeGrids()
+        {
+            homeGrid.Visibility = Visibility.Hidden;
+            artikelGrid.Visibility = Visibility.Hidden;
+            organisatieGrid.Visibility = Visibility.Hidden;
+            reviewsGrid.Visibility = Visibility.Hidden;
+            gebruikersGrid.Visibility = Visibility.Hidden;
+            statistiekenGrid.Visibility = Visibility.Hidden;
+            logoutGrid.Visibility = Visibility.Hidden;
         }
     }
 }

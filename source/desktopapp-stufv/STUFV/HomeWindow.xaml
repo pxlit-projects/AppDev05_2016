@@ -32,14 +32,22 @@
         <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
             <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
             <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-            <ListBoxItem Content="Controle op organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem x:Name="controleOrganisatieItem" Content="Controle op organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
             <ListBoxItem Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
             <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
             <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
             <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
         </ListBox>
 
-        <Grid x:Name="organisatieGrid" Margin="233,0,-0.4,-10">
+        <Grid x:Name="homeGrid" Margin="233,0,-0.4,-10" Visibility="Hidden">
+
+        </Grid>
+
+        <Grid x:Name="artikelGrid" Margin="233,0,-0.4,-10" Visibility="Hidden">
+
+        </Grid>
+
+        <Grid x:Name="organisatieGrid" Margin="233,0,-0.4,-10" Visibility="Hidden">
             <TextBlock Text="Organisaties" FontSize="40" Margin="10,5,0,0"/>
 
             <TextBlock Text="Nieuwe organisaties" Margin="10,80,274,501" FontSize="26"/>
@@ -126,5 +134,22 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+
+        <Grid x:Name="reviewsGrid" Margin="233,0,-0.4,-10" Visibility="Hidden">
+
+        </Grid>
+
+        <Grid x:Name="gebruikersGrid" Margin="233,0,-0.4,-10" Visibility="Hidden">
+
+        </Grid>
+
+        <Grid x:Name="statistiekenGrid" Margin="233,0,-0.4,-10" Visibility="Hidden">
+
+        </Grid>
+
+        <Grid x:Name="logoutGrid" Margin="233,0,-0.4,-10" Visibility="Hidden">
+
+        </Grid>
+
     </Grid>
 </Window>
