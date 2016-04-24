@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace STUFV
@@ -22,72 +23,22 @@ namespace STUFV
         public HomeWindow()
         {
             InitializeComponent();
+            displayFrame.Navigated += DisplayFrame_Navigated;
 
-            menuBox.SelectionChanged += MenuBox_SelectionChanged;
-
-            List<Organisation> organisations = new List<Organisation>
-            {
-                new Organisation {Name = "STUFV", Description = "blabla", Active = true },
-                new Organisation {Name = "PXL", Description = "geen commentaar", Active = false },
-                new Organisation {Name = "test", Description = "dit is een hele lange tekst. dit is een hele lange tekst" +
-                                                            "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
-            };
-
-            List<Review> reviews = new List<Review>
-            {
-                new Review {Id=1, Active  =true, Content="Looooool"}
-            };
-
-            nieuwOrganisatieDataGrid.DataContext = organisations;
-            beheerOrganisatieDataGrid.DataContext = organisations;
+            ChangeFrame();
         }
 
-        private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DisplayFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            int index = menuBox.SelectedIndex;
-
-            switch (index)
-            {
-                case 0:
-                    closeGrids();
-                    homeGrid.Visibility = Visibility.Visible;
-                    break;
-                case 1:
-                    closeGrids();
-                    artikelGrid.Visibility = Visibility.Visible;
-                    break;
-                case 2:
-                    closeGrids();
-                    organisatieGrid.Visibility = Visibility.Visible;
-                    break;
-                case 3:
-                    closeGrids();
-                    reviewsGrid.Visibility = Visibility.Visible;
-                    break;
-                case 4:
-                    closeGrids();
-                    gebruikersGrid.Visibility = Visibility.Visible;
-                    break;
-                case 5:
-                    closeGrids();
-                    statistiekenGrid.Visibility = Visibility.Visible;
-                    break;
-                case 6:
-                    closeGrids();
-                    logoutGrid.Visibility = Visibility.Visible;
-                    break;
-            }
+            displayFrame.NavigationService.RemoveBackEntry();
         }
 
-        private void closeGrids()
+        // Laden van de eerste pagina in displayFrame
+        // Navigatiebalk van de frame verbergen
+        private void ChangeFrame()
         {
-            homeGrid.Visibility = Visibility.Hidden;
-            artikelGrid.Visibility = Visibility.Hidden;
-            organisatieGrid.Visibility = Visibility.Hidden;
-            reviewsGrid.Visibility = Visibility.Hidden;
-            gebruikersGrid.Visibility = Visibility.Hidden;
-            statistiekenGrid.Visibility = Visibility.Hidden;
-            logoutGrid.Visibility = Visibility.Hidden;
+            displayFrame.Source = new Uri("HomePage.xaml", UriKind.Relative);
+            displayFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
         }
     }
 }

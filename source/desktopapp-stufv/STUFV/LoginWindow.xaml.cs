@@ -88,6 +88,7 @@ namespace STUFV
         {
             this.Hide();
             HomeWindow homeWindow = new HomeWindow();
+            Application.Current.MainWindow = homeWindow;
             homeWindow.ShowDialog();
         }
     }
