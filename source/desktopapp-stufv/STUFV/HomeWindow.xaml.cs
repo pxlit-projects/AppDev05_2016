@@ -33,6 +33,11 @@ namespace STUFV
                                                             "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
             };
 
+            List<Review> reviews = new List<Review>
+            {
+                new Review {Id=1, Active  =true, Content="Looooool"}
+            };
+
             nieuwOrganisatieDataGrid.DataContext = organisations;
             beheerOrganisatieDataGrid.DataContext = organisations;
         }
