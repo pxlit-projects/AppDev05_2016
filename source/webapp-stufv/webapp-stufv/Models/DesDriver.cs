@@ -31,6 +31,20 @@ namespace webapp_stufv.Models {
         [Required]
         public Boolean Active { get; set; }
 
+        public static List<DesDriver> ActiveDriversPerEvent(int eventId) {
+            List<DesDriver> allDrivers = GetAllDrivers();
+            List<DesDriver> activeDrivers = new List<DesDriver>();
+            int x;
+            for (x = 0; x < allDrivers.Count(); x++)
+            {
+                if (allDrivers.ElementAt(x).EventId.Equals(eventId) && allDrivers.ElementAt(x).Active.Equals(true))
+                {
+                    activeDrivers.Add(allDrivers.ElementAt(x));
+                }
+            }
+            return activeDrivers;
+        }
+
         public static void unSetDES(int userId, int eventId) {
             if (IsDES(userId, eventId))
             {

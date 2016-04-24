@@ -83,7 +83,8 @@ namespace webapp_stufv.Controllers
             return View();
         }
         public ActionResult FindBob(int id) {
-            return View();
+            ViewBag.Title = "Find bob";
+            return View(DesDriver.ActiveDriversPerEvent(id));
         }
     }
 }
