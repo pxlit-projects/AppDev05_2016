@@ -280,7 +280,9 @@
     <Content Include="Content\img\collapse.png" />
     <Content Include="Content\img\euro.png" />
     <Content Include="Content\img\info.png" />
+    <Content Include="Content\img\kruisje.jpg" />
     <Content Include="Content\img\pint.png" />
+    <Content Include="Content\img\vinkje.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
