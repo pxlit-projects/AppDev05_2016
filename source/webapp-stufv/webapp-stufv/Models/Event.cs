@@ -53,6 +53,8 @@ namespace webapp_stufv.Models {
 
         public virtual ICollection<DesDriver> DesDrivers { get; set; }
 
+        public virtual ICollection<Passenger> Passengers { get; set; }
+
         public string getCity() {
             List < Cities > cities = new List<Cities>();
             using (var context = new STUFVModelContext())

@@ -31,6 +31,9 @@ namespace webapp_stufv.Models {
         [Required]
         public Boolean Active { get; set; }
 
+        public virtual ICollection<Passenger> Passengers { get; set; }
+
+
         public static List<DesDriver> ActiveDriversPerEvent(int eventId) {
             List<DesDriver> allDrivers = GetAllDrivers();
             List<DesDriver> activeDrivers = new List<DesDriver>();

@@ -260,6 +260,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Organisation.cs" />
     <Compile Include="Models\EventTypes.cs" />
+    <Compile Include="Models\Passenger.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\STUFVModelContext.cs" />
     <Compile Include="Models\User.cs" />
