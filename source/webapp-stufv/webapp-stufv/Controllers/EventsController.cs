@@ -31,11 +31,18 @@ namespace webapp_stufv.Controllers
                 else {
                     ViewBag.attend = false;
                 }
+                if (DesDriver.IsDES((int)Session["userId"], id))
+                {
+                    ViewBag.isBob = true;
+                }
+                else {
+                    ViewBag.isBob = false;
+                }
             }
             _events = Event.GetAllEvents();
-            var _event = _events.Single(r => r.Id == id);
-            ViewBag.Title = _event.Name;
-            return View(_event);
+            var tuple = new Tuple<Event, DesDriver>(_events.Single(r => r.Id == id), new DesDriver());
+            ViewBag.Title = tuple.Item1.Name;
+            return View(tuple);
         }
         public ActionResult Attend(int id) {
             ViewBag.Title = "Attend";
@@ -62,6 +69,22 @@ namespace webapp_stufv.Controllers
             Attendance.UnSignAttend((int)Session["userId"], id);
             ViewBag.id = id;
             return View();
+        }
+        public ActionResult BobProcess(int id) {
+            int NrOfPlaces;
+            int.TryParse(Request.Form["NrOfPlaces"], out NrOfPlaces);
+            ViewBag.id = id;
+            DesDriver.SetDES((int)Session["userId"], id, NrOfPlaces);
+            return View();
+        }
+        public ActionResult RemoveBob(int id) {
+            ViewBag.id = id;
+            DesDriver.unSetDES((int)Session["userId"], id);
+            return View();
+        }
+        public ActionResult FindBob(int id) {
+            ViewBag.Title = "Find bob";
+            return View(DesDriver.ActiveDriversPerEvent(id));
         }
     }
 }

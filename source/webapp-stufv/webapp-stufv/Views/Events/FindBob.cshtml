@@ -1,0 +1,12 @@
+﻿@model IEnumerable<webapp_stufv.Models.DesDriver>
+@section content{
+<div class="page-header">
+    <h1>@ViewBag.Title</h1>
+</div>
+@foreach (var item in Model)
+{
+    @item.NrOfPlaces
+    @item.Passengers.Count()
+
+
+}

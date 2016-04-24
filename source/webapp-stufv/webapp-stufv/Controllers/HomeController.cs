@@ -7,6 +7,7 @@ using webapp_stufv.Models;
 
 namespace webapp_stufv.Controllers {
     public class HomeController : Controller {
+<<<<<<< HEAD
         static List<Article> _articles = new List<Article>
         {
             new Article
@@ -39,16 +40,12 @@ namespace webapp_stufv.Controllers {
             }
         };
 
+=======
+>>>>>>> origin/master
         public ActionResult Index ( ) {
-            /* List<List<IEnumerable<Object>>> _modelList = new List<List<IEnumerable<Object>>>();
-            _modelList.Add(_events); */
-
-          /*  using (var db = new STUFVModelContext())
-            {
-                db.Articles.ToList();
-            } */
-
-            return View ( _articles );
+            ViewBag.Articles = Article.getAllArticles();
+            ViewBag.Events = Event.GetAllEvents();
+            return View();
         }
     }
 }

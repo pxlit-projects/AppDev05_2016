@@ -56,6 +56,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GebruikersPage.xaml.cs">
+      <DependentUpon>GebruikersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogoutPage.xaml.cs">
+      <DependentUpon>LogoutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Review.cs" />
+    <Compile Include="ReviewPage.xaml.cs">
+      <DependentUpon>ReviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatistiekenPage.xaml.cs">
+      <DependentUpon>StatistiekenPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ArtikelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GebruikersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,6 +93,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ArtikelPage.xaml.cs">
+      <DependentUpon>ArtikelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
@@ -75,8 +106,28 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="LogoutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganisatiePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatistiekenPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrganisatiePage.xaml.cs">
+      <DependentUpon>OrganisatiePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Organisation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -108,6 +159,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Afbeeldingen\party-music-hd-wallpaper-1920x1200-3850.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Afbeeldingen\Ok-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Afbeeldingen\Bad-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Afbeeldingen\artikel-ikon.png" />
+    <Resource Include="Afbeeldingen\Icon-Content-Development.png" />
+    <Resource Include="Afbeeldingen\Organisatie_-_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

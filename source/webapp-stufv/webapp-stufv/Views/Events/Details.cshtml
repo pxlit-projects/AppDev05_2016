@@ -1,4 +1,4 @@
-﻿@model webapp_stufv.Models.Event
+﻿@model Tuple<webapp_stufv.Models.Event, webapp_stufv.Models.DesDriver>
 @section content{
 <div class="page-header">
     <h1>@ViewBag.Title</h1>
@@ -12,22 +12,22 @@
                     <tr>
                         <td>
                             <h3>
-                                @Model.Name
+                                @Model.Item1.Name
                             </h3>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            @if (Model.EntranceFee == 0)
+                            @if (Model.Item1.EntranceFee == 0)
                             {
                                 <p class="pclear"><img class="iconimg" src="~/Content/img/euro.png" />Gratis</p>
                             }
                             else {
-                                <p class="pclear"><img class="iconimg" src="~/Content/img/euro.png" />@Model.EntranceFee euro</p>
+                                <p class="pclear"><img class="iconimg" src="~/Content/img/euro.png" />@Model.Item1.EntranceFee euro</p>
                             }
                         </td>
                     </tr>
-                    @if (Model.AlcoholFree)
+                    @if (Model.Item1.AlcoholFree)
     {
                         <tr>
                             <td>
@@ -39,27 +39,27 @@
                     }
                     <tr>
                         <td>
-                            <img class="iconimg" src="~/Content/img/Calendar.png" />@Model.Start.ToShortDateString()
+                            <img class="iconimg" src="~/Content/img/Calendar.png" />@Model.Item1.Start.ToShortDateString()
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <img class="iconimg" src="~/Content/img/Calendar.png" />Start: @Model.Start.ToShortTimeString()
+                            <img class="iconimg" src="~/Content/img/Calendar.png" />Start: @Model.Item1.Start.ToShortTimeString()
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <img class="iconimg" src="~/Content/img/Calendar.png" />Einde: @Model.End.ToShortTimeString()
+                            <img class="iconimg" src="~/Content/img/Calendar.png" />Einde: @Model.Item1.End.ToShortTimeString()
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Street, @Model.ZipCode @Model.getCity()</p>
+                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Item1.Street, @Model.Item1.ZipCode @Model.Item1.getCity()</p>
                         </td>
                     </tr>
                     <tr>
                         <td class="desciption">
-                            <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@Model.Description</p>
+                            <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@Model.Item1.Description</p>
                         </td>
                     </tr>
                     @if (Session["email"] == null || Session["email"].Equals(""))
@@ -67,27 +67,79 @@
                         //Login
                     }
                     else {
-                        <tr>
-                            <td>
-                                @if (ViewBag.attend)
-                                {
-                                    <a href="@Url.Action("RemoveAttend", "Events", new { id = Model.Id })">
-                                        <p class="btn btn-warning">Niet aanwezig</p>
-                                    </a>
-                                }
+                        if (ViewBag.attend)
+                        {
+                                    <tr>
+                                        <td>
+                                            <a href="@Url.Action("RemoveAttend", "Events", new { id = Model.Item1.Id })">
+                                                <p class="btn btn-warning">Niet aanwezig</p>
+                                            </a>
+                                        </td>
+                                        </tr><tr>
+                                    
+                                                                                         @if (ViewBag.isbob)
+                                                                                         {
+                                                                                             <td>
+                                                                                                 <a href="@Url.Action("RemoveBob", "Events", new { id = Model.Item1.Id })">
+                                                                                                     <p class="btn btn-warning">Ik wil geen BOB meer zijn.</p>
+                                                                                                 </a>
+                                                                                             </td>
+                                                                                                 }
+                                                                                                 else {
+<td>
+                                                <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#becomebob">Word BOB</button>
+                                                <div id="becomebob" class="collapse">
+                                                    <div class="col-md-8">
+                                                        <section id="loginForm">
+                                                            @using (Html.BeginForm("BobProcess/" + Model.Item1.Id, "Events", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+                                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label" for="NrOfPlaces">Hoeveel vrije plaatsen: </label>
+                                                                    <div class="col-md-9">
+                                                                        @Html.TextBoxFor(m => Model.Item2.NrOfPlaces, new { @class = "form-control" })
+                                                                        @Html.ValidationMessageFor(m => Model.Item2.NrOfPlaces, "", new { @class = "text-danger" })
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <input type="submit" value="Registreer" class="btn btn-default" />
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </section>
+                                                    </div>
+                                                    
+                                                </div> <br />
+                                            </td>
+                                                                                         }
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("FindBob", "Events", new { id = Model.Item1.Id })">
+                                                    <p class="btn btn-success">Vind BOB</p>
+                                                </a>
+                                            </td>
+                                            </tr>
+                                        }
                                 else {
-                                <a href="@Url.Action("Attend", "Events", new { id = Model.Id })">
-                                    <p class="btn btn-info">Aanwezig</p>
-                                </a>
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Attend", "Events", new { id = Model.Item1.Id })">
+                                <p class="btn btn-info">Aanwezig</p>
+                            </a>
+                        </td>
+                    </tr>
                                 }
-                            </td>
-                        </tr>
+                                        
+                        
                     }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-        }
+                        }
+                    }
 
