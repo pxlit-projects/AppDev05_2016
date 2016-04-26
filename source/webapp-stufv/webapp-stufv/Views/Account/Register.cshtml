@@ -5,23 +5,86 @@
         <h4>Creëer een nieuw account.</h4>
         <hr />
         <div class="form-group">
-            @Html.LabelFor( m => m.Email, new { @class = "col-md-2 control-label" } )
+            <div class="col-md-2 control-label">Email adres: </div>
             <div class="col-md-10">
-                @Html.TextBoxFor( m => m.Email, new { @class = "form-control" } )
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor( m => m.PassWord, new { @class = "col-md-2 control-label" } )
+            <div class="col-md-2 control-label">wachtwoord: </div>
             <div class="col-md-10">
-                @Html.PasswordFor( m => m.PassWord, new { @class = "form-control" } )
+                @Html.PasswordFor(m => m.PassWord, new { @class = "form-control" })
+            </div>
+        </div>
+       // <div class="form-group">
+        //    <div class="col-md-2 control-label">Controle wachtwoord: </div>
+        //    <div class="col-md-10">
+         //       @Html.PasswordFor( m => m.PassWord, new { @class = "form-control" })
+         //   </div>
+       // </div>
+        <div class="form-group">
+            <div class="col-md-2 control-label">Voornaam: </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor( m => m.PassWord, new { @class = "col-md-2 control-label" } )
+            <div class="col-md-2 control-label">Achternaam: </div>
             <div class="col-md-10">
-                @Html.PasswordFor( m => m.PassWord, new { @class = "form-control" } )
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
             </div>
         </div>
+                <div class="form-group">
+            <div class="col-md-2 control-label">Geboortedatum: </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Geboorteplaats: </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Geslacht: </div>
+                        <div class="col-md-10">
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.RadioButtonFor(m => m.Sex, "M", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.Label("Man")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.RadioButtonFor(m => m.Sex, "V", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.Label("Vrouw")
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Postcode: </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Telefoon nummer: </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.TelNr, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">GSM nummer: </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.MobileNr, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" class="btn btn-default" value="Register" />
