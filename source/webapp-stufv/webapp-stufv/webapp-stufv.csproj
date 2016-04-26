@@ -235,6 +235,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\EmergencyController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -369,6 +370,7 @@
     <Content Include="Views\Events\RemoveBob.cshtml" />
     <Content Include="Views\Events\FindBob.cshtml" />
     <Content Include="Views\Organisation\Register.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
