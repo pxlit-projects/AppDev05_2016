@@ -51,7 +51,7 @@ namespace webapp_stufv.Models {
             int x;
             for (x = 0; x < allDrivers.Count(); x++)
             {
-                if (allDrivers.ElementAt(x).EventId.Equals(eventId) && allDrivers.ElementAt(x).Active.Equals(true))
+                if (allDrivers.ElementAt(x).EventId.Equals(eventId) && allDrivers.ElementAt(x).Active.Equals(true) &&allDrivers.ElementAt(x).NrOfPlaces > allDrivers.ElementAt(x).NrOfFilled)
                 {
                     activeDrivers.Add(allDrivers.ElementAt(x));
                 }

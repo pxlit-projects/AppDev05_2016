@@ -23,11 +23,9 @@
         margin-bottom: 0;
     }
 
-.eventshort {
-}
 
-    .eventshort td {
-        padding-bottom: 10px;
+    .eventshort td{
+       padding-bottom: 5px;
     }
 
     .eventshort .iconimg {
@@ -40,6 +38,9 @@
     height: 20%;
     margin: 5px;
     margin-right: 25px;
+}
+.row thead tr {
+    margin-bottom: 5px;
 }
 
 .eventshort a {
