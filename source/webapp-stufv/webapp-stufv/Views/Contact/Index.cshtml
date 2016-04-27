@@ -1,25 +1,27 @@
 ﻿@section content {
-   <h1 class="page-header">@ViewBag.Title</h1>
-   <table style="width: 1000px; height: 50px; margin-left: 100px">
+    <h1 class="page-header">@ViewBag.Title</h1>
+    <table style="width: 1000px; height: 50px; margin-left: 100px;">
        <tr>
-           <td><p>Naam</p></td>
-           <td><p>Voornaam</p></td>
+           <td>Naam</td>
+           <td>Voornaam</td>
        </tr>
        <tr>
-           <td><input type="text" style="width: 300px"/></td>
+           <td style="padding-bottom: 1em"><input type="text" style="width: 300px"/></td>
            <td><input type="text" style="width: 300px"/></td>
        </tr>
        <tr>
            <td colspan="2">Onderwerp</td>
        </tr>
        <tr>
-           <td colspan="2"><input type="text" style="width: 300px"/></td>
+           <td colspan="2" style="padding-bottom: 1em"><input type="text" style="width: 300px"/></td>
        </tr>
        <tr>
            <td colspan="2">Omschrijving</td>
        </tr>
        <tr>
-           <td colspan="2"><input type="text" style="width: 800px; height: 300px"/></td>
+           <td colspan="2"><textarea name="Text1" style="width: 800px; height: 200px; resize: vertical"></textarea></td>
        </tr>
-   </table>
+    </table>
+    <hr class="seperator"/>
+    <button type="button" class="btn btn-primary">Send</button>
 }
