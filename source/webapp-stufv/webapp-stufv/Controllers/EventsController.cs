@@ -89,6 +89,7 @@ namespace webapp_stufv.Controllers
         public ActionResult JoinBob(int id)
         {
             ViewBag.Title = "Find bob";
+            Passenger.NewPassenger((int)Session["userId"], id);
             return View();
         }
     }

@@ -128,5 +128,10 @@ namespace webapp_stufv.Models {
             }
             return false;
         }
+        public int GetFreeSpaces(int userId) {
+            int passengerCount = 0;
+            passengerCount = Passenger.PassengersPerDriver(userId);
+            return NrOfPlaces - passengerCount;
+        }
     }
 }

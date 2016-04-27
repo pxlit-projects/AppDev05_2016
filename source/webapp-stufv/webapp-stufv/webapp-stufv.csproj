@@ -373,6 +373,7 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Organisation\Process.cshtml" />
     <Content Include="Views\Organisation\Index.cshtml" />
+    <Content Include="Views\Events\Joinbob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
