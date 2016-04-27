@@ -29,6 +29,7 @@ namespace webapp_stufv.Controllers {
                 {
                     Session["email"] = email;
                     Session["userId"] = userID;
+                    Session["organisation"] = Models.Organisation.HasOrganisation(userID);
                     ViewBag.Title = "Succes";
                     return View();
                 }
@@ -36,6 +37,7 @@ namespace webapp_stufv.Controllers {
                     ViewBag.Title = "Login mislukt";
                     Session["email"] = "";
                     Session["userId"] = "";
+                    Session["organisation"] = "";
                     return View();
                 }
             }
@@ -47,6 +49,7 @@ namespace webapp_stufv.Controllers {
         public ActionResult Logout ( ) {
             Session[ "Email" ] = "";
             Session["userId"] = "";
+            Session["organisation"] = "";
             ViewBag.Title = "Logout gelukt";
             return View ( );
         }
