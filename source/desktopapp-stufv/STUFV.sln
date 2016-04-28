@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STUFV", "STUFV\STUFV.csproj", "{301D4210-E30A-44E7-BFB4-547FDC2A60DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STUFV.DomainClasses", "STUFV.DomainClasses\STUFV.DomainClasses.csproj", "{97F51971-43EB-4E3E-A6B8-152622C29A1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STUFV.DataLayer", "STUFV.DataLayer\STUFV.DataLayer.csproj", "{9CE76B5D-86B2-4CD0-B022-00E28CE60D76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{301D4210-E30A-44E7-BFB4-547FDC2A60DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{301D4210-E30A-44E7-BFB4-547FDC2A60DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{301D4210-E30A-44E7-BFB4-547FDC2A60DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F51971-43EB-4E3E-A6B8-152622C29A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F51971-43EB-4E3E-A6B8-152622C29A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F51971-43EB-4E3E-A6B8-152622C29A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F51971-43EB-4E3E-A6B8-152622C29A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE76B5D-86B2-4CD0-B022-00E28CE60D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE76B5D-86B2-4CD0-B022-00E28CE60D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE76B5D-86B2-4CD0-B022-00E28CE60D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE76B5D-86B2-4CD0-B022-00E28CE60D76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
