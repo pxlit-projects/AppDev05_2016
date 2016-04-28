@@ -47,7 +47,7 @@
                     @Html.ActionLink("FAQ", "Index", "FAQ")
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    @Html.ActionLink("Contact", "Index", "Contact")
                 </li>
                 <li>
                     @Html.ActionLink("Noodnummers", "Index", "Emergency")
@@ -63,9 +63,18 @@
                     @Html.ActionLink( "Registreren", "Register", "Account" )
                 </li>
                 } else {
+                    if ((int)Session["organisation"] > 0)
+                    {
                     <li>
-                        @Html.ActionLink( "Organisatie registreren", "Register", "Organisation" )
+                        @Html.ActionLink("Organisatie", "Index", "Organisation")
                     </li>
+                    }
+                    else
+                    {
+                     <li>
+                        @Html.ActionLink("Organisatie registreren", "Register", "Organisation")
+                    </li>
+                    }
                     <li>
                         @Html.ActionLink("Instellingen", "Index", "Settings")
                     </li>

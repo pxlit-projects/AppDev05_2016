@@ -72,7 +72,7 @@ namespace webapp_stufv.Controllers
         }
         public ActionResult BobProcess(int id) {
             int NrOfPlaces;
-            int.TryParse(Request.Form["NrOfPlaces"], out NrOfPlaces);
+            int.TryParse(Request.Form["Item2.NrOfPlaces"], out NrOfPlaces);
             ViewBag.id = id;
             DesDriver.SetDES((int)Session["userId"], id, NrOfPlaces);
             return View();
@@ -85,6 +85,12 @@ namespace webapp_stufv.Controllers
         public ActionResult FindBob(int id) {
             ViewBag.Title = "Find bob";
             return View(DesDriver.ActiveDriversPerEvent(id));
+        }
+        public ActionResult JoinBob(int id)
+        {
+            ViewBag.Title = "Find bob";
+            Passenger.NewPassenger((int)Session["userId"], id);
+            return View();
         }
     }
 }

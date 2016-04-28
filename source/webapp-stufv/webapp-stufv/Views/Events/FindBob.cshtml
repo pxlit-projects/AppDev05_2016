@@ -3,10 +3,39 @@
 <div class="page-header">
     <h1>@ViewBag.Title</h1>
 </div>
-@foreach (var item in Model)
-{
-    @item.GetDriverName()
-    @item.NrOfPlaces
+<table class="row">
+    <thead>
+        <tr>
+            <th class="col-lg-4">
+                Naam van bestuurder
+            </th>
+            <th class="col-lg-2">
+                Vrije plaatsen
+            </th>
+            <th class="col-lg-6">
 
-    }
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="col-lg-4">
+                    @item.GetDriverName()
+                </td>
+                <td class="col-lg-2">
+                   @item.GetFreeSpaces(item.Id)
+                </td>
+                <td class="col-lg-6">
+                    <a href="@Url.Action("JoinBob", "Events", new { id = item.Id })">
+                        <p class="btn btn-success">Rij mee</p>
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
 }
