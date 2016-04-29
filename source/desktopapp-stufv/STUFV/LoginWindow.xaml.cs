@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,34 +27,34 @@ namespace STUFV
         {
             InitializeComponent();
 
-            userBox.GotFocus += UserBox_GotFocus;
-            userBox.LostFocus += UserBox_LostFocus;
-            userBox.KeyDown += UserBox_KeyDown;
+            emailBox.GotFocus += EmailBox_GotFocus;
+            emailBox.LostFocus += EmailBox_LostFocus;
+            emailBox.KeyDown += EmailBox_KeyDown;
 
             passwordTextBox.GotFocus += PasswordTextBox_GotFocus;
             passwordBox.LostFocus += PasswordBox_LostFocus;
             passwordBox.KeyDown += PasswordBox_KeyDown;
         }
 
-        private void UserBox_LostFocus(object sender, RoutedEventArgs e)
+        private void EmailBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (userBox.Text == "")
+            if (emailBox.Text == "")
             {
-                userBox.Text = "Gebruikersnaam";
-                userBox.Foreground = new SolidColorBrush(Colors.LightGray);
+                emailBox.Text = "E-mailadres";
+                emailBox.Foreground = new SolidColorBrush(Colors.LightGray);
             }
         }
 
-        private void UserBox_GotFocus(object sender, RoutedEventArgs e)
+        private void EmailBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (userBox.Text == "Gebruikersnaam")
+            if (emailBox.Text == "E-mailadres")
             {
-                userBox.Text = "";
-                userBox.Foreground = new SolidColorBrush(Colors.Black);
+                emailBox.Text = "";
+                emailBox.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
 
-        private void UserBox_KeyDown(object sender, KeyEventArgs e)
+        private void EmailBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -86,6 +88,19 @@ namespace STUFV
 
         private void Login()
         {
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("http://localhost:26370/");
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //var userUrl = "/api/User/" + emailBox.Text;
+            //HttpResponseMessage response = await client.GetAsync(userUrl);
+            //User user = null;
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    user = await response.Content.ReadAsAsync<User>();
+            //}
+
             this.Hide();
             HomeWindow homeWindow = new HomeWindow();
             Application.Current.MainWindow = homeWindow;

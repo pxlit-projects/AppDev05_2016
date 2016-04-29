@@ -81,14 +81,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Cities.cs" />
+    <Compile Include="Models\DesDriver.cs" />
+    <Compile Include="Models\Emergency.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventTypes.cs" />
+    <Compile Include="Models\FAQ.cs" />
+    <Compile Include="Models\Guideline.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Organisation.cs" />
+    <Compile Include="Models\Passenger.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\STUFVModelContext.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserTypes.cs" />
     <Compile Include="UsersPage.xaml.cs">
       <DependentUpon>UsersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogoutPage.xaml.cs">
       <DependentUpon>LogoutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Organisation.cs" />
-    <Compile Include="Review.cs" />
     <Compile Include="ReviewsPage.xaml.cs">
       <DependentUpon>ReviewsPage.xaml</DependentUpon>
     </Compile>
