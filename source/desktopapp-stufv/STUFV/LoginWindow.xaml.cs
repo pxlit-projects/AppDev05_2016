@@ -101,7 +101,7 @@ namespace STUFV
             //    user = await response.Content.ReadAsAsync<User>();
             //}
 
-            this.Hide();
+            //this.Hide();
             HomeWindow homeWindow = new HomeWindow();
             Application.Current.MainWindow = homeWindow;
             homeWindow.ShowDialog();

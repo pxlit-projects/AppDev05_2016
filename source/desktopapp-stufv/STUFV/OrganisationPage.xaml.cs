@@ -68,5 +68,17 @@ namespace STUFV
                     break;
             }
         }
+
+        private void manageOrganisationButton_Click(object sender, RoutedEventArgs e)
+        {
+            newOrganisationGrid.Visibility = Visibility.Hidden;
+            manageOrganisationGrid.Visibility = Visibility.Visible;
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            manageOrganisationGrid.Visibility = Visibility.Hidden;
+            newOrganisationGrid.Visibility = Visibility.Visible;
+        }
     }
 }

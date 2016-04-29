@@ -61,12 +61,12 @@ namespace STUFV
         // Swap pages when any button is pressed.
         private void Article_Click(object sender, RoutedEventArgs e)
         {
-            scherm.displayFrame.Source = new Uri("ArtikelPage.xaml", UriKind.Relative);
+            scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
         }
 
         private void Organisation_Click(object sender, RoutedEventArgs e)
         {
-            scherm.displayFrame.Source = new Uri("OrganisatiePage.xaml", UriKind.Relative);
+            scherm.displayFrame.Source = new Uri("OrganisationPage.xaml", UriKind.Relative);
         }
 
         private void Review_Click(object sender, RoutedEventArgs e)

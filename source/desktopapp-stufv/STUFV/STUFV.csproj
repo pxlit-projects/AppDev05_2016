@@ -211,6 +211,13 @@
     <Resource Include="images\Icon-Content-Development.png" />
     <Resource Include="images\Organisatie_-_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\MetroUI_Mail.png" />
+    <Resource Include="images\more_information_icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\info-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
