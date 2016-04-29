@@ -112,14 +112,13 @@ namespace STUFV
 
                 if (existPassword)
                 {
-                    // this.Hide();
                     HomeWindow homeWindow = new HomeWindow();
                     Application.Current.MainWindow = homeWindow;
                     homeWindow.ShowDialog();
                 }
                 else
                 {
-                    errorBox.Content = "Verkeerd paswoord!";
+                    errorBox.Content = "Verkeerd paswoord of geen toegang!";
                 }
             }
             else
@@ -179,11 +178,10 @@ namespace STUFV
 
             for (int x = 0; x < users.Count(); x++)
             {
-                if (users.ElementAt(x).Email.Equals(email) && users.ElementAt(x).PassWord.Equals(password))
+                if (users.ElementAt(x).Email.Equals(email) && users.ElementAt(x).PassWord.Equals(password) && users.ElementAt(x).RoleID == 1)
                 {
                     return true;
                 }
-
             }
             return false;
         }
@@ -193,6 +191,7 @@ namespace STUFV
             var userUrl = "/api/user";
             HttpResponseMessage response = await client.GetAsync(userUrl);
             IEnumerable<User> users = null;
+
             if (response.IsSuccessStatusCode)
             {
                 users = await response.Content.ReadAsAsync<IEnumerable<User>>();
