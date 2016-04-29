@@ -71,6 +71,8 @@
     <Compile Include="LogoutPage.xaml.cs">
       <DependentUpon>LogoutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Organisation.cs" />
+    <Compile Include="Review.cs" />
     <Compile Include="ReviewPage.xaml.cs">
       <DependentUpon>ReviewPage.xaml</DependentUpon>
     </Compile>
