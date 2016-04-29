@@ -136,33 +136,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-<<<<<<< HEAD:source/desktop-stufv/desktop-stufv/desktop-stufv.csproj
-=======
   <ItemGroup>
     <None Include="Resources\party-music-hd-wallpaper-1920x1200-3850.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\party-music-hd-wallpaper-1920x1200-3850.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Ok-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Bad-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\artikel-ikon.png" />
-    <Resource Include="images\Icon-Content-Development.png" />
-    <Resource Include="images\Organisatie_-_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\MetroUI_Mail.png" />
-    <Resource Include="images\more_information_icon.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\info-icon.png" />
-  </ItemGroup>
->>>>>>> origin/master:source/desktopapp-stufv/STUFV/STUFV.csproj
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
