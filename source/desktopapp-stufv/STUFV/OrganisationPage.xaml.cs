@@ -18,11 +18,11 @@ namespace STUFV
     /// <summary>
     /// Interaction logic for OrganisatiePage.xaml
     /// </summary>
-    public partial class OrganisatiePage : Page
+    public partial class OrganisationPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
 
-        public OrganisatiePage()
+        public OrganisationPage()
         {
             InitializeComponent();
 
@@ -34,8 +34,8 @@ namespace STUFV
                                                             "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
             };
 
-            nieuwOrganisatieDataGrid.DataContext = organisations;
-            beheerOrganisatieDataGrid.DataContext = organisations;
+            newOrganisationDataGrid.DataContext = organisations;
+            manageOrganisationDataGrid.DataContext = organisations;
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
@@ -49,19 +49,19 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("HomePage.xaml", UriKind.Relative);
                     break;
                 case 1:
-                    scherm.displayFrame.Source = new Uri("ArtikelPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
                     break;
                 case 2:
-                    scherm.displayFrame.Source = new Uri("OrganisatiePage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("OrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 3:
-                    scherm.displayFrame.Source = new Uri("ReviewPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
                     break;
                 case 4:
-                    scherm.displayFrame.Source = new Uri("GebruikersPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("UsersPage.xaml", UriKind.Relative);
                     break;
                 case 5:
-                    scherm.displayFrame.Source = new Uri("StatistiekenPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
                     break;
                 case 6:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);

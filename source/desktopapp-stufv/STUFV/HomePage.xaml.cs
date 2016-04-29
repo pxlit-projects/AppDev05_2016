@@ -39,19 +39,19 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("HomePage.xaml", UriKind.Relative);
                     break;
                 case 1:
-                    scherm.displayFrame.Source = new Uri("ArtikelPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
                     break;
                 case 2:
-                    scherm.displayFrame.Source = new Uri("OrganisatiePage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("OrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 3:
-                    scherm.displayFrame.Source = new Uri("ReviewPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
                     break;
                 case 4:
-                    scherm.displayFrame.Source = new Uri("GebruikersPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("UsersPage.xaml", UriKind.Relative);
                     break;
                 case 5:
-                    scherm.displayFrame.Source = new Uri("StatistiekenPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
                     break;
                 case 6:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
@@ -59,12 +59,12 @@ namespace STUFV
             }
         }
         // Swap pages when any button is pressed.
-        private void Artikel_Click(object sender, RoutedEventArgs e)
+        private void Article_Click(object sender, RoutedEventArgs e)
         {
             scherm.displayFrame.Source = new Uri("ArtikelPage.xaml", UriKind.Relative);
         }
 
-        private void Organisatie_Click(object sender, RoutedEventArgs e)
+        private void Organisation_Click(object sender, RoutedEventArgs e)
         {
             scherm.displayFrame.Source = new Uri("OrganisatiePage.xaml", UriKind.Relative);
         }

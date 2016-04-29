@@ -7,15 +7,11 @@
         mc:Ignorable="d"
         Title="Login" Height="500" Width="900">
     <Grid>
-        <Image x:Name="achtergrondImage" Source="Afbeeldingen/party-music-hd-wallpaper-1920x1200-3850.jpg" Stretch="Fill"/>
+        <Image Source="images/party-music-hd-wallpaper-1920x1200-3850.jpg" Stretch="Fill"/>
         <Border Width="350" Height="250" CornerRadius="20" BorderBrush="Blue" BorderThickness="2" Background="White"/>
-        <TextBox x:Name="gebruikersBox" Text="Gebruikersnaam" FontSize="16" Padding="5,2,0,0" Foreground="LightGray" Width="260" Height="30" VerticalAlignment="Top" Margin="0,160,0,0" BorderThickness="2" BorderBrush="Black"/>
-        <PasswordBox x:Name="paswoordBox" FontSize="16" Padding="5,2,0,0" Width="260" Height="30" VerticalAlignment="Top" Margin="0,210,0,0" BorderThickness="2" BorderBrush="Black"/>
-        <TextBox x:Name="paswoordTextBox" Text="Paswoord" FontSize="16" Padding="5,2,0,0" Foreground="LightGray" Width="260" Height="30" VerticalAlignment="Top" Margin="0,210,0,0" BorderThickness="2" BorderBrush="Black" Visibility="Visible"/>
-        <Button x:Name="aanmeldButton" Content="Aanmelden" FontSize="16" Width="260" Height="30" VerticalAlignment="Top" Margin="0,280,0,0" BorderThickness="2" BorderBrush="Black" Background="#FF1AA5ED" Foreground="White" Click="aanmeldButton_Click"/>
-
-
-
-
+        <TextBox x:Name="userBox" Text="Gebruikersnaam" FontSize="16" Padding="5,2,0,0" Foreground="LightGray" Width="260" Height="30" VerticalAlignment="Top" Margin="0,160,0,0" BorderThickness="2" BorderBrush="Black"/>
+        <PasswordBox x:Name="passwordBox" FontSize="16" Padding="5,2,0,0" Width="260" Height="30" VerticalAlignment="Top" Margin="0,210,0,0" BorderThickness="2" BorderBrush="Black"/>
+        <TextBox x:Name="passwordTextBox" Text="Paswoord" FontSize="16" Padding="5,2,0,0" Foreground="LightGray" Width="260" Height="30" VerticalAlignment="Top" Margin="0,210,0,0" BorderThickness="2" BorderBrush="Black" Visibility="Visible"/>
+        <Button x:Name="loginButton" Content="Aanmelden" FontSize="16" Width="260" Height="30" VerticalAlignment="Top" Margin="0,280,0,0" BorderThickness="2" BorderBrush="Black" Background="#FF1AA5ED" Foreground="White" Click="LoginButton_Click"/>
     </Grid>
 </Window>
