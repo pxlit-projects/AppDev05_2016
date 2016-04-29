@@ -51,5 +51,17 @@ namespace webapp_stufv.Models
 
             return count;
         }
+        public static bool IsPassenger(int driverId, int userId) {
+            List<Passenger> passengers = GetAllPassengers();
+            int x;
+            for (x = 0; x < passengers.Count(); x++)
+            {
+                if (passengers.ElementAt(x).DesDriverId.Equals(driverId) && passengers.ElementAt(x).UserId.Equals(userId))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
