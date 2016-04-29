@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
@@ -26,6 +27,7 @@ namespace webapp_stufv.Models
         public DbSet<Emergency> Emergencies { get; set; }
 
         public STUFVModelContext() {
+            Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer<STUFVModelContext> ( null );
         }
 
