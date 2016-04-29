@@ -1,0 +1,56 @@
+﻿<Controls:MetroWindow x:Name="Welcome" x:Class="desktop_stufv.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:desktop_stufv"
+        mc:Ignorable="d"
+        Title="STUFV" Height="350" Width="525" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <TabControl x:Name="menuTabs" Height="auto" Width="auto" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top">
+            <TabItem Header="gebruikers">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="usersList">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Email}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="organisaties">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="evenementen">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="reviews">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="artikels">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="bob">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="richtlijnen">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="faq">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="contact">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="noodnummers">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="aansprakelijkheid">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Controls:MetroWindow>
