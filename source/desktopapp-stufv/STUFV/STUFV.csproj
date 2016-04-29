@@ -79,7 +79,7 @@
     <Compile Include="StatistiekenPage.xaml.cs">
       <DependentUpon>StatistiekenPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="ArtikelPage.xaml">
+    <Page Include="ArticlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,8 +103,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ArtikelPage.xaml.cs">
-      <DependentUpon>ArtikelPage.xaml</DependentUpon>
+    <Compile Include="ArticlePage.xaml.cs">
+      <DependentUpon>ArticlePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
