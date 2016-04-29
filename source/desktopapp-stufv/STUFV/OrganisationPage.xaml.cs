@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,21 +23,26 @@ namespace STUFV
     public partial class OrganisationPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
+        private HttpClient client = new HttpClient();
 
         public OrganisationPage()
         {
             InitializeComponent();
 
-            List<Organisation> organisations = new List<Organisation>
-            {
-                new Organisation {Name = "STUFV", Description = "blabla", Active = true },
-                new Organisation {Name = "PXL", Description = "geen commentaar", Active = false },
-                new Organisation {Name = "test", Description = "dit is een hele lange tekst. dit is een hele lange tekst" +
-                                                            "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
-            };
+            client.BaseAddress = new Uri("http://webapp-stufv20160429025210.azurewebsites.net/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            newOrganisationDataGrid.DataContext = organisations;
-            manageOrganisationDataGrid.DataContext = organisations;
+            //List<Organisation> organisations = new List<Organisation>
+            //{
+            //    new Organisation {Name = "STUFV", Description = "blabla", Active = true },
+            //    new Organisation {Name = "PXL", Description = "geen commentaar", Active = false },
+            //    new Organisation {Name = "test", Description = "dit is een hele lange tekst. dit is een hele lange tekst" +
+            //                                                "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
+            //};
+
+            newOrganisationDataGrid.DataContext = GetOrganisations();
+            manageOrganisationDataGrid.DataContext = GetOrganisations();
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
@@ -79,6 +86,18 @@ namespace STUFV
         {
             manageOrganisationGrid.Visibility = Visibility.Hidden;
             newOrganisationGrid.Visibility = Visibility.Visible;
+        }
+
+        public async Task<IEnumerable<Organisation>> GetOrganisations()
+        {
+            var userUrl = "/api/organisation";
+            HttpResponseMessage response = await client.GetAsync(userUrl);
+            IEnumerable<Organisation> organisations = null;
+            if (response.IsSuccessStatusCode)
+            {
+                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
+            }
+            return organisations;
         }
     }
 }

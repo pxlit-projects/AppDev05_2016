@@ -64,7 +64,7 @@ namespace STUFV
 
         private void EmailBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (e.Key == Key.Tab)
             {
                 passwordTextBox.Focus();
             }
@@ -86,8 +86,11 @@ namespace STUFV
 
         private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
         {
-            loginButton.Focus();
-            Login();
+            if (e.Key == Key.Tab)
+            {
+                loginButton.Focus();
+                Login();
+            }
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -127,13 +130,7 @@ namespace STUFV
 
         public async Task<bool> Exist(String email)
         {
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
-            IEnumerable<User> users = null;
-            if (response.IsSuccessStatusCode)
-            {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
-            }
+            IEnumerable<User> users = await GetUsers();
 
             for (int x = 0; x < users.Count(); x++)
             {
@@ -148,14 +145,7 @@ namespace STUFV
         public async Task<string> GetSalt(String email)
         {
             String salt = "";
-
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
-            IEnumerable<User> users = null;
-            if (response.IsSuccessStatusCode)
-            {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
-            }
+            IEnumerable<User> users = await GetUsers();
 
             for (int x = 0; x < users.Count(); x++)
             {
@@ -185,13 +175,7 @@ namespace STUFV
 
         public async Task<bool> Login(string email, string password)
         {
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
-            IEnumerable<User> users = null;
-            if (response.IsSuccessStatusCode)
-            {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
-            }
+            IEnumerable<User> users = await GetUsers();
 
             for (int x = 0; x < users.Count(); x++)
             {
@@ -202,6 +186,18 @@ namespace STUFV
 
             }
             return false;
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            var userUrl = "/api/user";
+            HttpResponseMessage response = await client.GetAsync(userUrl);
+            IEnumerable<User> users = null;
+            if (response.IsSuccessStatusCode)
+            {
+                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+            }
+            return users;
         }
     }
 }

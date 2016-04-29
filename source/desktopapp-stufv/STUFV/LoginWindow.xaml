@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="Login" Height="500" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Login" Height="500" Width="900">
     <Grid>
         <Image Source="images/party-music-hd-wallpaper-1920x1200-3850.jpg" Stretch="Fill"/>
+        <Border Width="350" Height="250" CornerRadius="20" BorderBrush="Blue" BorderThickness="2" Background="White"/>
         <TextBox x:Name="emailBox" Text="E-mailadres" FontSize="16" Padding="5,2,0,0" Foreground="LightGray" Width="260" Height="30" VerticalAlignment="Top" Margin="0,160,0,0" BorderThickness="2" BorderBrush="Black"/>
-        <PasswordBox x:Name="passwordBox" FontSize="16" Padding="5,2,0,0" Width="260" Height="30" VerticalAlignment="Top" Margin="317,195,316.6,0" BorderThickness="2" BorderBrush="Black"/>
-        <TextBox x:Name="passwordTextBox" Text="Paswoord" FontSize="16" Padding="5,2,0,0" Foreground="LightGray" Width="260" Height="30" VerticalAlignment="Top" Margin="317,195,316.6,0" BorderThickness="2" BorderBrush="Black" Visibility="Visible"/>
+        <PasswordBox x:Name="passwordBox" FontSize="16" Padding="5,2,0,0" Width="260" Height="30" VerticalAlignment="Top" Margin="0,210,0,0" BorderThickness="2" BorderBrush="Black"/>
+        <TextBox x:Name="passwordTextBox" Text="Paswoord" FontSize="16" Padding="5,2,0,0" Foreground="LightGray" Width="260" Height="30" VerticalAlignment="Top" Margin="0,210,0,0" BorderThickness="2" BorderBrush="Black" Visibility="Visible"/>
         <Label x:Name="errorBox" Content="" FontSize="13" Padding="5,2,0,0" Foreground="Red" Width="260" Height="30" VerticalAlignment="Top" Margin="0,250,0,0" Visibility="Visible"/>
-        <Button x:Name="loginButton" Content="Aanmelden" FontSize="16" Width="260" Height="30" VerticalAlignment="Top" Margin="317,260,316.6,0" BorderThickness="2" BorderBrush="Black" Background="#FF1AA5ED" Foreground="White" Click="LoginButton_Click"/>
+        <Button x:Name="loginButton" Content="Aanmelden" FontSize="16" Width="260" Height="30" VerticalAlignment="Top" Margin="0,280,0,0" BorderThickness="2" BorderBrush="Black" Background="#FF1AA5ED" Foreground="White" Click="LoginButton_Click"/>
     </Grid>
 </Window>
