@@ -1,0 +1,161 @@
+﻿<Page x:Class="STUFV.OrganisationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:STUFV"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1000"
+      Title="OrganisatiePage">
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Background" Value="#FF27272E"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="DarkGray"/>
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="DarkRed"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
+            <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem IsSelected="True" Content="Controle op organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+        </ListBox>
+
+        <Grid x:Name="manageOrganisationGrid" Margin="233,0,0,-0.4" Visibility="Hidden">
+            <StackPanel>
+                <TextBlock Text="Organisaties" FontSize="40" Margin="10,5,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0.2,0">
+                    <TextBlock Text="Beheer organisaties" Margin="10,25,0,0" FontSize="26"/>
+                    <Button x:Name="backButton" Content="Terug naar controle organisaties &gt;" FontSize="22" Background="#FF1AA5ED" Foreground="White" BorderThickness="2" BorderBrush="Black" Padding="5,0,5,0" Margin="77,25,0,0" Click="backButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <DataGrid x:Name="manageOrganisationDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="454" Width="647" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="organisationNaamColumn" Binding="{Binding Name}" Header="Organisatienaam" Width="150">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                                <Setter Property="AcceptsReturn" Value="true" />
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="organisationDescriptionColumn" Binding="{Binding Description}" Header="Beschrijving" Width="250">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                                <Setter Property="AcceptsReturn" Value="true" />
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="organisationActiveColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" />
+                    <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" Width="200" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Button x:Name="detailsOrganisationButton" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="images/info-icon.png" Stretch="Fill" TileMode="None"/>
+                                        </Button.Background>
+                                    </Button>
+                                    <Button x:Name="mailOrganisationButton" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="images/MetroUI_mail.png" Stretch="Fill" TileMode="None"/>
+                                        </Button.Background>
+                                    </Button>
+                                    <Button x:Name="removeOrganisationButton" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="images/Bad-icon.png" Stretch="Fill" TileMode="None"/>
+                                        </Button.Background>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid x:Name="newOrganisationGrid" Margin="233,0,-0.4,-10" Visibility="Visible">
+            <StackPanel>
+                <TextBlock Text="Organisaties" FontSize="40" Margin="10,5,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0.2,0">
+                    <TextBlock Text="Nieuwe organisaties" Margin="10,25,0,0" FontSize="26"/>
+                    <Button x:Name="manageOrganisationButton" Content="Overzicht organisaties &gt;" FontSize="22" Background="#FF1AA5ED" Foreground="White" Click="manageOrganisationButton_Click" Margin="190,275,0,0"/>
+                </StackPanel>
+            </StackPanel>
+            <DataGrid x:Name="newOrganisationDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="454" Width="350" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="newOrganisationNameColumn" Binding="{Binding Name}" Header="Organisatienaam" Width="150">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                                <Setter Property="AcceptsReturn" Value="true" />
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn x:Name="newInfoButtonColumn" Header="Details" Width="60" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="detailsOrganisation2Button" Content="Details" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="acceptButtonColumn" Header="Toelaten" Width="140" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Button x:Name="goodOrganisationButton" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="images/Ok-icon.png" Stretch="Fill" TileMode="None"/>
+                                        </Button.Background>
+                                    </Button>
+                                    <Button x:Name="badOrganisationButton" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="images/Bad-icon.png" Stretch="Fill" TileMode="None"/>
+                                        </Button.Background>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Page>
