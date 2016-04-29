@@ -84,12 +84,20 @@ namespace webapp_stufv.Controllers
         }
         public ActionResult FindBob(int id) {
             ViewBag.Title = "Find bob";
+            ViewBag.Description = "Heb je al een bob? Kijk hieronder en vind een bob of schijf jezelf in als bob.";
             return View(DesDriver.ActiveDriversPerEvent(id));
         }
         public ActionResult JoinBob(int id)
         {
             ViewBag.Title = "Find bob";
-            Passenger.NewPassenger((int)Session["userId"], id);
+            if (Passenger.IsPassenger(id, (int)Session["userId"]))
+            {
+                ViewBag.Title = "Je hebt je al voor deze bob ingeschreven.";
+            }
+            else {
+                Passenger.NewPassenger((int)Session["userId"], id);
+            }
+            
             return View();
         }
     }
