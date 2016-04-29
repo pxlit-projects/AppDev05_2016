@@ -1,0 +1,70 @@
+﻿<Page x:Class="STUFV.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:STUFV"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1000"
+      Title="HomePage">
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Background" Value="#FF27272E"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="DarkGray"/>
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="DarkRed"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
+            <ListBoxItem IsSelected="True" Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Controle op organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+            <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+        </ListBox>
+
+        <Grid x:Name="homeGrid" Margin="233,0,-0.4,-10">
+            <TextBlock Text="Meldingen" FontSize="40" Margin="10,5,0,0"/>
+            <TextBlock Text="Artikel plaatsen" Margin="10,80,274,500" FontSize="26"/>
+            <Button Margin="10,150,566,298" Click="Article_Click" >
+                <Button.Background>
+                    <ImageBrush ImageSource="images/artikel-ikon.png" Stretch="Fill" TileMode="None" />
+                </Button.Background>
+            </Button>
+            <TextBlock Text="Organisaties" Margin="250,81,221,499" FontSize="26"/>
+            <Button Margin="250,150,326,298" Click="Organisation_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="images/Organisatie_-_icon.png" Stretch="Fill" TileMode="None" />
+                </Button.Background>
+            </Button>
+            <TextBlock Text="Reviews" Margin="490,81,29,499" FontSize="26"/>
+            <Button Margin="490,150,86,298" Click="Review_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="images/Icon-Content-Development.png" Stretch="Fill" TileMode="None" />
+                </Button.Background>
+            </Button>
+            <StackPanel Margin="0,390,0.4,0.6">
+                <TextBlock Text="Website" FontSize="40" Margin="10,5,0,0"/>
+                <Button Content="Bekijk online" FontSize="22" Background="#FF1AA5ED" Foreground="White" BorderThickness="2" BorderBrush="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,45,0,0" Padding="5,0,5,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
