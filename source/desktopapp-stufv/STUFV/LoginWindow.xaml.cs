@@ -25,66 +25,66 @@ namespace STUFV
         {
             InitializeComponent();
 
-            gebruikersBox.GotFocus += GebruikersBox_GotFocus;
-            gebruikersBox.LostFocus += GebruikersBox_LostFocus;
-            gebruikersBox.KeyDown += GebruikersBox_KeyDown;
+            userBox.GotFocus += UserBox_GotFocus;
+            userBox.LostFocus += UserBox_LostFocus;
+            userBox.KeyDown += UserBox_KeyDown;
 
-            paswoordTextBox.GotFocus += PaswoordTextBox_GotFocus;
-            paswoordBox.LostFocus += PaswoordBox_LostFocus;
-            paswoordBox.KeyDown += PaswoordBox_KeyDown;
+            passwordTextBox.GotFocus += PasswordTextBox_GotFocus;
+            passwordBox.LostFocus += PasswordBox_LostFocus;
+            passwordBox.KeyDown += PasswordBox_KeyDown;
         }
 
-        private void GebruikersBox_LostFocus(object sender, RoutedEventArgs e)
+        private void UserBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (gebruikersBox.Text == "")
+            if (userBox.Text == "")
             {
-                gebruikersBox.Text = "Gebruikersnaam";
-                gebruikersBox.Foreground = new SolidColorBrush(Colors.LightGray);
+                userBox.Text = "Gebruikersnaam";
+                userBox.Foreground = new SolidColorBrush(Colors.LightGray);
             }
         }
 
-        private void GebruikersBox_GotFocus(object sender, RoutedEventArgs e)
+        private void UserBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (gebruikersBox.Text == "Gebruikersnaam")
+            if (userBox.Text == "Gebruikersnaam")
             {
-                gebruikersBox.Text = "";
-                gebruikersBox.Foreground = new SolidColorBrush(Colors.Black);
+                userBox.Text = "";
+                userBox.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
 
-        private void GebruikersBox_KeyDown(object sender, KeyEventArgs e)
+        private void UserBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                paswoordTextBox.Focus();
+                passwordTextBox.Focus();
             }
         }
 
-        private void PaswoordBox_LostFocus(object sender, RoutedEventArgs e)
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (paswoordBox.Password.Length == 0)
+            if (passwordBox.Password.Length == 0)
             {
-                paswoordTextBox.Visibility = Visibility.Visible;
+                passwordTextBox.Visibility = Visibility.Visible;
             }
         }
 
-        private void PaswoordTextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void PasswordTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            paswoordTextBox.Visibility = Visibility.Hidden;
-            paswoordBox.Focus();
+            passwordTextBox.Visibility = Visibility.Hidden;
+            passwordBox.Focus();
         }
 
-        private void PaswoordBox_KeyDown(object sender, KeyEventArgs e)
+        private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
         {
-            Aanmelden();
+            Login();
         }
 
-        private void aanmeldButton_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            Aanmelden();
+            Login();
         }
 
-        private void Aanmelden()
+        private void Login()
         {
             this.Hide();
             HomeWindow homeWindow = new HomeWindow();
