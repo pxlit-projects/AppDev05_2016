@@ -11,7 +11,7 @@ using webapp_stufv.Models;
 
 namespace webapp_stufv.Web_Api_Controllers
 {
-    public class ReviewsController : ApiController {
+    public class ReviewController : ApiController {
 
         private STUFVModelContext _context = new STUFVModelContext ( );
 
