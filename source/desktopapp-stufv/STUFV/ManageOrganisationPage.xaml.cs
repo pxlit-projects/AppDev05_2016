@@ -18,14 +18,14 @@ using System.Windows.Shapes;
 namespace STUFV
 {
     /// <summary>
-    /// Interaction logic for OrganisatiePage.xaml
+    /// Interaction logic for ManageOrganisationPage.xaml
     /// </summary>
-    public partial class OrganisationPage : Page
+    public partial class ManageOrganisationPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
         private HttpClient client = new HttpClient();
 
-        public OrganisationPage()
+        public ManageOrganisationPage()
         {
             InitializeComponent();
 
@@ -42,7 +42,7 @@ namespace STUFV
             //};
 
             loadOrganisations();
-            
+
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
@@ -59,7 +59,7 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
                     break;
                 case 2:
-                    scherm.displayFrame.Source = new Uri("OrganisationPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 3:
                     scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
@@ -68,29 +68,19 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("UsersPage.xaml", UriKind.Relative);
                     break;
                 case 5:
-                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManageOrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 6:
+                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    break;
+                case 7:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
             }
         }
 
-        private void manageOrganisationButton_Click(object sender, RoutedEventArgs e)
-        {
-            newOrganisationGrid.Visibility = Visibility.Hidden;
-            manageOrganisationGrid.Visibility = Visibility.Visible;
-        }
-
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            manageOrganisationGrid.Visibility = Visibility.Hidden;
-            newOrganisationGrid.Visibility = Visibility.Visible;
-        }
-
         public async void loadOrganisations()
         {
-            newOrganisationDataGrid.ItemsSource = await GetOrganisations();
             manageOrganisationDataGrid.ItemsSource = await GetOrganisations();
         }
 

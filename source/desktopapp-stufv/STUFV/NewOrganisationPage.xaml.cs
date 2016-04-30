@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,15 +18,31 @@ using System.Windows.Shapes;
 namespace STUFV
 {
     /// <summary>
-    /// Interaction logic for LogoutPage.xaml
+    /// Interaction logic for OrganisatiePage.xaml
     /// </summary>
-    public partial class LogoutPage : Page
+    public partial class NewOrganisationPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
+        private HttpClient client = new HttpClient();
 
-        public LogoutPage()
+        public NewOrganisationPage()
         {
             InitializeComponent();
+
+            client.BaseAddress = new Uri("http://webapp-stufv20160429025210.azurewebsites.net/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //List<Organisation> organisations = new List<Organisation>
+            //{
+            //    new Organisation {Name = "STUFV", Description = "blabla", Active = true },
+            //    new Organisation {Name = "PXL", Description = "geen commentaar", Active = false },
+            //    new Organisation {Name = "test", Description = "dit is een hele lange tekst. dit is een hele lange tekst" +
+            //                                                "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
+            //};
+
+            loadOrganisations();
+            
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
@@ -59,6 +77,23 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
             }
+        }
+
+        public async void loadOrganisations()
+        {
+            newOrganisationDataGrid.ItemsSource = await GetOrganisations();
+        }
+
+        public async Task<IEnumerable<Organisation>> GetOrganisations()
+        {
+            var userUrl = "/api/organisation";
+            HttpResponseMessage response = await client.GetAsync(userUrl);
+            IEnumerable<Organisation> organisations = null;
+            if (response.IsSuccessStatusCode)
+            {
+                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
+            }
+            return organisations;
         }
     }
 }

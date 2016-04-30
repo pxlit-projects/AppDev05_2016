@@ -82,6 +82,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ManageOrganisationPage.xaml.cs">
+      <DependentUpon>ManageOrganisationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Cities.cs" />
@@ -114,6 +117,10 @@
       <DependentUpon>StatsPage.xaml</DependentUpon>
     </Compile>
     <Page Include="ArticlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageOrganisationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,7 +165,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OrganisationPage.xaml">
+    <Page Include="NewOrganisationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,8 +179,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrganisationPage.xaml.cs">
-      <DependentUpon>OrganisationPage.xaml</DependentUpon>
+    <Compile Include="NewOrganisationPage.xaml.cs">
+      <DependentUpon>NewOrganisationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
