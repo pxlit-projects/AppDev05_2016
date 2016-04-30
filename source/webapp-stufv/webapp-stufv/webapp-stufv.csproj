@@ -251,7 +251,12 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Web_Api_Controllers\ArticleController.cs" />
+    <Compile Include="Web_Api_Controllers\DesDriverController.cs" />
+    <Compile Include="Web_Api_Controllers\EmergencyController.cs" />
     <Compile Include="Web_Api_Controllers\EventController.cs" />
+    <Compile Include="Web_Api_Controllers\FAQsController.cs" />
+    <Compile Include="Web_Api_Controllers\GuidelineController.cs" />
     <Compile Include="Web_Api_Controllers\OrganisationsController.cs" />
     <Compile Include="Web_Api_Controllers\ReviewController.cs" />
     <Compile Include="Web_Api_Controllers\UserController.cs" />
