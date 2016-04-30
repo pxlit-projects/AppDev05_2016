@@ -22,6 +22,7 @@ namespace STUFV {
     public partial class NewOrganisationPage : Page {
         HomeWindow scherm = ( HomeWindow ) Application.Current.MainWindow;
         private HttpClient client = new HttpClient ( );
+        private IEnumerable<Organisation> _organisations;
 
         public NewOrganisationPage ( ) {
             InitializeComponent ( );
@@ -74,13 +75,14 @@ namespace STUFV {
             }
         }
 
-        public async void loadOrganisations ( ) {
-            newOrganisationDataGrid.ItemsSource = await GetOrganisations ( );
+        public void loadOrganisations ( ) {
+            _organisations = GetOrganisations ( ).Result;
+            newOrganisationDataGrid.ItemsSource = _organisations;
         }
 
         public async Task<IEnumerable<Organisation>> GetOrganisations ( ) {
             var userUrl = "/api/organisation";
-            HttpResponseMessage response = await client.GetAsync ( userUrl );
+            HttpResponseMessage response = await client.GetAsync ( userUrl ).ConfigureAwait( false );
             IEnumerable<Organisation> organisations = null;
             if ( response.IsSuccessStatusCode ) {
                 organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>> ( );
@@ -89,26 +91,26 @@ namespace STUFV {
         }
 
         private void goodOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
+            int index = newOrganisationDataGrid.SelectedIndex;
+            Organisation selected = _organisations.ElementAt ( index );
 
+            selected.Active = true;
+
+            updateOrganisation ( selected );
         }
 
         private void badOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
             int index = newOrganisationDataGrid.SelectedIndex;
-            Organisation selected = GetOrganisations ( ).Result.ElementAt ( index );
+            Organisation selected = _organisations.ElementAt ( index );
 
             selected.Active = false;
 
-        //    updateOrganisation ( selected );
+            updateOrganisation ( selected );
         }
 
-        public async Task<IEnumerable<Organisation>> updateOrganisation ( ) {
-            var userUrl = "/api/organisation";
-            HttpResponseMessage response = await client.GetAsync ( userUrl );
-            IEnumerable<Organisation> organisations = null;
-            if ( response.IsSuccessStatusCode ) {
-                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>> ( );
-            }
-            return organisations;
+        public async void updateOrganisation ( Organisation toUpdate ) {
+            var url = "api/organisation";
+            var response = await client.PutAsJsonAsync ( url, toUpdate );
         }
     }
 }
