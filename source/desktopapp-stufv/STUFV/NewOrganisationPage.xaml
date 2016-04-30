@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:STUFV"
       mc:Ignorable="d"
       d:DesignHeight="850" d:DesignWidth="1200"
-      Title="OrganisatiePage">
+      Title="Nieuwe organisaties">
 
     <Grid>
         <Grid.Resources>
@@ -45,14 +45,10 @@
         </Viewbox>
 
         <Grid x:Name="newOrganisationGrid" Margin="233,0,-0.4,-10" Visibility="Visible">
-            <StackPanel>
-                <TextBlock Text="Organisaties" FontSize="40" Margin="10,5,0,0"/>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0.2,0">
-                    <TextBlock Text="Nieuwe organisaties" Margin="10,25,0,0" FontSize="26"/>
-                </StackPanel>
-                <DataGrid x:Name="newOrganisationDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Height="454" Width="350" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <DataGrid x:Name="newOrganisationDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled" HeadersVisibility="None" Height="400">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="newOrganisationNameColumn" Binding="{Binding Name}" Header="Organisatienaam" Width="150">
+                        <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Width="30">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -66,32 +62,52 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn x:Name="newInfoButtonColumn" Header="Details" Width="60" IsReadOnly="True">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button x:Name="detailsOrganisation2Button" Content="Details" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn x:Name="acceptButtonColumn" Header="Toelaten" Width="140" IsReadOnly="True">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <Button x:Name="goodOrganisationButton" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
-                                            <Button.Background>
-                                                <ImageBrush ImageSource="images/Ok-icon.png" Stretch="Fill" TileMode="None"/>
-                                            </Button.Background>
-                                        </Button>
-                                        <Button x:Name="badOrganisationButton" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
-                                            <Button.Background>
-                                                <ImageBrush ImageSource="images/Bad-icon.png" Stretch="Fill" TileMode="None"/>
-                                            </Button.Background>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
+                        <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Description}" Width="300">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="newOrganisationNameColumn" Binding="{Binding Name}" Width="150">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn x:Name="newInfoButtonColumn" Width="60" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="detailsOrganisation2Button" Content="Details" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="buttonColumn" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Button x:Name="goodOrganisationButton" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="goodOrganisationButton_Click">Aanvaarden</Button>
+                                            <Button x:Name="badOrganisationButton" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="badOrganisationButton_Click">Verwijderen</Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
         </Grid>

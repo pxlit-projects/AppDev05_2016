@@ -15,23 +15,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace STUFV
-{
+namespace STUFV {
     /// <summary>
     /// Interaction logic for OrganisatiePage.xaml
     /// </summary>
-    public partial class NewOrganisationPage : Page
-    {
-        HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
-        private HttpClient client = new HttpClient();
+    public partial class NewOrganisationPage : Page {
+        HomeWindow scherm = ( HomeWindow ) Application.Current.MainWindow;
+        private HttpClient client = new HttpClient ( );
 
-        public NewOrganisationPage()
-        {
-            InitializeComponent();
+        public NewOrganisationPage ( ) {
+            InitializeComponent ( );
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160429025210.azurewebsites.net/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.BaseAddress = new Uri ( "http://webapp-stufv20160429025210.azurewebsites.net/" );
+            client.DefaultRequestHeaders.Accept.Clear ( );
+            client.DefaultRequestHeaders.Accept.Add ( new MediaTypeWithQualityHeaderValue ( "application/json" ) );
 
             //List<Organisation> organisations = new List<Organisation>
             //{
@@ -41,57 +38,75 @@ namespace STUFV
             //                                                "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
             //};
 
-            loadOrganisations();
-            
+            loadOrganisations ( );
+
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
-        private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        private void MenuBox_SelectionChanged ( object sender, SelectionChangedEventArgs e ) {
             int index = menuBox.SelectedIndex;
 
-            switch (index)
-            {
+            switch ( index ) {
                 case 0:
-                    scherm.displayFrame.Source = new Uri("HomePage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "HomePage.xaml", UriKind.Relative );
                     break;
                 case 1:
-                    scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "ArticlePage.xaml", UriKind.Relative );
                     break;
                 case 2:
-                    scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "NewOrganisationPage.xaml", UriKind.Relative );
                     break;
                 case 3:
-                    scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "ReviewsPage.xaml", UriKind.Relative );
                     break;
                 case 4:
-                    scherm.displayFrame.Source = new Uri("UsersPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "UsersPage.xaml", UriKind.Relative );
                     break;
                 case 5:
-                    scherm.displayFrame.Source = new Uri("ManageOrganisationPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "ManageOrganisationPage.xaml", UriKind.Relative );
                     break;
                 case 6:
-                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "StatsPage.xaml", UriKind.Relative );
                     break;
                 case 7:
-                    scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "LogoutPage.xaml", UriKind.Relative );
                     break;
             }
         }
 
-        public async void loadOrganisations()
-        {
-            newOrganisationDataGrid.ItemsSource = await GetOrganisations();
+        public async void loadOrganisations ( ) {
+            newOrganisationDataGrid.ItemsSource = await GetOrganisations ( );
         }
 
-        public async Task<IEnumerable<Organisation>> GetOrganisations()
-        {
+        public async Task<IEnumerable<Organisation>> GetOrganisations ( ) {
             var userUrl = "/api/organisation";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
+            HttpResponseMessage response = await client.GetAsync ( userUrl );
             IEnumerable<Organisation> organisations = null;
-            if (response.IsSuccessStatusCode)
-            {
-                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
+            if ( response.IsSuccessStatusCode ) {
+                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>> ( );
+            }
+            return organisations;
+        }
+
+        private void goodOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
+
+        }
+
+        private void badOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
+            int index = newOrganisationDataGrid.SelectedIndex;
+            Organisation selected = GetOrganisations ( ).Result.ElementAt ( index );
+
+            selected.Active = false;
+
+        //    updateOrganisation ( selected );
+        }
+
+        public async Task<IEnumerable<Organisation>> updateOrganisation ( ) {
+            var userUrl = "/api/organisation";
+            HttpResponseMessage response = await client.GetAsync ( userUrl );
+            IEnumerable<Organisation> organisations = null;
+            if ( response.IsSuccessStatusCode ) {
+                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>> ( );
             }
             return organisations;
         }
