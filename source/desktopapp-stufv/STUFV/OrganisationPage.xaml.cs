@@ -41,8 +41,8 @@ namespace STUFV
             //                                                "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
             //};
 
-            newOrganisationDataGrid.DataContext = GetOrganisations();
-            manageOrganisationDataGrid.DataContext = GetOrganisations();
+            loadOrganisations();
+            
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
@@ -86,6 +86,12 @@ namespace STUFV
         {
             manageOrganisationGrid.Visibility = Visibility.Hidden;
             newOrganisationGrid.Visibility = Visibility.Visible;
+        }
+
+        public async void loadOrganisations()
+        {
+            newOrganisationDataGrid.ItemsSource = await GetOrganisations();
+            manageOrganisationDataGrid.ItemsSource = await GetOrganisations();
         }
 
         public async Task<IEnumerable<Organisation>> GetOrganisations()
