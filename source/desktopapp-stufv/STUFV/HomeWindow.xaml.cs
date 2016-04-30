@@ -12,32 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
-namespace STUFV
-{
+namespace STUFV {
     /// <summary>
     /// Interaction logic for HomeWindow.xaml
     /// </summary>
-    public partial class HomeWindow : Window
-    {
-        public HomeWindow()
-        {
-            InitializeComponent();
+    public partial class HomeWindow : MetroWindow {
+        public HomeWindow ( ) {
+            InitializeComponent ( );
             displayFrame.Navigated += DisplayFrame_Navigated;
 
-            ChangeFrame();
+            ChangeFrame ( );
         }
 
-        private void DisplayFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-            displayFrame.NavigationService.RemoveBackEntry();
+        private void DisplayFrame_Navigated ( object sender, NavigationEventArgs e ) {
+            displayFrame.NavigationService.RemoveBackEntry ( );
         }
 
         // Laden van de eerste pagina in displayFrame
         // Navigatiebalk van de frame verbergen
-        private void ChangeFrame()
-        {
-            displayFrame.Source = new Uri("HomePage.xaml", UriKind.Relative);
+        private void ChangeFrame ( ) {
+            displayFrame.Source = new Uri ( "HomePage.xaml", UriKind.Relative );
             displayFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
         }
     }
