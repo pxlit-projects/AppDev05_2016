@@ -6,9 +6,12 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using webapp_stufv.Models;
+using webapp_stufv.Repository;
 
 namespace webapp_stufv.Controllers {
     public class AccountController : Controller {
+        private IOrganisationRepository iorganisation = new OrganisationRepository();
+        private IUserRepository iuser = new UserRepository();
         // GET: Account
         public ActionResult Login ( ) {
             ViewBag.Title = "Login";
@@ -21,13 +24,13 @@ namespace webapp_stufv.Controllers {
         public ActionResult Process ( ) {
             var email = Request.Form[ "Email" ].ToLower ( );
             String password = Request.Form[ "Password" ];
-            if ( Models.User.Exist ( email ) ) {
+            if ( iuser.Exist ( email ) ) {
                 int userID;
-                String encPass = MD5Encrypt ( password, Models.User.GetSalt ( email ) );
-                if ( webapp_stufv.Models.User.Login ( email, encPass, out userID ) ) {
+                String encPass = MD5Encrypt ( password, iuser.GetSalt ( email ) );
+                if ( iuser.Login ( email, encPass, out userID ) ) {
                     Session[ "email" ] = email;
                     Session[ "userId" ] = userID;
-                    Session[ "organisation" ] = Models.Organisation.HasOrganisation ( userID );
+                    Session[ "organisation" ] = iorganisation.HasOrganisation ( userID );
                     ViewBag.Title = "Succes";
                     return View ( );
                 } else {
@@ -52,7 +55,7 @@ namespace webapp_stufv.Controllers {
 
         public ActionResult CreateAccount ( ) {
             String email = Request.Form[ "Email" ];
-            if ( Models.User.Exist ( email ) ) {
+            if ( iuser.Exist ( email ) ) {
                 ViewBag.Title = "Registratie mislukt.";
                 ViewBag.Comment = "Dit email adress is al in gebruik";
             } else {

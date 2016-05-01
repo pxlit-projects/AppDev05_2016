@@ -8,7 +8,8 @@ namespace webapp_stufv.Repository
 {
     public class DesDriverRepository : IDesDriverRepository
     {
-        public List<DesDriver> ActiveDrivesPerEvent(int eventId)
+        private IPassengerRepository ipassenger = new PassengerRepository();
+        public List<DesDriver> ActiveDriversPerEvent(int eventId)
         {
             List<DesDriver> allDrivers = GetAllDrivers();
             List<DesDriver> activeDrivers = new List<DesDriver>();
@@ -33,7 +34,7 @@ namespace webapp_stufv.Repository
             }
         }
 
-        public string GetDriverName()
+        public string GetDriverName(int UserId)
         {
             string fullName = "";
             List<User> users = new List<User>();
@@ -47,10 +48,10 @@ namespace webapp_stufv.Repository
 
         }
 
-        public int GetFreeSpaces(int userId)
+        public int GetFreeSpaces(int userId, int NrOfPlaces)
         {
             int passengerCount = 0;
-            passengerCount = Passenger.PassengersPerDriver(userId);
+            passengerCount = ipassenger.PassengersPerDriver(userId);
             return NrOfPlaces - passengerCount;
         }
 
@@ -68,7 +69,7 @@ namespace webapp_stufv.Repository
             return false;
         }
 
-        public void setDES(int userId, int eventId, int places)
+        public void SetDES(int userId, int eventId, int places)
         {
             if (WasDES(userId, eventId))
             {

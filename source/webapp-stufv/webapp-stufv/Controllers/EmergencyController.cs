@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using webapp_stufv.Models;
+using webapp_stufv.Repository;
 
 namespace webapp_stufv.Controllers {
+   
     public class EmergencyController : Controller {
+        private IEmergencyRepository iemer = new EmergencyRepository();
         // GET: Emergency
         public ActionResult Index ( ) {
             ViewBag.Title = "Noodnummers";
-            return View ( Emergency.getAllEmergencies ( ) );
+            return View ( iemer.getAllEmergencies ( ) );
         }
     }
 }

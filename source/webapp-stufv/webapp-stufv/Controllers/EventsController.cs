@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using webapp_stufv.Repository;
 using webapp_stufv.Models;
 
 namespace webapp_stufv.Controllers
 {
     public class EventsController : Controller
     {
+        private IEventRepository ievent = new EventRepository();
+        private IAttendanceRepository iattend = new AttendanceRepository();
+        private IDesDriverRepository idesdriver = new DesDriverRepository();
+        private IPassengerRepository ipassenger = new PassengerRepository();
+
+
         List<Event> _events;
         public ActionResult Index()
         {
                 ViewBag.Title = "Evenementen";
-            _events = Event.GetAllEvents();
+            _events = ievent.GetAllEvents();
             var model = from r in _events
                             orderby r.Id
                             select r;
@@ -24,14 +31,14 @@ namespace webapp_stufv.Controllers
             if (Session["email"] == null || Session["email"].Equals(""))
             { }
             else {
-                if (Attendance.IsAttending((int)Session["userId"], id))
+                if (iattend.IsAttending((int)Session["userId"], id))
                 {
                     ViewBag.attend = true;
                 }
                 else {
                     ViewBag.attend = false;
                 }
-                if (DesDriver.IsDES((int)Session["userId"], id))
+                if (idesdriver.IsDES((int)Session["userId"], id))
                 {
                     ViewBag.isBob = true;
                 }
@@ -39,7 +46,7 @@ namespace webapp_stufv.Controllers
                     ViewBag.isBob = false;
                 }
             }
-            _events = Event.GetAllEvents();
+            _events = ievent.GetAllEvents();
             var tuple = new Tuple<Event, DesDriver>(_events.Single(r => r.Id == id), new DesDriver());
             ViewBag.Title = tuple.Item1.Name;
             return View(tuple);
@@ -54,7 +61,7 @@ namespace webapp_stufv.Controllers
             }
             else {
                 int userid = (int)Session["userId"];
-                try { Attendance.SignAttend(userid, id); }
+                try { iattend.SignAttend(userid, id); }
                 catch(System.Data.Entity.Infrastructure.DbUpdateException e) {
                     ViewBag.MyMessageToUsers = "Je hebt je al aangemeld voor dit evenement";
                     return View();
@@ -66,7 +73,7 @@ namespace webapp_stufv.Controllers
         }
         public ActionResult RemoveAttend(int id)
         {
-            Attendance.UnSignAttend((int)Session["userId"], id);
+           iattend.UnSignAttend((int)Session["userId"], id);
             ViewBag.id = id;
             return View();
         }
@@ -74,28 +81,28 @@ namespace webapp_stufv.Controllers
             int NrOfPlaces;
             int.TryParse(Request.Form["Item2.NrOfPlaces"], out NrOfPlaces);
             ViewBag.id = id;
-            DesDriver.SetDES((int)Session["userId"], id, NrOfPlaces);
+            idesdriver.SetDES((int)Session["userId"], id, NrOfPlaces);
             return View();
         }
         public ActionResult RemoveBob(int id) {
             ViewBag.id = id;
-            DesDriver.unSetDES((int)Session["userId"], id);
+            idesdriver.unSetDES((int)Session["userId"], id);
             return View();
         }
         public ActionResult FindBob(int id) {
             ViewBag.Title = "Find bob";
             ViewBag.Description = "Heb je al een bob? Kijk hieronder en vind een bob of schijf jezelf in als bob.";
-            return View(DesDriver.ActiveDriversPerEvent(id));
+            return View(idesdriver.ActiveDriversPerEvent(id));
         }
         public ActionResult JoinBob(int id)
         {
             ViewBag.Title = "Find bob";
-            if (Passenger.IsPassenger(id, (int)Session["userId"]))
+            if (ipassenger.IsPassenger(id, (int)Session["userId"]))
             {
                 ViewBag.Title = "Je hebt je al voor deze bob ingeschreven.";
             }
             else {
-                Passenger.NewPassenger((int)Session["userId"], id);
+                ipassenger.NewPassenger((int)Session["userId"], id);
             }
             
             return View();

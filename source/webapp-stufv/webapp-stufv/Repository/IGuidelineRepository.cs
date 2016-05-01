@@ -8,6 +8,6 @@ namespace webapp_stufv.Repository
 {
     public interface IGuidelineRepository
     {
-        List<Guideline> getAllGuidelines();
+        List<Guideline> getAllGuideLines();
     }
 }

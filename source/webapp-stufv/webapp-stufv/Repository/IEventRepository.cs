@@ -8,7 +8,7 @@ namespace webapp_stufv.Repository
 {
     public interface IEventRepository
     {
-        string getCity();
+        string getCity(string Zipcode);
         List<Event> GetAllEvents();
 
     }

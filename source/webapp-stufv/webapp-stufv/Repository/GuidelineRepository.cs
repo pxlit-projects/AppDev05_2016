@@ -8,7 +8,7 @@ namespace webapp_stufv.Repository
 {
     public class GuidelineRepository : IGuidelineRepository
     {
-        public List<Guideline> getAllGuidelines()
+        public List<Guideline> getAllGuideLines()
         {
             using (var context = new STUFVModelContext())
             {

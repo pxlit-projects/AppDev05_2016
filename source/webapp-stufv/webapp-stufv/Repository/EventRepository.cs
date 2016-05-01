@@ -18,13 +18,13 @@ namespace webapp_stufv.Repository
             }
         }
 
-        public string getCity()
+        public string getCity(string Zipcode)
         {
             List<Cities> cities = new List<Cities>();
             using (var context = new STUFVModelContext())
             {
                 cities = context.Cities.ToList();
-                var city = cities.Single(r => r.ZipCode == Event.Zipcode);
+                var city = cities.Single(r => r.ZipCode == Zipcode);
                 return (string)city.City;
             }
         }
