@@ -1,4 +1,4 @@
-﻿@model Tuple<webapp_stufv.Models.Event, webapp_stufv.Models.DesDriver>
+﻿@model Tuple<webapp_stufv.Models.Event, webapp_stufv.Models.DesDriver, string>
 @section content{
 <div class="page-header">
     <h1>@ViewBag.Title</h1>
@@ -54,7 +54,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Item1.Street, @Model.Item1.ZipCode @Model.Item1.getCity()</p>
+                            <p class="pclear"><img class="iconimg" src="~/Content/img/Location.png" />@Model.Item1.Street, @Model.Item1.ZipCode @Model.Item3</p>
                         </td>
                     </tr>
                     <tr>

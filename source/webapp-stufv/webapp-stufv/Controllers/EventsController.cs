@@ -47,7 +47,7 @@ namespace webapp_stufv.Controllers
                 }
             }
             _events = ievent.GetAllEvents();
-            var tuple = new Tuple<Event, DesDriver>(_events.Single(r => r.Id == id), new DesDriver());
+            var tuple = new Tuple<Event, DesDriver, string>(_events.Single(r => r.Id == id), new DesDriver(), new EventRepository().getCity(_events.Single(r => r.Id == id).ZipCode));
             ViewBag.Title = tuple.Item1.Name;
             return View(tuple);
         }
