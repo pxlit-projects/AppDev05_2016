@@ -27,7 +27,7 @@ namespace STUFV {
         public NewOrganisationPage ( ) {
             InitializeComponent ( );
 
-            client.BaseAddress = new Uri ( "http://webapp-stufv20160429025210.azurewebsites.net/" );
+            client.BaseAddress = new Uri ("http://webapp-stufv20160429025210.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear ( );
             client.DefaultRequestHeaders.Accept.Add ( new MediaTypeWithQualityHeaderValue ( "application/json" ) );
 
@@ -108,9 +108,9 @@ namespace STUFV {
             updateOrganisation ( selected );
         }
 
-        public async void updateOrganisation ( Organisation toUpdate ) {
-            var url = "api/organisation" + toUpdate.Id;
-            var response = await client.PutAsJsonAsync ( url, toUpdate );
+        public void updateOrganisation ( Organisation toUpdate ) {
+            var url = "api/organisation/" + toUpdate.Id;
+            var response = client.PutAsJsonAsync ( url, toUpdate ).Result;
         }
     }
 }
