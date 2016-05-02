@@ -12,11 +12,7 @@ namespace webapp_stufv.Controllers {
     public class AccountController : Controller {
         private IOrganisationRepository iorganisation = new OrganisationRepository();
         private IUserRepository iuser = new UserRepository();
-        // GET: Account
-        public ActionResult Login ( ) {
-            ViewBag.Title = "Login";
-            return View ( );
-        }
+
         public ActionResult Register ( ) {
             ViewBag.Title = "Registratie";
             return View ( );

@@ -11,12 +11,6 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="~/Content/Global.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/boxes.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
     <title>@ViewBag.Title</title>
 
 </head>
@@ -32,54 +26,49 @@
             </div>
             <ul class="sidebar-nav">
                 <li>
-                    @Html.ActionLink("STUFV", "Index", "Home")
+                    @Html.ActionLink( "STUFV", "Index", "Home" )
                 </li>
                 <li>
                     @Html.ActionLink( "Evenementen", "Index", "Events" )
                 </li>
                 <li>
-                    @Html.ActionLink("Richtlijnen", "Index", "Guidelines")
+                    @Html.ActionLink( "Richtlijnen", "Index", "Guidelines" )
                 </li>
                 <li>
-                    @Html.ActionLink("Nieuws", "Index", "News")
+                    @Html.ActionLink( "Nieuws", "Index", "News" )
                 </li>
                 <li>
-                    @Html.ActionLink("FAQ", "Index", "FAQ")
+                    @Html.ActionLink( "FAQ", "Index", "FAQ" )
                 </li>
                 <li>
-                    @Html.ActionLink("Contact", "Index", "Contact")
+                    @Html.ActionLink( "Contact", "Index", "Contact" )
                 </li>
                 <li>
-                    @Html.ActionLink("Noodnummers", "Index", "Emergency")
+                    @Html.ActionLink( "Noodnummers", "Index", "Emergency" )
                 </li>
                 <li>
                     <a href="#">Aansprakelijkheid</a>
                 </li>
-                @if ( Session["email"] == null || Session["email"].Equals("")) {
-                <li>
-                    @Html.ActionLink( "Aanmelden", "Login", "Account" )
-                </li>
-                <li>
-                    @Html.ActionLink( "Registreren", "Register", "Account" )
-                </li>
+                @if ( Session[ "email" ] == null || Session[ "email" ].Equals ( "" ) ) {
+                    <li class="login" data-toggle="modal" data-target="#modallogin"> 
+                        Aanmelden
+                    </li>
+                    
                 } else {
-                    if ((int)Session["organisation"] > 0)
-                    {
-                    <li>
-                        @Html.ActionLink("Organisatie", "Index", "Organisation")
-                    </li>
-                    }
-                    else
-                    {
-                     <li>
-                        @Html.ActionLink("Organisatie registreren", "Register", "Organisation")
-                    </li>
+                    if ( ( int ) Session[ "organisation" ] > 0 ) {
+                        <li>
+                            @Html.ActionLink( "Organisatie", "Index", "Organisation" )
+                        </li>
+                    } else {
+                        <li>
+                            @Html.ActionLink( "Organisatie registreren", "Register", "Organisation" )
+                        </li>
                     }
                     <li>
-                        @Html.ActionLink("Instellingen", "Index", "Settings")
+                        @Html.ActionLink( "Instellingen", "Index", "Settings" )
                     </li>
                     <li>
-                        @Html.ActionLink("Afmelden", "Logout", "Account")
+                        @Html.ActionLink( "Afmelden", "Logout", "Account" )
                     </li>
                 }
             </ul>
@@ -87,7 +76,7 @@
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            @RenderSection("content", required: false)
+            @RenderSection( "content", required: false )
         </div>
         <!-- /#page-content-wrapper -->
     </div>
@@ -96,12 +85,77 @@
     <div class="footer">
         <p class="text-muted">Property of STUFV 2016 &copy;</p>
     </div>
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+
+    <div id="modallogin" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Hello! Login met je e-mail adres en wachtwoord.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <section id="loginForm">
+                                @using ( Html.BeginForm ( "Process", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" } ) ) {
+                                    @Html.AntiForgeryToken( )
+                                        <div class="form-group">
+                                            <div class="col-md-offset-3 col-md-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                    <input type="text" class="form-control" name="Email" placeholder="E-mail"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-3 col-md-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                    <input type="password" class="form-control" name="Password"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-3 col-md-10">
+                                                <input type="submit" value="Log in" class="btn btn-success" />                                              
+                                                @Html.ActionLink( "Registreer een nieuw account", "Account/Register" )
+                                            </div>
+                                        </div>
+                                }
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Menu Toggle Script -->
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>
+
+        <!-- Modal login form script -->
+        <script>
+            $(function () {
+                var showModal = function () {
+                    $("#modallogin").modal("show");
+                };
+                $("#showModal").click(showModal);
+            });
+
+            $(function () {
+                var hideModal = function () {
+                    $("#modallogin").modal("hide");
+                };
+                $("#hideModal").click(hideModal);
+            })
+        </script>
 </body>
 </html>
