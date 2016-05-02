@@ -31,21 +31,24 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
-        <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
-            <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
-                <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                <ListBoxItem Content="Nieuwe organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                <ListBoxItem IsSelected="True" Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                <ListBoxItem Content="Beheer organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-            </ListBox>
-        </Viewbox>
+        <StackPanel Orientation="Horizontal">
+            <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
+                <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
+                    <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Nieuwe organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem IsSelected="True" Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                </ListBox>
+            </Viewbox>
 
-        <Grid Margin="250,0,0,0">
+            <Grid>
 
-        </Grid>
+            </Grid>
+        </StackPanel>
+        
     </Grid>
 </Page>

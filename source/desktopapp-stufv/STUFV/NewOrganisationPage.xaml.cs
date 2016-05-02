@@ -109,7 +109,7 @@ namespace STUFV {
         }
 
         public async void updateOrganisation ( Organisation toUpdate ) {
-            var url = "api/organisation";
+            var url = "api/organisation" + toUpdate.Id;
             var response = await client.PutAsJsonAsync ( url, toUpdate );
         }
     }
