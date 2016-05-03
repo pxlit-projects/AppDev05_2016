@@ -19,25 +19,6 @@ namespace STUFV {
         public int ThumbsUp { get; set; }
         public Boolean Active { get; set; }
 
-        // Methods
-        public static List<Article> getAllArticles ( ) {
-            using ( var context = new STUFVModelContext ( ) ) {
-                return context.Articles.ToList ( );
-            }
-        }
-
-        public static Article getArticle ( int id ) {
-            using ( var context = new STUFVModelContext ( ) ) {
-                return context.Articles.Find ( id );
-            }
-        }
-
-        public static void AddThumbsUp ( int id ) {
-            using ( var context = new STUFVModelContext ( ) ) {
-                Article article = context.Articles.Find ( id );
-                article.ThumbsUp += 1;
-                context.SaveChanges ( );
-            }
-        }
+       
     }
 }

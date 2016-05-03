@@ -21,11 +21,6 @@ namespace STUFV
         [Required]
         public Boolean Active { get; set; }
 
-        // Methods
-        public static List<FAQ> getAllFAQ() {
-            using ( var context = new STUFVModelContext ( ) ) {
-                return context.FAQs.ToList ( );
-            }
-        }
+
     }
 }

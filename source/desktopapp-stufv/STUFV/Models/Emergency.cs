@@ -13,11 +13,6 @@ namespace STUFV
         public string TelNr { get; set; }
         public Boolean Active { get; set; }
 
-        // Methods
-        public static List<Emergency> getAllEmergencies() {
-            using ( var context = new STUFVModelContext ( ) ) {
-                return context.Emergencies.ToList ( );
-            }
-        }
+
     }
 }

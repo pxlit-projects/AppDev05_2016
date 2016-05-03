@@ -15,11 +15,6 @@ namespace STUFV
         public string Content { get; set; }
         public Boolean active { get; set; }
 
-        // Methods
-        public static List<Guideline> getAllGuideLines() {
-            using ( var context = new STUFVModelContext ( ) ) {
-                return context.Guidelines.ToList ( );
-            }
-        }
+
     }
 }

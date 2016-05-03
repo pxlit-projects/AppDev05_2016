@@ -20,36 +20,6 @@ namespace STUFV
         public virtual User User { get; set; }
         public virtual DesDriver DesDriver { get; set;}
 
-        public static List<Passenger> GetAllPassengers()
-        {
-            using (var context = new STUFVModelContext())
-            {
-                List<Passenger> passengers = new List<Passenger>();
-                passengers = context.Passengers.ToList();
-                return passengers;
-            }
-        }
-        public static void NewPassenger(int userId, int desId) {
-            var passenger = new Passenger{UserId = userId, DesDriverId = desId};
-            using (var context = new STUFVModelContext())
-            {
-                context.Passengers.Add(passenger);
-                context.SaveChanges();
-            }
-        }
-        public static int PassengersPerDriver(int id) {
-            int count = 0;
-            List<Passenger> passengers = GetAllPassengers();
-            int x;
-            for (x = 0; x < passengers.Count(); x++)
-            {
-                if (passengers.ElementAt(x).DesDriverId.Equals(id))
-                {
-                    count += 1;
-                }
-            }
-
-            return count;
-        }
+        
     }
 }

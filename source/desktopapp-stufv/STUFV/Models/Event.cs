@@ -56,23 +56,6 @@ namespace STUFV
 
         public virtual ICollection<Passenger> Passengers { get; set; }
 
-        public string getCity() {
-            List < Cities > cities = new List<Cities>();
-            using (var context = new STUFVModelContext())
-            {
-                cities = context.Cities.ToList();
-                var city = cities.Single(r => r.ZipCode == ZipCode);
-                return (string)city.City;
-            }
-        }
-        public static List<Event> GetAllEvents()
-        {
-            using (var context = new STUFVModelContext())
-            {
-                List < Event > events = new List<Event>();
-                events = context.Events.ToList();
-                return events;
-            }
-        }
+       
     }
 }

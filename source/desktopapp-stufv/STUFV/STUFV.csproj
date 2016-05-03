@@ -137,6 +137,26 @@
     <Compile Include="Models\STUFVModelContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserTypes.cs" />
+    <Compile Include="Repository\ArticleRepository.cs" />
+    <Compile Include="Repository\AttendanceRepository.cs" />
+    <Compile Include="Repository\DesDriverRepository.cs" />
+    <Compile Include="Repository\EmergencyRepository.cs" />
+    <Compile Include="Repository\EventRepository.cs" />
+    <Compile Include="Repository\FAQRepository.cs" />
+    <Compile Include="Repository\GuidelineRepository.cs" />
+    <Compile Include="Repository\IArticleRepository.cs" />
+    <Compile Include="Repository\IAttendanceRepository.cs" />
+    <Compile Include="Repository\IDesDriverRepository.cs" />
+    <Compile Include="Repository\IEmergencyRepository.cs" />
+    <Compile Include="Repository\IEventRepository.cs" />
+    <Compile Include="Repository\IFAQRepository.cs" />
+    <Compile Include="Repository\IGuidelineRepository.cs" />
+    <Compile Include="Repository\IOrganisationRepository.cs" />
+    <Compile Include="Repository\IPassengerRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Repository\OrganisationRepository.cs" />
+    <Compile Include="Repository\PassengerRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="UserDetailsWindow.xaml.cs">
       <DependentUpon>UserDetailsWindow.xaml</DependentUpon>
     </Compile>
