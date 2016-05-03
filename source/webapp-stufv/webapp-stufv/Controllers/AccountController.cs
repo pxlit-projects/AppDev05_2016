@@ -19,16 +19,16 @@ namespace webapp_stufv.Controllers {
         }
         public ActionResult Process ( ) {
             var email = Request.Form[ "Email" ].ToLower ( );
-            String password = Request.Form[ "Password" ];
+            var password = Request.Form[ "Password" ];
+
             if ( iuser.Exist ( email ) ) {
                 int userID;
-                String encPass = MD5Encrypt ( password, iuser.GetSalt ( email ) );
+                var encPass = MD5Encrypt ( password, iuser.GetSalt ( email ) );
                 if ( iuser.Login ( email, encPass, out userID ) ) {
                     Session[ "email" ] = email;
                     Session[ "userId" ] = userID;
                     Session[ "organisation" ] = iorganisation.HasOrganisation ( userID );
-                    ViewBag.Title = "Succes";
-                    return View ( );
+                    return RedirectToAction ( "Index", "Home");
                 } else {
                     ViewBag.Title = "Login mislukt";
                     Session[ "email" ] = "";
@@ -37,7 +37,7 @@ namespace webapp_stufv.Controllers {
                     return View ( );
                 }
             } else {
-                ViewBag.Title = "Deze gebruiker bestaat nog niet";
+                ViewBag.Title = "Deze gebruiker bestaat nog niet.";
                 return View ( );
             }
         }
@@ -45,8 +45,7 @@ namespace webapp_stufv.Controllers {
             Session[ "Email" ] = "";
             Session[ "userId" ] = "";
             Session[ "organisation" ] = "";
-            ViewBag.Title = "Logout gelukt";
-            return View ( );
+            return RedirectToAction ( "Index", "Home" );
         }
 
         public ActionResult CreateAccount ( ) {

@@ -19,8 +19,7 @@ namespace webapp_stufv {
 
             bundles.Add ( new StyleBundle ( "~/Content/css" ).Include (
                       "~/Content/bootstrap.css",
-                      "~/Content/Global.css",
-                      "~/Content/Boxes.css") );
+                      "~/Content/Global.css") );
         }
     }
 }

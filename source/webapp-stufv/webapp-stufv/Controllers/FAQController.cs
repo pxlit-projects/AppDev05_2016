@@ -13,7 +13,7 @@ namespace webapp_stufv.Controllers {
 
         private IFAQRepository ifaq = new FAQRepository();
         public ActionResult Index ( ) {
-            ViewBag.Title = "FAQ";
+            ViewBag.Title = "Veelgestelde vragen";
             return View ( ifaq.getAllFAQ ( ) );
            
         }

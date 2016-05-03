@@ -27,7 +27,7 @@ namespace webapp_stufv {
             routes.MapRoute(
                 name: "Home",
                 url: "Home/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional}
             );
             routes.MapRoute(
                 name: "FAQ",
