@@ -283,7 +283,7 @@
     <Compile Include="Web_Api_Controllers\UserController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Global.css" />
@@ -297,8 +297,8 @@
     <Content Include="Content\img\thumbsup.png" />
     <Content Include="Content\img\vinkje.png" />
     <Content Include="Content\img\noimageavailable.png" />
-    <Content Include="Content\js\bootstrap-datepicker.min.js" />
-    <Content Include="Content\js\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\js\bootstrap-datetimepicker.nl.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -363,6 +363,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
+    <Folder Include="Content\js\locales\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

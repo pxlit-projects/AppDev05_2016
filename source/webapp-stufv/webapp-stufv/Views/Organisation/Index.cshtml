@@ -18,9 +18,24 @@
                     <div class="col-md-3 control-label">Beschijving</div>
                     <div class="col-md-5">@Html.TextAreaFor(m => m.Description, new { @class = "form-control" })</div>
                 </div>
+                <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
                 <div class="form-group">
-                    <div class="col-md-3 control-label">Start Tijd</div>
-                    <div class="col-md-5">@Html.TextBoxFor(m => m.Start, new { @class = "form-control" })</div>
+                    <div class="col-md-2 control-label">Start tijd </div>
+                    <div class="col-md-10">
+                        <input class="form-control" id="Start" name="Start" placeholder="" type="text" />
+                        <script>
+                                var date_input = $('input[name="BirthDate"]');
+    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    var options={
+        startView: 2,
+        language: "nl-BE",
+        pickTime: true
+    };
+    date_input.datepicker(options);
+                        </script>
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Stop Tijd</div>
