@@ -3,7 +3,7 @@
 <html lang="nl-be">
 
 <head>
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -98,9 +98,9 @@
                                     @Html.AntiForgeryToken( )
                                     <div class="form-group">
                                         <div class="col-md-offset-3 col-md-12">
-                                            <div class="input-group">
+                                            <div class="input-group" id="Email">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <input type="text" class="form-control" name="Email" id="Email" placeholder="E-mail" required/>
+                                                <input type="text" class="form-control" name="Email" id="EmailText" placeholder="E-mail" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-offset-3 col-md-10">
-                                                <input type="submit" value="Log in" class="btn btn-success" onclick="ValidateEmail(document.loginform.Email)"/>
+                                                <input type="submit" value="Log in" class="btn btn-success" onclick="return ValidateEmail(document.loginform.Email)"/>
                                                 @Html.ActionLink( "Registreer een nieuw account", "Register", "Account" )
                                             </div>
                                         </div>
@@ -148,13 +148,13 @@
     <script>
         function ValidateEmail(inputText) {
             var mailformat = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if (inputText.value.match(mailformat)) {
-                return true;
-            } else {
-                $('#Email').attr("class", "form-control has-error");
+            if (!inputText.value.match(mailformat)) {
+                $('#Email').attr("class", "input-group has-error");
                 return false;
             }
+            return true;
         }
+
     </script>
 
     <!-- Menu Toggle Script -->
