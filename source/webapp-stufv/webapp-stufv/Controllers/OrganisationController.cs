@@ -21,6 +21,7 @@ namespace webapp_stufv.Controllers {
             else if ((int)Session["organisation"] == 2)
             {
                 ViewBag.Description = "";
+                ViewBag.Title = "Organisatie: " + iorganisation.GetOrganisationName((int)Session["userId"]);
             }
             else {
                 ViewBag.Description = "U heeft geen organisatie.";
