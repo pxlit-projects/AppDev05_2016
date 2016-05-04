@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using webapp_stufv.Models;
 using webapp_stufv.Repository;
 
 namespace webapp_stufv.Controllers {
@@ -40,6 +41,31 @@ namespace webapp_stufv.Controllers {
             String description = Request.Form["Description"];
             iorganisation.NewOrganisation((int)Session["userId"], name, description);
             Session["organisation"] = 1;
+            return View();
+        }
+        public ActionResult NewEvent()
+        {
+            DateTime start = DateTime.Parse(Request.Form["Start"]);
+            DateTime end = DateTime.Parse(Request.Form["End"]);
+            var newEvent = new Event
+            {
+                Name = Request.Form["Name"],
+                Description = Request.Form["Description"],
+                Start = start,
+                End = end,
+                Street = Request.Form["Street"],
+                ZipCode = Request.Form["ZipCode"],
+                Type = int.Parse(Request.Form["Type"]),
+                EntranceFee = double.Parse(Request.Form["EntranceFee"]),
+                AlcoholFree = Boolean.Parse(Request.Form["AlcoholFree"]),
+                OrganisationId = iorganisation.GetOrganisationId((int)Session["userId"]),
+                Active = true
+            };
+            using (var context = new STUFVModelContext())
+            {
+                context.Events.Add(newEvent);
+                context.SaveChanges();
+            }
             return View();
         }
     }

@@ -58,5 +58,19 @@ namespace webapp_stufv.Repository
             }
             return name;
         }
+        public int GetOrganisationId(int userId)
+        {
+            int id = 0;
+            List<Organisation> organisations = GetAllOrganisations();
+            int x;
+            for (x = 0; x < organisations.Count(); x++)
+            {
+                if (organisations.ElementAt(x).UserId.Equals(userId) && organisations.ElementAt(x).Active == true)
+                {
+                    id = organisations.ElementAt(x).Id;
+                }
+            }
+            return id;
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace webapp_stufv.Models
         public DbSet<UserTypes> UserTypes { get; set; }
         public DbSet<Emergency> Emergencies { get; set; }
         public DbSet<ArticleVote> ArticleVotes { get; set; }
+        public object Event { get; internal set; }
 
         public STUFVModelContext() {
             Configuration.ProxyCreationEnabled = false;

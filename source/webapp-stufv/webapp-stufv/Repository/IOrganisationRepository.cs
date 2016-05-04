@@ -11,5 +11,6 @@ namespace webapp_stufv.Repository
         int HasOrganisation(int userId);
         void NewOrganisation(int userId, String name, String disc);
         string GetOrganisationName(int userId);
+        int GetOrganisationId(int userId);
     }
 }
