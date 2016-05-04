@@ -2,14 +2,39 @@
 
     @model IEnumerable<webapp_stufv.Models.Article>
 
-    @foreach ( var item in Model ) {
-            <div class="box">
-                <h4>
-                    @Html.DisplayFor( modelItem => item.Title )
-                </h4>
-                <p class="blurry-text">
-                    @Html.ActionLink(@item.Content.Substring( 0, 300 ) + "...", "Details", "News", new { id = item.Id }, null )
-                </p>
+    <div class="container">
+
+        <div class="page-header">
+            <div class="well">
+                <h1>@ViewBag.Title</h1>
             </div>
-    }
+        </div>
+
+        @foreach ( var item in Model ) {
+
+            <div class="media">
+                <div class="media-left">
+                    <a href=@Url.Action("Details", "News", new { id = item.Id })>
+                        <img src="~/Content/img/noimageavailable.png" class="noimage"/>
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">@item.Title</h4>
+                    @item.Content.Substring( 0, 300 ) ...
+                </div>
+            </div> <br />
+
+        }
+
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info" role="alert">
+                    <p> Klik op een afbeelding om het artikel te lezen! </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 }

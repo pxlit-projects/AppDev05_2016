@@ -2,13 +2,41 @@
 
 @section Content {
 
-    <h2>@ViewBag.Title</h2>
+    <div class="container">
 
-    <div class="article">
-        <p class="text-muted"> @Html.DisplayFor( model => model.DateTime.Date )
-        <img class="thumbsup" src="~/Content/img/thumbsup.png" />
-         @Html.DisplayFor(model => model.ThumbsUp)
-         @Html.ActionLink( "Geef dit artikel een like!", "AddThumbsUp", "News", new { id = Html.DisplayFor ( model => model.Id ) }, null ) </p> <br />
-         @Html.DisplayFor( model => model.Content )
+        <div class="page-header">
+            <div class="well">
+                <h1>@ViewBag.Title</h1>
+            </div>
+        </div>
+
+        <div class="article">
+            <p class="text-muted">
+                @ViewBag.Date
+                <a href=@Url.Action("AddThumbsUp", "News", new { id = Html.DisplayFor( model => model.Id ) }, null )>
+                    <img class="thumbsup" src="~/Content/img/thumbsup.png" />
+                </a>
+                @Html.DisplayFor( model => model.ThumbsUp )
+            </p> <br />
+            <div>
+                <div class="right">
+                    <img src="~/Content/img/noimageavailable.png" class="articleimg" />
+                </div>
+                @Html.DisplayFor( model => model.Content )
+            </div>
+        </div>
+
+        @if ( Session[ "email" ] == null || Session[ "email" ].Equals ( "" ) ) {
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info" role="alert">
+                        <p> Vind je dit artikel leuk? Login om het een like te geven! </p>
+                    </div>
+                </div>
+            </div>
+        }
+
     </div>
 }
+

@@ -343,34 +343,8 @@ input[type="email"] {
     border-top: 0px;
 }
 
-.box {
-    display: inline-block;
-    margin: 5%;
-    padding: 1%;
-    word-wrap: break-word;
-    width: 20%;
-    min-width: 200px;
-    background-color: white;
-    color: gray;
-}
-
-.blurry-text {
-    color: transparent;
-    text-shadow: 0 0 2px rgba(0,0,0,0.5);
-}
-
 a:hover {
-    text-decoration:none;
-}
-
-.article {
-    word-wrap: break-word;
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-    min-width: 200px;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    text-decoration: none;
 }
 
 .thumbsup {
@@ -418,6 +392,17 @@ a:hover {
     cursor: pointer;
     z-index: 99999;
     position: fixed;
+}
+
+.noimage {
+    max-height: 64px;
+    max-width: 64px;
+}
+
+.articleimg {
+    max-height: 300px;
+    max-width: 300px;
+    float: right;
 }
 
 
