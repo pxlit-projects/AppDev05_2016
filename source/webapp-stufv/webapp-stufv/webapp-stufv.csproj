@@ -298,7 +298,6 @@
     <Content Include="Content\img\vinkje.png" />
     <Content Include="Content\img\noimageavailable.png" />
     <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
-    <Content Include="Content\js\bootstrap-datetimepicker.nl.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -363,7 +362,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
-    <Folder Include="Content\js\locales\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
