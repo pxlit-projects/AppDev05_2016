@@ -1,84 +1,35 @@
 ﻿@section content {
-
-<div class="col-md-4" style="margin-top: 20px">
-    <div class="panel panel-primary" style="margin: 0">
-        <div class="panel-heading" style="height: 50px; background-color: #4061C4">
-            <h3 style="text-align: center; margin-top: 0px;">Artikelen</h3>
-        </div>    
-        @foreach (var item in ViewBag.Articles)
-        {
-            <div class="panel panel-primary" style="margin-bottom: 0px">
-                <div class="panel-heading">
-                    <table>
-                        <tr>
-                            <th style="width: 400px; color: white">
-                                <p>@item.Title</p>
-                            </th>
-                            <th style="color: white">
-                                <p>@item.DateTime.ToShortDateString()</p>
-                            </th>
-                        </tr>
-                    </table>        
-                </div>
-                <div class="panel-body">
-                    @item.Content
-                </div>
-            </div>
-        }
-    </div>
-</div>
-<div class="col-md-8" style="margin-top: 20px">
-    <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color: #4061C4">
-            <table style="width: 850px; height: 20px">
+    <h2>Artikels</h2>
+    @foreach (var item in ViewBag.Articles)
+    {
+        <div class="col-md-3">
+            <table style="width: 300px">
                 <tr>
-                    <th colspan="5"><h3 style="text-align: center; margin-top: 0px; color: white">Opkomende evenementen</h3></th>
+                    <td><h3>@item.Title</h3></td>
                 </tr>
                 <tr>
-                    <th style="color: white"; width="400px">Naam</th>
-                    <th style="color: white"; width="140px">Datum</th>
-                    <th style="color: white"; width="100px">Prijs</th>
-                    <th style="color: white"; width="30px">Alcohol</th>
-                    <th>&nbsp</th>
+                    <td><img src="~/Content/img/news.jpg" /></td>
                 </tr>
-            </table>           
+                <tr>
+                    <td>
+                        @if (item.Content.Length > 100)
+                        {
+                            <p>@item.Content.Substring(0, 100)...</p>
+                        }
+                        else
+                        {
+                            <p>@item.Content</p>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"><button type="button" class="btn btn-info">Bekijk</button></td>
+                </tr>
+            </table>
         </div>
-        @foreach (var item in ViewBag.Events)
-        {
-            <div class="panel-body" style="padding: 7px">
-                <table style="width: 850px;">
-                    <tr>
-                        <td style="width: 400px"><p>@item.Name</p></td>
-                        <td style="width: 140px"><p>@item.Start.ToShortDateString()</p></td>
-                        <td style="width: 125px">
-                            @if (item.EntranceFee == 0)
-                            {
-                                <p>Gratis</p>
-                            }
-                            else
-                            {
-                                <p>@item.EntranceFee euro</p>
-                            }
-                        </td>
-                        <td style="width: 120px">
-                            @if (item.AlcoholFree == true)
-                            {
-                                <img src="~/Content/img/kruisje.jpg" style="width: 25px; height: 25px" />
-                            }
-                            else
-                            {
-                                <img src="~/Content/img/vinkje.png" style="width: 25px; height: 25px" />
-                            }
-                        </td>
-                        <td>
-                            <a href="@Url.Action("Details","Events", new { id = item.Id})">
-                                <p>Bekijk</p>
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        }
+    }
+    <div class="col-md-3">
+        <a class="twitter-timeline" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
-</div>
 }
