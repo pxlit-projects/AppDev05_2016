@@ -47,7 +47,107 @@
             </Viewbox>
 
             <Grid>
-
+                <StackPanel>
+                    <TextBlock Text="Artikels" FontSize="40" Margin="10,5,0,0"/>
+                    <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="700" Margin="10,25,0,0">
+                        <TextBlock Text="Zoek artikel " VerticalAlignment="Center"/>
+                        <TextBox x:Name="searchTextBox" Width="175" Margin="10,0,0,0"/>
+                        <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
+                        <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="150" Margin="10,0,0,0"/>
+                        <DatePicker x:Name="searchDatePicker" Margin="10,0,0,0" Visibility="Hidden"/>
+                    </StackPanel>
+                    <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
+                    <DataGrid x:Name="articlesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="875" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="articleIdColumn" Binding="{Binding Id}" Header="Id" Width="50">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn x:Name="titleColumn" Binding="{Binding Title}" Header="Titel" Width="125" IsReadOnly="True">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn x:Name="contentColumn" Binding="{Binding Content}" Header="Inhoud" Width="200" IsReadOnly="True">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn x:Name="authorColumn" Binding="{Binding UserId}" Header="AuteurId" Width="SizeToHeader" IsReadOnly="True">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn x:Name="dateColumn" Binding="{Binding DateTime, StringFormat={}{0:dd-MM-yyyy}}" Header="Datum" Width="100" IsReadOnly="True">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="300" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button x:Name="detailsButton" ToolTip="Meer informatie over deze persoon" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
+                                                <Button.Background>
+                                                    <ImageBrush ImageSource="images/info-icon.png" Stretch="Fill" TileMode="None"/>
+                                                </Button.Background>
+                                            </Button>
+                                            <Button x:Name="mailButton" ToolTip="Verstuur een mail naar deze persoon" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0">
+                                                <Button.Background>
+                                                    <ImageBrush ImageSource="images/MetroUI_mail.png" Stretch="Fill" TileMode="None"/>
+                                                </Button.Background>
+                                            </Button>
+                                            <Button x:Name="detailsAuthorButton" ToolTip="Meer informatie over deze persoon" Content="Details Author" Margin="0,5,5,5"/>
+                                            <Button x:Name="changeStatusButton" ToolTip="Verander de status van dit artikel" Content="Change role" Margin="0,5,5,5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </Grid>
         </StackPanel>
     </Grid>
