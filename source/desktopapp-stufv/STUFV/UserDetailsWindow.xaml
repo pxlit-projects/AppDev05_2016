@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="UserDetailsWindow" Height="300" Width="500">
+        Title="UserDetailsWindow" Height="350" Width="500">
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="5,5,0,0">
             <Image Source="images/Profile-icon.png" Width="50" Height="50"/>
-            <Label x:Name="userLabel" FontSize="26"/>
+            <Label x:Name="userLabel" FontSize="26" Margin="25,0,0,0"/>
         </StackPanel>
-        <StackPanel x:Name="detailsPanel" DataContext="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0">
+        <StackPanel x:Name="detailsPanel" DataContext="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Voornaam" Width="100"/>
                 <TextBox Text="{Binding FirstName}" Width="125"/>
@@ -42,6 +42,7 @@
                 <TextBlock Text="Woonplaats" Width="100" Margin="10,0,0,0"/>
                 <TextBox x:Name="birthPlaceTextBox" Width="125"/>
             </StackPanel>
+            <Button x:Name="closeButton" Content="Sluit venster" HorizontalAlignment="Right" Margin="0,20,0,0" Click="CloseButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

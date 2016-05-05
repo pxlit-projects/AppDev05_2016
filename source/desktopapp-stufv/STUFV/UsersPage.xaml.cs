@@ -34,9 +34,14 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            List<string> filterItems = new List<string> { "Id", "Voornaam", "Achternaam", "Email" };
+
+            filterBox.ItemsSource = filterItems;
+
             loadUsers();
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
+            searchTextBox.SelectionChanged += SearchTextBox_SelectionChanged;
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,6 +77,57 @@ namespace STUFV
             }
         }
 
+        private async void SearchTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (searchTextBox.Text != "")
+            {
+                IEnumerable<User> allUsers = await GetUsers();
+
+                string filter = filterBox.Text;
+
+                List<User> selectUsers = new List<User>();
+                foreach (User user in allUsers)
+                {
+                    switch (filter)
+                    {
+                        case "Id":
+                            int id = 0;
+                            if (int.TryParse(searchTextBox.Text, out id))
+                            {
+                                id = Convert.ToInt32(searchTextBox.Text);
+                            }
+                            if (user.Id == id) { selectUsers.Add(user); }
+                            break;
+                        case "Voornaam":
+                            if (user.FirstName.Contains(searchTextBox.Text)) { selectUsers.Add(user); }
+                            break;
+                        case "Achternaam":
+                            if (user.LastName.Contains(searchTextBox.Text)) { selectUsers.Add(user); }
+                            break;
+                        case "Email":
+                            if (user.Email.Contains(searchTextBox.Text)) { selectUsers.Add(user); }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (selectUsers == null)
+                {
+                    messageLabel.Content = "Geen resultaten";
+                }
+                else
+                {
+                    messageLabel.Content = "Er zijn " + selectUsers.Count + " resultaten gevonden!";
+                    usersDataGrid.ItemsSource = selectUsers;
+                }
+            }
+            else
+            {
+                messageLabel.Content = "";
+                loadUsers();
+            }
+        }
+
         public async void loadUsers()
         {
             usersDataGrid.ItemsSource = await GetUsers();
@@ -90,6 +146,73 @@ namespace STUFV
             return users;
         }
 
+        public async Task UpdateUser(User user)
+        {
+            var userUrl = "/api/user/" + user.Id;
+            HttpResponseMessage response = await client.PutAsJsonAsync(userUrl, user);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loadUsers();
+            }
+        }
+
+        public async void ChangeStatus()
+        {
+            User user = (User)usersDataGrid.CurrentItem;
+            bool originalActive = user.Active;
+
+            if (user.Active == true)
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u de gebruiker, {0} {1}, wilt deactiveren?", user.FirstName, user.LastName),
+                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    user.Active = false;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u de gebruiker, {0} {1}, wilt activeren?", user.FirstName, user.LastName),
+                    "Activeren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    user.Active = true;
+                }
+            }
+
+            if (originalActive != user.Active)
+            {
+                await UpdateUser(user);
+            }
+        }
+
+        public async void ChangeRole()
+        {
+            User user = (User)usersDataGrid.CurrentItem;
+            int originalRoleID = user.RoleID;
+
+            if (user.RoleID == 1)
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u de gebruiker, {0} {1}, wilt degraderen tot een gewone gebruiker?", user.FirstName, user.LastName),
+                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    user.RoleID = 2;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u de gebruiker, {0} {1}, wilt promoveren tot administrator?", user.FirstName, user.LastName),
+                    "Activeren", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    user.RoleID = 1;
+                }
+            }
+
+            if (originalRoleID != user.RoleID)
+            {
+                await UpdateUser(user);
+            }
+        }
+
         private void MailButton_Click(object sender, RoutedEventArgs e)
         {
             User user = (User)usersDataGrid.CurrentItem;
@@ -103,6 +226,16 @@ namespace STUFV
             User user = (User)usersDataGrid.CurrentItem;
             UserDetailsWindow detailsWindow = new UserDetailsWindow(user);
             detailsWindow.ShowDialog();
+        }
+
+        private void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeStatus();
+        }
+
+        private void ChangeRoleButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeRole();
         }
     }
 }

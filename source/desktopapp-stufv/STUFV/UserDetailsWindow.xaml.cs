@@ -25,7 +25,24 @@ namespace STUFV
 
             detailsPanel.DataContext = user;
 
-            userLabel.Content = user.FirstName + " " + user.LastName + " " + user.RoleID;
+            string role = null;
+
+            switch (user.RoleID)
+            {
+                case 1:
+                    role = "Admin";
+                    break;
+                case 2:
+                    role = "User";
+                    break;
+            }
+
+            userLabel.Content = String.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
