@@ -47,30 +47,34 @@ namespace STUFV {
         private void MenuBox_SelectionChanged ( object sender, SelectionChangedEventArgs e ) {
             int index = menuBox.SelectedIndex;
 
-            switch ( index ) {
+            switch (index)
+            {
                 case 0:
-                    scherm.displayFrame.Source = new Uri ( "HomePage.xaml", UriKind.Relative );
+                    scherm.displayFrame.Source = new Uri("HomePage.xaml", UriKind.Relative);
                     break;
                 case 1:
-                    scherm.displayFrame.Source = new Uri ( "ArticlePage.xaml", UriKind.Relative );
+                    scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
                     break;
                 case 2:
-                    scherm.displayFrame.Source = new Uri ( "NewOrganisationPage.xaml", UriKind.Relative );
+                    scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 3:
-                    scherm.displayFrame.Source = new Uri ( "ReviewsPage.xaml", UriKind.Relative );
+                    scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
                     break;
                 case 4:
-                    scherm.displayFrame.Source = new Uri ( "UsersPage.xaml", UriKind.Relative );
+                    scherm.displayFrame.Source = new Uri("UsersPage.xaml", UriKind.Relative);
                     break;
                 case 5:
-                    scherm.displayFrame.Source = new Uri ( "ManageOrganisationPage.xaml", UriKind.Relative );
+                    scherm.displayFrame.Source = new Uri("ManageOrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 6:
-                    scherm.displayFrame.Source = new Uri ( "StatsPage.xaml", UriKind.Relative );
+                    scherm.displayFrame.Source = new Uri("ManageArticlePage.xaml", UriKind.Relative);
                     break;
                 case 7:
-                    scherm.displayFrame.Source = new Uri ( "LogoutPage.xaml", UriKind.Relative );
+                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    break;
+                case 8:
+                    scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
             }
         }

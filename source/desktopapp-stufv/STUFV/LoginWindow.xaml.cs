@@ -98,6 +98,7 @@ namespace STUFV {
                     HomeWindow homeWindow = new HomeWindow ( user );
                     Application.Current.MainWindow = homeWindow;
                     homeWindow.ShowDialog ( );
+                    Close();
                 } else {
                     errorBox.Content = "Verkeerd paswoord of geen toegang!";
                 }

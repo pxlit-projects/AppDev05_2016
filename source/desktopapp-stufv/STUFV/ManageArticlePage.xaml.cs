@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,35 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace STUFV
 {
     /// <summary>
-    /// Interaction logic for ArtikelPage.xaml
+    /// Interaction logic for ManageArticlePage.xaml
     /// </summary>
-    public partial class ArticlePage : Page
+    public partial class ManageArticlePage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
-        DispatcherTimer timer;
-        HttpClient client = new HttpClient();
 
-        public ArticlePage()
+        public ManageArticlePage()
         {
             InitializeComponent();
-
-            authorBlock.Text = scherm.user.FirstName + " " + scherm.user.LastName;
-
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
-
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
-
-            client.BaseAddress = new Uri("http://webapp-stufv20160429025210.azurewebsites.net/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -78,36 +61,6 @@ namespace STUFV
                 case 8:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
-            }
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            dateBlock.Text = DateTime.Now.ToLongDateString() + ", " + DateTime.Now.ToLongTimeString();
-        }
-
-        private void PlaceArticleButton_Click(object sender, RoutedEventArgs e)
-        {
-            Article article = new Article();
-            article.Title = titleTextBox.Text;
-            article.Content = contentTextBox.Text;
-            article.UserId = scherm.user.Id;
-            article.DateTime = DateTime.Now.Date;
-            article.Active = true;
-            article.ThumbsUp = 0;
-
-            AddArticle(article);
-        }
-
-        private async void AddArticle(Article article)
-        {
-            var userUrl = "/api/article";
-            HttpResponseMessage response = await client.PostAsJsonAsync(userUrl, article);
-
-            if (response.IsSuccessStatusCode)
-            {
-                MessageBox.Show(String.Format("Artikel succesvol geplaatst op {0}. Auteur: {1} {2}",
-                            article.DateTime.ToLongDateString(), scherm.user.FirstName, scherm.user.LastName));
             }
         }
     }

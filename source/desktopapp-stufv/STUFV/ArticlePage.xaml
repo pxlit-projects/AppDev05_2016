@@ -40,6 +40,7 @@
                     <ListBoxItem Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer artikels" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                 </ListBox>
@@ -49,12 +50,24 @@
                 <StackPanel>
                     <TextBlock Text="Artikels" FontSize="40" Margin="10,5,0,0"/>
                     <TextBlock Text="Artikel plaatsen" Margin="10,25,0,0" FontSize="26"/>
-                    <Border BorderThickness="2" Background="White" Width="825" Height="500" Margin="10,25,0,0">
+                    <Border BorderThickness="3" Background="Black" Width="825" Height="500" Margin="10,25,0,0">
                         <StackPanel>
-                            <TextBox x:Name="titleTextBox" Background="Red" VerticalAlignment="Center" FontSize="22"/>
-                            <TextBox x:Name="contentTextBox" Height="500"/>
+                            <DockPanel Background="#336699">
+                                <TextBlock Text="Titel:" Foreground="White" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
+                                <TextBox x:Name="titleTextBox" Text="" Background="#336699" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17"/>
+                            </DockPanel>
+                            <DockPanel Background="#C0C0C0" Height="24">
+                                <TextBlock Text="Auteur:" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                <TextBlock x:Name="authorBlock" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                <TextBlock x:Name="dateBlock" Foreground="White" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,10,0"/>
+                            </DockPanel>
+                            
                         </StackPanel>
                     </Border>
+                    <Button x:Name="placeArticleButton" Content="Artikel plaatsen" Margin="10,15,0,0" HorizontalAlignment="Left" Click="PlaceArticleButton_Click"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

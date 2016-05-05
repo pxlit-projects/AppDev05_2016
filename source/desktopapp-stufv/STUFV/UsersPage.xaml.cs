@@ -69,9 +69,12 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ManageOrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 6:
-                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManageArticlePage.xaml", UriKind.Relative);
                     break;
                 case 7:
+                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    break;
+                case 8:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
             }

@@ -118,6 +118,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ManageArticlePage.xaml.cs">
+      <DependentUpon>ManageArticlePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManageOrganisationPage.xaml.cs">
       <DependentUpon>ManageOrganisationPage.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <DependentUpon>StatsPage.xaml</DependentUpon>
     </Compile>
     <Page Include="ArticlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageArticlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
