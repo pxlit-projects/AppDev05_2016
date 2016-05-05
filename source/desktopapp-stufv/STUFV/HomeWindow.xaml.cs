@@ -19,8 +19,11 @@ namespace STUFV {
     /// Interaction logic for HomeWindow.xaml
     /// </summary>
     public partial class HomeWindow : MetroWindow {
-        public HomeWindow ( ) {
+        public User user;
+
+        public HomeWindow ( User user ) {
             InitializeComponent ( );
+            this.user = user;
             displayFrame.Navigated += DisplayFrame_Navigated;
 
             ChangeFrame ( );

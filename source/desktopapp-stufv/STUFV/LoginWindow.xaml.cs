@@ -88,13 +88,14 @@ namespace STUFV {
             bool existPassword = false;
 
             if ( existEmail ) {
-                string salt = await GetSalt ( emailBox.Text );
+                User user = await GetUser(emailBox.Text);
+                string salt = user.Salt;
                 string encPassword = MD5Encrypt ( passwordBox.Password, salt );
 
-                existPassword = await Login ( emailBox.Text, encPassword );
+                existPassword = Login ( user , encPassword );
 
                 if ( existPassword ) {
-                    HomeWindow homeWindow = new HomeWindow ( );
+                    HomeWindow homeWindow = new HomeWindow ( user );
                     Application.Current.MainWindow = homeWindow;
                     homeWindow.ShowDialog ( );
                 } else {
@@ -116,18 +117,6 @@ namespace STUFV {
             return false;
         }
 
-        public async Task<string> GetSalt ( String email ) {
-            String salt = "";
-            IEnumerable<User> users = await GetUsers ( );
-
-            for ( int x = 0 ; x < users.Count ( ) ; x++ ) {
-                if ( users.ElementAt ( x ).Email.Equals ( email ) ) {
-                    salt = users.ElementAt ( x ).Salt;
-                }
-            }
-            return salt;
-        }
-
         private static string MD5Encrypt ( string password, string salt ) {
             MD5 md5 = new MD5CryptoServiceProvider ( );
 
@@ -142,14 +131,11 @@ namespace STUFV {
             return strBuilder.ToString ( );
         }
 
-        public async Task<bool> Login ( string email, string password ) {
-            IEnumerable<User> users = await GetUsers ( );
-
-            for ( int x = 0 ; x < users.Count ( ) ; x++ ) {
-                if ( users.ElementAt ( x ).Email.Equals ( email ) && users.ElementAt ( x ).PassWord.Equals ( password ) && users.ElementAt ( x ).RoleID == 1 ) {
-                    return true;
-                }
+        public bool Login ( User user, string password ) {
+            if ( user.PassWord == password &&  user.RoleID == 1) {
+                return true;
             }
+            
             return false;
         }
 
@@ -162,6 +148,21 @@ namespace STUFV {
                 users = await response.Content.ReadAsAsync<IEnumerable<User>> ( );
             }
             return users;
+        }
+
+        public async Task<User> GetUser(string email)
+        {
+            IEnumerable<User> users = await GetUsers();
+
+            User user = null;
+            for (int x = 0; x < users.Count(); x++)
+            {
+                if (users.ElementAt(x).Email.Equals(email))
+                {
+                    user = users.ElementAt(x);
+                }
+            }
+            return user;
         }
     }
 }

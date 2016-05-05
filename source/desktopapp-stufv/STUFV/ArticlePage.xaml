@@ -46,7 +46,16 @@
             </Viewbox>
 
             <Grid>
-
+                <StackPanel>
+                    <TextBlock Text="Artikels" FontSize="40" Margin="10,5,0,0"/>
+                    <TextBlock Text="Artikel plaatsen" Margin="10,25,0,0" FontSize="26"/>
+                    <Border BorderThickness="2" Background="White" Width="825" Height="500" Margin="10,25,0,0">
+                        <StackPanel>
+                            <TextBox x:Name="titleTextBox" Background="Red" VerticalAlignment="Center" FontSize="22"/>
+                            <TextBox x:Name="contentTextBox" Height="500"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
             </Grid>
         </StackPanel>
         
