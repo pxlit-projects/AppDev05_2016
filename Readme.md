@@ -4,7 +4,6 @@
 
 - Kevin Strijbos
 - Bram Van Vleymen
-- Rudy Mas
 - Joran Claessens
 - Frédérique Van Wonterghem
 - Sacha Reyskens
