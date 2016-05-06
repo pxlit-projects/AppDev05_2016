@@ -24,7 +24,11 @@ namespace webapp_stufv.Repository
             int x;
             for (x = 0; x < organisations.Count(); x++)
             {
-                if (organisations.ElementAt(x).UserId.Equals(userId) && organisations.ElementAt(x).Active == true)
+                if (organisations.ElementAt(x).UserId.Equals(userId) && organisations.ElementAt(x).Active == false && organisations.ElementAt(x).isRegistered == true)
+                {
+                    return 3;
+                }
+                if (organisations.ElementAt(x).UserId.Equals(userId) && organisations.ElementAt(x).Active == true && organisations.ElementAt(x).isRegistered == true)
                 {
                     return 2;
                 }
@@ -38,7 +42,7 @@ namespace webapp_stufv.Repository
 
         public void NewOrganisation(int userId, string name, string disc)
         {
-            var organisation = new Organisation { UserId = userId, Name = name, Description = disc };
+            var organisation = new Organisation { UserId = userId, Name = name, Description = disc, Active=false, isRegistered=false };
             using (var context = new STUFVModelContext())
             {
                 context.Organisations.Add(organisation);

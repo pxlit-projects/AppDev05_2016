@@ -24,6 +24,10 @@ namespace webapp_stufv.Controllers {
                 ViewBag.Description = "";
                 ViewBag.Title = "Organisatie: " + iorganisation.GetOrganisationName((int)Session["userId"]);
             }
+            else if ((int)Session["organisation"] == 3)
+            {
+                ViewBag.Description = "Uw organisatie is geblokeerd.";
+            }
             else {
                 ViewBag.Description = "U heeft geen organisatie.";
             }
