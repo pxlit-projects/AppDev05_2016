@@ -3,6 +3,7 @@
 
     <div class="page-header"><h1>@ViewBag.Title</h1></div>
 @ViewBag.Description
+@if ((int)Session["organisation"] == 3) { 
 <div class="row">
     <div class="col-md-8">
         <button type="button" class="btn-success" data-toggle="collapse" data-target="#NewEvent">Maak een event</button>
@@ -74,5 +75,6 @@
         </div> <br />
     </div>
 </div>
+}
 
 }
