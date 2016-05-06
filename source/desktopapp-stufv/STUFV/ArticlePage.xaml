@@ -57,7 +57,7 @@
                                 <TextBox x:Name="titleTextBox" Text="" Background="#336699" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
                             </DockPanel>
                             <DockPanel>
-                                <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17"/>
+                                <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17" VerticalScrollBarVisibility="Auto"/>
                             </DockPanel>
                             <DockPanel Background="#C0C0C0" Height="24">
                                 <TextBlock Text="Auteur:" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>

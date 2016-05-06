@@ -36,10 +36,10 @@ namespace STUFV
             List<string> filterItems = new List<string> { "Id", "Titel", "AuteurId", "Datum aangemaakt", "Datum vanaf" };
 
             filterBox.ItemsSource = filterItems;
-            filterBox.SelectedIndex = 1;
-
+            
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
             filterBox.SelectionChanged += FilterBox_SelectionChanged;
+            filterBox.SelectedIndex = 1;
             searchDatePicker.SelectedDateChanged += SearchDatePicker_SelectedDateChanged;
             LoadArticles();
         }
@@ -82,16 +82,18 @@ namespace STUFV
 
         private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (filterBox.Text == "Datum aangemaakt" || filterBox.Text == "Datum vanaf")
+            if (filterBox.SelectedIndex >= 3)
             {
                 searchDatePicker.Visibility = Visibility.Visible;
-                searchTextBox.IsReadOnly = true;
+                searchTextBox.IsEnabled = false;
             }
             else
             {
                 searchDatePicker.Visibility = Visibility.Hidden;
-                searchTextBox.IsReadOnly = false;
+                searchTextBox.IsEnabled = true;
             }
+            searchTextBox.Text = "";
+            searchDatePicker.Text = "";
         }
 
 
@@ -101,7 +103,7 @@ namespace STUFV
             {
                 IEnumerable<Article> allArticles = await GetArticles();
 
-                string filter = filterBox.Text;
+                string filter = filterBox.SelectedValue.ToString();
 
                 List<Article> selectArticles = new List<Article>();
                 foreach (Article article in allArticles)
@@ -155,7 +157,7 @@ namespace STUFV
             {
                 IEnumerable<Article> allArticles = await GetArticles();
 
-                string filter = filterBox.Text;
+                string filter = filterBox.SelectedValue.ToString();
 
                 List<Article> selectArticles = new List<Article>();
                 foreach (Article article in allArticles)
@@ -163,7 +165,7 @@ namespace STUFV
                     switch (filter)
                     {
                         case "Datum aangemaakt":
-                            if (article.DateTime == searchDatePicker.SelectedDate) { selectArticles.Add(article); }
+                            if (article.DateTime.Date == searchDatePicker.SelectedDate) { selectArticles.Add(article); }
                             break;
                         case "Datum vanaf":
                             if (article.DateTime >= searchDatePicker.SelectedDate) { selectArticles.Add(article); }
@@ -205,6 +207,92 @@ namespace STUFV
                 articles = await response.Content.ReadAsAsync<IEnumerable<Article>>();
             }
             return articles;
+        }
+
+        public async Task UpdateArticle(Article article)
+        {
+            var articleUrl = "/api/article/" + article.Id;
+            HttpResponseMessage response = await client.PutAsJsonAsync(articleUrl, article);
+
+            if (response.IsSuccessStatusCode)
+            {
+                LoadArticles();
+            }
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            var userUrl = "/api/user";
+            HttpResponseMessage response = await client.GetAsync(userUrl);
+            IEnumerable<User> users = null;
+
+            if (response.IsSuccessStatusCode)
+            {
+                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+            }
+            return users;
+        }
+
+        public async Task<User> GetUser(int id)
+        {
+            IEnumerable<User> users = await GetUsers();
+
+            User user = null;
+            for (int x = 0; x < users.Count(); x++)
+            {
+                if (users.ElementAt(x).Id.Equals(id))
+                {
+                    user = users.ElementAt(x);
+                }
+            }
+            return user;
+        }
+
+        private async void ChangeArticleButton_Click(object sender, RoutedEventArgs e)
+        {
+            Article article = (Article)articlesDataGrid.CurrentItem;
+            User author = await GetUser(article.UserId);
+
+            EditArticleWindow editWindow = new EditArticleWindow(article, author, scherm.user);
+            editWindow.ShowDialog();
+            LoadArticles();
+        }
+
+        private async void DetailsAuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+            Article article = (Article)articlesDataGrid.CurrentItem;
+            User author = await GetUser(article.UserId);
+
+            UserDetailsWindow detailsWindow = new UserDetailsWindow(author);
+            detailsWindow.ShowDialog();
+        }
+
+        private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            Article article = (Article)articlesDataGrid.CurrentItem;
+            bool originalActive = article.Active;
+
+            if (article.Active == true)
+            {
+                if (MessageBox.Show("Bent u zeker dat u dit artikel wilt deactiveren",
+                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    article.Active = false;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("Bent u zeker dat u dit artikel wilt activeren?",
+                    "Activeren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    article.Active = true;
+                }
+            }
+
+            if (originalActive != article.Active)
+            {
+                await UpdateArticle(article);
+            }
         }
     }
 }
