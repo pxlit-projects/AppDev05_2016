@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -33,13 +34,9 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //List<Organisation> organisations = new List<Organisation>
-            //{
-            //    new Organisation {Name = "STUFV", Description = "blabla", Active = true },
-            //    new Organisation {Name = "PXL", Description = "geen commentaar", Active = false },
-            //    new Organisation {Name = "test", Description = "dit is een hele lange tekst. dit is een hele lange tekst" +
-            //                                                "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
-            //};
+            List<string> filterItems = new List<string> { "Id", "Naam" };
+
+            filterBox.ItemsSource = filterItems;
 
             loadOrganisations();
 
@@ -82,6 +79,56 @@ namespace STUFV
             }
         }
 
+        private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchTextBox.Text = "";
+        }
+
+        private async void SearchTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (searchTextBox.Text != "")
+            {
+                IEnumerable<Organisation> allOrganisations = await GetOrganisations();
+
+                string filter = filterBox.SelectedValue.ToString();
+
+                List<Organisation> selectOrganisations = new List<Organisation>();
+                foreach (Organisation organisation in allOrganisations)
+                {
+                    switch (filter)
+                    {
+                        case "Id":
+                            int id = 0;
+                            if (int.TryParse(searchTextBox.Text, out id))
+                            {
+                                id = Convert.ToInt32(searchTextBox.Text);
+                            }
+                            if (organisation.Id == id) { selectOrganisations.Add(organisation); }
+                            break;
+                        case "Naam":
+                            if (organisation.Name.Contains(searchTextBox.Text)) { selectOrganisations.Add(organisation); }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (selectOrganisations == null)
+                {
+                    messageLabel.Content = "Geen resultaten";
+                }
+                else
+                {
+                    messageLabel.Content = "Er zijn " + selectOrganisations.Count + " resultaten gevonden!";
+                    manageOrganisationDataGrid.ItemsSource = selectOrganisations;
+                }
+            }
+            else
+            {
+                messageLabel.Content = "";
+                loadOrganisations();
+            }
+        }
+
         public async void loadOrganisations()
         {
             manageOrganisationDataGrid.ItemsSource = await GetOrganisations();
@@ -89,14 +136,97 @@ namespace STUFV
 
         public async Task<IEnumerable<Organisation>> GetOrganisations()
         {
-            var userUrl = "/api/organisation";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
+            var organisationUrl = "/api/organisation";
+            HttpResponseMessage response = await client.GetAsync(organisationUrl);
             IEnumerable<Organisation> organisations = null;
             if (response.IsSuccessStatusCode)
             {
                 organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
             }
             return organisations;
+        }
+
+        public async Task UpdateOrganisation(Organisation organisation)
+        {
+            var organisationUrl = "/api/organisation/" + organisation.Id;
+            HttpResponseMessage response = await client.PutAsJsonAsync(organisationUrl, organisation);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                loadOrganisations();
+            }
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            var userUrl = "/api/user";
+            HttpResponseMessage response = await client.GetAsync(userUrl);
+            IEnumerable<User> users = null;
+
+            if (response.IsSuccessStatusCode)
+            {
+                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+            }
+            return users;
+        }
+
+        public async Task<User> GetUser(int id)
+        {
+            IEnumerable<User> users = await GetUsers();
+
+            User user = null;
+            for (int x = 0; x < users.Count(); x++)
+            {
+                if (users.ElementAt(x).Id.Equals(id))
+                {
+                    user = users.ElementAt(x);
+                }
+            }
+            return user;
+        }
+
+        private async void MailOrganisationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
+            User user = await GetUser(organisation.UserId);
+
+            var url = "mailto:" + user.Email;
+            Process.Start(url);
+        }
+
+        private void EventsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
+            OrganisationEventsWindow eventWindow = new OrganisationEventsWindow(organisation);
+            eventWindow.ShowDialog();
+        }
+
+        private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
+            bool originalActive = organisation.Active;
+
+            if (organisation.Active == true)
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u de organisatie, {0}, wilt deactiveren?", organisation.Name),
+                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    organisation.Active = false;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u de organisatie, {0}, wilt activeren?", organisation.Name),
+                    "Activeren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    organisation.Active = true;
+                }
+            }
+
+            if (originalActive != organisation.Active)
+            {
+                await UpdateOrganisation(organisation);
+            }
         }
     }
 }
