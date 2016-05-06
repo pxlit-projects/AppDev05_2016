@@ -19,13 +19,13 @@ namespace webapp_stufv.Controllers
         List<Event> _events;
         public ActionResult Index()
         {
-                ViewBag.Title = "Evenementen";
+            ViewBag.Title = "Evenementen";
             _events = ievent.GetAllEvents();
             var model = from r in _events
-                            orderby r.Id
-                            select r;
-                return View(model);
-            }
+                        orderby r.Id
+                        select r;
+            return View(model);
+        }
         public ActionResult Details(int id)
         {
             if (Session["email"] == null || Session["email"].Equals(""))
@@ -59,7 +59,8 @@ namespace webapp_stufv.Controllers
             ViewBag.Title = tuple.Item1.Name;
             return View(tuple);
         }
-        public ActionResult Attend(int id) {
+        public ActionResult Attend(int id)
+        {
             ViewBag.Title = "Attend";
             ViewBag.id = id;
             if (Session["email"] == null || Session["email"].Equals(""))
@@ -70,34 +71,38 @@ namespace webapp_stufv.Controllers
             else {
                 int userid = (int)Session["userId"];
                 try { iattend.SignAttend(userid, id); }
-                catch(System.Data.Entity.Infrastructure.DbUpdateException e) {
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
                     ViewBag.MyMessageToUsers = "Je hebt je al aangemeld voor dit evenement";
                     return View();
                 }
-                
+
                 ViewBag.MyMessageToUsers = "U bent aangemeld voor dit evenement";
                 return View();
             }
         }
         public ActionResult RemoveAttend(int id)
         {
-           iattend.UnSignAttend((int)Session["userId"], id);
+            iattend.UnSignAttend((int)Session["userId"], id);
             ViewBag.id = id;
             return View();
         }
-        public ActionResult BobProcess(int id) {
+        public ActionResult BobProcess(int id)
+        {
             int NrOfPlaces;
             int.TryParse(Request.Form["Item2.NrOfPlaces"], out NrOfPlaces);
             ViewBag.id = id;
             idesdriver.SetDES((int)Session["userId"], id, NrOfPlaces);
             return View();
         }
-        public ActionResult RemoveBob(int id) {
+        public ActionResult RemoveBob(int id)
+        {
             ViewBag.id = id;
             idesdriver.unSetDES((int)Session["userId"], id);
             return View();
         }
-        public ActionResult FindBob(int id) {
+        public ActionResult FindBob(int id)
+        {
             ViewBag.Title = "Find bob";
             ViewBag.Description = "Heb je al een bob? Kijk hieronder en vind een bob of schijf jezelf in als bob.";
             return View(idesdriver.ActiveDriversPerEvent(id, (int)Session["userId"]));
@@ -112,7 +117,7 @@ namespace webapp_stufv.Controllers
             else {
                 ipassenger.NewPassenger((int)Session["userId"], id);
             }
-            
+
             return View();
         }
     }

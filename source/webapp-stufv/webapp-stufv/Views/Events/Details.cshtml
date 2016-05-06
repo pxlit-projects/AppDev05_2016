@@ -103,11 +103,11 @@
                                                                     @Html.ValidationMessageFor(m => Model.Item2.NrOfPlaces, "", new { @class = "text-danger" })
                                                                 </div>
                                                             </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-offset-3 col-md-9">
-                                                                        <input type="submit" value="Registreer" class="btn btn-default" />
-                                                                    </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-offset-3 col-md-9">
+                                                                    <input type="submit" value="Registreer" class="btn btn-default" />
                                                                 </div>
+                                                            </div>
                                                         }
                                                     </section>
                                                 </div>
@@ -116,13 +116,13 @@
                                         </td>
                                     }
                                 </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="@Url.Action("FindBob", "Events", new { id = Model.Item1.Id })">
-                                                    <p class="btn btn-success">Vind BOB</p>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("FindBob", "Events", new { id = Model.Item1.Id })">
+                                            <p class="btn btn-success">Vind BOB</p>
+                                        </a>
+                                    </td>
+                                </tr>
                             }
                             else {
                                 <tr>
