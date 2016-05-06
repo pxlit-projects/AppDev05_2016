@@ -24,7 +24,20 @@ namespace webapp_stufv.Repository
             int x;
             for (x = 0; x < passengers.Count(); x++)
             {
-                if (passengers.ElementAt(x).EventId.Equals(eventId) && passengers.ElementAt(x).UserId.Equals(userId))
+                if (passengers.ElementAt(x).EventId.Equals(eventId) && passengers.ElementAt(x).UserId.Equals(userId) && passengers.ElementAt(x).Active == true && passengers.ElementAt(x).Accepted == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool SignedUp(int desId, int userId)
+        {
+            List<Passenger> passengers = GetAllPassengers();
+            int x;
+            for (x = 0; x < passengers.Count(); x++)
+            {
+                if (passengers.ElementAt(x).DesDriverId.Equals(desId) && passengers.ElementAt(x).UserId.Equals(userId) && passengers.ElementAt(x).Active == true)
                 {
                     return true;
                 }

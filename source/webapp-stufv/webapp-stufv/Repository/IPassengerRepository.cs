@@ -12,6 +12,7 @@ namespace webapp_stufv.Repository
         void NewPassenger(int userId, int desId);
         int PassengersPerDriver(int id);
         bool IsPassenger(int eventId, int userId);
+        bool SignedUp(int desId, int userId);
 
     }
 }

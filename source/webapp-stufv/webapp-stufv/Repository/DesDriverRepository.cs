@@ -16,7 +16,9 @@ namespace webapp_stufv.Repository
             int x;
             for (x = 0; x < allDrivers.Count(); x++)
             {
-                if (allDrivers.ElementAt(x).EventId.Equals(eventId) && allDrivers.ElementAt(x).Active.Equals(true) && allDrivers.ElementAt(x).NrOfPlaces > allDrivers.ElementAt(x).NrOfFilled && allDrivers.ElementAt(x).UserId != userId)
+                if (allDrivers.ElementAt(x).EventId.Equals(eventId) && allDrivers.ElementAt(x).Active.Equals(true) 
+                    && allDrivers.ElementAt(x).NrOfPlaces > allDrivers.ElementAt(x).NrOfFilled && allDrivers.ElementAt(x).UserId != userId
+                    && !ipassenger.SignedUp(allDrivers.ElementAt(x).Id,userId))
                 {
                     activeDrivers.Add(allDrivers.ElementAt(x));
                 }
