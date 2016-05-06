@@ -22,7 +22,6 @@ namespace STUFV {
     public partial class NewOrganisationPage : Page {
         HomeWindow scherm = ( HomeWindow ) Application.Current.MainWindow;
         private HttpClient client = new HttpClient ( );
-        private IEnumerable<Organisation> _organisations;
 
         public NewOrganisationPage ( ) {
             InitializeComponent ( );
@@ -31,13 +30,9 @@ namespace STUFV {
             client.DefaultRequestHeaders.Accept.Clear ( );
             client.DefaultRequestHeaders.Accept.Add ( new MediaTypeWithQualityHeaderValue ( "application/json" ) );
 
-            //List<Organisation> organisations = new List<Organisation>
-            //{
-            //    new Organisation {Name = "STUFV", Description = "blabla", Active = true },
-            //    new Organisation {Name = "PXL", Description = "geen commentaar", Active = false },
-            //    new Organisation {Name = "test", Description = "dit is een hele lange tekst. dit is een hele lange tekst" +
-            //                                                "dit is een hele lange tekst. dit is een hele lange tekst.", Active = true }
-            //};
+            List<string> filterItems = new List<string> { "Id", "Naam" };
+
+            filterBox.ItemsSource = filterItems;
 
             loadOrganisations ( );
 
@@ -82,14 +77,24 @@ namespace STUFV {
             }
         }
 
-        public void loadOrganisations ( ) {
-            _organisations = GetOrganisations ( ).Result;
-            newOrganisationDataGrid.ItemsSource = _organisations;
+        public async void loadOrganisations()
+        {
+            IEnumerable<Organisation> allOrganisations = await GetOrganisations();
+            List<Organisation> selectOrganisations = null;
+
+            foreach (Organisation organisation in allOrganisations)
+            {
+                if (organisation.Active != true && organisation.Active != false)
+                {
+                    selectOrganisations.Add(organisation);
+                }
+            }
+            organisationDataGrid.ItemsSource = selectOrganisations;
         }
 
         public async Task<IEnumerable<Organisation>> GetOrganisations ( ) {
             var userUrl = "/api/organisation";
-            HttpResponseMessage response = await client.GetAsync ( userUrl ).ConfigureAwait( false );
+            HttpResponseMessage response = await client.GetAsync ( userUrl );
             IEnumerable<Organisation> organisations = null;
             if ( response.IsSuccessStatusCode ) {
                 organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>> ( );
@@ -98,26 +103,30 @@ namespace STUFV {
         }
 
         private void goodOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
-            int index = newOrganisationDataGrid.SelectedIndex;
-            Organisation selected = _organisations.ElementAt ( index );
+            Organisation organisation = (Organisation)organisationDataGrid.CurrentItem;
 
-            selected.Active = true;
+            organisation.Active = true;
 
-            updateOrganisation ( selected );
+            updateOrganisation ( organisation );
         }
 
         private void badOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
-            int index = newOrganisationDataGrid.SelectedIndex;
-            Organisation selected = _organisations.ElementAt ( index );
+            Organisation organisation = (Organisation)organisationDataGrid.CurrentItem;
 
-            selected.Active = false;
+            organisation.Active = false;
 
-            updateOrganisation ( selected );
+            updateOrganisation ( organisation );
         }
 
-        public void updateOrganisation ( Organisation toUpdate ) {
+        public async void updateOrganisation(Organisation toUpdate)
+        {
             var url = "api/organisation/" + toUpdate.Id;
-            var response = client.PutAsJsonAsync ( url, toUpdate ).Result;
+            HttpResponseMessage response = await client.PutAsJsonAsync(url, toUpdate);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loadOrganisations();
+            }
         }
     }
 }
