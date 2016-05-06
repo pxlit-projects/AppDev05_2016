@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -19,14 +18,14 @@ using System.Windows.Shapes;
 namespace STUFV
 {
     /// <summary>
-    /// Interaction logic for ManageOrganisationPage.xaml
+    /// Interaction logic for ManageEventPage.xaml
     /// </summary>
-    public partial class ManageOrganisationPage : Page
+    public partial class ManageEventPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
-        private HttpClient client = new HttpClient();
+        HttpClient client = new HttpClient();
 
-        public ManageOrganisationPage()
+        public ManageEventPage()
         {
             InitializeComponent();
 
@@ -34,12 +33,11 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            List<string> filterItems = new List<string> { "Id", "Naam" };
+            List<string> filterItems = new List<string> { "Id", "Naam", "Datum vanaf" };
 
             filterBox.ItemsSource = filterItems;
 
-            loadOrganisations();
-
+            LoadEvents();
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
@@ -82,21 +80,33 @@ namespace STUFV
             }
         }
 
+
         private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (filterBox.SelectedIndex == 2)
+            {
+                searchDatePicker.Visibility = Visibility.Visible;
+                searchTextBox.IsEnabled = false;
+            }
+            else
+            {
+                searchDatePicker.Visibility = Visibility.Hidden;
+                searchTextBox.IsEnabled = true;
+            }
             searchTextBox.Text = "";
+            searchDatePicker.Text = "";
         }
 
         private async void SearchTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             if (searchTextBox.Text != "")
             {
-                IEnumerable<Organisation> allOrganisations = await GetOrganisations();
+                IEnumerable<Event> allEvents = await GetEvents();
 
                 string filter = filterBox.SelectedValue.ToString();
 
-                List<Organisation> selectOrganisations = new List<Organisation>();
-                foreach (Organisation organisation in allOrganisations)
+                List<Event> selectEvents = new List<Event>();
+                foreach (Event orgEvent in allEvents)
                 {
                     switch (filter)
                     {
@@ -106,129 +116,115 @@ namespace STUFV
                             {
                                 id = Convert.ToInt32(searchTextBox.Text);
                             }
-                            if (organisation.Id == id) { selectOrganisations.Add(organisation); }
+                            if (orgEvent.Id == id) { selectEvents.Add(orgEvent); }
                             break;
                         case "Naam":
-                            if (organisation.Name.Contains(searchTextBox.Text)) { selectOrganisations.Add(organisation); }
+                            if (orgEvent.Name.Contains(searchTextBox.Text)) { selectEvents.Add(orgEvent); }
                             break;
                         default:
                             break;
                     }
                 }
-                if (selectOrganisations == null)
+                if (selectEvents == null)
                 {
                     messageLabel.Content = "Geen resultaten";
                 }
                 else
                 {
-                    messageLabel.Content = "Er zijn " + selectOrganisations.Count + " resultaten gevonden!";
-                    manageOrganisationDataGrid.ItemsSource = selectOrganisations;
+                    messageLabel.Content = "Er zijn " + selectEvents.Count + " resultaten gevonden!";
+                    eventDataGrid.ItemsSource = selectEvents;
                 }
             }
             else
             {
                 messageLabel.Content = "";
-                loadOrganisations();
+                LoadEvents();
             }
         }
 
-        public async void loadOrganisations()
+        private async void SearchDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            manageOrganisationDataGrid.ItemsSource = await GetOrganisations();
-        }
-
-        public async Task<IEnumerable<Organisation>> GetOrganisations()
-        {
-            var organisationUrl = "/api/organisation";
-            HttpResponseMessage response = await client.GetAsync(organisationUrl);
-            IEnumerable<Organisation> organisations = null;
-            if (response.IsSuccessStatusCode)
+            if (searchDatePicker.SelectedDate != null)
             {
-                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
-            }
-            return organisations;
-        }
+                IEnumerable<Event> allEvents = await GetEvents();
 
-        public async Task UpdateOrganisation(Organisation organisation)
-        {
-            var organisationUrl = "/api/organisation/" + organisation.Id;
-            HttpResponseMessage response = await client.PutAsJsonAsync(organisationUrl, organisation);
-            
-            if (response.IsSuccessStatusCode)
-            {
-                loadOrganisations();
-            }
-        }
+                string filter = filterBox.SelectedValue.ToString();
 
-        public async Task<IEnumerable<User>> GetUsers()
-        {
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
-            IEnumerable<User> users = null;
-
-            if (response.IsSuccessStatusCode)
-            {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
-            }
-            return users;
-        }
-
-        public async Task<User> GetUser(int id)
-        {
-            IEnumerable<User> users = await GetUsers();
-
-            User user = null;
-            for (int x = 0; x < users.Count(); x++)
-            {
-                if (users.ElementAt(x).Id.Equals(id))
+                List<Event> selectEvents = new List<Event>();
+                foreach (Event orgEvent in allEvents)
                 {
-                    user = users.ElementAt(x);
+                    if (orgEvent.Start.Date >= searchDatePicker.SelectedDate) { selectEvents.Add(orgEvent); }
                 }
-            }
-            return user;
-        }
-
-        private async void MailOrganisationButton_Click(object sender, RoutedEventArgs e)
-        {
-            Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
-            User user = await GetUser(organisation.UserId);
-
-            var url = "mailto:" + user.Email;
-            Process.Start(url);
-        }
-
-        private void EventsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
-            OrganisationEventsWindow eventWindow = new OrganisationEventsWindow(organisation);
-            eventWindow.ShowDialog();
-        }
-
-        private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
-        {
-            Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
-            bool originalActive = organisation.Active;
-
-            if (organisation.Active == true)
-            {
-                if (MessageBox.Show(String.Format("Bent u zeker dat u de organisatie, {0}, wilt deactiveren?", organisation.Name),
-                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                if (selectEvents == null)
                 {
-                    organisation.Active = false;
+                    messageLabel.Content = "Geen resultaten";
+                }
+                else
+                {
+                    messageLabel.Content = "Er zijn " + selectEvents.Count + " resultaten gevonden!";
+                    eventDataGrid.ItemsSource = selectEvents;
                 }
             }
             else
             {
-                if (MessageBox.Show(String.Format("Bent u zeker dat u de organisatie, {0}, wilt activeren?", organisation.Name),
+                messageLabel.Content = "";
+                LoadEvents();
+            }
+        }
+
+        private async void LoadEvents()
+        {
+            eventDataGrid.ItemsSource = await GetEvents();
+        }
+
+        private async Task<IEnumerable<Event>> GetEvents()
+        {
+            var eventUrl = "/api/event";
+            HttpResponseMessage response = await client.GetAsync(eventUrl);
+            IEnumerable<Event> events = null;
+            if (response.IsSuccessStatusCode)
+            {
+                events = await response.Content.ReadAsAsync<IEnumerable<Event>>();
+            }
+            return events;
+        }
+
+        private async Task UpdateEvent(Event orgEvent)
+        {
+            var eventUrl = "/api/event/" + orgEvent.Id;
+            HttpResponseMessage response = await client.PutAsJsonAsync(eventUrl, orgEvent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                LoadEvents();
+            }
+        }
+
+        private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            Event orgEvent = (Event)eventDataGrid.CurrentItem;
+            bool originalActive = orgEvent.Active;
+
+            if (orgEvent.Active == true)
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u het event, {0}, wilt deactiveren?", orgEvent.Name),
+                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    orgEvent.Active = false;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u het event, {0}, wilt activeren?", orgEvent.Name),
                     "Activeren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    organisation.Active = true;
+                    orgEvent.Active = true;
                 }
             }
 
-            if (originalActive != organisation.Active)
+            if (originalActive != orgEvent.Active)
             {
-                await UpdateOrganisation(organisation);
+                await UpdateEvent(orgEvent);
             }
         }
     }
