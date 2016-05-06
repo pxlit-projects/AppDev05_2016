@@ -119,7 +119,7 @@ namespace STUFV
                             if (orgEvent.Id == id) { selectEvents.Add(orgEvent); }
                             break;
                         case "Naam":
-                            if (orgEvent.Name.Contains(searchTextBox.Text)) { selectEvents.Add(orgEvent); }
+                            if (orgEvent.Name.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectEvents.Add(orgEvent); }
                             break;
                         default:
                             break;

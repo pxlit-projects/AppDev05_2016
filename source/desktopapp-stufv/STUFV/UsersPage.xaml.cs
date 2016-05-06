@@ -105,13 +105,13 @@ namespace STUFV
                             if (user.Id == id) { selectUsers.Add(user); }
                             break;
                         case "Voornaam":
-                            if (user.FirstName.Contains(searchTextBox.Text)) { selectUsers.Add(user); }
+                            if (user.FirstName.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectUsers.Add(user); }
                             break;
                         case "Achternaam":
-                            if (user.LastName.Contains(searchTextBox.Text)) { selectUsers.Add(user); }
+                            if (user.LastName.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectUsers.Add(user); }
                             break;
                         case "Email":
-                            if (user.Email.Contains(searchTextBox.Text)) { selectUsers.Add(user); }
+                            if (user.Email.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectUsers.Add(user); }
                             break;
                         default:
                             break;

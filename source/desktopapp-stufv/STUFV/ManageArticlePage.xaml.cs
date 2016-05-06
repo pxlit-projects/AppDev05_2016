@@ -122,7 +122,7 @@ namespace STUFV
                             if (article.Id == id) { selectArticles.Add(article); }
                             break;
                         case "Titel":
-                            if (article.Title.Contains(searchTextBox.Text)) { selectArticles.Add(article); }
+                            if (article.Title.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectArticles.Add(article); }
                             break;
                         case "AuteurId":
                             int auteurId = 0;

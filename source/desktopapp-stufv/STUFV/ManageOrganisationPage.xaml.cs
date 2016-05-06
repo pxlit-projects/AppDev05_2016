@@ -109,7 +109,7 @@ namespace STUFV
                             if (organisation.Id == id) { selectOrganisations.Add(organisation); }
                             break;
                         case "Naam":
-                            if (organisation.Name.Contains(searchTextBox.Text)) { selectOrganisations.Add(organisation); }
+                            if (organisation.Name.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectOrganisations.Add(organisation); }
                             break;
                         default:
                             break;
