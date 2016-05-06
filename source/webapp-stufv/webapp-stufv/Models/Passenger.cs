@@ -18,6 +18,10 @@ namespace webapp_stufv.Models
         public int DesDriverId { get; set; }
         [ForeignKey("Event")]
         public int EventId { get; set; }
+        [Required]
+        public bool Active { get; set; }
+        [Required]
+        public bool Accepted { get; set; }
         public virtual Event Event { get; set; }
         public virtual User User { get; set; }
         public virtual DesDriver DesDriver { get; set;}

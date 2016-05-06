@@ -42,7 +42,7 @@ namespace webapp_stufv.Repository
                     eventId = desdriver.ElementAt(x).EventId;
                 }
             }
-            var passenger = new Passenger { UserId = userId, DesDriverId = desId, EventId = eventId};
+            var passenger = new Passenger { UserId = userId, DesDriverId = desId, EventId = eventId, Active = true, Accepted = false};
             using (var context = new STUFVModelContext())
             {
                 context.Passengers.Add(passenger);
