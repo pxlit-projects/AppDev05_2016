@@ -21,7 +21,11 @@ namespace webapp_stufv.Models {
         [Required]
         public string Description { get; set; }
 
+        [Required]
         public Boolean Active { get; set; }
+
+        [Required]
+        public Boolean isRegistered { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
 
