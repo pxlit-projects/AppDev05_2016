@@ -38,7 +38,7 @@ namespace webapp_stufv.Repository
 
         public void NewOrganisation(int userId, string name, string disc)
         {
-            var organisation = new Organisation { UserId = userId, Active = false, Name = name, Description = disc };
+            var organisation = new Organisation { UserId = userId, Name = name, Description = disc };
             using (var context = new STUFVModelContext())
             {
                 context.Organisations.Add(organisation);

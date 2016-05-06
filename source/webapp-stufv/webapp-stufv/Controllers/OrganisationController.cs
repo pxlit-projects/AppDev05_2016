@@ -59,7 +59,7 @@ namespace webapp_stufv.Controllers {
                 EntranceFee = double.Parse(Request.Form["EntranceFee"]),
                 AlcoholFree = Boolean.Parse(Request.Form["AlcoholFree"]),
                 OrganisationId = iorganisation.GetOrganisationId((int)Session["userId"]),
-                Active = true
+                Active = false
             };
             using (var context = new STUFVModelContext())
             {
