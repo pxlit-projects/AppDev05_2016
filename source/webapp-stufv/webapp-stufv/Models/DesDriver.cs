@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using webapp_stufv.Repository;
 
 namespace webapp_stufv.Models {
     [Table("DesDriver")]
@@ -33,6 +34,16 @@ namespace webapp_stufv.Models {
 
         public virtual ICollection<Passenger> Passengers { get; set; }
 
-        
+        public int GetFreeSpaces()
+        {
+            IPassengerRepository ipassenger = new PassengerRepository();
+            int passengerCount = 0;
+            passengerCount = ipassenger.PassengersPerDriver(UserId);
+            return NrOfPlaces - passengerCount;
+        }
+        public string GetDriverName() {
+            IDesDriverRepository ides = new DesDriverRepository();
+            return ides.GetDriverName(UserId);
+        }
     }
 }

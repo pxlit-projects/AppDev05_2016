@@ -30,7 +30,7 @@
                         @item.GetDriverName()
                     </td>
                     <td class="col-lg-2">
-                        @item.GetFreeSpaces(item.Id)
+                        @item.GetFreeSpaces()
                     </td>
                     <td class="col-lg-6">
                         <a href="@Url.Action("JoinBob", "Events", new { id = item.Id })">

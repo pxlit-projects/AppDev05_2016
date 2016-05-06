@@ -48,13 +48,6 @@ namespace webapp_stufv.Repository
 
         }
 
-        public int GetFreeSpaces(int userId, int NrOfPlaces)
-        {
-            int passengerCount = 0;
-            passengerCount = ipassenger.PassengersPerDriver(userId);
-            return NrOfPlaces - passengerCount;
-        }
-
         public bool IsDES(int userId, int eventId)
         {
             List<DesDriver> drivers = GetAllDrivers();
