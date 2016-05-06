@@ -98,21 +98,24 @@ namespace STUFV
                 List<Organisation> selectOrganisations = new List<Organisation>();
                 foreach (Organisation organisation in allOrganisations)
                 {
-                    switch (filter)
+                    if (organisation.isRegistered == true)
                     {
-                        case "Id":
-                            int id = 0;
-                            if (int.TryParse(searchTextBox.Text, out id))
-                            {
-                                id = Convert.ToInt32(searchTextBox.Text);
-                            }
-                            if (organisation.Id == id) { selectOrganisations.Add(organisation); }
-                            break;
-                        case "Naam":
-                            if (organisation.Name.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectOrganisations.Add(organisation); }
-                            break;
-                        default:
-                            break;
+                        switch (filter)
+                        {
+                            case "Id":
+                                int id = 0;
+                                if (int.TryParse(searchTextBox.Text, out id))
+                                {
+                                    id = Convert.ToInt32(searchTextBox.Text);
+                                }
+                                if (organisation.Id == id) { selectOrganisations.Add(organisation); }
+                                break;
+                            case "Naam":
+                                if (organisation.Name.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectOrganisations.Add(organisation); }
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
                 if (selectOrganisations == null)
@@ -134,12 +137,23 @@ namespace STUFV
 
         public async void loadOrganisations()
         {
-            manageOrganisationDataGrid.ItemsSource = await GetOrganisations();
+            IEnumerable<Organisation> allOrganisations = await GetOrganisations();
+            List<Organisation> selectOrganisations = new List<Organisation>();
+
+            foreach (Organisation organisation in allOrganisations)
+            {
+                if (organisation.isRegistered == true)
+                {
+                    selectOrganisations.Add(organisation);
+                }
+            }
+
+            manageOrganisationDataGrid.ItemsSource = selectOrganisations;
         }
 
         public async Task<IEnumerable<Organisation>> GetOrganisations()
         {
-            var organisationUrl = "/api/organisation";
+            var organisationUrl = "/api/organisations";
             HttpResponseMessage response = await client.GetAsync(organisationUrl);
             IEnumerable<Organisation> organisations = null;
             if (response.IsSuccessStatusCode)
@@ -151,7 +165,7 @@ namespace STUFV
 
         public async Task UpdateOrganisation(Organisation organisation)
         {
-            var organisationUrl = "/api/organisation/" + organisation.Id;
+            var organisationUrl = "/api/organisations/" + organisation.Id;
             HttpResponseMessage response = await client.PutAsJsonAsync(organisationUrl, organisation);
             
             if (response.IsSuccessStatusCode)

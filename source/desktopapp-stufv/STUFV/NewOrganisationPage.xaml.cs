@@ -80,11 +80,11 @@ namespace STUFV {
         public async void loadOrganisations()
         {
             IEnumerable<Organisation> allOrganisations = await GetOrganisations();
-            List<Organisation> selectOrganisations = null;
+            List<Organisation> selectOrganisations = new List<Organisation>();
 
             foreach (Organisation organisation in allOrganisations)
             {
-                if (organisation.Active != true && organisation.Active != false)
+                if (organisation.isRegistered == false)
                 {
                     selectOrganisations.Add(organisation);
                 }
@@ -93,7 +93,7 @@ namespace STUFV {
         }
 
         public async Task<IEnumerable<Organisation>> GetOrganisations ( ) {
-            var userUrl = "/api/organisation";
+            var userUrl = "/api/organisations";
             HttpResponseMessage response = await client.GetAsync ( userUrl );
             IEnumerable<Organisation> organisations = null;
             if ( response.IsSuccessStatusCode ) {
@@ -102,31 +102,35 @@ namespace STUFV {
             return organisations;
         }
 
-        private void goodOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
-            Organisation organisation = (Organisation)organisationDataGrid.CurrentItem;
-
-            organisation.Active = true;
-
-            updateOrganisation ( organisation );
-        }
-
-        private void badOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
-            Organisation organisation = (Organisation)organisationDataGrid.CurrentItem;
-
-            organisation.Active = false;
-
-            updateOrganisation ( organisation );
-        }
-
         public async void updateOrganisation(Organisation toUpdate)
         {
-            var url = "api/organisation/" + toUpdate.Id;
+            var url = "api/organisations/" + toUpdate.Id;
             HttpResponseMessage response = await client.PutAsJsonAsync(url, toUpdate);
 
             if (response.IsSuccessStatusCode)
             {
                 loadOrganisations();
             }
+        }
+
+        private void GoodOrganisationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Organisation organisation = (Organisation)organisationDataGrid.CurrentItem;
+
+            organisation.Active = true;
+            organisation.isRegistered = true;
+
+            updateOrganisation(organisation);
+        }
+
+        private void BadOrganisationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Organisation organisation = (Organisation)organisationDataGrid.CurrentItem;
+
+            organisation.Active = false;
+            organisation.isRegistered = true;
+
+            updateOrganisation(organisation);
         }
     }
 }

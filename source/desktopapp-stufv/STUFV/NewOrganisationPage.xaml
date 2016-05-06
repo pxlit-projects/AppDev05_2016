@@ -107,8 +107,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <Button x:Name="goodOrganisationButton" Content="Toelaten" ToolTip="Aanvaard deze organisatie" Margin="0,5,5,5" Click="goodOrganisationButton_Click"/>
-                                            <Button x:Name="badOrganisationButton" Content="Niet toelaten" ToolTip="Annuleer deze organisatie" Margin="0,5,5,5" Click="badOrganisationButton_Click"/>
+                                            <Button x:Name="goodOrganisationButton" Content="Toelaten" ToolTip="Aanvaard deze organisatie" Margin="0,5,5,5" Click="GoodOrganisationButton_Click"/>
+                                            <Button x:Name="badOrganisationButton" Content="Niet toelaten" ToolTip="Annuleer deze organisatie" Margin="0,5,5,5" Click="BadOrganisationButton_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
