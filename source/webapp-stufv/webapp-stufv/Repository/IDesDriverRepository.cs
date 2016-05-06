@@ -9,7 +9,7 @@ namespace webapp_stufv.Repository
     public interface IDesDriverRepository 
     {
         string GetDriverName(int UserId);
-        List<DesDriver> ActiveDriversPerEvent(int eventId);
+        List<DesDriver> ActiveDriversPerEvent(int eventId, int userId);
         void unSetDES(int userId, int eventId);
         void SetDES(int userId, int eventId, int places);
         List<DesDriver> GetAllDrivers();

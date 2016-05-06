@@ -9,14 +9,14 @@ namespace webapp_stufv.Repository
     public class DesDriverRepository : IDesDriverRepository
     {
         private IPassengerRepository ipassenger = new PassengerRepository();
-        public List<DesDriver> ActiveDriversPerEvent(int eventId)
+        public List<DesDriver> ActiveDriversPerEvent(int eventId, int userId)
         {
             List<DesDriver> allDrivers = GetAllDrivers();
             List<DesDriver> activeDrivers = new List<DesDriver>();
             int x;
             for (x = 0; x < allDrivers.Count(); x++)
             {
-                if (allDrivers.ElementAt(x).EventId.Equals(eventId) && allDrivers.ElementAt(x).Active.Equals(true) && allDrivers.ElementAt(x).NrOfPlaces > allDrivers.ElementAt(x).NrOfFilled)
+                if (allDrivers.ElementAt(x).EventId.Equals(eventId) && allDrivers.ElementAt(x).Active.Equals(true) && allDrivers.ElementAt(x).NrOfPlaces > allDrivers.ElementAt(x).NrOfFilled && allDrivers.ElementAt(x).UserId != userId)
                 {
                     activeDrivers.Add(allDrivers.ElementAt(x));
                 }
