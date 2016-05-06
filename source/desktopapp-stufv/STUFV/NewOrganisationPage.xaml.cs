@@ -93,7 +93,7 @@ namespace STUFV {
         }
 
         public async Task<IEnumerable<Organisation>> GetOrganisations ( ) {
-            var userUrl = "/api/organisation";
+            var userUrl = "/api/organisations";
             HttpResponseMessage response = await client.GetAsync ( userUrl );
             IEnumerable<Organisation> organisations = null;
             if ( response.IsSuccessStatusCode ) {
@@ -104,7 +104,7 @@ namespace STUFV {
 
         public async void updateOrganisation(Organisation toUpdate)
         {
-            var url = "api/organisation/" + toUpdate.Id;
+            var url = "api/organisations/" + toUpdate.Id;
             HttpResponseMessage response = await client.PutAsJsonAsync(url, toUpdate);
 
             if (response.IsSuccessStatusCode)
