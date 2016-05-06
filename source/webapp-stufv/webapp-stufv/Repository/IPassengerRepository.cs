@@ -11,7 +11,7 @@ namespace webapp_stufv.Repository
         List<Passenger> GetAllPassengers();
         void NewPassenger(int userId, int desId);
         int PassengersPerDriver(int id);
-        bool IsPassenger(int driverId, int userId);
+        bool IsPassenger(int eventId, int userId);
 
     }
 }

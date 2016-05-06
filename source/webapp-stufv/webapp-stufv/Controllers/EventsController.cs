@@ -31,19 +31,27 @@ namespace webapp_stufv.Controllers
             if (Session["email"] == null || Session["email"].Equals(""))
             { }
             else {
-                if (iattend.IsAttending((int)Session["userId"], id))
+                int userId = (int)Session["userId"];
+                if (iattend.IsAttending(userId, id))
                 {
                     ViewBag.attend = true;
                 }
                 else {
                     ViewBag.attend = false;
                 }
-                if (idesdriver.IsDES((int)Session["userId"], id))
+                if (idesdriver.IsDES(userId, id))
                 {
                     ViewBag.isBob = true;
                 }
                 else {
                     ViewBag.isBob = false;
+                }
+                if (ipassenger.IsPassenger(id, userId))
+                {
+                    ViewBag.isPassenger = true;
+                }
+                else {
+                    ViewBag.isPassenger = false;
                 }
             }
             _events = ievent.GetAllEvents();

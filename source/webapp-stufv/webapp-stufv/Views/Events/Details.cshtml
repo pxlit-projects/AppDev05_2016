@@ -75,10 +75,20 @@
                                                 <p class="btn btn-warning">Niet aanwezig</p>
                                             </a>
                                         </td>
-                                        </tr><tr>
-                                    
-                                                                                         @if (ViewBag.isbob)
-                                                                                         {
+                                        </tr>
+                            if (ViewBag.isPassenger)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("NoBob", "Events", new { id = Model.Item1.Id })">
+                                            <p class="btn btn-warning">Ik wil geen bob meer</p>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                            else {
+                                if (ViewBag.isbob)
+                                {<tr>
                                                                                              <td>
                                                                                                  <a href="@Url.Action("RemoveBob", "Events", new { id = Model.Item1.Id })">
                                                                                                      <p class="btn btn-warning">Ik wil geen BOB meer zijn.</p>
@@ -122,8 +132,10 @@
                                                 </a>
                                             </td>
                                             </tr>
+                                            }
                                         }
-                                else {
+                                    }
+                                    else {
                     <tr>
                         <td>
                             <a href="@Url.Action("Attend", "Events", new { id = Model.Item1.Id })">
@@ -132,7 +144,7 @@
                         </td>
                     </tr>
                                 }
-                                        
+                    }              
                         
                     }
                 </tbody>
