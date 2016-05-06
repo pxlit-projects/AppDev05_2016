@@ -38,7 +38,7 @@ namespace webapp_stufv.Models {
         {
             IPassengerRepository ipassenger = new PassengerRepository();
             int passengerCount = 0;
-            passengerCount = ipassenger.PassengersPerDriver(UserId);
+            passengerCount = ipassenger.PassengersPerDriver(Id);
             return NrOfPlaces - passengerCount;
         }
         public string GetDriverName() {
