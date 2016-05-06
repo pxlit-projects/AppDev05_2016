@@ -294,6 +294,7 @@
     <Content Include="Content\img\info.png" />
     <Content Include="Content\img\kruisje.jpg" />
     <Content Include="Content\img\news.jpg" />
+    <Content Include="Content\img\party.png" />
     <Content Include="Content\img\pint.png" />
     <Content Include="Content\img\thumbsup.png" />
     <Content Include="Content\img\vinkje.png" />
