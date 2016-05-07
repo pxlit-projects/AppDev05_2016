@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using webapp_stufv.Repository;
 using webapp_stufv.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace webapp_stufv.Controllers {
     public class EventsController : Controller {
@@ -170,6 +172,7 @@ namespace webapp_stufv.Controllers {
 
         public ActionResult AddReview (int id) {
             string comment = Request.Form[ "Comment" ];
+            int eventid = id;
 
             using ( var context = new STUFVModelContext ( ) ) {
                 var review = new Review ( );
@@ -182,10 +185,20 @@ namespace webapp_stufv.Controllers {
                 review.Flagged = false;
                 review.Content = comment;
                 context.Reviews.Add ( review );
-                context.SaveChanges ( );
+                try {
+                    context.SaveChanges ( );
+                } catch ( DbEntityValidationException dbEx ) {
+                    foreach ( var validationErrors in dbEx.EntityValidationErrors ) {
+                        foreach ( var validationError in validationErrors.ValidationErrors ) {
+                            Trace.TraceInformation ( "Property: {0} Error: {1}",
+                                                    validationError.PropertyName,
+                                                    validationError.ErrorMessage );
+                        }
+                    }
+                }
             }
 
-            return View ( "~/Views/Events/Details/" + id + ".cshtml");
+            return RedirectToAction ( "Details", "Events", new { id = eventid } );
         }
     }
 }

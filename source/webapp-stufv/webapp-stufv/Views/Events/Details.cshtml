@@ -131,33 +131,35 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row" style="margin-top:40px;">
-            <div class="col-md-6">
-                <div class="well well-sm">
-                    <div class="text-right">
-                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Schrijf een opmerking</a>
-                    </div>
+    @if ( Session[ "email" ] != null && !Session[ "email" ].Equals ( "" ) ) {
+        <div class="container">
+            <div class="row" style="margin-top:40px;">
+                <div class="col-md-6">
+                    <div class="well well-sm">
+                        <div class="text-right">
+                            <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Schrijf een opmerking</a>
+                        </div>
 
-                    <div class="row" id="post-review-box" style="display:none;">
-                        <div class="col-md-12">
-                            <form accept-charset="UTF-8" action=@Url.Action("AddReview", "Events", new { id = Model.Item1.Id } ) method="post">
-                                <input id="ratings-hidden" name="rating" type="hidden">
-                                <textarea class="form-control animated" cols="50" id="comment" name="comment" placeholder="Schrijf je opmerking hier..." rows="5"></textarea>
-                                <div class="text-right">
-                                    <a class="btn btn-danger" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                        <span class="glyphicon glyphicon-remove"></span>Annuleer
-                                    </a>
-                                    <button class="btn btn-success" type="submit">Opslaan</button>
-                                </div>
-                            </form>
+                        <div class="row" id="post-review-box" style="display:none;">
+                            <div class="col-md-12">
+                                <form accept-charset="UTF-8" action=@Url.Action( "AddReview" , "Events" , new { id=Model.Item1.Id } ) method="post">
+                                    <input id="ratings-hidden" name="rating" type="hidden">
+                                    <textarea class="form-control animated" cols="50" id="comment" name="comment" placeholder="Schrijf je opmerking hier..." rows="5"></textarea>
+                                    <div class="text-right">
+                                        <a class="btn btn-danger" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                            <span class="glyphicon glyphicon-remove"></span>Annuleer
+                                        </a>
+                                        <button class="btn btn-success" type="submit">Opslaan</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
+    }
 
     <script>
         function ValidateBecomeBob() {
