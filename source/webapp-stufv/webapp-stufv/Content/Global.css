@@ -411,3 +411,11 @@ a:hover {
     -moz-transition: height 0.2s;
     transition: height 0.2s;
 }
+.right tbody td button{
+    margin-bottom: 5px;
+    width: 100%;
+}
+.right tbody td p{
+    margin-bottom: 5px;
+    width: 100%;
+}
