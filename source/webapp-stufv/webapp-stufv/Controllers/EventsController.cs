@@ -167,5 +167,25 @@ namespace webapp_stufv.Controllers {
                 return View ( "~/Views/Events/Index.cshtml", events );
             }
         }
+
+        public ActionResult AddReview (int id) {
+            string comment = Request.Form[ "Comment" ];
+
+            using ( var context = new STUFVModelContext ( ) ) {
+                var review = new Review ( );
+                review.Active = true;
+                review.DateTime = System.DateTime.Now;
+                review.EventId = id;
+                int userId;
+                Int32.TryParse(Session[ "userId" ].ToString(), out userId);
+                review.UserId = userId;
+                review.Flagged = false;
+                review.Content = comment;
+                context.Reviews.Add ( review );
+                context.SaveChanges ( );
+            }
+
+            return View ( "~/Views/Events/Details/" + id + ".cshtml");
+        }
     }
 }

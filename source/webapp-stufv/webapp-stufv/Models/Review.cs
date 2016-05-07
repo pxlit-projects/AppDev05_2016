@@ -26,12 +26,10 @@ namespace webapp_stufv.Models {
         public string Status { get; set; }
 
         [Required]
-        public string Flagged { get; set; }
-
-        public int Rating { get; set; }
+        public Boolean Flagged { get; set; }
 
         [Required]
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
 
         public Boolean Active { get; set; }
     }

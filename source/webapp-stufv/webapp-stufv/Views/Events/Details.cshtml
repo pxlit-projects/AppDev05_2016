@@ -141,7 +141,7 @@
 
                     <div class="row" id="post-review-box" style="display:none;">
                         <div class="col-md-12">
-                            <form accept-charset="UTF-8" action=@Url.Action("AddReview", "Events") method="post">
+                            <form accept-charset="UTF-8" action=@Url.Action("AddReview", "Events", new { id = Model.Item1.Id } ) method="post">
                                 <input id="ratings-hidden" name="rating" type="hidden">
                                 <textarea class="form-control animated" cols="50" id="comment" name="comment" placeholder="Schrijf je opmerking hier..." rows="5"></textarea>
                                 <div class="text-right">
