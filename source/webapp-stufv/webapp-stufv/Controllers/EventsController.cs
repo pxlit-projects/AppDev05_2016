@@ -148,7 +148,7 @@ namespace webapp_stufv.Controllers {
             }
         }
 
-        public ActionResult filterZipCode () {
+        public ActionResult filterZipCode ( ) {
             using ( var context = new STUFVModelContext ( ) ) {
                 var zipCode = Request.Form[ "Zipcode" ];
                 var events = context.Events.Where ( e => e.ZipCode == zipCode ).ToList ( );
@@ -162,7 +162,7 @@ namespace webapp_stufv.Controllers {
         public ActionResult filterName ( ) {
             using ( var context = new STUFVModelContext ( ) ) {
                 var name = Request.Form[ "Name" ];
-                var events = context.Events.Where ( e => e.Name.Contains( name )).ToList ( );
+                var events = context.Events.Where ( e => e.Name.Contains ( name ) ).ToList ( );
 
                 ViewBag.Title = "Evenementen";
 
@@ -170,7 +170,7 @@ namespace webapp_stufv.Controllers {
             }
         }
 
-        public ActionResult AddReview (int id) {
+        public ActionResult AddReview ( int id ) {
             string comment = Request.Form[ "Comment" ];
             int eventid = id;
 
@@ -180,22 +180,13 @@ namespace webapp_stufv.Controllers {
                 review.DateTime = System.DateTime.Now;
                 review.EventId = id;
                 int userId;
-                Int32.TryParse(Session[ "userId" ].ToString(), out userId);
+                Int32.TryParse ( Session[ "userId" ].ToString ( ), out userId );
                 review.UserId = userId;
                 review.Flagged = false;
                 review.Content = comment;
+                review.Status = "okay";
                 context.Reviews.Add ( review );
-                try {
-                    context.SaveChanges ( );
-                } catch ( DbEntityValidationException dbEx ) {
-                    foreach ( var validationErrors in dbEx.EntityValidationErrors ) {
-                        foreach ( var validationError in validationErrors.ValidationErrors ) {
-                            Trace.TraceInformation ( "Property: {0} Error: {1}",
-                                                    validationError.PropertyName,
-                                                    validationError.ErrorMessage );
-                        }
-                    }
-                }
+                context.SaveChanges ( );
             }
 
             return RedirectToAction ( "Details", "Events", new { id = eventid } );
