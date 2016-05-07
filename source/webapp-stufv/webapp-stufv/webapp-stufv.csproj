@@ -349,16 +349,12 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Events\Attend.cshtml" />
-    <Content Include="Views\Events\RemoveAttend.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
-    <Content Include="Views\Events\BobProcess.cshtml" />
-    <Content Include="Views\Events\RemoveBob.cshtml" />
     <Content Include="Views\Events\FindBob.cshtml" />
     <Content Include="Views\Organisation\Register.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Organisation\Process.cshtml" />
     <Content Include="Views\Organisation\Index.cshtml" />
-    <Content Include="Views\Events\Joinbob.cshtml" />
     <Content Include="Views\Organisation\NewEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>

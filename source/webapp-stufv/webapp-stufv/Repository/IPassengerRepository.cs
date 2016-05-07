@@ -9,9 +9,9 @@ namespace webapp_stufv.Repository
     public interface IPassengerRepository
     {
         List<Passenger> GetAllPassengers();
-        void NewPassenger(int userId, int desId);
+        void NewPassenger(int userId, int desId, out int eventId);
         int PassengersPerDriver(int id);
-        bool IsPassenger(int eventId, int userId);
+        bool IsPassenger(int desId, int userId, out int eventId);
         bool SignedUp(int desId, int userId);
 
     }

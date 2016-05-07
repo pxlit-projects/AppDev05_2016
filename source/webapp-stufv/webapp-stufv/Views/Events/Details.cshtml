@@ -86,8 +86,8 @@
                                     @if (ViewBag.isbob)
                                     {
                                         <td>
-                                            <a href="@Url.Action("RemoveBob", "Events", new { id = Model.Item1.Id })">
-                                                <p class="btn btn-warning">Ik wil geen BOB meer zijn.</p>
+                                            <a href="@Url.Action("BobSettings", "Events", new { id = Model.Item1.Id })">
+                                                <p class="btn btn-danger">Bob instellingen</p>
                                             </a>
                                         </td>
                                     }

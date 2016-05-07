@@ -38,11 +38,6 @@ namespace webapp_stufv.Controllers {
                 } else {
                     ViewBag.isBob = false;
                 }
-                if ( ipassenger.IsPassenger ( id, userId ) ) {
-                    ViewBag.isPassenger = true;
-                } else {
-                    ViewBag.isPassenger = false;
-                }
             }
             _events = ievent.GetAllEvents ( );
             var tuple = new Tuple<Event, DesDriver, string> ( _events.Single ( r => r.Id == id ), new DesDriver ( ), new EventRepository ( ).getCity ( _events.Single ( r => r.Id == id ).ZipCode ) );
@@ -69,19 +64,22 @@ namespace webapp_stufv.Controllers {
         public ActionResult RemoveAttend ( int id ) {
             iattend.UnSignAttend ( ( int ) Session[ "userId" ], id );
             ViewBag.id = id;
-            return View ( );
+            Details(id);
+            return View ("~/Views/Events/Details.cshtml");
         }
         public ActionResult BobProcess ( int id ) {
             int NrOfPlaces;
             int.TryParse ( Request.Form[ "Item2.NrOfPlaces" ], out NrOfPlaces );
             ViewBag.id = id;
             idesdriver.SetDES ( ( int ) Session[ "userId" ], id, NrOfPlaces );
-            return View ( );
+            Details(id);
+            return View("~/Views/Events/Details.cshtml");
         }
         public ActionResult RemoveBob ( int id ) {
             ViewBag.id = id;
             idesdriver.unSetDES ( ( int ) Session[ "userId" ], id );
-            return View ( );
+            Details(id);
+            return View("~/Views/Events/Details.cshtml");
         }
         public ActionResult FindBob ( int id ) {
             ViewBag.Title = "Find bob";
@@ -90,13 +88,18 @@ namespace webapp_stufv.Controllers {
         }
         public ActionResult JoinBob ( int id ) {
             ViewBag.Title = "Find bob";
-            if ( ipassenger.IsPassenger ( id, ( int ) Session[ "userId" ] ) ) {
-                ViewBag.Title = "Je hebt je al voor deze bob ingeschreven.";
+            int eventId = 0;
+            if ( ipassenger.IsPassenger ( id, ( int ) Session[ "userId" ] , out eventId) ) {
+                ViewBag.Title = "Je bent al geacepteerd door een bob.";
             } else {
-                ipassenger.NewPassenger ( ( int ) Session[ "userId" ], id );
+                ipassenger.NewPassenger ( ( int ) Session[ "userId" ], id, out eventId);
             }
+            Details(eventId);
+            return View("~/Views/Events/Details.cshtml");
+        }
+        public ActionResult BobSettings(int id) {
 
-            return View ( );
+            return View();
         }
 
         public ActionResult AlcohoLFree ( string value ) {

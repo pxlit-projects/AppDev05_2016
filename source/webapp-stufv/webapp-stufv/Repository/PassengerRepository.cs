@@ -18,14 +18,16 @@ namespace webapp_stufv.Repository
             }
         }
 
-        public bool IsPassenger(int eventId, int userId)
+        public bool IsPassenger(int desId, int userId, out int eventId)
         {
             List<Passenger> passengers = GetAllPassengers();
             int x;
+            eventId = 0;
             for (x = 0; x < passengers.Count(); x++)
             {
-                if (passengers.ElementAt(x).EventId.Equals(eventId) && passengers.ElementAt(x).UserId.Equals(userId) && passengers.ElementAt(x).Active == true && passengers.ElementAt(x).Accepted == true)
+                if (passengers.ElementAt(x).DesDriverId.Equals(desId) && passengers.ElementAt(x).UserId.Equals(userId) && passengers.ElementAt(x).Active == true && passengers.ElementAt(x).Accepted == true)
                 {
+                    eventId = passengers.ElementAt(x).EventId;
                     return true;
                 }
             }
@@ -45,9 +47,9 @@ namespace webapp_stufv.Repository
             return false;
         }
 
-        public void NewPassenger(int userId, int desId)
+        public void NewPassenger(int userId, int desId, out int eventId)
         {
-            int eventId = 0;
+            eventId = 0;
             IDesDriverRepository ides = new DesDriverRepository();
             List<DesDriver> desdriver = ides.GetAllDrivers();
             for (int x = 0; x < desdriver.Count(); x++) {
