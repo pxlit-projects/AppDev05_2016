@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +23,7 @@ namespace STUFV
     public partial class ReviewsPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
+        private HttpClient client = new HttpClient();
 
         public ReviewsPage()
         {
@@ -71,6 +74,161 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
             }
+        }
+
+        private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchTextBox.Text = "";
+        }
+
+        private async void SearchTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (searchTextBox.Text != "")
+            {
+                IEnumerable<Review> allReviews = await GetReviews();
+
+                string filter = filterBox.SelectedValue.ToString();
+
+                List<Review> selectReviews = new List<Review>();
+                foreach (Review review in allReviews)
+                {
+                    if (review.Active == true)
+                    {
+                        switch (filter)
+                        {
+                            case "Id":
+                                int id = 0;
+                                if (int.TryParse(searchTextBox.Text, out id))
+                                {
+                                    id = Convert.ToInt32(searchTextBox.Text);
+                                }
+                                if (review.Id == id) { selectReviews.Add(review); }
+                                break;
+                            case "Naam":
+                                if (review.Content.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectReviews.Add(review); }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                if (selectReviews == null)
+                {
+                    messageLabel.Content = "Geen resultaten";
+                }
+                else
+                {
+                    messageLabel.Content = "Er zijn " + selectReviews.Count + " resultaten gevonden!";
+                    manageReviewsDataGrid.ItemsSource = selectReviews;
+                }
+            }
+            else
+            {
+                messageLabel.Content = "";
+                loadReviews();
+            }
+        }
+
+        public async void loadReviews()
+        {
+            IEnumerable<Review> allReviews = await GetReviews();
+            List<Review> selectReviews = new List<Review>();
+
+            foreach (Review review in allReviews)
+            {
+                if (review.Active == true)
+                {
+                    selectReviews.Add(review);
+                }
+            }
+
+            manageReviewsDataGrid.ItemsSource = selectReviews;
+        }
+
+        public async Task<IEnumerable<Review>> GetReviews()
+        {
+            var reviewUrl = "/api/reviews";
+            HttpResponseMessage response = await client.GetAsync(reviewUrl);
+            IEnumerable<Review> reviews = null;
+            if (response.IsSuccessStatusCode)
+            {
+                reviews = await response.Content.ReadAsAsync<IEnumerable<Review>>();
+            }
+            return reviews;
+        }
+
+        public async Task UpdateReview(Review review)
+        {
+            var reviewUrl = "/api/reviews/" + review.Id;
+            HttpResponseMessage response = await client.PutAsJsonAsync(reviewUrl, review);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loadReviews();
+            }
+        }
+
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            var userUrl = "/api/user";
+            HttpResponseMessage response = await client.GetAsync(userUrl);
+            IEnumerable<User> users = null;
+
+            if (response.IsSuccessStatusCode)
+            {
+                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+            }
+            return users;
+        }
+
+        public async Task<User> GetUser(int id)
+        {
+            IEnumerable<User> users = await GetUsers();
+
+            User user = null;
+            for (int x = 0; x < users.Count(); x++)
+            {
+                if (users.ElementAt(x).Id.Equals(id))
+                {
+                    user = users.ElementAt(x);
+                }
+            }
+            return user;
+        }
+
+
+
+        private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            Review review = (Review)manageReviewsDataGrid.CurrentItem;
+            bool originalActive = review.Active;
+
+            if (review.Active == true)
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u deze review wilt deactiveren?"),
+                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    review.Active = false;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u deze review wilt activeren?"),
+                    "Activeren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    review.Active = true;
+                }
+            }
+
+            if (originalActive != review.Active)
+            {
+                await UpdateReview(review);
+            }
+        }
+
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

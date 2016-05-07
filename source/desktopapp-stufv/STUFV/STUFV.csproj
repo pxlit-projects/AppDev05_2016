@@ -169,6 +169,9 @@
     <Compile Include="Repository\OrganisationRepository.cs" />
     <Compile Include="Repository\PassengerRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="ReviewDetailsWindow.xaml.cs">
+      <DependentUpon>ReviewDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserDetailsWindow.xaml.cs">
       <DependentUpon>UserDetailsWindow.xaml</DependentUpon>
     </Compile>
@@ -205,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrganisationEventsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReviewDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
