@@ -94,29 +94,6 @@
                                     else {
                                         <td>
                                             <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#becomebob">Word BOB</button>
-                                            <div id="becomebob" class="collapse">
-                                                <div class="col-md-8">
-                                                    <section id="loginForm">
-                                                        @using (Html.BeginForm("BobProcess/" + Model.Item1.Id, "Events", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "becomebobform", name = "becomebobform", @class = "form-horizontal", role = "form" }))
-                                                        {
-                                                            @Html.AntiForgeryToken()
-                                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                            <div class="form-group">
-                                                                <label class="col-md-3 control-label" for="NrOfPlaces">Hoeveel vrije plaatsen: </label>
-                                                                <div class="col-md-9" id="nrofplacesvalidation">
-                                                                    @Html.TextBoxFor(m => Model.Item2.NrOfPlaces, new { @class = "form-control" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="col-md-offset-3 col-md-9">
-                                                                    <input type="submit" value="Registreer" class="btn btn-default" onclick="return ValidateBecomeBob()" />
-                                                                </div>
-                                                            </div>
-                                                        }
-                                                    </section>
-                                                </div>
-
-                                            </div> <br />
                                         </td>
                                     }
                                 </tr>
@@ -140,8 +117,30 @@
                         </tbody>
                     </table>
             }
-
         </div> 
+        <div id="becomebob" class="collapse">
+            <div class="col-md-8">
+                <section id="loginForm">
+                    @using (Html.BeginForm("BobProcess/" + Model.Item1.Id, "Events", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "becomebobform", name = "becomebobform", @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="NrOfPlaces">Hoeveel vrije plaatsen: </label>
+                            <div class="col-md-9" id="nrofplacesvalidation">
+                                @Html.TextBoxFor(m => Model.Item2.NrOfPlaces, new { @class = "form-control" })
+                            </div>
+                        </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-offset-3 col-md-9">
+                                                                    <input type="submit" value="Registreer" class="btn btn-default" onclick="return ValidateBecomeBob()" />
+                                                                </div>
+                                                            </div>
+                    }
+                </section>
+            </div>
+
+        </div> <br />
         </div>
 
     @if ( Session[ "email" ] != null && !Session[ "email" ].Equals ( "" ) ) {

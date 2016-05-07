@@ -419,3 +419,8 @@ a:hover {
     margin-bottom: 5px;
     width: 100%;
 }
+#becomebob .col-md-8    {
+    padding-top: 1%;
+    border: 1px solid rgba(23, 234, 248, 0.2);
+    background-color: rgba(23, 234, 248, 0.05);
+}
