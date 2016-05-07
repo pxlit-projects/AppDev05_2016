@@ -24,21 +24,22 @@
     }
 
 
-    .eventshort td{
-       padding-bottom: 5px;
-    }
+.eventshort td {
+    padding-bottom: 5px;
+}
 
-    .eventshort .iconimg {
-        width: 2%;
-        margin-right: 4px;
-        min-width: 20px;
-    }
+.eventshort .iconimg {
+    width: 2%;
+    margin-right: 4px;
+    min-width: 20px;
+}
 
 .eventimg {
     height: 20%;
     margin: 5px;
     margin-right: 25px;
 }
+
 .row thead tr {
     margin-bottom: 5px;
 }
@@ -292,19 +293,19 @@ input[type="email"] {
                 text-decoration: none;
             }
 
-.sidebar-nav > #siteName {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
-}
-
-    .sidebar-nav > #siteName a {
-        color: #999999;
+    .sidebar-nav > #siteName {
+        height: 65px;
+        font-size: 18px;
+        line-height: 60px;
     }
 
-        .sidebar-nav > #siteName a:hover {
-            background: none;
+        .sidebar-nav > #siteName a {
+            color: #999999;
         }
+
+            .sidebar-nav > #siteName a:hover {
+                background: none;
+            }
 
 @media(min-width:768px) {
     .sidebar-brand {
@@ -357,20 +358,20 @@ a:hover {
     color: white;
 }
 
-.login:hover {
-    cursor: pointer;
-    background-color: forestgreen;
-}
+    .login:hover {
+        cursor: pointer;
+        background-color: forestgreen;
+    }
 
 .logout {
     background-color: rgb(217,83,79);
     color: white;
 }
 
-.logout:hover {
-    cursor: pointer;
-    background-color: darkred;
-}
+    .logout:hover {
+        cursor: pointer;
+        background-color: darkred;
+    }
 
 .inline {
     display: inline;
@@ -403,4 +404,10 @@ a:hover {
     max-height: 300px;
     max-width: 300px;
     float: right;
+}
+
+.animated {
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    transition: height 0.2s;
 }
