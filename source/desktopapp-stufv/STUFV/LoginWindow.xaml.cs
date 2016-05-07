@@ -23,6 +23,7 @@ namespace STUFV {
     /// </summary>
     public partial class LoginWindow : Window {
         HttpClient client = new HttpClient ( );
+        HomeWindow homeWindow;
 
 
         public LoginWindow ( ) {
@@ -49,6 +50,7 @@ namespace STUFV {
         }
 
         private void EmailBox_GotFocus ( object sender, RoutedEventArgs e ) {
+            errorBox.Content = "";
             if ( emailBox.Text == "E-mailadres" ) {
                 emailBox.Text = "";
                 emailBox.Foreground = new SolidColorBrush ( Colors.Black );
@@ -68,6 +70,7 @@ namespace STUFV {
         }
 
         private void PasswordTextBox_GotFocus ( object sender, RoutedEventArgs e ) {
+            errorBox.Content = "";
             passwordTextBox.Visibility = Visibility.Hidden;
             passwordBox.Focus ( );
         }
@@ -84,10 +87,12 @@ namespace STUFV {
         }
 
         private async void Login ( ) {
+            messageLabel.Content = "Email verifiëren...";
             bool existEmail = await Exist ( emailBox.Text );
             bool existPassword = false;
 
             if ( existEmail ) {
+                messageLabel.Content = "Wachtwoord verifiëren...";
                 User user = await GetUser(emailBox.Text);
                 string salt = user.Salt;
                 string encPassword = MD5Encrypt ( passwordBox.Password, salt );
@@ -95,15 +100,30 @@ namespace STUFV {
                 existPassword = Login ( user , encPassword );
 
                 if ( existPassword ) {
-                    HomeWindow homeWindow = new HomeWindow ( user );
-                    Application.Current.MainWindow = homeWindow;
-                    homeWindow.ShowDialog ( );
-                    Close();
+                    messageLabel.Content = "Bezig met aanmelden...";
+
+                    if (homeWindow == null)
+                    {
+                        homeWindow = new HomeWindow(user);
+                        Application.Current.MainWindow = homeWindow;
+                        homeWindow.Owner = Owner;
+                        homeWindow.Show();
+                        messageLabel.Content = "";
+                        Close();
+                    }
+                    else if (homeWindow != null && !homeWindow.IsActive)
+                    {
+                        homeWindow.Activate();
+                    }
                 } else {
                     errorBox.Content = "Verkeerd paswoord of geen toegang!";
+                    passwordBox.Password = "";
+                    errorBox.Content = "";
+                    messageLabel.Content = "";
                 }
             } else {
                 errorBox.Content = "Email bestaat niet";
+                messageLabel.Content = "";
             }
         }
 
