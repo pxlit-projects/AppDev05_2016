@@ -77,6 +77,59 @@ namespace STUFV {
             }
         }
 
+        private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchTextBox.Text = "";
+        }
+
+        private async void SearchTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (searchTextBox.Text != "")
+            {
+                IEnumerable<Organisation> allOrganisations = await GetOrganisations();
+
+                string filter = filterBox.SelectedValue.ToString();
+
+                List<Organisation> selectOrganisations = new List<Organisation>();
+                foreach (Organisation organisation in allOrganisations)
+                {
+                    if (organisation.isRegistered == false)
+                    {
+                        switch (filter)
+                        {
+                            case "Id":
+                                int id = 0;
+                                if (int.TryParse(searchTextBox.Text, out id))
+                                {
+                                    id = Convert.ToInt32(searchTextBox.Text);
+                                }
+                                if (organisation.Id == id) { selectOrganisations.Add(organisation); }
+                                break;
+                            case "Naam":
+                                if (organisation.Name.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectOrganisations.Add(organisation); }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                if (selectOrganisations == null)
+                {
+                    messageLabel.Content = "Geen resultaten";
+                }
+                else
+                {
+                    messageLabel.Content = "Er zijn " + selectOrganisations.Count + " resultaten gevonden!";
+                    organisationDataGrid.ItemsSource = selectOrganisations;
+                }
+            }
+            else
+            {
+                messageLabel.Content = "";
+                loadOrganisations();
+            }
+        }
+
         public async void loadOrganisations()
         {
             IEnumerable<Organisation> allOrganisations = await GetOrganisations();
