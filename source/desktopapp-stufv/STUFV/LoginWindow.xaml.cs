@@ -87,12 +87,11 @@ namespace STUFV {
         }
 
         private async void Login ( ) {
-            messageLabel.Content = "Email verifiëren...";
+            messageLabel.Content = "Velden controleren...";
             bool existEmail = await Exist ( emailBox.Text );
             bool existPassword = false;
 
             if ( existEmail ) {
-                messageLabel.Content = "Wachtwoord verifiëren...";
                 User user = await GetUser(emailBox.Text);
                 string salt = user.Salt;
                 string encPassword = MD5Encrypt ( passwordBox.Password, salt );
@@ -118,7 +117,6 @@ namespace STUFV {
                 } else {
                     errorBox.Content = "Verkeerd paswoord of geen toegang!";
                     passwordBox.Password = "";
-                    errorBox.Content = "";
                     messageLabel.Content = "";
                 }
             } else {

@@ -37,7 +37,8 @@ namespace STUFV
                     break;
             }
 
-            userLabel.Content = String.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
+            userLabel.Content = string.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
+            homePlaceTextBox.Text = "ToDo";
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
