@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace STUFV {
     /// <summary>
@@ -24,7 +25,9 @@ namespace STUFV {
     public partial class LoginWindow : Window {
         HttpClient client = new HttpClient ( );
         HomeWindow homeWindow;
-
+        DispatcherTimer loginTimer;
+        private int attempts = 0;
+        private int counter = 10;
 
         public LoginWindow ( ) {
             InitializeComponent ( );
@@ -36,6 +39,10 @@ namespace STUFV {
             passwordTextBox.GotFocus += PasswordTextBox_GotFocus;
             passwordBox.LostFocus += PasswordBox_LostFocus;
             passwordBox.KeyDown += PasswordBox_KeyDown;
+
+            loginTimer = new DispatcherTimer();
+            loginTimer.Interval = TimeSpan.FromSeconds(1);
+            loginTimer.Tick += LoginTimer_Tick;
 
             client.BaseAddress = new Uri ( "http://webapp-stufv20160429025210.azurewebsites.net/" );
             client.DefaultRequestHeaders.Accept.Clear ( );
@@ -50,7 +57,11 @@ namespace STUFV {
         }
 
         private void EmailBox_GotFocus ( object sender, RoutedEventArgs e ) {
-            errorBox.Content = "";
+            if (loginButton.IsEnabled == true)
+            {
+                errorBox.Content = "";
+            }
+            
             if ( emailBox.Text == "E-mailadres" ) {
                 emailBox.Text = "";
                 emailBox.Foreground = new SolidColorBrush ( Colors.Black );
@@ -70,7 +81,11 @@ namespace STUFV {
         }
 
         private void PasswordTextBox_GotFocus ( object sender, RoutedEventArgs e ) {
-            errorBox.Content = "";
+            if (loginButton.IsEnabled == true)
+            {
+                errorBox.Content = "";
+            }
+            
             passwordTextBox.Visibility = Visibility.Hidden;
             passwordBox.Focus ( );
         }
@@ -83,7 +98,33 @@ namespace STUFV {
         }
 
         private void LoginButton_Click ( object sender, RoutedEventArgs e ) {
-            Login ( );
+            loginButton.IsEnabled = false;
+            
+            if (attempts < (3 + (counter/5 - 2)))
+            {
+                Login();
+            }
+            else
+            {
+                counter = attempts * 5;
+                loginTimer.Start();
+            }
+        }
+
+        private void LoginTimer_Tick(object sender, EventArgs e)
+        {
+            counter--;
+            if (counter == 0)
+            {
+                loginTimer.Stop();
+                errorBox.Content = "";
+                loginButton.IsEnabled = true;
+                counter = attempts * 5;
+            }
+            else
+            {
+                errorBox.Content = "Te veel pogingen. \nProbeer het opniew over " + counter + " seconden";
+            }
         }
 
         private async void Login ( ) {
@@ -100,28 +141,23 @@ namespace STUFV {
 
                 if ( existPassword ) {
                     messageLabel.Content = "Bezig met aanmelden...";
-
-                    if (homeWindow == null)
-                    {
-                        homeWindow = new HomeWindow(user);
-                        Application.Current.MainWindow = homeWindow;
-                        homeWindow.Owner = Owner;
-                        homeWindow.Show();
-                        messageLabel.Content = "";
-                        Close();
-                    }
-                    else if (homeWindow != null && !homeWindow.IsActive)
-                    {
-                        homeWindow.Activate();
-                    }
+                    homeWindow = new HomeWindow(user);
+                    Application.Current.MainWindow = homeWindow;
+                    homeWindow.Owner = Owner;
+                    homeWindow.Show();
+                    Close();
                 } else {
                     errorBox.Content = "Verkeerd paswoord of geen toegang!";
                     passwordBox.Password = "";
                     messageLabel.Content = "";
+                    loginButton.IsEnabled = true;
+                    attempts++;
                 }
             } else {
                 errorBox.Content = "Email bestaat niet";
                 messageLabel.Content = "";
+                loginButton.IsEnabled = true;
+                attempts++;
             }
         }
 
