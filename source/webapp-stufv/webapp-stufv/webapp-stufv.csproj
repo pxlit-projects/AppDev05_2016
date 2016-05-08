@@ -279,6 +279,7 @@
     <Compile Include="Web_Api_Controllers\EventController.cs" />
     <Compile Include="Web_Api_Controllers\FAQsController.cs" />
     <Compile Include="Web_Api_Controllers\GuidelineController.cs" />
+    <Compile Include="Web_Api_Controllers\LoginController.cs" />
     <Compile Include="Web_Api_Controllers\OrganisationsController.cs" />
     <Compile Include="Web_Api_Controllers\ReviewController.cs" />
     <Compile Include="Web_Api_Controllers\UserController.cs" />
