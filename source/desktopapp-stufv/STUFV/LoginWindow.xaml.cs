@@ -141,6 +141,10 @@ namespace STUFV {
 
                 if ( existPassword ) {
                     messageLabel.Content = "Bezig met aanmelden...";
+                    Login login = new Login();
+                    login.UserId = user.Id;
+                    login.DateTime = DateTime.Now.Date;
+                    InsertLogin(login);
                     homeWindow = new HomeWindow(user);
                     Application.Current.MainWindow = homeWindow;
                     homeWindow.Owner = Owner;
@@ -218,6 +222,12 @@ namespace STUFV {
                 }
             }
             return user;
+        }
+
+        public async void InsertLogin(Login login)
+        {
+            var loginUrl = "/api/login";
+            HttpResponseMessage response = await client.PostAsJsonAsync(loginUrl, login);
         }
     }
 }
