@@ -155,6 +155,7 @@ namespace STUFV {
                 attempts++;
             }
 
+            if (!(attempts < (counter / 5 + 1)))
             {
                 loginButton.IsEnabled = false;
                 counter = attempts * 5;
