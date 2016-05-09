@@ -99,16 +99,7 @@ namespace STUFV {
 
         private void LoginButton_Click ( object sender, RoutedEventArgs e ) {
             loginButton.IsEnabled = false;
-            
-            if (attempts < (3 + (counter/5 - 2)))
-            {
-                Login();
-            }
-            else
-            {
-                counter = attempts * 5;
-                loginTimer.Start();
-            }
+            Login();
         }
 
         private void LoginTimer_Tick(object sender, EventArgs e)
@@ -123,7 +114,7 @@ namespace STUFV {
             }
             else
             {
-                errorBox.Content = "Te veel pogingen. \nProbeer het opniew over " + counter + " seconden";
+                errorBox.Content = "Te veel pogingen. \nProbeer het opnieuw over " + counter + " seconden";
             }
         }
 
@@ -143,7 +134,7 @@ namespace STUFV {
                     messageLabel.Content = "Bezig met aanmelden...";
                     Login login = new Login();
                     login.UserId = user.Id;
-                    login.DateTime = DateTime.Now.Date;
+                    login.DateTime = DateTime.Now;
                     InsertLogin(login);
                     homeWindow = new HomeWindow(user);
                     Application.Current.MainWindow = homeWindow;
@@ -162,6 +153,12 @@ namespace STUFV {
                 messageLabel.Content = "";
                 loginButton.IsEnabled = true;
                 attempts++;
+            }
+
+            {
+                loginButton.IsEnabled = false;
+                counter = attempts * 5;
+                loginTimer.Start();
             }
         }
 
@@ -191,7 +188,7 @@ namespace STUFV {
         }
 
         public bool Login ( User user, string password ) {
-            if ( user.PassWord == password &&  user.RoleID == 1) {
+            if ( user.PassWord == password &&  user.RoleID == 1 && user.Active == true) {
                 return true;
             }
             
