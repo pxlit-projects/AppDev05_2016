@@ -36,8 +36,9 @@ namespace STUFV
 
             filterBox.ItemsSource = filterItems;
 
-            //LoadLogins();
+            LoadLogins();
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
+            loginDataGrid.SelectionChanged += LoginDataGrid_SelectionChanged;
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -82,17 +83,45 @@ namespace STUFV
             }
         }
 
+        private async void LoginDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IEnumerable<Login> logins = await GetLogins();
+            List<DateTime> loginDates = new List<DateTime>();
+
+            Login login = (Login)loginDataGrid.CurrentItem;
+            User user = await GetUser(login.UserId);
+
+            string role = null;
+
+            switch (user.RoleID)
+            {
+                case 1:
+                    role = "Admin";
+                    break;
+                case 2:
+                    role = "User";
+                    break;
+            }
+
+            userLabel.Content = string.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
+            homePlaceTextBox.Text = "ToDo";
+
+            foreach (Login forLogin in logins)
+            {
+                if (forLogin.UserId == login.UserId) { loginDates.Add(forLogin.DateTime); }
+            }
+            loginDates.Sort();
+
+            latestLogin.Content = loginDates.Last().ToLongDateString() + ", " + loginDates.Last().ToLongTimeString();
+            detailsPanel.DataContext = user;
+        }
+
         public async void LoadLogins()
         {
             IEnumerable<Login> getLogins = await GetLogins();
             List<Login> logins = getLogins.ToList();
 
-            IEnumerable<User> getUsers = await GetUsers();
-            List<User> users = getUsers.ToList();
-
-            List<> loginUsers = new List<<Login, User>>();
-
-            loginDataGrid.ItemsSource = ;
+            loginDataGrid.ItemsSource = logins;
         }
 
         public async Task<IEnumerable<Login>> GetLogins()
