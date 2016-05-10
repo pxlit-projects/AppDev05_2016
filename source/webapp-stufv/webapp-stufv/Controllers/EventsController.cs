@@ -40,7 +40,11 @@ namespace webapp_stufv.Controllers {
                 }
             }
             _events = ievent.GetAllEvents ( );
-            var tuple = new Tuple<Event, DesDriver, string> ( _events.Single ( r => r.Id == id ), new DesDriver ( ), new EventRepository ( ).getCity ( _events.Single ( r => r.Id == id ).ZipCode ) );
+            IEnumerable<Review> reviews;
+            using ( var context = new STUFVModelContext ( ) ) {
+                reviews = context.Reviews.Where ( r => r.EventId == id ).ToList ( );
+            }
+                var tuple = new Tuple<Event, DesDriver, string, IEnumerable<Review>> ( _events.Single ( r => r.Id == id ), new DesDriver ( ), new EventRepository ( ).getCity ( _events.Single ( r => r.Id == id ).ZipCode ), reviews );
             ViewBag.Title = tuple.Item1.Name;
             return View ( tuple );
         }

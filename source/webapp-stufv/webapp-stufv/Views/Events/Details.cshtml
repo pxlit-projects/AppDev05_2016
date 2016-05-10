@@ -1,4 +1,4 @@
-﻿@model Tuple<webapp_stufv.Models.Event, webapp_stufv.Models.DesDriver, string>
+﻿@model Tuple<webapp_stufv.Models.Event, webapp_stufv.Models.DesDriver, string, IEnumerable<webapp_stufv.Models.Review>>
 @section content{
     <div class="page-header">
         <h1>@ViewBag.Title</h1>
@@ -143,6 +143,16 @@
         </div> <br />
         </div>
 
+    <div class="well-lg">
+        
+        @foreach (var item in Model.Item4) {
+            <p class="text-muted"> @item.User.FirstName @item.User.LastName.Substring(0, 1). op @item.DateTime.ToShortDateString() </p>
+            @item.Content
+            <hr />
+        }
+
+    </div>
+
     @if ( Session[ "email" ] != null && !Session[ "email" ].Equals ( "" ) ) {
         <div class="container">
             <div class="row" style="margin-top:40px;">
@@ -202,7 +212,6 @@
             var newReview = $('#new-review');
             var openReviewBtn = $('#open-review-box');
             var closeReviewBtn = $('#close-review-box');
-            var ratingsField = $('#ratings-hidden');
 
             openReviewBtn.click(function (e) {
                 reviewBox.slideDown(400, function () {
@@ -221,10 +230,6 @@
                 });
                 closeReviewBtn.hide();
 
-            });
-
-            $('.starrr').on('starrr:change', function (e, value) {
-                ratingsField.val(value);
             });
         });
     </script>
