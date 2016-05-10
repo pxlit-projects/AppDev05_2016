@@ -1,5 +1,6 @@
 ﻿@model Tuple<webapp_stufv.Models.Event, webapp_stufv.Models.DesDriver, string, IEnumerable<webapp_stufv.Models.Review>>
 @section content{
+    <div class="container">
     <div class="page-header">
         <h1>@ViewBag.Title</h1>
     </div>
@@ -143,19 +144,17 @@
         </div> <br />
     </div>
         
-    <div class="container">
-        @foreach ( var item in Model.Item4 ) {
-            <div class="alert alert-success">
-                <p class="text-muted"> @item.User.FirstName @item.User.LastName.Substring( 0, 1 ). schreef op @item.DateTime.ToShortDateString( ) </p>
+        <div class="alert alert-info">
+            @foreach ( var item in Model.Item4 ) {
+                <p> @item.User.FirstName @item.User.LastName.Substring( 0, 1 ). schreef op @item.DateTime.ToShortDateString( ) </p>
                 @item.Content
-            </div>
-        }
-    </div>
+                <hr />
+            }
+        </div>
 
     @if ( Session[ "email" ] != null && !Session[ "email" ].Equals ( "" ) ) {
-        <div class="container">
             <div class="row" style="margin-top:40px;">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="well well-sm">
                         <div class="text-right">
                             <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Schrijf een opmerking</a>
@@ -166,6 +165,7 @@
                                 <form accept-charset="UTF-8" action=@Url.Action( "AddReview" , "Events" , new { id=Model.Item1.Id } ) method="post">
                                     <input id="ratings-hidden" name="rating" type="hidden">
                                     <textarea class="form-control animated" cols="50" id="comment" name="comment" placeholder="Schrijf je opmerking hier..." rows="5"></textarea>
+                                    <br />
                                     <div class="text-right">
                                         <a class="btn btn-danger" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
                                             <span class="glyphicon glyphicon-remove"></span>Annuleer
@@ -179,8 +179,9 @@
 
                 </div>
             </div>
-        </div>
     }
+
+        </div>
 
     <script>
         function ValidateBecomeBob() {
