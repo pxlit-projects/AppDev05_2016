@@ -141,16 +141,15 @@
             </div>
 
         </div> <br />
-        </div>
-
-    <div class="well-lg">
+    </div>
         
-        @foreach (var item in Model.Item4) {
-            <p class="text-muted"> @item.User.FirstName @item.User.LastName.Substring(0, 1). op @item.DateTime.ToShortDateString() </p>
-            @item.Content
-            <hr />
+    <div class="container">
+        @foreach ( var item in Model.Item4 ) {
+            <div class="alert alert-success">
+                <p class="text-muted"> @item.User.FirstName @item.User.LastName.Substring( 0, 1 ). schreef op @item.DateTime.ToShortDateString( ) </p>
+                @item.Content
+            </div>
         }
-
     </div>
 
     @if ( Session[ "email" ] != null && !Session[ "email" ].Equals ( "" ) ) {
