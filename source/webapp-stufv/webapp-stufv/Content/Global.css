@@ -6,7 +6,7 @@
     border: none;
 }
 body{
-    background: url("background.jpg") no-repeat center center fixed;
+    background: url("background.jpg") no-repeat top center fixed;
 }
 
 .footer {
@@ -68,7 +68,7 @@ body{
 
     .eventshort a:hover {
         text-decoration: none;
-        background-color: rgba(28, 234, 248, 0.05);
+        background-color: rgba(129, 179, 58, 0.5);
     }
 
 .eventshort h4 {
@@ -92,10 +92,11 @@ body{
 .eventpage .row {
     border: 2px groove lightgray;
     margin-bottom: 5px;
-    background-color: rgba(23, 234, 248, 0.05);
+    background-color: #FDFDFD;
     width: 100%;
     margin-left: 0px;
     margin-right: 0px;
+    border-radius: 6px;
 }
 
     .eventpage .row .col-lg-8 {
