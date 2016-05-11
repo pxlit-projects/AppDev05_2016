@@ -6,7 +6,13 @@
     border: none;
 }
 body{
+<<<<<<< HEAD
     background: url("background.jpg") no-repeat center center fixed;
+=======
+    background-image: url("background.jpg");
+    background-size: cover;
+    background: no-repeat;
+>>>>>>> origin/master
 }
 
 .footer {
