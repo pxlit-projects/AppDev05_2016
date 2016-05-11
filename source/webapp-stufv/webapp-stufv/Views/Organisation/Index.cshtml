@@ -3,14 +3,23 @@
 
     <div class="page-header"><h1>@ViewBag.Title</h1></div>
 @ViewBag.Description
-@if ((int)Session["organisation"] == 2) { 
+@if ((int)Session["organisation"] == 2) {
 <div class="row">
     <div class="col-md-6">
         <div class="well">
             <h4> Mijn evenementen </h4>
         </div>
-        @foreach ( var item in Model.Item1 ) {
-            <a href=@Url.Action("Details", "Events", new { id = item.Id })> @item.Name </a>
+        @if ( Model.Item1.Count ( ) == 0 ) {
+            <div class="alert alert-warning"> U heeft nog geen evenementen aangemaakt. </div>
+        } else {
+            <div class="list-group">
+                @foreach ( var item in Model.Item1 ) {
+                    <a class="list-group-item" href=@Url.Action( "Details", "Events", new { id = item.Id } )> 
+                        <p class="list-group-item-heading"> @item.Name </p>
+                        <p class="list-group-item-text"> @item.Description.Substring(0, @item.Description.Length/2)... </p>
+                    </a>
+                }
+            </div>
         }
     </div>
     <div class="col-md-6">
@@ -21,11 +30,11 @@
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     <div class="col-md-3 control-label">Naam van het evenement</div>
-                    <div class="col-md-5"> <input type="text" id="Name" name="Name" placeholder="Naam van het event" /> </div>
+                    <div class="col-md-5"> <input type="text" id="Name" name="Name" placeholder="Naam van het event" class="form-control"/> </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Beschijving</div>
-                    <div class="col-md-5"><input type="text" id="Description" name="Description" placeholder="Beschrijving van het event" /> </div>
+                    <div class="col-md-5"><input type="text" id="Description" name="Description" placeholder="Beschrijving van het event" class="form-control"/> </div>
                 </div>
                 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
                 <script src="../../Content/js/bootstrap-datetimepicker.min.js"></script>
@@ -56,23 +65,23 @@
                     </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Straat</div>
-                    <div class="col-md-5"><input type="text" id="Street" name="Street" placeholder="Straat" /></div>
+                    <div class="col-md-5"><input type="text" id="Street" name="Street" placeholder="Straat" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Postcode</div>
-                    <div class="col-md-5"><input type="text" id="Zipcode" name="Zipcode" placeholder="Postcode" /></div>
+                    <div class="col-md-5"><input type="text" id="Zipcode" name="Zipcode" placeholder="Postcode" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Type</div>
-                    <div class="col-md-5"><input type="text" id="Type" name="Type" placeholder="Type" /></div>
+                    <div class="col-md-5"><input type="text" id="Type" name="Type" placeholder="Type" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Inkom prijs</div>
-                    <div class="col-md-5"><input type="text" id="EntranceFee" name="EntranceFee" placeholder="Inkom" /></div>
+                    <div class="col-md-5"><input type="text" id="EntranceFee" name="EntranceFee" placeholder="Inkom" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Alcohol Vrij?</div>
-                    <div class="col-md-5"><input type="text" id="AlcoholFree" name="AlcoholFree" placeholder="Alcoholvrij" /></div>
+                    <div class="col-md-5"><input type="text" id="AlcoholFree" name="AlcoholFree" placeholder="Alcoholvrij" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-5">
