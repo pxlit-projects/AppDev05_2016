@@ -88,12 +88,18 @@
                     </table>
                 </div>
             </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">Postcode: </div>
-                        <div class="col-md-10" id="zipcodevalidation">
-                            @Html.EditorFor(m => m.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                    </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">Straat en huisnummer: </div>
+                <div class="col-md-10" id="streetvalidation">
+                    @Html.EditorFor(m => m.Street, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">Postcode: </div>
+                <div class="col-md-10" id="zipcodevalidation">
+                    @Html.EditorFor(m => m.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
                     <div class="form-group">
                         <div class="col-md-2 control-label">Telefoon nummer: </div>
                         <div class="col-md-10" id="telnrvalidation">
@@ -129,6 +135,7 @@
             var telnr = IsEmpty("#telnrvalidation", document.registerform.TelNr);
             var mobilenr = IsEmpty("#mobilenrvalidation", document.registerform.MobileNr);
             var sex = IsEmpty("#sexvalidation", document.registerform.Sex);
+            var street = IsEmpty("#streetvalidation", document.registerform.Street);
             if (email && password && firstname && lastname && birthplace && birthdate && zipcode && telnr && mobilenr && sex) {
                 return true;
             }
