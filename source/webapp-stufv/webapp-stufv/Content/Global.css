@@ -5,6 +5,9 @@
     width: 20px;
     border: none;
 }
+body{
+    background-image: url("background.jpg");
+}
 
 .footer {
     background-color: #f5f5f5;
