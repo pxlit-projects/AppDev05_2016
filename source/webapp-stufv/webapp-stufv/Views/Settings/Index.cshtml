@@ -1,0 +1,81 @@
+﻿
+@model webapp_stufv.Models.User
+
+@section content{
+    <div class="container">
+
+        <div class="page-header">
+            <div class="well">
+                <h1>
+                    @Model.FirstName @Model.LastName
+                </h1>
+            </div>
+        </div>
+        <div class="row profile">
+            @using (Html.BeginForm("ChangeSettings", "Settings", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "changeform", enctype = "multipart/form-data", id = "changeform", @class = "form-horizontal", role = "form" }))
+            {
+                <div class="col-md-3">
+                    <img class="profileimg" src="~/Content/img/ProfilePictures/@Model.ProfilePicture" />
+                    <input type="file" name="file" id="file" style="width: 100%;" />
+                </div>
+                <div class="col-md-9">
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Email adres: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="Email" name="Email" type="text" value="@Model.Email" readonly>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Voornaam: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="FirstName" name="FirstName" type="text" value="@Model.FirstName" readonly>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Achternaam: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="LastName" name="LastName" type="text" value="@Model.LastName" readonly>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Geboortedatum: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="BirthDate" name="BirthDate" type="text" value="@Model.BirthDate.ToLongDateString()" readonly>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Straat: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="Steet" name="Street" type="text" value="STREET PLACEHOLDER">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Postcode: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="@Model.ZipCode">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">GSM nummer: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="MobileNr" name="MobileNr" type="text" value="@Model.MobileNr">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Telefoon nummer: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="TelNr" name="TelNr" type="text" value="@Model.TelNr">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-5 col-lg-offset-2">
+                            <input type="submit" class="btn btn-info" value="Opslaan" onclick="return ValidateChange()" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+}
+

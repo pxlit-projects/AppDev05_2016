@@ -37,6 +37,7 @@ namespace webapp_stufv.Models {
 
         public string TelNr { get; set; }
         public string MobileNr { get; set; }
+        public string ProfilePicture { get; set; }
 
         [ForeignKey ( "UserTypes" )]
         public int RoleID { get; set; }

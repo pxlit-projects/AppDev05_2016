@@ -87,6 +87,7 @@ namespace webapp_stufv.Controllers {
         }
         public ActionResult FindBob ( int id ) {
             ViewBag.Title = "Find bob";
+            ViewBag.EventId = id;
             ViewBag.Description = "Heb je al een bob? Kijk hieronder en vind een bob of schijf jezelf in als bob.";
             return View ( idesdriver.ActiveDriversPerEvent ( id, ( int ) Session[ "userId" ] ) );
         }
@@ -207,6 +208,16 @@ namespace webapp_stufv.Controllers {
 
                 ViewBag.Title = "Reactie gemeld";
                 return View ( review );
+            }
+        }
+
+        public ActionResult DeleteReaction (int id, int eventId) {
+            using ( var context = new STUFVModelContext ( ) ) {
+                Review review = context.Reviews.Find ( id );
+                context.Reviews.Remove ( review );
+                context.SaveChanges ( );
+
+                return RedirectToAction ( "Details", "Events", new { id = eventId } );
             }
         }
     }

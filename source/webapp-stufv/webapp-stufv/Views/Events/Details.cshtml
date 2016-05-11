@@ -146,9 +146,14 @@
         
         <div class="alert alert-info">
             @foreach ( var item in Model.Item4 ) {
-                <p class="inline"> @item.User.FirstName @item.User.LastName.Substring( 0, 1 ). schreef op @item.DateTime.ToShortDateString( ) </p>
+                <p class="inline"><a href="@Url.Action("Users", "Profile", new { id = item.User.Id})"> @item.User.FirstName @item.User.LastName.Substring(0, 1).</a> schreef op @item.DateTime.ToShortDateString() </p>
                 if ( Session[ "email" ] != null && !Session[ "email" ].Equals ( "" ) ) {
-                    <a class="btn btn-danger inline right" href=@Url.Action( "FlagReaction", "Events", new { id = item.Id } )> Ongepast </a> <br />
+                    if ( Convert.ToInt32(Session[ "userId" ]) == item.UserId ) {
+                        <a class="btn btn-danger inline right" href=@Url.Action( "DeleteReaction" , "Events" , new { id=item.Id, eventId=item.EventId } )> Verwijderen </a> <br />
+
+                    } else {
+                        <a class="btn btn-danger inline right" href=@Url.Action( "FlagReaction", "Events", new { id = item.Id } )> Ongepast </a> <br />
+                    }
                 }
                 <p> @item.Content </p>
                 <hr />

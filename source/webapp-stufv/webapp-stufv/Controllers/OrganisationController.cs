@@ -9,68 +9,67 @@ using webapp_stufv.Repository;
 namespace webapp_stufv.Controllers {
     public class OrganisationController : Controller {
 
-        private IOrganisationRepository iorganisation = new OrganisationRepository();
-        
+        private IOrganisationRepository iorganisation = new OrganisationRepository ( );
+
         // GET: Organisation
 
         public ActionResult Index ( ) {
             ViewBag.Title = "Organisatie";
-            if ((int)Session["organisation"] == 1)
-            {
-                ViewBag.Description = "U organisatie is nog niet geactiveerd.";
-            }
-            else if ((int)Session["organisation"] == 2)
-            {
+            if ( ( int ) Session[ "organisation" ] == 1 ) {
+                ViewBag.Description = "Uw organisatie is nog niet geactiveerd.";
+            } else if ( ( int ) Session[ "organisation" ] == 2 ) {
                 ViewBag.Description = "";
-                ViewBag.Title = "Organisatie: " + iorganisation.GetOrganisationName((int)Session["userId"]);
-            }
-            else if ((int)Session["organisation"] == 3)
-            {
+                ViewBag.Title = "Organisatie: " + iorganisation.GetOrganisationName ( ( int ) Session[ "userId" ] );
+                using ( var context = new STUFVModelContext ( ) ) {
+                    int userId = Convert.ToInt32 ( Session[ "userId" ] );
+                    var organisations = context.Organisations.Where ( o => o.UserId == userId ).ToList ( );
+                    var organisation = organisations.ElementAt ( 0 );
+                    var events = context.Events.Where ( e => e.OrganisationId == organisation.Id ).ToList ( );
+                    var tuple = new Tuple<IEnumerable<Event>, Organisation> ( events, organisation );
+                    return View ( tuple );
+                }
+            } else if ( ( int ) Session[ "organisation" ] == 3 ) {
                 ViewBag.Description = "Uw organisatie is geblokeerd.";
+            } else {
+                ViewBag.Description = "U heeft geen organisatie geregistreerd.";
             }
-            else {
-                ViewBag.Description = "U heeft geen organisatie.";
-            }
-            return View ( );
+
+            return View ( new Tuple<IEnumerable<Event>, Organisation>(null, null ) );
         }
 
         public ActionResult Register ( ) {
             return View ( );
         }
-        public ActionResult Process()
-        {
+        public ActionResult Process ( ) {
             ViewBag.Title = "Registratie organisatie";
             ViewBag.Description = "U registratie is gelukt. U organisatie zal binnenkort geactiveerd worden.";
-            String name = Request.Form["Name"];
-            String description = Request.Form["Description"];
-            iorganisation.NewOrganisation((int)Session["userId"], name, description);
-            Session["organisation"] = 1;
-            return View();
+            String name = Request.Form[ "Name" ];
+            String description = Request.Form[ "Description" ];
+            iorganisation.NewOrganisation ( ( int ) Session[ "userId" ], name, description );
+            Session[ "organisation" ] = 1;
+            return View ( );
         }
-        public ActionResult NewEvent()
-        {
-            DateTime start = DateTime.Parse(Request.Form["Start"]);
-            DateTime end = DateTime.Parse(Request.Form["End"]);
-            var newEvent = new Event
-            {
-                Name = Request.Form["Name"],
-                Description = Request.Form["Description"],
+        public ActionResult NewEvent ( ) {
+            DateTime start = DateTime.Parse ( Request.Form[ "Start" ] );
+            DateTime end = DateTime.Parse ( Request.Form[ "End" ] );
+            var newEvent = new Event {
+                Name = Request.Form[ "Name" ],
+                Description = Request.Form[ "Description" ],
                 Start = start,
                 End = end,
-                Street = Request.Form["Street"],
-                ZipCode = Request.Form["ZipCode"],
-                Type = int.Parse(Request.Form["Type"]),
-                EntranceFee = double.Parse(Request.Form["EntranceFee"]),
-                AlcoholFree = Boolean.Parse(Request.Form["AlcoholFree"]),
-                OrganisationId = iorganisation.GetOrganisationId((int)Session["userId"]),
+                Street = Request.Form[ "Street" ],
+                ZipCode = Request.Form[ "ZipCode" ],
+                Type = int.Parse ( Request.Form[ "Type" ] ),
+                EntranceFee = double.Parse ( Request.Form[ "EntranceFee" ] ),
+                AlcoholFree = Boolean.Parse ( Request.Form[ "AlcoholFree" ] ),
+                OrganisationId = iorganisation.GetOrganisationId ( ( int ) Session[ "userId" ] ),
                 Active = false
             };
-            using (var context = new STUFVModelContext())
-            {
-                context.Events.Add(newEvent);
-                context.SaveChanges();
+            using ( var context = new STUFVModelContext ( ) ) {
+                context.Events.Add ( newEvent );
+                context.SaveChanges ( );
             }
-            return View();
+            return View ( );
         }
     }
 }

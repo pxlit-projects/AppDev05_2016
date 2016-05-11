@@ -22,11 +22,5 @@ namespace webapp_stufv.Controllers
             User user = allUsers.Single(r => r.Id == id);
             return View(user);
         }
-        public ActionResult MyProfile()
-        {
-            List<User> allUsers = iuser.GetAllUsers();
-            User user = allUsers.Single(r => r.Id == (int)Session["userId"]);
-            return View(user);
-        }
     }
 }

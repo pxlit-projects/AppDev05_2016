@@ -33,9 +33,16 @@
     margin-right: 4px;
     min-width: 20px;
 }
-
+.profileimg {
+    max-height: 200px;
+    margin: 5px;
+    margin-right: 25px;
+}
+.profile .control-label {
+    margin-top: 12px;
+}
 .eventimg {
-    height: 20%;
+    max-height: 200px;
     margin: 5px;
     margin-right: 25px;
 }
