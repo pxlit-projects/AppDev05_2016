@@ -27,9 +27,15 @@
             <button type="button" class="btn-success" data-toggle="collapse" data-target="#NewEvent">Maak een event</button>
         </div>
         <div id="NewEvent" class="collapse">
-            @using (Html.BeginForm("NewEvent", "Organisation", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("NewEvent", "Organisation", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", role = "form" }))
             {
                 @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-md-3 control-label">Foto voor het evenement</div>
+                    <div class="col-md-9">
+                        <input type="file" name="file" id="file" style="width: 100%;" />
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Naam van het evenement</div>
                     <div class="col-md-9"> <input type="text" id="Name" name="Name" placeholder="Naam van het event" class="form-control"/> </div>

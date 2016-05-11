@@ -5,6 +5,11 @@
     width: 20px;
     border: none;
 }
+body{
+    background-image: url("background.jpg");
+    background-size: cover;
+    background: no-repeat;
+}
 
 .footer {
     background-color: #f5f5f5;
@@ -32,19 +37,27 @@
     width: 2%;
     margin-right: 4px;
     min-width: 20px;
+    border-radius: 3px;
 }
+
 .profileimg {
     max-height: 200px;
+    max-width: 200px;
     margin: 5px;
     margin-right: 25px;
+    border-radius: 3px;
 }
+
 .profile .control-label {
     margin-top: 12px;
 }
+
 .eventimg {
     max-height: 200px;
+    max-width: 200px;
     margin: 5px;
     margin-right: 25px;
+    border-radius: 3px;
 }
 
 .row thead tr {
@@ -83,6 +96,8 @@
     margin-bottom: 5px;
     background-color: rgba(23, 234, 248, 0.05);
     width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
     .eventpage .row .col-lg-8 {
@@ -418,20 +433,23 @@ a:hover {
     -moz-transition: height 0.2s;
     transition: height 0.2s;
 }
-.right tbody td button{
+
+.right tbody td button {
     margin-bottom: 5px;
     width: 100%;
 }
-.right tbody td p{
+
+.right tbody td p {
     margin-bottom: 5px;
     width: 100%;
 }
-#becomebob .col-md-8    {
+
+#becomebob .col-md-8 {
     padding-top: 1%;
     border: 1px solid rgba(23, 234, 248, 0.2);
     background-color: rgba(23, 234, 248, 0.05);
 }
 
 .inline {
-    display:inline;
+    display: inline;
 }

@@ -1,63 +1,64 @@
 ﻿@section content {
-    <h2>Artikels</h2>
-    @foreach (var item in ViewBag.Articles)
+    <h2 class="col-lg-offset-3">Artikels</h2>
+<div class="col-md-3" style="">
+    <a class="twitter-timeline" data-chrome="noscrollbar" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
+    <script>
+                !function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }
+                }
+                (document, "script", "twitter-wjs");
+    </script>
+</div>
+        @foreach (var item in ViewBag.Articles)
     {
-        <div class="col-md-3">
-            <table style="width: 300px">
-                <tr>
-                    <td><h3>@item.Title</h3></td>
-                </tr>
-                <tr>
-                    <td align="center"><img src="~/Content/img/news.jpg" /></td>
-                </tr>
-                <tr>
-                    <td>
-                        @if (item.Content.Length > 100)
-                        {
-                            <p>@item.Content.Substring(0, 100)...</p>
-                        }
-                        else
-                        {
-                            <p>@item.Content</p>
-                        }
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center"><button type="button" class="btn btn-info">Bekijk</button></td>
-                </tr>
-            </table>
-        </div>
-    }
-    <div style="margin-left: 75%">
-        <a class="twitter-timeline" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
-        <script>
-            !function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }
-            }
-            (document, "script", "twitter-wjs");
-        </script>
-    </div>
-    @foreach (var item in ViewBag.Events)
+            <div class="col-md-3 .clearfix" style="height:400px">
+                <table style="">
+                    <tr>
+                        <td><h3>@item.Title</h3></td>
+                    </tr>
+                    <tr>
+                        <td align="center"><img src="~/Content/img/news.jpg" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (item.Content.Length > 100)
+                            {
+                                <p>@item.Content.Substring(0, 100)...</p>
+                            }
+                            else
+                            {
+                                <p>@item.Content</p>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center"><button type="button" class="btn btn-info">Bekijk</button></td>
+                    </tr>
+                </table>
+                </div>
+        }
+        @foreach (var item in ViewBag.Events)
     {
-        <div class="col-md-3">
-            <table style="width: 300px">
-                <tr>
-                    <td><h3>@item.Name</h3></td>
-                </tr>
-                <tr>
-                    <td><p>@item.Start.ToShortDateString()</p></td>
-                </tr>
-                <tr>
-                    <td align="center"><img src="~/Content/img/party.png" style="width: 75%; height: 75%; margin-bottom: 10px" /></td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <a href="@Url.Action("Details","Events", new { id = item.Id})">
-                              <p class="btn btn-info">Bekijk</p>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    }
+            <div class="col-md-3 .clearfix" style="height:400px">
+                <table style="">
+                    <tr>
+                        <td><h3>@item.Name</h3></td>
+                    </tr>
+                    <tr>
+                        <td><p>@item.Start.ToShortDateString()</p></td>
+                    </tr>
+                    <tr>
+                        <td align="center"><img src="~/Content/img/EventImages/@item.Image" style="width: 75%; height: 75%; max-height:225px; margin-bottom: 10px; border-radius: 3px;" /></td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <a href="@Url.Action("Details","Events", new { id = item.Id})">
+                                <p class="btn btn-info">Bekijk</p>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+
 }

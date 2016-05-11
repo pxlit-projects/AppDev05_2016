@@ -34,7 +34,7 @@ namespace webapp_stufv.Controllers {
                 ViewBag.Description = "U heeft geen organisatie geregistreerd.";
             }
 
-            return View ( new Tuple<IEnumerable<Event>, Organisation>(null, null ) );
+            return View ( new Tuple<IEnumerable<Event>, Organisation> ( null, null ) );
         }
 
         public ActionResult Register ( ) {
@@ -49,7 +49,13 @@ namespace webapp_stufv.Controllers {
             Session[ "organisation" ] = 1;
             return View ( );
         }
-        public ActionResult NewEvent ( ) {
+        public ActionResult NewEvent ( HttpPostedFileBase file ) {
+            string filename = "noimageavailable.png";
+            if ( file != null ) {
+                EventImgUpload ( file );
+                filename = file.FileName;
+            }
+
             DateTime start = DateTime.Parse ( Request.Form[ "Start" ] );
             DateTime end = DateTime.Parse ( Request.Form[ "End" ] );
             var newEvent = new Event {
@@ -63,13 +69,28 @@ namespace webapp_stufv.Controllers {
                 EntranceFee = double.Parse ( Request.Form[ "EntranceFee" ] ),
                 AlcoholFree = Boolean.Parse ( Request.Form[ "AlcoholFree" ] ),
                 OrganisationId = iorganisation.GetOrganisationId ( ( int ) Session[ "userId" ] ),
-                Active = false
+                Active = false,
+                Image = filename
             };
             using ( var context = new STUFVModelContext ( ) ) {
                 context.Events.Add ( newEvent );
                 context.SaveChanges ( );
             }
             return View ( );
+        }
+
+        private void EventImgUpload ( HttpPostedFileBase file ) {
+            string pic = System.IO.Path.GetFileName ( file.FileName );
+            string path = System.IO.Path.Combine (
+                                   Server.MapPath ( @"..\Content\img\EventImages\" ), pic );
+            // file is uploaded
+            file.SaveAs ( path );
+            int userId = ( int ) Session[ "userId" ];
+            using ( var context = new STUFVModelContext ( ) ) {
+                var user = context.Users.FirstOrDefault ( c => c.Id == userId );
+                user.ProfilePicture = file.FileName;
+                context.SaveChanges ( );
+            }
         }
     }
 }
