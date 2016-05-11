@@ -112,7 +112,7 @@
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                             
-                                            <Button x:Name="userButton" ToolTip="Bekijk de user van deze review" Content="Bekijk evenementen" Margin="0,5,5,5" Click="UserButton_Click"/>
+                                            <Button x:Name="userButton" ToolTip="Bekijk de user van deze review" Content="Bekijk Gebruiker" Margin="0,5,5,5" Click="UserButton_Click"/>
                                             <Button x:Name="changeStatusButton" ToolTip="Verander de status van deze persoon" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
                                             <Button x:Name="detailsButton" ToolTip="Bekijk de grote details van deze review" Content="Details review" Margin="0,5,5,5" Click="DetailsButton_Click"/>
                                         </StackPanel>

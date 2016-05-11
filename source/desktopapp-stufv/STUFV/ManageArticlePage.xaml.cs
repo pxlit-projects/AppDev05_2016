@@ -29,7 +29,7 @@ namespace STUFV
         {
             InitializeComponent();
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160429025210.azurewebsites.net/");
+            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
