@@ -87,6 +87,7 @@ namespace webapp_stufv.Controllers {
         }
         public ActionResult FindBob ( int id ) {
             ViewBag.Title = "Find bob";
+            ViewBag.EventId = id;
             ViewBag.Description = "Heb je al een bob? Kijk hieronder en vind een bob of schijf jezelf in als bob.";
             return View ( idesdriver.ActiveDriversPerEvent ( id, ( int ) Session[ "userId" ] ) );
         }
