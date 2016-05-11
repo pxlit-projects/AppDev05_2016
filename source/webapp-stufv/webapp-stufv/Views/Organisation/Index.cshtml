@@ -23,25 +23,27 @@
         }
     </div>
     <div class="col-md-6">
-        <button type="button" class="btn-success" data-toggle="collapse" data-target="#NewEvent">Maak een event</button>
+        <div class="col-md-10">
+            <button type="button" class="btn-success" data-toggle="collapse" data-target="#NewEvent">Maak een event</button>
+        </div>
         <div id="NewEvent" class="collapse">
             @using (Html.BeginForm("NewEvent", "Organisation", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     <div class="col-md-3 control-label">Naam van het evenement</div>
-                    <div class="col-md-5"> <input type="text" id="Name" name="Name" placeholder="Naam van het event" class="form-control"/> </div>
+                    <div class="col-md-9"> <input type="text" id="Name" name="Name" placeholder="Naam van het event" class="form-control"/> </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Beschijving</div>
-                    <div class="col-md-5"><input type="text" id="Description" name="Description" placeholder="Beschrijving van het event" class="form-control"/> </div>
+                    <div class="col-md-9"><input type="text" id="Description" name="Description" placeholder="Beschrijving van het event" class="form-control"/> </div>
                 </div>
                 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
                 <script src="../../Content/js/bootstrap-datetimepicker.min.js"></script>
                 <link href="../../Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
                 <div class="form-group">
                     <div class="col-md-3 control-label">Start tijd </div>
-                    <div class="col-md-5">
+                    <div class="col-md-9">
                         <div class="input-append date form_datetime">
                             <input class="form-control" id="Start" name="Start" size="16" type="text" value="" readonly>
                             <span class="add-on"><i class="icon-th"></i></span>
@@ -53,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-3 control-label">Stop tijd </div>
-                        <div class="col-md-5">
+                        <div class="col-md-9">
                             <div class="input-append date form_datetime">
                                 <input class="form-control" id="End" name="End" size="16" type="text" value="" readonly>
                                 <span class="add-on"><i class="icon-th"></i></span>
@@ -65,26 +67,26 @@
                     </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Straat</div>
-                    <div class="col-md-5"><input type="text" id="Street" name="Street" placeholder="Straat" class="form-control"/></div>
+                    <div class="col-md-9"><input type="text" id="Street" name="Street" placeholder="Straat" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Postcode</div>
-                    <div class="col-md-5"><input type="text" id="Zipcode" name="Zipcode" placeholder="Postcode" class="form-control"/></div>
+                    <div class="col-md-9"><input type="text" id="Zipcode" name="Zipcode" placeholder="Postcode" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Type</div>
-                    <div class="col-md-5"><input type="text" id="Type" name="Type" placeholder="Type" class="form-control"/></div>
+                    <div class="col-md-9"><input type="text" id="Type" name="Type" placeholder="Type" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Inkom prijs</div>
-                    <div class="col-md-5"><input type="text" id="EntranceFee" name="EntranceFee" placeholder="Inkom" class="form-control"/></div>
+                    <div class="col-md-9"><input type="text" id="EntranceFee" name="EntranceFee" placeholder="Inkom" class="form-control"/></div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-3 control-label">Alcohol Vrij?</div>
-                    <div class="col-md-5"><input type="text" id="AlcoholFree" name="AlcoholFree" placeholder="Alcoholvrij" class="form-control"/></div>
+                    <div class="col-md-9"><input type="text" id="AlcoholFree" name="AlcoholFree" placeholder="Alcoholvrij" class="form-control"/></div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-3 col-md-5">
+                    <div class="col-md-offset-6 col-md-6">
                         <input type="submit" class="btn btn-success" value="Maak evenement" />
                     </div>
                 </div>
