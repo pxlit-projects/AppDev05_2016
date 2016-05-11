@@ -18,11 +18,13 @@ namespace webapp_stufv.Controllers
             User user = allUsers.Single(r => r.Id == (int)Session["userId"]);
             return View(user);
         }
-        public ActionResult ChangeSettings() {
+        public ActionResult ChangeSettings(HttpPostedFileBase file)
+        {
+            ProfileImgUpload(file);
             Index();
             return View(@"~\Views\Settings\Index.cshtml");
         }
-        public ActionResult ProfileImgUpload(HttpPostedFileBase file)
+        private void ProfileImgUpload(HttpPostedFileBase file)
         {
             if (file != null)
             {
@@ -31,17 +33,14 @@ namespace webapp_stufv.Controllers
                                        Server.MapPath(@"..\Content\img\ProfilePictures\"), pic);
                 // file is uploaded
                 file.SaveAs(path);
+                int userId = (int)Session["userId"];
+                using (var context = new STUFVModelContext())
+                {
+                    var user = context.Users.FirstOrDefault(c => c.Id == userId);
+                    user.ProfilePicture = file.FileName;
+                    context.SaveChanges();
+                }
             }
-            //Change user profile picture
-            int userId = (int)Session["userId"];
-            using (var context = new STUFVModelContext())
-            {
-                var user = context.Users.FirstOrDefault(c => c.Id == userId);
-                user.ProfilePicture = file.FileName;
-                context.SaveChanges();
-            }
-            Index();
-            return View(@"~\Views\Settings\Index.cshtml");
         }
     }
 }
