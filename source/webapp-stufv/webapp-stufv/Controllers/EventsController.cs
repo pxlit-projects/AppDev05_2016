@@ -198,5 +198,16 @@ namespace webapp_stufv.Controllers {
 
             return RedirectToAction ( "Details", "Events", new { id = eventid } );
         }
+
+        public ActionResult FlagReaction (int id) {
+            using ( var context = new STUFVModelContext ( ) ) {
+                Review review = context.Reviews.Find ( id );
+                review.Flagged = true;
+                context.SaveChanges ( );
+
+                ViewBag.Title = "Reactie gemeld";
+                return View ( review );
+            }
+        }
     }
 }
