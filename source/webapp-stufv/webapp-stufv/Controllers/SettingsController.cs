@@ -25,7 +25,9 @@ namespace webapp_stufv.Controllers
             {
                 int userId = (int)Session["userId"];
                 var user = context.Users.FirstOrDefault(c => c.Id == userId);
-                user.ProfilePicture = file.FileName;
+                if (file != null) {
+                    user.ProfilePicture = file.FileName;
+                }
                 user.Street = Request.Form["Street"];
                 user.ZipCode = Request.Form["ZipCode"];
                 user.MobileNr = Request.Form["MobileNr"];
