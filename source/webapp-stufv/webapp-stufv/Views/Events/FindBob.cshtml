@@ -27,7 +27,9 @@
                 {
                     <tr>
                         <td class="col-lg-4">
-                            @item.GetDriverName()
+                            <a href="@Url.Action("Users", "Profile", new { id = item.UserId })">
+                                @item.GetDriverName()
+                            </a>
                         </td>
                         <td class="col-lg-2">
                             @item.GetFreeSpaces()
@@ -45,7 +47,7 @@
     }
     else {
         <div class="alert alert-warning">
-        Er zijn nog geen BOBs beschikbaar.Word zelf een bob.
+            Er zijn nog geen BOBs beschikbaar.Word zelf een bob.
         </div>
     }
 
