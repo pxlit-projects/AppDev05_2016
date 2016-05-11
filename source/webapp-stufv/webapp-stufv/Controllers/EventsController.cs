@@ -209,5 +209,15 @@ namespace webapp_stufv.Controllers {
                 return View ( review );
             }
         }
+
+        public ActionResult DeleteReaction (int id, int eventId) {
+            using ( var context = new STUFVModelContext ( ) ) {
+                Review review = context.Reviews.Find ( id );
+                context.Reviews.Remove ( review );
+                context.SaveChanges ( );
+
+                return RedirectToAction ( "Details", "Events", new { id = eventId } );
+            }
+        }
     }
 }
