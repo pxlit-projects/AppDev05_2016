@@ -21,6 +21,13 @@ namespace webapp_stufv.Controllers
         public ActionResult ChangeSettings(HttpPostedFileBase file)
         {
             ProfileImgUpload(file);
+            using (var context = new STUFVModelContext())
+            {
+                int userId = (int)Session["userId"];
+                var user = context.Users.FirstOrDefault(c => c.Id == userId);
+                user.ProfilePicture = file.FileName;
+                context.SaveChanges();
+            }
             Index();
             return View(@"~\Views\Settings\Index.cshtml");
         }

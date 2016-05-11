@@ -16,7 +16,5 @@ namespace webapp_stufv.Models
         public string TipText { get; set; }
         [Required]
         public Boolean Active { get; set; }
-
-
     }
 }
