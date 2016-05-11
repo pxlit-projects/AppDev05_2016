@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,12 +30,18 @@ namespace STUFV
         {
             InitializeComponent();
 
-            List<Review> reviews = new List<Review>
-            {
-                new Review {Id=1, Active  =true, Content="Looooool"}
-            };
+            client.BaseAddress = new Uri("http://webapp-stufv20160429025210.azurewebsites.net/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            List<string> filterItems = new List<string> { "Id", "UserId", "Content" };
+
+            filterBox.ItemsSource = filterItems;
+
+            loadReviews();
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
+            searchTextBox.SelectionChanged += SearchTextBox_SelectionChanged;
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -104,8 +111,15 @@ namespace STUFV
                                 }
                                 if (review.Id == id) { selectReviews.Add(review); }
                                 break;
-                            case "Naam":
+                            case "Content":
                                 if (review.Content.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectReviews.Add(review); }
+                                break;
+                            case "UserId":
+                                if (int.TryParse(searchTextBox.Text, out id))
+                                {
+                                    id = Convert.ToInt32(searchTextBox.Text);
+                                }
+                                if (review.UserId == id){ selectReviews.Add(review); }
                                 break;
                             default:
                                 break;
@@ -119,7 +133,7 @@ namespace STUFV
                 else
                 {
                     messageLabel.Content = "Er zijn " + selectReviews.Count + " resultaten gevonden!";
-                    manageReviewsDataGrid.ItemsSource = selectReviews;
+                    ReviewsDataGrid.ItemsSource = selectReviews;
                 }
             }
             else
@@ -131,18 +145,8 @@ namespace STUFV
 
         public async void loadReviews()
         {
-            IEnumerable<Review> allReviews = await GetReviews();
-            List<Review> selectReviews = new List<Review>();
-
-            foreach (Review review in allReviews)
-            {
-                if (review.Active == true)
-                {
-                    selectReviews.Add(review);
-                }
-            }
-
-            manageReviewsDataGrid.ItemsSource = selectReviews;
+           
+            ReviewsDataGrid.ItemsSource = await GetReviews();
         }
 
         public async Task<IEnumerable<Review>> GetReviews()
@@ -200,8 +204,9 @@ namespace STUFV
 
         private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
         {
-            Review review = (Review)manageReviewsDataGrid.CurrentItem;
+            Review review = (Review)ReviewsDataGrid.CurrentItem;
             bool originalActive = review.Active;
+            
 
             if (review.Active == true)
             {
@@ -210,6 +215,7 @@ namespace STUFV
                 {
                     review.Active = false;
                 }
+
             }
             else
             {
@@ -228,6 +234,16 @@ namespace STUFV
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
+            Review review = (Review)ReviewsDataGrid.CurrentItem;
+            ReviewDetailsWindow reviewDetailsWindow = new ReviewDetailsWindow(review);
+            reviewDetailsWindow.ShowDialog();
+        }
+
+        private async void UserButton_Click(object sender, RoutedEventArgs e)
+        {
+            Review review = (Review)ReviewsDataGrid.CurrentItem;
+            User user = await GetUser(review.UserId);
+            UserDetailsWindow userDetails = new UserDetailsWindow(user);
 
         }
     }

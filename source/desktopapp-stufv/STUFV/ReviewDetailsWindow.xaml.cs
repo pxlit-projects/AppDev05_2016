@@ -19,9 +19,18 @@ namespace STUFV
     /// </summary>
     public partial class ReviewDetailsWindow : Window
     {
-        public ReviewDetailsWindow()
+        public ReviewDetailsWindow(Review review)
         {
             InitializeComponent();
+
+            detailsPanel.DataContext = review;
+
+
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
+
 }
