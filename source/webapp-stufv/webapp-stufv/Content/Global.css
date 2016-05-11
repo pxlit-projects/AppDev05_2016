@@ -34,6 +34,7 @@
     min-width: 20px;
     border-radius: 3px;
 }
+
 .profileimg {
     max-height: 200px;
     max-width: 200px;
@@ -41,9 +42,11 @@
     margin-right: 25px;
     border-radius: 3px;
 }
+
 .profile .control-label {
     margin-top: 12px;
 }
+
 .eventimg {
     max-height: 200px;
     max-width: 200px;
@@ -423,20 +426,23 @@ a:hover {
     -moz-transition: height 0.2s;
     transition: height 0.2s;
 }
-.right tbody td button{
+
+.right tbody td button {
     margin-bottom: 5px;
     width: 100%;
 }
-.right tbody td p{
+
+.right tbody td p {
     margin-bottom: 5px;
     width: 100%;
 }
-#becomebob .col-md-8    {
+
+#becomebob .col-md-8 {
     padding-top: 1%;
     border: 1px solid rgba(23, 234, 248, 0.2);
     background-color: rgba(23, 234, 248, 0.05);
 }
 
 .inline {
-    display:inline;
+    display: inline;
 }
