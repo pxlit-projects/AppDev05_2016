@@ -45,25 +45,25 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Straat: </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5" id="streetvalidation">
                             <input class="form-control" id="Steet" name="Street" type="text" value="@Model.Street">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Postcode: </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5" id="zipcodevalidation">
                             <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="@Model.ZipCode">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">GSM nummer: </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5" id="mobilenrvalidation">
                             <input class="form-control" id="MobileNr" name="MobileNr" type="text" value="@Model.MobileNr">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Telefoon nummer: </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5" id="telnrvalidation">
                             <input class="form-control" id="TelNr" name="TelNr" type="text" value="@Model.TelNr">
                         </div>
                     </div>
@@ -76,6 +76,28 @@
             }
         </div>
     </div>
+    <script>
+        function ValidateChange() {
+            var street = IsEmpty("#streetvalidation", document.changeform.Street);
+            var zipcode = IsEmpty("#zipcodevalidation", document.changeform.ZipCode);
+            var telnr = IsEmpty("#telnrvalidation", document.changeform.TelNr);
+            var mobilenr = IsEmpty("#mobilenrvalidation", document.changeform.MobileNr);
 
+            if (street && zipcode && telnr && mobilenr) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function IsEmpty(id, text) {
+            if (text.value == "") {
+                $(id).attr("class", "col-md-5 has-error");
+                return false;
+            } else {
+                $(id).attr("class", "col-md-5 has-success");
+                return true;
+            }
+        }
+    </script>
 }
 
