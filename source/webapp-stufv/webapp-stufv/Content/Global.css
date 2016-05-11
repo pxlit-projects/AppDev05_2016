@@ -32,19 +32,24 @@
     width: 2%;
     margin-right: 4px;
     min-width: 20px;
+    border-radius: 3px;
 }
 .profileimg {
     max-height: 200px;
+    max-width: 200px;
     margin: 5px;
     margin-right: 25px;
+    border-radius: 3px;
 }
 .profile .control-label {
     margin-top: 12px;
 }
 .eventimg {
     max-height: 200px;
+    max-width: 200px;
     margin: 5px;
     margin-right: 25px;
+    border-radius: 3px;
 }
 
 .row thead tr {

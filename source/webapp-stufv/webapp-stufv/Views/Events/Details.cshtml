@@ -143,7 +143,7 @@
 
         </div> <br />
     </div>
-        
+        @if (Model.Item4.Count() != 0) { 
         <div class="alert alert-info">
             @foreach ( var item in Model.Item4 ) {
                 <p class="inline"><a href="@Url.Action("Users", "Profile", new { id = item.User.Id})"> @item.User.FirstName @item.User.LastName.Substring(0, 1).</a> schreef op @item.DateTime.ToShortDateString() </p>
@@ -159,7 +159,7 @@
                 <hr />
             }
         </div>
-
+        }
     @if ( Session[ "email" ] != null && !Session[ "email" ].Equals ( "" ) ) {
             <div class="row" style="margin-top:40px;">
                 <div class="col-md-12">
