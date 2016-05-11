@@ -6,7 +6,8 @@
     border: none;
 }
 body{
-    background: url("background.jpg") no-repeat top center fixed;
+   /* background: url("background.jpg") no-repeat top center fixed;*/
+   background-color: #F1F8F7;
 }
 
 .footer {
