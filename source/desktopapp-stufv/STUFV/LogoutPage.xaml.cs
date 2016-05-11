@@ -26,6 +26,18 @@ namespace STUFV
         {
             InitializeComponent();
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
+
+            if (MessageBox.Show("Bent u zeker dat u wilt afmelden?", "Afmelden", 
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+            else
+            {
+                scherm.displayFrame.Source = new Uri("HomePage.xaml", UriKind.Relative);
+            }
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

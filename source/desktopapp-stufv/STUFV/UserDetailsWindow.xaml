@@ -40,7 +40,7 @@
                 <TextBlock Text="Postcode" Width="100"/>
                 <TextBox Text="{Binding ZipCode}" Width="125"/>
                 <TextBlock Text="Woonplaats" Width="100" Margin="10,0,0,0"/>
-                <TextBox x:Name="birthPlaceTextBox" Width="125"/>
+                <TextBox x:Name="homePlaceTextBox" Width="125"/>
             </StackPanel>
             <Button x:Name="closeButton" Content="Sluit venster" HorizontalAlignment="Right" Margin="0,20,0,0" Click="CloseButton_Click"/>
         </StackPanel>

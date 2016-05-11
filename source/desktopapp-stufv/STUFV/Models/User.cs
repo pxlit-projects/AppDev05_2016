@@ -27,7 +27,7 @@ namespace STUFV
         [Required]
         public string BirthPlace { get; set; }
 
-        public char Sex { get; set; }
+        public string Sex { get; set; }
 
         [ForeignKey ( "Cities" )]
         public string ZipCode { get; set; }

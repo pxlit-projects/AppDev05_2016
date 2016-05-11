@@ -40,7 +40,11 @@ namespace webapp_stufv.Controllers {
                 }
             }
             _events = ievent.GetAllEvents ( );
-            var tuple = new Tuple<Event, DesDriver, string> ( _events.Single ( r => r.Id == id ), new DesDriver ( ), new EventRepository ( ).getCity ( _events.Single ( r => r.Id == id ).ZipCode ) );
+            IEnumerable<Review> reviews;
+            using ( var context = new STUFVModelContext ( ) ) {
+                reviews = context.Reviews.Include ( "User" ).Where ( r => r.EventId == id ).ToList ( );
+            }
+                var tuple = new Tuple<Event, DesDriver, string, IEnumerable<Review>> ( _events.Single ( r => r.Id == id ), new DesDriver ( ), new EventRepository ( ).getCity ( _events.Single ( r => r.Id == id ).ZipCode ), reviews );
             ViewBag.Title = tuple.Item1.Name;
             return View ( tuple );
         }
@@ -193,6 +197,17 @@ namespace webapp_stufv.Controllers {
             }
 
             return RedirectToAction ( "Details", "Events", new { id = eventid } );
+        }
+
+        public ActionResult FlagReaction (int id) {
+            using ( var context = new STUFVModelContext ( ) ) {
+                Review review = context.Reviews.Find ( id );
+                review.Flagged = true;
+                context.SaveChanges ( );
+
+                ViewBag.Title = "Reactie gemeld";
+                return View ( review );
+            }
         }
     }
 }

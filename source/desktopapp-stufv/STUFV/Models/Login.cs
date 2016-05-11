@@ -17,6 +17,6 @@ namespace STUFV
         public virtual User User { get; set; }
 
         [Required]
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model webapp_stufv.Models.Review
+
+@section Content {
+
+    <div class="page-header">
+        <div class="well">
+            @ViewBag.Title
+        </div>
+    </div>
+
+    <div class="alert alert-success">
+        Dankje voor de reactie te melden! Onze administrators zullen de reactie onderzoeken op ongepaste inhoud.
+    </div>
+
+    <p class="text-muted"> Details van de gemelde reactie: </p>
+    <ul>
+        <li>
+            Geschreven op: @Html.DisplayFor(m => Model.DateTime)
+        </li>
+        <li>
+            Id van evenement: @Html.DisplayFor(m => Model.EventId)
+        </li>
+    </ul>
+
+}
+
+
