@@ -91,6 +91,8 @@
     margin-bottom: 5px;
     background-color: rgba(23, 234, 248, 0.05);
     width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
     .eventpage .row .col-lg-8 {
