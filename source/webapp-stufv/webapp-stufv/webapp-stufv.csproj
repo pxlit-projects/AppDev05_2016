@@ -298,6 +298,7 @@
     <Content Include="Content\img\news.jpg" />
     <Content Include="Content\img\party.png" />
     <Content Include="Content\img\pint.png" />
+    <Content Include="Content\img\ProfilePictures\noimageavailable.png" />
     <Content Include="Content\img\thumbsup.png" />
     <Content Include="Content\img\vinkje.png" />
     <Content Include="Content\img\noimageavailable.png" />
@@ -361,6 +362,7 @@
     <Content Include="Views\Organisation\NewEvent.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Events\FlagReaction.cshtml" />
+    <Content Include="Views\Profile\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

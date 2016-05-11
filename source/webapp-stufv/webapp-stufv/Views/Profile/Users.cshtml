@@ -1,0 +1,52 @@
+﻿@model webapp_stufv.Models.User
+
+@section content{
+    <div class="container">
+
+        <div class="page-header">
+            <div class="well">
+                <h1>
+                    @Model.FirstName @Model.LastName 
+                </h1>
+            </div>
+        </div>
+        <div class="row profile">
+            <div class="col-md-3">
+                <img class="profileimg" src="~/Content/img/ProfilePictures/@Model.ProfilePicture" />
+            </div>
+            <div class="col-md-9">
+                <div class="row form-group">
+                    <div class="col-md-2 control-label">Email adres: </div>
+                    <div class="col-md-5">
+                        <input class="form-control" id="Email" name="Email" type="text" value="@Model.Email" readonly>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-2 control-label">Voornaam: </div>
+                    <div class="col-md-5">
+                        <input class="form-control" id="Email" name="Email" type="text" value="@Model.FirstName" readonly>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-2 control-label">Achternaam: </div>
+                    <div class="col-md-5">
+                        <input class="form-control" id="Email" name="Email" type="text" value="@Model.LastName" readonly>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-2 control-label">Geboortedatum: </div>
+                    <div class="col-md-5">
+                        <input class="form-control" id="Email" name="Email" type="text" value="@Model.BirthDate.ToLongDateString()" readonly>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-2 control-label">Geboortedatum: </div>
+                    <div class="col-md-5">
+                        <input class="form-control" id="Email" name="Email" type="text" value="@Model.BirthDate.ToLongDateString()" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

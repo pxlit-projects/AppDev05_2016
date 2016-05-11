@@ -86,7 +86,8 @@ namespace webapp_stufv.Controllers {
                 Salt = salt,
                 Active = true,
                 RoleID = 1,
-                Email = email.ToLower ( )
+                Email = email.ToLower(),
+                ProfilePicture = "noimageavailable.png"
             };
             using ( var context = new STUFVModelContext ( ) ) {
                 context.Users.Add ( user );
