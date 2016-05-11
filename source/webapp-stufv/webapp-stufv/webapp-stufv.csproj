@@ -364,11 +364,11 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Events\FlagReaction.cshtml" />
     <Content Include="Views\Profile\Users.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
-    <Folder Include="Views\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
