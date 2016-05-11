@@ -18,6 +18,10 @@ namespace webapp_stufv.Controllers
             User user = allUsers.Single(r => r.Id == (int)Session["userId"]);
             return View(user);
         }
+        public ActionResult ChangeSettings() {
+            Index();
+            return View(@"~\Views\Settings\Index.cshtml");
+        }
         public ActionResult ProfileImgUpload(HttpPostedFileBase file)
         {
             if (file != null)
@@ -29,14 +33,15 @@ namespace webapp_stufv.Controllers
                 file.SaveAs(path);
             }
             //Change user profile picture
+            int userId = (int)Session["userId"];
             using (var context = new STUFVModelContext())
             {
-                int userId = (int)Session["userId"];
                 var user = context.Users.FirstOrDefault(c => c.Id == userId);
                 user.ProfilePicture = file.FileName;
                 context.SaveChanges();
             }
-            return RedirectToAction("actionname", "controller name");
+            Index();
+            return View(@"~\Views\Settings\Index.cshtml");
         }
     }
 }
