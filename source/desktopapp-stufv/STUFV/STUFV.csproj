@@ -337,6 +337,30 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\background1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\background2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\background3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\background4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\background5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\background6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\background7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\background8.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
