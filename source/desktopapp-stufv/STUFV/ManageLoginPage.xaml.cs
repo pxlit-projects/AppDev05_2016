@@ -32,7 +32,7 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            List<string> filterItems = new List<string> { "Id", "Voornaam", "Datum" };
+            List<string> filterItems = new List<string> { "Id", "UserId", "Naam", "Email", "Datum login", "Datum vanaf" };
 
             filterBox.ItemsSource = filterItems;
 
@@ -83,37 +83,176 @@ namespace STUFV
             }
         }
 
+        private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (filterBox.SelectedIndex >= 4)
+            {
+                searchDatePicker.Visibility = Visibility.Visible;
+                searchTextBox.IsEnabled = false;
+            }
+            else
+            {
+                searchDatePicker.Visibility = Visibility.Hidden;
+                searchTextBox.IsEnabled = true;
+            }
+            searchTextBox.Text = "";
+            searchDatePicker.Text = "";
+        }
+
+
+        private async void SearchTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (searchTextBox.Text != "")
+            {
+                IEnumerable<Login> allLogins = await GetLogins();
+
+                string filter = filterBox.SelectedValue.ToString();
+
+                List<Login> selectLogins = new List<Login>();
+                foreach (Login login in allLogins)
+                {
+                    switch (filter)
+                    {
+                        case "Id":
+                            int id = 0;
+                            if (int.TryParse(searchTextBox.Text, out id))
+                            {
+                                id = Convert.ToInt32(searchTextBox.Text);
+                            }
+                            if (login.Id == id) { selectLogins.Add(login); }
+                            break;
+                        case "UserId":
+                            int userId = 0;
+                            if (int.TryParse(searchTextBox.Text, out userId))
+                            {
+                                id = Convert.ToInt32(searchTextBox.Text);
+                            }
+                            if (login.UserId == userId) { selectLogins.Add(login); }
+                            break;
+                        case "Naam":
+                            IEnumerable<User> naamUsers = await GetUsers();
+                            foreach (User user in naamUsers)
+                            {
+                                if (user.FirstName.ToUpper().Contains(searchTextBox.Text.ToUpper()) 
+                                    || user.LastName.ToUpper().Contains(searchTextBox.Text.ToUpper()))
+                                {
+                                    if (login.UserId == user.Id)
+                                    {
+                                        selectLogins.Add(login);
+                                    }
+                                }
+                            }
+                            break;
+                        case "Email":
+                            IEnumerable<User> emailUsers = await GetUsers();
+                            foreach (User user in emailUsers)
+                            {
+                                if (user.Email.ToUpper().Contains(searchTextBox.Text.ToUpper()))
+                                {
+                                    if (login.UserId == user.Id)
+                                    {
+                                        selectLogins.Add(login);
+                                    }
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (selectLogins == null)
+                {
+                    messageLabel.Content = "Geen resultaten";
+                }
+                else
+                {
+                    messageLabel.Content = "Er zijn " + selectLogins.Count + " resultaten gevonden!";
+                    loginDataGrid.ItemsSource = selectLogins;
+                }
+            }
+            else
+            {
+                messageLabel.Content = "";
+                LoadLogins();
+            }
+        }
+
+
+        private async void SearchDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (searchDatePicker.SelectedDate != null)
+            {
+                IEnumerable<Login> allLogins = await GetLogins();
+
+                string filter = filterBox.SelectedValue.ToString();
+
+                List<Login> selectLogins = new List<Login>();
+                foreach (Login login in allLogins)
+                {
+                    switch (filter)
+                    {
+                        case "Datum login":
+                            if (login.DateTime.Date == searchDatePicker.SelectedDate) { selectLogins.Add(login); }
+                            break;
+                        case "Datum vanaf":
+                            if (login.DateTime >= searchDatePicker.SelectedDate) { selectLogins.Add(login); }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (selectLogins == null)
+                {
+                    messageLabel.Content = "Geen resultaten";
+                }
+                else
+                {
+                    messageLabel.Content = "Er zijn " + selectLogins.Count + " resultaten gevonden!";
+                    loginDataGrid.ItemsSource = selectLogins;
+                }
+            }
+            else
+            {
+                messageLabel.Content = "";
+                LoadLogins();
+            }
+        }
+
         private async void LoginDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IEnumerable<Login> logins = await GetLogins();
-            List<DateTime> loginDates = new List<DateTime>();
-
-            Login login = (Login)loginDataGrid.CurrentItem;
-            User user = await GetUser(login.UserId);
-
-            string role = null;
-
-            switch (user.RoleID)
+            if (searchTextBox.IsFocused == false && searchDatePicker.IsDropDownOpen == false
+                && searchDatePicker.IsFocused == false && filterBox.IsFocused == false)
             {
-                case 1:
-                    role = "Admin";
-                    break;
-                case 2:
-                    role = "User";
-                    break;
-            }
+                IEnumerable<Login> logins = await GetLogins();
+                List<DateTime> loginDates = new List<DateTime>();
 
-            userLabel.Content = string.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
-            homePlaceTextBox.Text = "ToDo";
+                Login login = (Login)loginDataGrid.CurrentItem;
+                User user = await GetUser(login.UserId);
 
-            foreach (Login forLogin in logins)
-            {
-                if (forLogin.UserId == login.UserId) { loginDates.Add(forLogin.DateTime); }
-            }
-            loginDates.Sort();
+                string role = null;
 
-            latestLogin.Content = loginDates.Last().ToLongDateString() + ", " + loginDates.Last().ToLongTimeString();
-            detailsPanel.DataContext = user;
+                switch (user.RoleID)
+                {
+                    case 1:
+                        role = "Admin";
+                        break;
+                    case 2:
+                        role = "User";
+                        break;
+                }
+
+                userLabel.Content = string.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
+                homePlaceTextBox.Text = "ToDo";
+
+                foreach (Login forLogin in logins)
+                {
+                    if (forLogin.UserId == login.UserId) { loginDates.Add(forLogin.DateTime); }
+                }
+                loginDates.Sort();
+
+                latestLogin.Content = loginDates.Last().ToLongDateString() + ", " + loginDates.Last().ToLongTimeString();
+                detailsPanel.DataContext = user;
+            } 
         }
 
         public async void LoadLogins()
