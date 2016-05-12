@@ -6,7 +6,7 @@
     border: none;
 }
 body{
-   background-color: #F5F5F5;
+   background: url("background.jpg") no-repeat top center fixed;
 }
 
 .footer {
