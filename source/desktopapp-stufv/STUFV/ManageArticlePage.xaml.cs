@@ -36,10 +36,10 @@ namespace STUFV
             List<string> filterItems = new List<string> { "Id", "Titel", "AuteurId", "Datum aangemaakt", "Datum vanaf" };
 
             filterBox.ItemsSource = filterItems;
-            
+            filterBox.SelectedIndex = 0;
+
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
             filterBox.SelectionChanged += FilterBox_SelectionChanged;
-            filterBox.SelectedIndex = 1;
             searchDatePicker.SelectedDateChanged += SearchDatePicker_SelectedDateChanged;
             LoadArticles();
         }

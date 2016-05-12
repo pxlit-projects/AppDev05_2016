@@ -76,7 +76,7 @@
                     <StackPanel Margin="0,50,0,0">
                         <TextBlock Text="Website" FontSize="40" Margin="10,5,0,0"/>
                         <TextBlock FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,65,0,0" Padding="5,0,5,0">
-                        <Hyperlink NavigateUri="http://webapp-stufv20160429025210.azurewebsites.net/" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Hyperlink NavigateUri="http://webapp-stufv20160511012914.azurewebsites.net/" RequestNavigate="Hyperlink_RequestNavigate">
                             Bekijk online
                         </Hyperlink>
                         </TextBlock>

@@ -35,6 +35,7 @@ namespace STUFV
             List<string> filterItems = new List<string> { "Id", "UserId", "Naam", "Email", "Datum login", "Datum vanaf" };
 
             filterBox.ItemsSource = filterItems;
+            filterBox.SelectedIndex = 0;
 
             LoadLogins();
             menuBox.SelectionChanged += MenuBox_SelectionChanged;

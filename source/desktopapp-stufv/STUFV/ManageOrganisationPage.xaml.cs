@@ -37,6 +37,7 @@ namespace STUFV
             List<string> filterItems = new List<string> { "Id", "Naam" };
 
             filterBox.ItemsSource = filterItems;
+            filterBox.SelectedIndex = 0;
 
             loadOrganisations();
 
