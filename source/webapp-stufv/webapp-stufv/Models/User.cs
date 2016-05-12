@@ -27,6 +27,7 @@ namespace webapp_stufv.Models {
         public string BirthPlace { get; set; }
 
         public string Sex { get; set; }
+
         [Required]
         public string Street { get; set; }
         [ForeignKey ( "Cities" )]

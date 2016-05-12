@@ -26,7 +26,7 @@ namespace STUFV {
         public NewOrganisationPage ( ) {
             InitializeComponent ( );
 
-            client.BaseAddress = new Uri ("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.BaseAddress = new Uri ( "http://webapp-stufv20160511012914.azurewebsites.net/" );
             client.DefaultRequestHeaders.Accept.Clear ( );
             client.DefaultRequestHeaders.Accept.Add ( new MediaTypeWithQualityHeaderValue ( "application/json" ) );
 
@@ -42,104 +42,88 @@ namespace STUFV {
         private void MenuBox_SelectionChanged ( object sender, SelectionChangedEventArgs e ) {
             int index = menuBox.SelectedIndex;
 
-            switch (index)
-            {
+            switch ( index ) {
                 case 0:
-                    scherm.displayFrame.Source = new Uri("HomePage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "HomePage.xaml", UriKind.Relative );
                     break;
                 case 1:
-                    scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "ArticlePage.xaml", UriKind.Relative );
                     break;
                 case 2:
-                    scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "NewOrganisationPage.xaml", UriKind.Relative );
                     break;
                 case 3:
-                    scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "ReviewsPage.xaml", UriKind.Relative );
                     break;
                 case 4:
-                    scherm.displayFrame.Source = new Uri("UsersPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "UsersPage.xaml", UriKind.Relative );
                     break;
                 case 5:
-                    scherm.displayFrame.Source = new Uri("ManageOrganisationPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "ManageOrganisationPage.xaml", UriKind.Relative );
                     break;
                 case 6:
-                    scherm.displayFrame.Source = new Uri("ManageEventPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "ManageEventPage.xaml", UriKind.Relative );
                     break;
                 case 7:
-                    scherm.displayFrame.Source = new Uri("ManageArticlePage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "ManageArticlePage.xaml", UriKind.Relative );
                     break;
                 case 8:
-                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "StatsPage.xaml", UriKind.Relative );
                     break;
                 case 9:
-                    scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri ( "LogoutPage.xaml", UriKind.Relative );
                     break;
             }
         }
 
-        private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        private void FilterBox_SelectionChanged ( object sender, SelectionChangedEventArgs e ) {
             searchTextBox.Text = "";
         }
 
-        private async void SearchTextBox_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            if (searchTextBox.Text != "")
-            {
-                IEnumerable<Organisation> allOrganisations = await GetOrganisations();
+        private async void SearchTextBox_SelectionChanged ( object sender, RoutedEventArgs e ) {
+            if ( searchTextBox.Text != "" ) {
+                IEnumerable<Organisation> allOrganisations = await GetOrganisations ( );
 
-                string filter = filterBox.SelectedValue.ToString();
+                string filter = filterBox.SelectedValue.ToString ( );
 
-                List<Organisation> selectOrganisations = new List<Organisation>();
-                foreach (Organisation organisation in allOrganisations)
-                {
-                    if (organisation.isRegistered == false)
-                    {
-                        switch (filter)
-                        {
+                List<Organisation> selectOrganisations = new List<Organisation> ( );
+                foreach ( Organisation organisation in allOrganisations ) {
+                    if ( organisation.isRegistered == false ) {
+                        switch ( filter ) {
                             case "Id":
                                 int id = 0;
-                                if (int.TryParse(searchTextBox.Text, out id))
-                                {
-                                    id = Convert.ToInt32(searchTextBox.Text);
+                                if ( int.TryParse ( searchTextBox.Text, out id ) ) {
+                                    id = Convert.ToInt32 ( searchTextBox.Text );
                                 }
-                                if (organisation.Id == id) { selectOrganisations.Add(organisation); }
+                                if ( organisation.Id == id ) { selectOrganisations.Add ( organisation ); }
                                 break;
                             case "Naam":
-                                if (organisation.Name.ToUpper().Contains(searchTextBox.Text.ToUpper())) { selectOrganisations.Add(organisation); }
+                                if ( organisation.Name.ToUpper ( ).Contains ( searchTextBox.Text.ToUpper ( ) ) ) { selectOrganisations.Add ( organisation ); }
                                 break;
                             default:
                                 break;
                         }
                     }
                 }
-                if (selectOrganisations == null)
-                {
+                if ( selectOrganisations == null ) {
                     messageLabel.Content = "Geen resultaten";
-                }
-                else
-                {
+                } else {
                     messageLabel.Content = "Er zijn " + selectOrganisations.Count + " resultaten gevonden!";
                     organisationDataGrid.ItemsSource = selectOrganisations;
                 }
-            }
-            else
-            {
+            } else {
                 messageLabel.Content = "";
-                loadOrganisations();
+                loadOrganisations ( );
             }
         }
 
-        public async void loadOrganisations()
-        {
-            IEnumerable<Organisation> allOrganisations = await GetOrganisations();
-            List<Organisation> selectOrganisations = new List<Organisation>();
+        public async void loadOrganisations ( ) {
+            IEnumerable<Organisation> allOrganisations = await GetOrganisations ( );
+            List<Organisation> selectOrganisations = new List<Organisation> ( );
 
-            foreach (Organisation organisation in allOrganisations)
-            {
-                if (organisation.isRegistered == false)
-                {
-                    selectOrganisations.Add(organisation);
+            foreach ( Organisation organisation in allOrganisations ) {
+                if ( organisation.isRegistered == false ) {
+                    selectOrganisations.Add ( organisation );
                 }
             }
             organisationDataGrid.ItemsSource = selectOrganisations;
@@ -155,35 +139,31 @@ namespace STUFV {
             return organisations;
         }
 
-        public async void updateOrganisation(Organisation toUpdate)
-        {
+        public async void updateOrganisation ( Organisation toUpdate ) {
             var url = "api/organisations/" + toUpdate.Id;
-            HttpResponseMessage response = await client.PutAsJsonAsync(url, toUpdate);
+            HttpResponseMessage response = await client.PutAsJsonAsync ( url, toUpdate );
 
-            if (response.IsSuccessStatusCode)
-            {
-                loadOrganisations();
+            if ( response.IsSuccessStatusCode ) {
+                loadOrganisations ( );
             }
         }
 
-        private void GoodOrganisationButton_Click(object sender, RoutedEventArgs e)
-        {
-            Organisation organisation = (Organisation)organisationDataGrid.CurrentItem;
+        private void GoodOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
+            Organisation organisation = ( Organisation ) organisationDataGrid.CurrentItem;
 
             organisation.Active = true;
             organisation.isRegistered = true;
 
-            updateOrganisation(organisation);
+            updateOrganisation ( organisation );
         }
 
-        private void BadOrganisationButton_Click(object sender, RoutedEventArgs e)
-        {
-            Organisation organisation = (Organisation)organisationDataGrid.CurrentItem;
+        private void BadOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
+            Organisation organisation = ( Organisation ) organisationDataGrid.CurrentItem;
 
             organisation.Active = false;
             organisation.isRegistered = true;
 
-            updateOrganisation(organisation);
+            updateOrganisation ( organisation );
         }
     }
 }
