@@ -134,7 +134,7 @@ namespace STUFV {
                     messageLabel.Content = "Bezig met aanmelden...";
                     Login login = new Login();
                     login.UserId = user.Id;
-                    login.DateTime = DateTime.Now;
+                    login.DateTime = DateTime.Now.AddHours(2);
                     InsertLogin(login);
                     homeWindow = new HomeWindow(user);
                     Application.Current.MainWindow = homeWindow;

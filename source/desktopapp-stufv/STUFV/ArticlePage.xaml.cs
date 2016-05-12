@@ -98,7 +98,7 @@ namespace STUFV
             article.Title = titleTextBox.Text;
             article.Content = contentTextBox.Text;
             article.UserId = scherm.user.Id;
-            article.DateTime = DateTime.Now.Date;
+            article.DateTime = DateTime.Now.AddHours(2);
             article.Active = true;
             article.ThumbsUp = 0;
 

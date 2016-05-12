@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="HomeWindow" MinHeight="650" MinWidth="1000" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Image Source="images/background8.png" Stretch="Fill"/>
+        <Image Source="images/background10.jpg" Stretch="Fill"/>
         <Frame x:Name="displayFrame"></Frame>
     </Grid>
 </Controls:MetroWindow>
