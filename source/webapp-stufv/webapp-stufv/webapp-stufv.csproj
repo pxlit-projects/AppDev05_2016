@@ -363,7 +363,6 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Organisation\Process.cshtml" />
     <Content Include="Views\Organisation\Index.cshtml" />
-    <Content Include="Views\Organisation\NewEvent.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Events\FlagReaction.cshtml" />
     <Content Include="Views\Profile\Users.cshtml" />

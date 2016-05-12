@@ -24,8 +24,9 @@ namespace webapp_stufv.Controllers {
                     int userId = Convert.ToInt32 ( Session[ "userId" ] );
                     var organisations = context.Organisations.Where ( o => o.UserId == userId ).ToList ( );
                     var organisation = organisations.ElementAt ( 0 );
+                    var eventTypes = context.EventTypes.ToList();
                     var events = context.Events.Where ( e => e.OrganisationId == organisation.Id ).ToList ( );
-                    var tuple = new Tuple<IEnumerable<Event>, Organisation> ( events, organisation );
+                    var tuple = new Tuple<IEnumerable<Event>, Organisation,IEnumerable<EventTypes>> ( events, organisation, eventTypes );
                     return View ( tuple );
                 }
             } else if ( ( int ) Session[ "organisation" ] == 3 ) {
@@ -51,11 +52,14 @@ namespace webapp_stufv.Controllers {
         }
         public ActionResult NewEvent ( HttpPostedFileBase file ) {
             string filename = "noimageavailable.png";
+            Boolean alcoholFree = false;
             if ( file != null ) {
                 EventImgUpload ( file );
                 filename = file.FileName;
             }
-
+            if (Request.Form["AlcoholFree"] != null) {
+                alcoholFree = true;
+            }
             DateTime start = DateTime.Parse ( Request.Form[ "Start" ] );
             DateTime end = DateTime.Parse ( Request.Form[ "End" ] );
             var newEvent = new Event {
@@ -67,7 +71,7 @@ namespace webapp_stufv.Controllers {
                 ZipCode = Request.Form[ "ZipCode" ],
                 Type = int.Parse ( Request.Form[ "Type" ] ),
                 EntranceFee = double.Parse ( Request.Form[ "EntranceFee" ] ),
-                AlcoholFree = Boolean.Parse ( Request.Form[ "AlcoholFree" ] ),
+                AlcoholFree = alcoholFree,
                 OrganisationId = iorganisation.GetOrganisationId ( ( int ) Session[ "userId" ] ),
                 Active = false,
                 Image = filename
