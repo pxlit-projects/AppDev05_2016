@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,10 +24,29 @@ namespace STUFV
     public partial class HomePage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
+        HttpClient client = new HttpClient();
+        private int aantalOrganisaties = 0;
+        private int aantalReviews = 0;
 
         public HomePage()
         {
             InitializeComponent();
+
+            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            GetAantalNieuweOrganisaties();
+            GetAantalNieuweReviews();
+
+            countOrganisationLabel.Content = aantalOrganisaties;
+            countReviewLabel.Content = aantalReviews;
+
+            organisationLabel.Text = "Momenteel zijn er " + aantalOrganisaties + " organisaties \ndie zich willen registeren.\n" 
+               + "Je kan ze wel of niet toelaten \nin de \"Nieuwe organisaties\" \ntab of door te klikken op \nbovenstaande afbeelding.";
+
+            reviewLabel.Text = "Momenteel zijn er " + aantalReviews + " reviews \ndie geflagged zijn.\n"
+               + "Je kan ze wel of niet toelaten \nin de \"Controle op reviews\" \ntab of door te klikken op \nbovenstaande afbeelding.";
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
@@ -84,13 +105,52 @@ namespace STUFV
 
         private void Review_Click(object sender, RoutedEventArgs e)
         {
-            scherm.displayFrame.Source = new Uri("ReviewPage.xaml", UriKind.Relative);
+            scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        private async void GetAantalNieuweOrganisaties()
+        {
+            var organisationUrl = "/api/organisations";
+            HttpResponseMessage response = await client.GetAsync(organisationUrl);
+            IEnumerable<Organisation> organisations = null;
+            if (response.IsSuccessStatusCode)
+            {
+                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
+            }
+
+            int teller = 0;
+            foreach (Organisation organisation in organisations)
+            {
+                if (organisation.isRegistered == false)
+                {
+                    teller++;
+                }
+            }
+           aantalOrganisaties = teller;
+        }
+
+        private async void GetAantalNieuweReviews()
+        {
+            var reviewUrl = "/api/reviews";
+            HttpResponseMessage response = await client.GetAsync(reviewUrl);
+            IEnumerable<Review> reviews = null;
+            if (response.IsSuccessStatusCode)
+            {
+                reviews = await response.Content.ReadAsAsync<IEnumerable<Review>>();
+            }
+
+            int teller = 0;
+            foreach (Review review in reviews)
+            {
+                teller++;
+            }
+            aantalReviews = teller;
         }
     }
 }
