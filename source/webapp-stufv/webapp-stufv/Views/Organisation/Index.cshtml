@@ -7,27 +7,26 @@
     {
         <div class="row">
             <div class="col-md-6">
-                <div class="well">
-                    <h4> Mijn evenementen </h4>
-                </div>
                 @if (Model.Item1.Count() == 0)
                 {
                     <div class="alert alert-warning"> U heeft nog geen evenementen aangemaakt. </div>
                 }
                 else {
-                    <div class="list-group">
-                        @foreach (var item in Model.Item1)
-                        {
-                            <a class="list-group-item" href=@Url.Action( "Details", "Events", new { id = item.Id } )>
-                                <p class="list-group-item-heading"> @item.Name </p>
-                                <p class="list-group-item-text"> @item.Description.Substring(0, @item.Description.Length / 2)... </p>
-                            </a>
-                        }
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Mijn events</div>
+                        <div class="list-group">
+                            @foreach (var item in Model.Item1)
+                            {
+                                <a class="list-group-item" href=@Url.Action( "Details", "Events", new { id = item.Id } )>
+                                    <p class="list-group-item-heading"> @item.Name </p>
+                                    <p class="list-group-item-text"> @item.Description.Substring(0, @item.Description.Length / 2)... </p>
+                                </a>
+                            }
+                        </div>
                     </div>
                 }
             </div>
             <div class="col-md-6">
-                <div class="well"><h4>Opties</h4></div>
                 <div class="col-md-10">
                     <button type="button" class="btn-success" data-toggle="collapse" data-target="#NewEvent">Maak een event</button>
                 </div>
