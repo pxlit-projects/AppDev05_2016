@@ -41,6 +41,7 @@ namespace webapp_stufv.Controllers {
         public ActionResult Register ( ) {
             return View ( );
         }
+
         public ActionResult Process ( ) {
             ViewBag.Title = "Registratie organisatie";
             ViewBag.Description = "U registratie is gelukt. U organisatie zal binnenkort geactiveerd worden.";
@@ -50,6 +51,7 @@ namespace webapp_stufv.Controllers {
             Session[ "organisation" ] = 1;
             return View ( );
         }
+
         public ActionResult NewEvent ( HttpPostedFileBase file ) {
             string filename = "noimageavailable.png";
             Boolean alcoholFree = false;
