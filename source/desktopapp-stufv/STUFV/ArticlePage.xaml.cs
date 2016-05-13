@@ -107,13 +107,23 @@ namespace STUFV
 
         private async void AddArticle(Article article)
         {
-            var userUrl = "/api/article";
-            HttpResponseMessage response = await client.PostAsJsonAsync(userUrl, article);
+            try {
+                var userUrl = "/api/article";
+                HttpResponseMessage response = await client.PostAsJsonAsync(userUrl, article);
 
-            if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show(String.Format("Artikel succesvol geplaatst op {0}. Auteur: {1} {2}",
+                                article.DateTime.ToLongDateString(), scherm.user.FirstName, scherm.user.LastName));
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                MessageBox.Show(String.Format("Artikel succesvol geplaatst op {0}. Auteur: {1} {2}",
-                            article.DateTime.ToLongDateString(), scherm.user.FirstName, scherm.user.LastName));
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.", 
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
         }
     }

@@ -266,26 +266,46 @@ namespace STUFV
 
         public async Task<IEnumerable<Login>> GetLogins()
         {
-            var loginUrl = "/api/login";
-            HttpResponseMessage response = await client.GetAsync(loginUrl);
             IEnumerable<Login> logins = null;
+            try {
+                var loginUrl = "/api/login";
+                HttpResponseMessage response = await client.GetAsync(loginUrl);
 
-            if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    logins = await response.Content.ReadAsAsync<IEnumerable<Login>>();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                logins = await response.Content.ReadAsAsync<IEnumerable<Login>>();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
             return logins;
         }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
             IEnumerable<User> users = null;
+            try {
+                var userUrl = "/api/user";
+                HttpResponseMessage response = await client.GetAsync(userUrl);
 
-            if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
             return users;
         }

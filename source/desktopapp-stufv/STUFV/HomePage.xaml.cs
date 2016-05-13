@@ -110,47 +110,78 @@ namespace STUFV
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
+            try {
+                Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+                e.Handled = true;
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                Close();
+                scherm.Close();
+            }
         }
 
         private async void GetAantalNieuweOrganisaties()
         {
-            var organisationUrl = "/api/organisations";
-            HttpResponseMessage response = await client.GetAsync(organisationUrl);
-            IEnumerable<Organisation> organisations = null;
-            if (response.IsSuccessStatusCode)
-            {
-                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
-            }
-
-            int teller = 0;
-            foreach (Organisation organisation in organisations)
-            {
-                if (organisation.isRegistered == false)
+            try {
+                var organisationUrl = "/api/organisations";
+                HttpResponseMessage response = await client.GetAsync(organisationUrl);
+                IEnumerable<Organisation> organisations = null;
+                if (response.IsSuccessStatusCode)
                 {
-                    teller++;
+                    organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
                 }
+
+                int teller = 0;
+                foreach (Organisation organisation in organisations)
+                {
+                    if (organisation.isRegistered == false)
+                    {
+                        teller++;
+                    }
+                }
+                aantalOrganisaties = teller;
             }
-           aantalOrganisaties = teller;
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
         }
 
         private async void GetAantalNieuweReviews()
         {
-            var reviewUrl = "/api/reviews";
-            HttpResponseMessage response = await client.GetAsync(reviewUrl);
-            IEnumerable<Review> reviews = null;
-            if (response.IsSuccessStatusCode)
-            {
-                reviews = await response.Content.ReadAsAsync<IEnumerable<Review>>();
-            }
+            try {
+                var reviewUrl = "/api/reviews";
+                HttpResponseMessage response = await client.GetAsync(reviewUrl);
+                IEnumerable<Review> reviews = null;
+                if (response.IsSuccessStatusCode)
+                {
+                    reviews = await response.Content.ReadAsAsync<IEnumerable<Review>>();
+                }
 
-            int teller = 0;
-            foreach (Review review in reviews)
-            {
-                teller++;
+                int teller = 0;
+                foreach (Review review in reviews)
+                {
+                    teller++;
+                }
+                aantalReviews = teller;
             }
-            aantalReviews = teller;
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
         }
     }
 }

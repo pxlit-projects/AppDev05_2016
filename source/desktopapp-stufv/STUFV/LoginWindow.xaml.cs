@@ -18,19 +18,22 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace STUFV {
+namespace STUFV
+{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window {
-        HttpClient client = new HttpClient ( );
+    public partial class LoginWindow : Window
+    {
+        HttpClient client = new HttpClient();
         HomeWindow homeWindow;
         DispatcherTimer loginTimer;
         private int attempts = 0;
         private int counter = 10;
 
-        public LoginWindow ( ) {
-            InitializeComponent ( );
+        public LoginWindow()
+        {
+            InitializeComponent();
 
             emailBox.GotFocus += EmailBox_GotFocus;
             emailBox.LostFocus += EmailBox_LostFocus;
@@ -44,60 +47,72 @@ namespace STUFV {
             loginTimer.Interval = TimeSpan.FromSeconds(1);
             loginTimer.Tick += LoginTimer_Tick;
 
-            client.BaseAddress = new Uri ("http://webapp-stufv20160511012914.azurewebsites.net/" );
-            client.DefaultRequestHeaders.Accept.Clear ( );
-            client.DefaultRequestHeaders.Accept.Add ( new MediaTypeWithQualityHeaderValue ( "application/json" ) );
+            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        private void EmailBox_LostFocus ( object sender, RoutedEventArgs e ) {
-            if ( emailBox.Text == "" ) {
+        private void EmailBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (emailBox.Text == "")
+            {
                 emailBox.Text = "E-mailadres";
-                emailBox.Foreground = new SolidColorBrush ( Colors.LightGray );
+                emailBox.Foreground = new SolidColorBrush(Colors.LightGray);
             }
         }
 
-        private void EmailBox_GotFocus ( object sender, RoutedEventArgs e ) {
+        private void EmailBox_GotFocus(object sender, RoutedEventArgs e)
+        {
             if (loginButton.IsEnabled == true)
             {
                 errorBox.Content = "";
             }
-            
-            if ( emailBox.Text == "E-mailadres" ) {
+
+            if (emailBox.Text == "E-mailadres")
+            {
                 emailBox.Text = "";
-                emailBox.Foreground = new SolidColorBrush ( Colors.Black );
+                emailBox.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
 
-        private void EmailBox_KeyDown ( object sender, KeyEventArgs e ) {
-            if ( e.Key == Key.Tab ) {
-                passwordTextBox.Focus ( );
+        private void EmailBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                passwordTextBox.Focus();
             }
         }
 
-        private void PasswordBox_LostFocus ( object sender, RoutedEventArgs e ) {
-            if ( passwordBox.Password.Length == 0 ) {
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (passwordBox.Password.Length == 0)
+            {
                 passwordTextBox.Visibility = Visibility.Visible;
             }
         }
 
-        private void PasswordTextBox_GotFocus ( object sender, RoutedEventArgs e ) {
+        private void PasswordTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
             if (loginButton.IsEnabled == true)
             {
                 errorBox.Content = "";
             }
-            
+
             passwordTextBox.Visibility = Visibility.Hidden;
-            passwordBox.Focus ( );
+            passwordBox.Focus();
         }
 
-        private void PasswordBox_KeyDown ( object sender, KeyEventArgs e ) {
-            if ( e.Key == Key.Tab ) {
-                loginButton.Focus ( );
-                Login ( );
+        private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                loginButton.Focus();
+                Login();
             }
         }
 
-        private void LoginButton_Click ( object sender, RoutedEventArgs e ) {
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
             loginButton.IsEnabled = false;
             Login();
         }
@@ -118,19 +133,23 @@ namespace STUFV {
             }
         }
 
-        private async void Login ( ) {
+        private async void Login()
+        {
             messageLabel.Content = "Velden controleren...";
-            bool existEmail = await Exist ( emailBox.Text );
+
+            bool existEmail = await Exist(emailBox.Text);
             bool existPassword = false;
 
-            if ( existEmail ) {
+            if (existEmail)
+            {
                 User user = await GetUser(emailBox.Text);
                 string salt = user.Salt;
-                string encPassword = MD5Encrypt ( passwordBox.Password, salt );
+                string encPassword = MD5Encrypt(passwordBox.Password, salt);
 
-                existPassword = Login ( user , encPassword );
+                existPassword = Login(user, encPassword);
 
-                if ( existPassword ) {
+                if (existPassword)
+                {
                     messageLabel.Content = "Bezig met aanmelden...";
                     Login login = new Login();
                     login.UserId = user.Id;
@@ -141,14 +160,16 @@ namespace STUFV {
                     homeWindow.Owner = Owner;
                     homeWindow.Show();
                     Close();
-                } else {
+                }
+                else {
                     errorBox.Content = "Verkeerd paswoord of geen toegang!";
                     passwordBox.Password = "";
                     messageLabel.Content = "";
                     loginButton.IsEnabled = true;
                     attempts++;
                 }
-            } else {
+            }
+            else {
                 errorBox.Content = "Email bestaat niet";
                 messageLabel.Content = "";
                 loginButton.IsEnabled = true;
@@ -163,47 +184,66 @@ namespace STUFV {
             }
         }
 
-        public async Task<bool> Exist ( String email ) {
-            IEnumerable<User> users = await GetUsers ( );
+        public async Task<bool> Exist(String email)
+        {
+            IEnumerable<User> users = await GetUsers();
 
-            for ( int x = 0 ; x < users.Count ( ) ; x++ ) {
-                if ( users.ElementAt ( x ).Email.Equals ( email ) ) {
+            for (int x = 0; x < users.Count(); x++)
+            {
+                if (users.ElementAt(x).Email.Equals(email))
+                {
                     return true;
                 }
             }
             return false;
         }
 
-        private static string MD5Encrypt ( string password, string salt ) {
-            MD5 md5 = new MD5CryptoServiceProvider ( );
+        private static string MD5Encrypt(string password, string salt)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
 
-            md5.ComputeHash ( ASCIIEncoding.ASCII.GetBytes ( salt + password ) );
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(salt + password));
             byte[] result = md5.Hash;
 
-            StringBuilder strBuilder = new StringBuilder ( );
-            for ( int i = 0 ; i < result.Length ; i++ ) {
-                strBuilder.Append ( result[ i ].ToString ( "x2" ) );
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                strBuilder.Append(result[i].ToString("x2"));
             }
 
-            return strBuilder.ToString ( );
+            return strBuilder.ToString();
         }
 
-        public bool Login ( User user, string password ) {
-            if ( user.PassWord == password &&  user.RoleID == 1 && user.Active == true) {
+        public bool Login(User user, string password)
+        {
+            if (user.PassWord == password && user.RoleID == 1 && user.Active == true)
+            {
                 return true;
             }
-            
+
             return false;
         }
 
-        public async Task<IEnumerable<User>> GetUsers ( ) {
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync ( userUrl );
+        public async Task<IEnumerable<User>> GetUsers()
+        {
             IEnumerable<User> users = null;
 
-            if ( response.IsSuccessStatusCode ) {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>> ( );
+            try
+            {
+                var userUrl = "/api/user";
+                HttpResponseMessage response = await client.GetAsync(userUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+                }
             }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             return users;
         }
 
@@ -224,8 +264,16 @@ namespace STUFV {
 
         public async void InsertLogin(Login login)
         {
-            var loginUrl = "/api/login";
-            HttpResponseMessage response = await client.PostAsJsonAsync(loginUrl, login);
+            try
+            {
+                var loginUrl = "/api/login";
+                HttpResponseMessage response = await client.PostAsJsonAsync(loginUrl, login);
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

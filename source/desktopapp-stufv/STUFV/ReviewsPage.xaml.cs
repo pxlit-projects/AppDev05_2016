@@ -155,36 +155,67 @@ namespace STUFV
 
         public async Task<IEnumerable<Review>> GetReviews()
         {
-            var reviewUrl = "/api/reviews";
-            HttpResponseMessage response = await client.GetAsync(reviewUrl);
             IEnumerable<Review> reviews = null;
-            if (response.IsSuccessStatusCode)
+            try {
+                var reviewUrl = "/api/reviews";
+                HttpResponseMessage response = await client.GetAsync(reviewUrl);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    reviews = await response.Content.ReadAsAsync<IEnumerable<Review>>();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                reviews = await response.Content.ReadAsAsync<IEnumerable<Review>>();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
             return reviews;
         }
 
         public async Task UpdateReview(Review review)
         {
-            var reviewUrl = "/api/reviews/" + review.Id;
-            HttpResponseMessage response = await client.PutAsJsonAsync(reviewUrl, review);
+            try {
+                var reviewUrl = "/api/reviews/" + review.Id;
+                HttpResponseMessage response = await client.PutAsJsonAsync(reviewUrl, review);
 
-            if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    loadReviews();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                loadReviews();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
         }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
             IEnumerable<User> users = null;
+            try {
+                var userUrl = "/api/user";
+                HttpResponseMessage response = await client.GetAsync(userUrl);
 
-            if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
             return users;
         }
