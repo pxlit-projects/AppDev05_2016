@@ -175,6 +175,7 @@
     <Compile Include="ReviewDetailsWindow.xaml.cs">
       <DependentUpon>ReviewDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserData.cs" />
     <Compile Include="UserDetailsWindow.xaml.cs">
       <DependentUpon>UserDetailsWindow.xaml</DependentUpon>
     </Compile>
