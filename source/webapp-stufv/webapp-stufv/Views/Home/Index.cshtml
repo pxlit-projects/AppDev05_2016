@@ -1,6 +1,12 @@
 ﻿@section content {
-    <h2 class="col-lg-offset-3">Artikels</h2>
-<div class="col-md-3" style="">
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welkom op de website van STUFV</h1>
+        <p>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato de more elogio revocari iussisse, quod inexorabiles quoque principes factitarunt. et exitiale hoc vitium, quod in aliis non numquam intepescit, in illo aetatis progressu effervescebat, obstinatum eius propositum accendente adulatorum cohorte.</p>
+        <p align="center" class="btn btn-info" style="margin-left: 380px">Log in</p>
+        <p align="center" class="btn btn-success">Schrijf in</p>
+    </div>
+<div class="col-md-3">
     <a class="twitter-timeline" data-chrome="noscrollbar" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
     <script>
                 !function (d, s, id) {
@@ -9,37 +15,10 @@
                 (document, "script", "twitter-wjs");
     </script>
 </div>
-        @foreach (var item in ViewBag.Articles)
-    {
-            <div class="col-md-3 .clearfix" style="height:400px">
-                <table style="">
-                    <tr>
-                        <td><h3>@item.Title</h3></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><img src="~/Content/img/news.jpg" /></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @if (item.Content.Length > 100)
-                            {
-                                <p>@item.Content.Substring(0, 100)...</p>
-                            }
-                            else
-                            {
-                                <p>@item.Content</p>
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center"><button type="button" class="btn btn-info">Bekijk</button></td>
-                    </tr>
-                </table>
-                </div>
-        }
+
         @foreach (var item in ViewBag.Events)
     {
-            <div class="col-md-3 .clearfix" style="height:400px">
+            <div class="col-md-8 col-md-offset-1" style="height:400px">
                 <table style="">
                     <tr>
                         <td><h3>@item.Name</h3></td>
@@ -60,5 +39,34 @@
                 </table>
             </div>
         }
-
+    @foreach (var item in ViewBag.Articles)
+    {
+        <div class="col-md-3 .clearfix" style="height:400px">
+            <table style="">
+                <tr>
+                    <td><h3>@item.Title</h3></td>
+                </tr>
+                <tr>
+                    <td align="center"><img src="~/Content/img/news.jpg" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (item.Content.Length > 100)
+                        {
+                            <p>@item.Content.Substring(0, 100)...</p>
+                        }
+                        else
+                        {
+                            <p>@item.Content</p>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"><button type="button" class="btn btn-info">Bekijk</button></td>
+                </tr>
+            </table>
+        </div>
+                <hr class="seperator" />
+    }
+</div>
 }
