@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -25,9 +26,6 @@ namespace webapp_stufv.Controllers
             {
                 int userId = (int)Session["userId"];
                 var user = context.Users.FirstOrDefault(c => c.Id == userId);
-                if (file != null) {
-                    user.ProfilePicture = file.FileName;
-                }
                 user.Street = Request.Form["Street"];
                 user.ZipCode = Request.Form["ZipCode"];
                 user.MobileNr = Request.Form["MobileNr"];
@@ -41,18 +39,21 @@ namespace webapp_stufv.Controllers
         {
             if (file != null)
             {
-                string pic = System.IO.Path.GetFileName(file.FileName);
+                int userId = (int)Session["userId"];
+                string pic = "ProfilePicture_" + Session["userId"] + ".jpg";
                 string path = System.IO.Path.Combine(
                                        Server.MapPath(@"..\Content\img\ProfilePictures\"), pic);
-                // file is uploaded
-                file.SaveAs(path);
-                int userId = (int)Session["userId"];
                 using (var context = new STUFVModelContext())
                 {
                     var user = context.Users.FirstOrDefault(c => c.Id == userId);
-                    user.ProfilePicture = file.FileName;
+                    string oldPath = @"..\Content\img\ProfilePictures\" + user.ProfilePicture;
+                    if (System.IO.File.Exists(oldPath)) {
+                        System.IO.File.Delete(oldPath);
+                    }
+                    user.ProfilePicture = pic;
                     context.SaveChanges();
                 }
+                file.SaveAs(path);
             }
         }
     }
