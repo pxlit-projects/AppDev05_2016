@@ -1,5 +1,11 @@
 ﻿@section content {
-    <h2 class="col-lg-offset-3">Artikels</h2>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welkom op de website van STUFV</h1>
+        <p>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato de more elogio revocari iussisse, quod inexorabiles quoque principes factitarunt. et exitiale hoc vitium, quod in aliis non numquam intepescit, in illo aetatis progressu effervescebat, obstinatum eius propositum accendente adulatorum cohorte.</p>
+        <p align="center" class="btn btn-info" style="margin-left: 380px">Log in</p>
+        <p align="center" class="btn btn-success">Schrijf in</p>
+    </div>
 <div class="col-md-3" style="">
     <a class="twitter-timeline" data-chrome="noscrollbar" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
     <script>
@@ -11,7 +17,7 @@
 </div>
         @foreach (var item in ViewBag.Articles)
     {
-            <div class="col-md-3 .clearfix" style="height:400px">
+            <div class="col-md-8 col-md-offset-1" style="height:400px">
                 <table style="">
                     <tr>
                         <td><h3>@item.Title</h3></td>
@@ -36,6 +42,7 @@
                     </tr>
                 </table>
                 </div>
+                <hr class="seperator" />
         }
         @foreach (var item in ViewBag.Events)
     {
@@ -60,5 +67,5 @@
                 </table>
             </div>
         }
-
+</div>
 }
