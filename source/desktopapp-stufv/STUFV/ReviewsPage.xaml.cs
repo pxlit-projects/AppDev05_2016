@@ -279,7 +279,7 @@ namespace STUFV
             Review review = (Review)ReviewsDataGrid.CurrentItem;
             User user = await GetUser(review.UserId);
             UserDetailsWindow userDetails = new UserDetailsWindow(user);
-
+            userDetails.ShowDialog();
         }
     }
 }
