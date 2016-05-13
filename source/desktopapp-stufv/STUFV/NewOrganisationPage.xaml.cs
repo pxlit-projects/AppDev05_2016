@@ -35,7 +35,7 @@ namespace STUFV {
             filterBox.ItemsSource = filterItems;
             filterBox.SelectedIndex = 0;
 
-            loadOrganisations ( );
+            LoadOrganisations ( );
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
@@ -117,11 +117,11 @@ namespace STUFV {
                 }
             } else {
                 messageLabel.Content = "";
-                loadOrganisations ( );
+                LoadOrganisations ( );
             }
         }
 
-        public async void loadOrganisations ( ) {
+        public async void LoadOrganisations ( ) {
             IEnumerable<Organisation> allOrganisations = await GetOrganisations ( );
             List<Organisation> selectOrganisations = new List<Organisation> ( );
 
@@ -143,7 +143,7 @@ namespace STUFV {
                     organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -154,16 +154,16 @@ namespace STUFV {
             return organisations;
         }
 
-        public async void updateOrganisation ( Organisation toUpdate ) {
+        public async void UpdateOrganisation ( Organisation toUpdate ) {
             try {
                 var url = "api/organisations/" + toUpdate.Id;
                 HttpResponseMessage response = await client.PutAsJsonAsync(url, toUpdate);
 
                 if (response.IsSuccessStatusCode) {
-                    loadOrganisations();
+                    LoadOrganisations();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -179,7 +179,7 @@ namespace STUFV {
             organisation.Active = true;
             organisation.isRegistered = true;
 
-            updateOrganisation ( organisation );
+            UpdateOrganisation ( organisation );
         }
 
         private void BadOrganisationButton_Click ( object sender, RoutedEventArgs e ) {
@@ -188,7 +188,7 @@ namespace STUFV {
             organisation.Active = false;
             organisation.isRegistered = true;
 
-            updateOrganisation ( organisation );
+            UpdateOrganisation ( organisation );
         }
     }
 }

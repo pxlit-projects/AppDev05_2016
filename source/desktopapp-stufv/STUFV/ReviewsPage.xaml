@@ -79,7 +79,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="userNameColumn" Binding="{Binding UserId}" Header="User ID" Width="150">
+                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="User ID" Width="150">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -121,7 +121,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="organisationActiveColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" />
+                            <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" />
                             <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" IsReadOnly="True" Width="350">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

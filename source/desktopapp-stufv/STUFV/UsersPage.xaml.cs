@@ -39,7 +39,7 @@ namespace STUFV
             filterBox.ItemsSource = filterItems;
             filterBox.SelectedIndex = 0;
 
-            loadUsers();
+            LoadUsers();
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
             searchTextBox.SelectionChanged += SearchTextBox_SelectionChanged;
@@ -134,11 +134,11 @@ namespace STUFV
             else
             {
                 messageLabel.Content = "";
-                loadUsers();
+                LoadUsers();
             }
         }
 
-        public async void loadUsers()
+        public async void LoadUsers()
         {
             usersDataGrid.ItemsSource = await GetUsers();
         }
@@ -155,7 +155,7 @@ namespace STUFV
                     users = await response.Content.ReadAsAsync<IEnumerable<User>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -174,10 +174,10 @@ namespace STUFV
 
                 if (response.IsSuccessStatusCode)
                 {
-                    loadUsers();
+                    LoadUsers();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);

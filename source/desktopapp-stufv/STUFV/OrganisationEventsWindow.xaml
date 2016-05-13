@@ -35,7 +35,7 @@
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn x:Name="NameColumn" Binding="{Binding Name}" Header="Eventnaam" Width="150">
+                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Eventnaam" Width="150">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap" />

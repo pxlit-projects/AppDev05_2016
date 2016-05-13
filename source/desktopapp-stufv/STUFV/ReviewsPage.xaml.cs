@@ -39,7 +39,7 @@ namespace STUFV
             filterBox.ItemsSource = filterItems;
             filterBox.SelectedIndex = 0;
 
-            loadReviews();
+            LoadReviews();
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
             searchTextBox.SelectionChanged += SearchTextBox_SelectionChanged;
@@ -143,11 +143,11 @@ namespace STUFV
             else
             {
                 messageLabel.Content = "";
-                loadReviews();
+                LoadReviews();
             }
         }
 
-        public async void loadReviews()
+        public async void LoadReviews()
         {
            
             ReviewsDataGrid.ItemsSource = await GetReviews();
@@ -165,7 +165,7 @@ namespace STUFV
                     reviews = await response.Content.ReadAsAsync<IEnumerable<Review>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -184,10 +184,10 @@ namespace STUFV
 
                 if (response.IsSuccessStatusCode)
                 {
-                    loadReviews();
+                    LoadReviews();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -209,7 +209,7 @@ namespace STUFV
                     users = await response.Content.ReadAsAsync<IEnumerable<User>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);

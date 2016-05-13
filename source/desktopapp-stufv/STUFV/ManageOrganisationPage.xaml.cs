@@ -39,7 +39,7 @@ namespace STUFV
             filterBox.ItemsSource = filterItems;
             filterBox.SelectedIndex = 0;
 
-            loadOrganisations();
+            LoadOrganisations();
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
@@ -135,11 +135,11 @@ namespace STUFV
             else
             {
                 messageLabel.Content = "";
-                loadOrganisations();
+                LoadOrganisations();
             }
         }
 
-        public async void loadOrganisations()
+        public async void LoadOrganisations()
         {
             IEnumerable<Organisation> allOrganisations = await GetOrganisations();
             List<Organisation> selectOrganisations = new List<Organisation>();
@@ -167,7 +167,7 @@ namespace STUFV
                     organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -186,10 +186,10 @@ namespace STUFV
 
                 if (response.IsSuccessStatusCode)
                 {
-                    loadOrganisations();
+                    LoadOrganisations();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -211,7 +211,7 @@ namespace STUFV
                     users = await response.Content.ReadAsAsync<IEnumerable<User>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -246,7 +246,7 @@ namespace STUFV
                 var url = "mailto:" + user.Email;
                 Process.Start(url);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);

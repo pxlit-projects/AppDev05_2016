@@ -214,7 +214,7 @@ namespace STUFV
                     articles = await response.Content.ReadAsAsync<IEnumerable<Article>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -237,7 +237,7 @@ namespace STUFV
                     LoadArticles();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -259,7 +259,7 @@ namespace STUFV
                     users = await response.Content.ReadAsAsync<IEnumerable<User>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);

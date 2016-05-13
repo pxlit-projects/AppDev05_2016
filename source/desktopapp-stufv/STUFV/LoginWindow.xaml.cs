@@ -245,7 +245,7 @@ namespace STUFV
                     users = await response.Content.ReadAsAsync<IEnumerable<User>>();
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -276,7 +276,7 @@ namespace STUFV
                 var loginUrl = "/api/login";
                 HttpResponseMessage response = await client.PostAsJsonAsync(loginUrl, login);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);

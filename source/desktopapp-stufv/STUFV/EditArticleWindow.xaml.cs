@@ -28,7 +28,6 @@ namespace STUFV
         private User loggedUser;
         private User author;
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
-        bool canClose;
 
         public EditArticleWindow(Article article, User author, User loggedUser)
         {

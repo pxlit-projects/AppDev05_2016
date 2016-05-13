@@ -77,7 +77,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding UserId}" Header="UserId" Width="100">
+                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="UserId" Width="100">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
