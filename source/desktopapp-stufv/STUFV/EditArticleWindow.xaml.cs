@@ -26,7 +26,9 @@ namespace STUFV
         HttpClient client = new HttpClient();
         private Article article;
         private User loggedUser;
+        private User author;
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
+        bool canClose;
 
         public EditArticleWindow(Article article, User author, User loggedUser)
         {
@@ -37,6 +39,7 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             this.loggedUser = loggedUser;
+            this.author = author;
             this.article = article;
             titleTextBox.Text = article.Title;
             contentTextBox.Text = article.Content;
@@ -68,7 +71,7 @@ namespace STUFV
                     return false;
                 }
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -87,9 +90,9 @@ namespace STUFV
                 SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
                 var mail = new MailMessage();
                 mail.From = new MailAddress("stufv.test@hotmail.com");
-                mail.To.Add("stufv.test@hotmail.com");
+                mail.To.Add(author.Email);
                 mail.Subject = "STUFV: Aanpassingen artikel met id " + article.Id;
-                mail.Body = string.Format("De gebruiker, {0} {1}, heeft enkele aanpassingen gedaan in jouw artikel. Bekijk de desktopapp voor meer informatie", loggedUser.FirstName, loggedUser.LastName);
+                mail.Body = string.Format("De administrator, {0} {1}, heeft enkele aanpassingen gedaan in jouw artikel. Bekijk de desktopapp voor meer informatie", loggedUser.FirstName, loggedUser.LastName);
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
                 SmtpServer.Credentials = new NetworkCredential("stufv.test@hotmail.com", "paswoord123");
@@ -98,9 +101,9 @@ namespace STUFV
             }
             catch (SmtpException ex)
             {
-                MessageBox.Show("Fout opgetreden: " + ex.Message);
+                MessageBox.Show("Kon mail niet verzenden: " + ex.Message);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -111,7 +114,7 @@ namespace STUFV
             }
         }
 
-        private async Task<bool> checkClose()
+        private async Task<bool> CheckClose()
         {
             if (article.Title != titleTextBox.Text || article.Content != contentTextBox.Text)
             {
@@ -151,7 +154,7 @@ namespace STUFV
 
         private async void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (await checkClose())
+            if (await CheckClose())
             {
                 Close();
             }
@@ -159,7 +162,7 @@ namespace STUFV
 
         private async void EditArticleWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (await checkClose())
+            if (await CheckClose())
             {
                 e.Cancel = false;
             }
