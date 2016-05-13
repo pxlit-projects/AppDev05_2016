@@ -56,7 +56,7 @@
                     <TextBlock Text="Reviews" FontSize="40" Margin="10,5,0,0"/>
                     <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="500" Margin="10,25,0,0">
-                        <TextBlock Text="Zoek organisatie " VerticalAlignment="Center"/>
+                        <TextBlock Text="Zoek review " VerticalAlignment="Center"/>
                         <TextBox x:Name="searchTextBox" Width="175" Margin="10,0,0,0" SelectionChanged="SearchTextBox_SelectionChanged"/>
                         <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
                         <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,0,0,0" SelectionChanged="FilterBox_SelectionChanged"/>
@@ -107,14 +107,29 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
+                            <DataGridTextColumn x:Name="reviewFlaggedColumn" Binding="{Binding Flagged}" Header="Flagged" Width="75">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
                             <DataGridTextColumn x:Name="organisationActiveColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" />
-                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" Width="295" IsReadOnly="True">
+                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" IsReadOnly="True" Width="350">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                             
                                             <Button x:Name="userButton" ToolTip="Bekijk de user van deze review" Content="Bekijk Gebruiker" Margin="0,5,5,5" Click="UserButton_Click"/>
-                                            <Button x:Name="changeStatusButton" ToolTip="Verander de status van deze persoon" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
+                                            <Button x:Name="changeStatusButton" ToolTip="Verander de status van d
+                                                    eze persoon" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
                                             <Button x:Name="detailsButton" ToolTip="Bekijk de grote details van deze review" Content="Details review" Margin="0,5,5,5" Click="DetailsButton_Click"/>
                                         </StackPanel>
                                     </DataTemplate>

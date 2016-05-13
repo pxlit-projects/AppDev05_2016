@@ -81,6 +81,10 @@ namespace STUFV
             {
                 passwordTextBox.Focus();
             }
+            else if (e.Key == Key.Enter)
+            {
+                Login();
+            }
         }
 
         private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
@@ -107,6 +111,9 @@ namespace STUFV
             if (e.Key == Key.Tab)
             {
                 loginButton.Focus();
+            }
+            else if (e.Key == Key.Enter)
+            {
                 Login();
             }
         }
