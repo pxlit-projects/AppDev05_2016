@@ -121,6 +121,8 @@
     <Compile Include="EditArticleWindow.xaml.cs">
       <DependentUpon>EditArticleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventData.cs" />
+    <Compile Include="LoginData.cs" />
     <Compile Include="ManageArticlePage.xaml.cs">
       <DependentUpon>ManageArticlePage.xaml</DependentUpon>
     </Compile>
@@ -149,6 +151,7 @@
     <Compile Include="Models\STUFVModelContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserTypes.cs" />
+    <Compile Include="OrganisationData.cs" />
     <Compile Include="OrganisationEventsWindow.xaml.cs">
       <DependentUpon>OrganisationEventsWindow.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,7 @@
     <Compile Include="Repository\OrganisationRepository.cs" />
     <Compile Include="Repository\PassengerRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="ReviewData.cs" />
     <Compile Include="ReviewDetailsWindow.xaml.cs">
       <DependentUpon>ReviewDetailsWindow.xaml</DependentUpon>
     </Compile>

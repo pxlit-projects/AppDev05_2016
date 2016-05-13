@@ -5,32 +5,29 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace STUFV
 {
-    class UserData
+    class ReviewData
     {
         private static HttpClient client = new HttpClient();
 
-        public static async Task<IEnumerable<User>> GetUsers()
+        public static async Task<IEnumerable<Review>> GetReviews()
         {
             client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            IEnumerable<User> users = null;
-
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
+            IEnumerable<Review> reviews = null;
+            var reviewUrl = "/api/reviews";
+            HttpResponseMessage response = await client.GetAsync(reviewUrl);
 
             if (response.IsSuccessStatusCode)
             {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+                reviews = await response.Content.ReadAsAsync<IEnumerable<Review>>();
             }
 
-            return users;
-
+            return reviews;
         }
     }
 }
