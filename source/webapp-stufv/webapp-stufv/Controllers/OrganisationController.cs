@@ -92,12 +92,6 @@ namespace webapp_stufv.Controllers {
                                    Server.MapPath ( @"..\Content\img\EventImages\" ), pic );
             // file is uploaded
             file.SaveAs ( path );
-            int userId = ( int ) Session[ "userId" ];
-            using ( var context = new STUFVModelContext ( ) ) {
-                var user = context.Users.FirstOrDefault ( c => c.Id == userId );
-                user.ProfilePicture = file.FileName;
-                context.SaveChanges ( );
-            }
         }
     }
 }
