@@ -120,7 +120,6 @@ namespace STUFV
                     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
                 LoginWindow window = new LoginWindow();
                 window.Show();
-                Close();
                 scherm.Close();
             }
         }
