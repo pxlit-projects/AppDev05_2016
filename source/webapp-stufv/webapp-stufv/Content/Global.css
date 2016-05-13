@@ -454,3 +454,11 @@ a:hover {
 .inline {
     display: inline;
 }
+
+.nolink {
+    text-decoration: none;
+}
+
+.inpanelheading {
+    color: white;
+}
