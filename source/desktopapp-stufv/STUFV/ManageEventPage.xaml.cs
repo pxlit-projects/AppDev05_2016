@@ -183,24 +183,45 @@ namespace STUFV
 
         private async Task<IEnumerable<Event>> GetEvents()
         {
-            var eventUrl = "/api/event";
-            HttpResponseMessage response = await client.GetAsync(eventUrl);
             IEnumerable<Event> events = null;
-            if (response.IsSuccessStatusCode)
+            try {
+                var eventUrl = "/api/event";
+                HttpResponseMessage response = await client.GetAsync(eventUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    events = await response.Content.ReadAsAsync<IEnumerable<Event>>();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                events = await response.Content.ReadAsAsync<IEnumerable<Event>>();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
             return events;
         }
 
         private async Task UpdateEvent(Event orgEvent)
         {
-            var eventUrl = "/api/event/" + orgEvent.Id;
-            HttpResponseMessage response = await client.PutAsJsonAsync(eventUrl, orgEvent);
+            try {
+                var eventUrl = "/api/event/" + orgEvent.Id;
+                HttpResponseMessage response = await client.PutAsJsonAsync(eventUrl, orgEvent);
 
-            if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    LoadEvents();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                LoadEvents();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
         }
 

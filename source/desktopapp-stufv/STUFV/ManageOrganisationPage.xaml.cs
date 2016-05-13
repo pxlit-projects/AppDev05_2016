@@ -157,36 +157,67 @@ namespace STUFV
 
         public async Task<IEnumerable<Organisation>> GetOrganisations()
         {
-            var organisationUrl = "/api/organisations";
-            HttpResponseMessage response = await client.GetAsync(organisationUrl);
             IEnumerable<Organisation> organisations = null;
-            if (response.IsSuccessStatusCode)
+            try {
+                var organisationUrl = "/api/organisations";
+                HttpResponseMessage response = await client.GetAsync(organisationUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
             return organisations;
         }
 
         public async Task UpdateOrganisation(Organisation organisation)
         {
-            var organisationUrl = "/api/organisations/" + organisation.Id;
-            HttpResponseMessage response = await client.PutAsJsonAsync(organisationUrl, organisation);
-            
-            if (response.IsSuccessStatusCode)
+            try {
+                var organisationUrl = "/api/organisations/" + organisation.Id;
+                HttpResponseMessage response = await client.PutAsJsonAsync(organisationUrl, organisation);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    loadOrganisations();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                loadOrganisations();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
         }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var userUrl = "/api/user";
-            HttpResponseMessage response = await client.GetAsync(userUrl);
             IEnumerable<User> users = null;
+            try {
+                var userUrl = "/api/user";
+                HttpResponseMessage response = await client.GetAsync(userUrl);
 
-            if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+                }
+            }
+            catch (HttpRequestException ex)
             {
-                users = await response.Content.ReadAsAsync<IEnumerable<User>>();
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
             return users;
         }
@@ -208,11 +239,21 @@ namespace STUFV
 
         private async void MailOrganisationButton_Click(object sender, RoutedEventArgs e)
         {
-            Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
-            User user = await GetUser(organisation.UserId);
+            try {
+                Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
+                User user = await GetUser(organisation.UserId);
 
-            var url = "mailto:" + user.Email;
-            Process.Start(url);
+                var url = "mailto:" + user.Email;
+                Process.Start(url);
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
         }
 
         private void EventsButton_Click(object sender, RoutedEventArgs e)

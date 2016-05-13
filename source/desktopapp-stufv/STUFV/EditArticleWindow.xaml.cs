@@ -26,6 +26,7 @@ namespace STUFV
         HttpClient client = new HttpClient();
         private Article article;
         private User loggedUser;
+        HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
 
         public EditArticleWindow(Article article, User author, User loggedUser)
         {
@@ -49,21 +50,34 @@ namespace STUFV
         {
             processLabel.Content = "Bezig met verwerken...";
 
-            var articleUrl = "/api/article/" + article.Id;
-            HttpResponseMessage response = await client.PutAsJsonAsync(articleUrl, article);
+            try
+            {
+                var articleUrl = "/api/article/" + article.Id;
+                HttpResponseMessage response = await client.PutAsJsonAsync(articleUrl, article);
 
-            if (response.IsSuccessStatusCode)
-            {
-                SendMail(article);
-                MessageBox.Show("Artikel succesvol aangepast!");
-                processLabel.Content = "";
-                return true;
+                if (response.IsSuccessStatusCode)
+                {
+                    SendMail(article);
+                    MessageBox.Show("Artikel succesvol aangepast!");
+                    processLabel.Content = "";
+                    return true;
+                }
+                else
+                {
+                    processLabel.Content = "";
+                    return false;
+                }
             }
-            else
+            catch (HttpRequestException ex)
             {
-                processLabel.Content = "";
-                return false;
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                Close();
+                scherm.Close();
             }
+            return false;
         }
 
         private void SendMail(Article article)
@@ -86,7 +100,15 @@ namespace STUFV
             {
                 MessageBox.Show("Fout opgetreden: " + ex.Message);
             }
-            
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                Close();
+                scherm.Close();
+            }
         }
 
         private async Task<bool> checkClose()

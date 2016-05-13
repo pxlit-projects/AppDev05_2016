@@ -134,21 +134,42 @@ namespace STUFV {
         }
 
         public async Task<IEnumerable<Organisation>> GetOrganisations ( ) {
-            var userUrl = "/api/organisations";
-            HttpResponseMessage response = await client.GetAsync ( userUrl );
             IEnumerable<Organisation> organisations = null;
-            if ( response.IsSuccessStatusCode ) {
-                organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>> ( );
+            try {
+                var organisationUrl = "/api/organisations";
+                HttpResponseMessage response = await client.GetAsync(organisationUrl);
+
+                if (response.IsSuccessStatusCode) {
+                    organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
             return organisations;
         }
 
         public async void updateOrganisation ( Organisation toUpdate ) {
-            var url = "api/organisations/" + toUpdate.Id;
-            HttpResponseMessage response = await client.PutAsJsonAsync ( url, toUpdate );
+            try {
+                var url = "api/organisations/" + toUpdate.Id;
+                HttpResponseMessage response = await client.PutAsJsonAsync(url, toUpdate);
 
-            if ( response.IsSuccessStatusCode ) {
-                loadOrganisations ( );
+                if (response.IsSuccessStatusCode) {
+                    loadOrganisations();
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
         }
 
