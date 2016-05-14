@@ -31,7 +31,7 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
-        <StackPanel Orientation="Horizontal">
+        <DockPanel>
             <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
                 <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                     <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
@@ -48,128 +48,135 @@
                 </ListBox>
             </Viewbox>
 
-            <Grid x:Name="usersGrid">
-                <StackPanel>
-                    <TextBlock Text="Gebruikers" FontSize="40" Margin="10,5,0,0"/>
-                    <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="500" Margin="10,25,0,0">
-                        <TextBlock Text="Zoek gebruiker " VerticalAlignment="Center"/>
-                        <TextBox x:Name="searchTextBox" Width="175" Margin="10,0,0,0"/>
-                        <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
-                        <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
-                    <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="875" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding Id}" Header="Id" Width="50">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="Voornaam" Width="125" IsReadOnly="True">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Achternaam" Width="125" IsReadOnly="True">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="175" IsReadOnly="True">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="roleColumn" Binding="{Binding RoleID}" Header="Rol" Width="SizeToHeader" IsReadOnly="True">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" IsReadOnly="True">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="300" IsReadOnly="True">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <Button x:Name="detailsButton" ToolTip="Meer informatie over deze persoon" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="DetailsButton_Click">
-                                                <Button.Background>
-                                                    <ImageBrush ImageSource="images/info-icon.png" Stretch="Fill" TileMode="None"/>
-                                                </Button.Background>
-                                            </Button>
-                                            <Button x:Name="mailButton" ToolTip="Verstuur een mail naar deze persoon" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="MailButton_Click">
-                                                <Button.Background>
-                                                    <ImageBrush ImageSource="images/MetroUI_mail.png" Stretch="Fill" TileMode="None"/>
-                                                </Button.Background>
-                                            </Button>
-                                            <Button x:Name="changeStatusButton" ToolTip="Activeer/deactiveer deze persoon" Content="Change status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
-                                            <Button x:Name="changeRoleButton" ToolTip="Verander de rol van deze persoon" Content="Change role" Margin="0,5,5,5" Click="ChangeRoleButton_Click"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+
+            <StackPanel DockPanel.Dock="Right" Background="WhiteSmoke">
+                <TextBlock Text="Gebruikers" FontSize="40" Padding="10,5,10,0" Foreground="White">
+                    <TextBlock.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF144563" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Background>
+                </TextBlock>
+                <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="500" Margin="10,25,0,0">
+                    <TextBlock Text="Zoek gebruiker " VerticalAlignment="Center"/>
+                    <TextBox x:Name="searchTextBox" Width="175" Margin="10,0,0,0"/>
+                    <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
+                    <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,0,0,0"/>
                 </StackPanel>
-            </Grid>
-        </StackPanel>
+                <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
+                <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="875" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding Id}" Header="Id" Width="50">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="Voornaam" Width="125" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Achternaam" Width="125" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="175" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="roleColumn" Binding="{Binding RoleID}" Header="Rol" Width="SizeToHeader" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="300" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button x:Name="detailsButton" ToolTip="Meer informatie over deze persoon" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="DetailsButton_Click">
+                                            <Button.Background>
+                                                <ImageBrush ImageSource="images/info-icon.png" Stretch="Fill" TileMode="None"/>
+                                            </Button.Background>
+                                        </Button>
+                                        <Button x:Name="mailButton" ToolTip="Verstuur een mail naar deze persoon" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="MailButton_Click">
+                                            <Button.Background>
+                                                <ImageBrush ImageSource="images/MetroUI_mail.png" Stretch="Fill" TileMode="None"/>
+                                            </Button.Background>
+                                        </Button>
+                                        <Button x:Name="changeStatusButton" ToolTip="Activeer/deactiveer deze persoon" Content="Change status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
+                                        <Button x:Name="changeRoleButton" ToolTip="Verander de rol van deze persoon" Content="Change role" Margin="0,5,5,5" Click="ChangeRoleButton_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+        </DockPanel>
     </Grid>
 </Page>

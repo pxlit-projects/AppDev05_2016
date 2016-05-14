@@ -31,7 +31,7 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
-        <StackPanel Orientation="Horizontal">
+        <DockPanel>
             <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
                 <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                     <ListBoxItem IsSelected="True" Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
@@ -48,52 +48,59 @@
                 </ListBox>
             </Viewbox>
 
-            <Grid x:Name="homeGrid">
-                <StackPanel>
-                    <TextBlock Text="Meldingen" FontSize="40" Margin="10,5,0,0"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Artikel plaatsen" Margin="10,25,0,0" FontSize="26"/>
-                        <TextBlock Text="Organisaties" Margin="115,25,0,0" FontSize="26"/>
-                        <TextBlock Text="Reviews" Margin="175,25,0,0" FontSize="26"/>
+
+            <StackPanel DockPanel.Dock="Right" Background="WhiteSmoke">
+                <TextBlock Text="Meldingen" FontSize="40" Padding="10,5,0,5" Foreground="White">
+                    <TextBlock.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF144563" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Background>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel>
+                        <TextBlock Text="Artikel plaatsen" Margin="10,25,0,0" FontSize="26" HorizontalAlignment="Left"/>
+                        <Button Click="Article_Click" Width="200" Height="200" Margin="10,27,15,0" VerticalAlignment="Top">
+                            <Button.Background>
+                                <ImageBrush ImageSource="images/artikel-ikon.png" Stretch="Fill" TileMode="None" />
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Text="Plaats een artikel." FontSize="14" VerticalAlignment="Bottom" Margin="10,10,0,0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <Button Click="Article_Click" Width="200" Height="200" Margin="10,27,15,0" VerticalAlignment="Top">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="images/artikel-ikon.png" Stretch="Fill" TileMode="None" />
-                                </Button.Background>
-                            </Button>
-                            <TextBlock Text="Plaats een artikel." FontSize="14" VerticalAlignment="Bottom" Margin="10,10,0,0"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <Label x:Name="countOrganisationLabel" Content="0" FontSize="16" Background="White" BorderThickness="3" BorderBrush="Blue" HorizontalAlignment="Right" Margin="10,10,0,0" Panel.ZIndex="2"/>
-                            <Button Click="Organisation_Click" Width="200" Height="200" Margin="80,-20,15,0" VerticalAlignment="Top">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="images/organisatie1.png" Stretch="Fill" TileMode="None" />
-                                </Button.Background>
-                            </Button>
-                            <TextBlock x:Name="organisationLabel" TextWrapping="Wrap" FontSize="14" Margin="80,10,0,0"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <Label x:Name="countReviewLabel" Content="0" FontSize="16" Background="White" BorderThickness="3" BorderBrush="Blue" HorizontalAlignment="Right" Margin="10,10,0,0" Panel.ZIndex="2"/>
-                            <Button Click="Review_Click" Width="200" Height="200" Margin="100,-20,15,0" VerticalAlignment="Top">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="images/Icon-Content-Development.png" Stretch="Fill" TileMode="None" />
-                                </Button.Background>
-                            </Button>
-                            <TextBlock x:Name="reviewLabel" TextWrapping="Wrap" FontSize="14" Margin="100,10,0,0"/>
-                        </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Organisaties" Margin="10,25,0,0" FontSize="26" HorizontalAlignment="Center"/>
+                        <Label x:Name="countOrganisationLabel" Content="0" FontSize="16" Background="White" BorderThickness="3" BorderBrush="Blue" HorizontalAlignment="Right" Margin="10,10,0,0" Panel.ZIndex="2"/>
+                        <Button Click="Organisation_Click" Width="200" Height="200" Margin="80,-20,15,0" VerticalAlignment="Top">
+                            <Button.Background>
+                                <ImageBrush ImageSource="images/organisatie1.png" Stretch="Fill" TileMode="None" />
+                            </Button.Background>
+                        </Button>
+                        <TextBlock x:Name="organisationLabel" TextWrapping="Wrap" FontSize="14" Margin="80,10,0,0"/>
                     </StackPanel>
-                    <StackPanel Margin="0,50,0,0">
-                        <TextBlock Text="Website" FontSize="40" Margin="10,5,0,0"/>
-                        <TextBlock FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,65,0,0" Padding="5,0,5,0">
+                    <StackPanel>
+                        <TextBlock Text="Reviews" Margin="-30,25,0,0" FontSize="26" HorizontalAlignment="Center"/>
+                        <Label x:Name="countReviewLabel" Content="0" FontSize="16" Background="White" BorderThickness="3" BorderBrush="Blue" HorizontalAlignment="Right" Margin="10,10,0,0" Panel.ZIndex="2"/>
+                        <Button Click="Review_Click" Width="200" Height="200" Margin="100,-20,15,0" VerticalAlignment="Top">
+                            <Button.Background>
+                                <ImageBrush ImageSource="images/Icon-Content-Development.png" Stretch="Fill" TileMode="None" />
+                            </Button.Background>
+                        </Button>
+                        <TextBlock x:Name="reviewLabel" TextWrapping="Wrap" FontSize="14" Margin="100,10,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="10,30,10,0">
+                    <Border BorderBrush="Blue" BorderThickness="2" Background="White">
+                        <StackPanel>
+                            <TextBlock FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Padding="5,0,5,0">
                         <Hyperlink NavigateUri="http://webapp-stufv20160511012914.azurewebsites.net/" RequestNavigate="Hyperlink_RequestNavigate">
                             Bekijk online
                         </Hyperlink>
-                        </TextBlock>
-                    </StackPanel>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
-            </Grid>
-        </StackPanel>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </Page>
