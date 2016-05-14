@@ -25,7 +25,6 @@ namespace STUFV
     {
         HttpClient client = new HttpClient();
         private Article article;
-        private User loggedUser;
         private User author;
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
 
@@ -37,7 +36,6 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            this.loggedUser = loggedUser;
             this.author = author;
             this.article = article;
             titleTextBox.Text = article.Title;
@@ -59,7 +57,10 @@ namespace STUFV
 
                 if (response.IsSuccessStatusCode)
                 {
-                    SendMail(article);
+                    if (scherm.user.Email != author.Email)
+                    {
+                        SendMail(article);
+                    }
                     MessageBox.Show("Artikel succesvol aangepast!");
                     processLabel.Content = "";
                     return true;
@@ -91,7 +92,7 @@ namespace STUFV
                 mail.From = new MailAddress("stufv.test@hotmail.com");
                 mail.To.Add(author.Email);
                 mail.Subject = "STUFV: Aanpassingen artikel met id " + article.Id;
-                mail.Body = string.Format("De administrator, {0} {1}, heeft enkele aanpassingen gedaan in jouw artikel. Bekijk de desktopapp voor meer informatie", loggedUser.FirstName, loggedUser.LastName);
+                mail.Body = string.Format("De administrator, {0} {1}, heeft enkele aanpassingen gedaan in jouw artikel. Bekijk de desktopapp voor meer informatie", scherm.user.FirstName, scherm.user.LastName);
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
                 SmtpServer.Credentials = new NetworkCredential("stufv.test@hotmail.com", "paswoord123");

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -181,6 +183,46 @@ namespace STUFV
             eventDataGrid.ItemsSource = await GetEvents();
         }
 
+        private void SendMail(Event orgEvent, User user)
+        {
+            try
+            {
+                string active = null;
+                if (orgEvent.Active == true)
+                {
+                    active = "geactiveerd. Je kan je event online bekijken op de website van STUFV.";
+                }
+                else
+                {
+                    active = "gedeactiveerd. Het evenement is nu niet meer zichtbaar op de website van STUFV.";
+                }
+
+                SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+                var mail = new MailMessage();
+                mail.From = new MailAddress("stufv.test@hotmail.com");
+                mail.To.Add(user.Email);
+                mail.Subject = "STUFV: Aanpassing Status event (" + orgEvent.Name + ")";
+                mail.Body = string.Format("Jouw evenement werd {0}", active);
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new NetworkCredential("stufv.test@hotmail.com", "paswoord123");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+            }
+            catch (SmtpException ex)
+            {
+                MessageBox.Show("Kon mail niet verzenden: " + ex.Message);
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+        }
+
         private async Task<IEnumerable<Event>> GetEvents()
         {
             IEnumerable<Event> events = null;
@@ -225,6 +267,54 @@ namespace STUFV
             }
         }
 
+        public async Task<User> GetUser(int id)
+        {
+            User user = null;
+            try
+            {
+                var userUrl = "/api/user/" + id;
+                HttpResponseMessage response = await client.GetAsync(userUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    user = await response.Content.ReadAsAsync<User>();
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+            return user;
+        }
+
+        public async Task<Organisation> GetOrganisation(int id)
+        {
+            Organisation organisation = null;
+            try
+            {
+                var organisationUrl = "/api/organisation/" + id;
+                HttpResponseMessage response = await client.GetAsync(organisationUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    organisation = await response.Content.ReadAsAsync<Organisation>();
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+            return organisation;
+        }
+
         private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
         {
             Event orgEvent = (Event)eventDataGrid.CurrentItem;
@@ -249,7 +339,12 @@ namespace STUFV
 
             if (originalActive != orgEvent.Active)
             {
+                messageLabel.Content = "Mail verzenden naar betreffende persoon...";
+                Organisation organisation = await GetOrganisation(orgEvent.OrganisationId);
+                User user = await GetUser(organisation.UserId);
                 await UpdateEvent(orgEvent);
+                SendMail(orgEvent, user);
+                messageLabel.Content = "";
             }
         }
     }

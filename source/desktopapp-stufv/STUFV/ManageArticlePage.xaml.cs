@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -202,6 +204,47 @@ namespace STUFV
             articlesDataGrid.ItemsSource = await GetArticles();
         }
 
+        private void SendMail(Article article, User author)
+        {
+            try
+            {
+                string active = null;
+                if (article.Active == true)
+                {
+                    active = "geactiveerd";
+                }
+                else
+                {
+                    active = "gedeactiveerd";
+                }
+
+                SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+                var mail = new MailMessage();
+                mail.From = new MailAddress("stufv.test@hotmail.com");
+                mail.To.Add(author.Email);
+                mail.Subject = "STUFV: Aanpassingen status artikel met id " + article.Id;
+                mail.Body = string.Format("De administrator, {0} {1}, heeft jouw artikel {2}. Bekijk de desktopapp voor meer informatie", 
+                    scherm.user.FirstName, scherm.user.LastName, active);
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new NetworkCredential("stufv.test@hotmail.com", "paswoord123");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+            }
+            catch (SmtpException ex)
+            {
+                MessageBox.Show("Kon mail niet verzenden: " + ex.Message);
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+        }
+
         public async Task<IEnumerable<Article>> GetArticles()
         {
             IEnumerable<Article> articles = null;
@@ -234,8 +277,14 @@ namespace STUFV
 
                 if (response.IsSuccessStatusCode)
                 {
+                    User author = await GetUser(article.UserId);
+                    if (scherm.user.Email != author.Email)
+                    {
+                        SendMail(article, author);
+                    }
                     LoadArticles();
                 }
+                messageLabel.Content = "";
             }
             catch (HttpRequestException)
             {
@@ -328,6 +377,7 @@ namespace STUFV
 
             if (originalActive != article.Active)
             {
+                messageLabel.Content = "Verwerken...";
                 await UpdateArticle(article);
             }
         }
