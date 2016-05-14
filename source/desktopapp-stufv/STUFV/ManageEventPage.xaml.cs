@@ -254,8 +254,12 @@ namespace STUFV
 
                 if (response.IsSuccessStatusCode)
                 {
+                    Organisation organisation = await GetOrganisation(orgEvent.OrganisationId);
+                    User user = await GetUser(organisation.UserId);
+                    SendMail(orgEvent, user);
                     LoadEvents();
                 }
+                messageLabel.Content = "";
             }
             catch (HttpRequestException)
             {
@@ -339,12 +343,9 @@ namespace STUFV
 
             if (originalActive != orgEvent.Active)
             {
-                messageLabel.Content = "Mail verzenden naar betreffende persoon...";
-                Organisation organisation = await GetOrganisation(orgEvent.OrganisationId);
-                User user = await GetUser(organisation.UserId);
+                messageLabel.Content = "Verwerken...";
                 await UpdateEvent(orgEvent);
-                SendMail(orgEvent, user);
-                messageLabel.Content = "";
+                
             }
         }
     }

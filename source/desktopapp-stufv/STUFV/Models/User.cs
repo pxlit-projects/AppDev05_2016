@@ -11,13 +11,13 @@ namespace STUFV
         [Key]
         public int Id { get; set; }
 
-        [MaxLength ( 30 ), Required]
+        [MaxLength(30), Required]
         public string FirstName { get; set; }
 
-        [MaxLength ( 30 ), Required]
+        [MaxLength(30), Required]
         public string LastName { get; set; }
 
-        [MaxLength ( 40 ), Required]
+        [MaxLength(40), Required]
         public string PassWord { get; set; }
         public string Salt { get; set; }
 
@@ -29,17 +29,20 @@ namespace STUFV
 
         public string Sex { get; set; }
 
-        [ForeignKey ( "Cities" )]
+        [Required]
+        public string Street { get; set; }
+        [ForeignKey("Cities")]
         public string ZipCode { get; set; }
         public virtual Cities Cities { get; set; }
 
-        [MaxLength ( 30 ), Required]
+        [MaxLength(30), Required]
         public string Email { get; set; }
 
         public string TelNr { get; set; }
         public string MobileNr { get; set; }
+        public string ProfilePicture { get; set; }
 
-        [ForeignKey ( "UserTypes" )]
+        [ForeignKey("UserTypes")]
         public int RoleID { get; set; }
         public virtual UserTypes UserTypes { get; set; }
 
@@ -58,8 +61,7 @@ namespace STUFV
 
         public virtual ICollection<Organisation> Organisations { get; set; }
 
-
         // Methods
-       
+
     }
 }

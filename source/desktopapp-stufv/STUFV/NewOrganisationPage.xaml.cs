@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -133,6 +135,46 @@ namespace STUFV {
             organisationDataGrid.ItemsSource = selectOrganisations;
         }
 
+        private void SendMail(Organisation organisation, User user)
+        {
+            try
+            {
+                string active = null;
+                if (organisation.Active == true)
+                {
+                    active = "geaccepteerd. Je kan nu evenementen aanmaken op de website van STUFV.";
+                }
+                else
+                {
+                    active = "niet geaccepteerd. Voor meer informatie, contacteer ons via email";
+                }
+
+                SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+                var mail = new MailMessage();
+                mail.From = new MailAddress("stufv.test@hotmail.com");
+                mail.To.Add(user.Email);
+                mail.Subject = "STUFV: Registratie organisatie (" + organisation.Name + ")";
+                mail.Body = string.Format("Jouw organisatie werd {0}", active);
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new NetworkCredential("stufv.test@hotmail.com", "paswoord123");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+            }
+            catch (SmtpException ex)
+            {
+                MessageBox.Show("Kon mail niet verzenden: " + ex.Message);
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+        }
+
         public async Task<IEnumerable<Organisation>> GetOrganisations ( ) {
             IEnumerable<Organisation> organisations = null;
             try {
@@ -154,13 +196,40 @@ namespace STUFV {
             return organisations;
         }
 
+        public async Task<User> GetUser(int id)
+        {
+            User user = null;
+            try
+            {
+                var userUrl = "/api/user/" + id;
+                HttpResponseMessage response = await client.GetAsync(userUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    user = await response.Content.ReadAsAsync<User>();
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+            return user;
+        }
+
         public async void UpdateOrganisation ( Organisation toUpdate ) {
             try {
                 var url = "api/organisations/" + toUpdate.Id;
                 HttpResponseMessage response = await client.PutAsJsonAsync(url, toUpdate);
 
                 if (response.IsSuccessStatusCode) {
+                    User user = await GetUser(toUpdate.UserId);
+                    SendMail(toUpdate, user);
                     LoadOrganisations();
+                    messageLabel.Content = "";
                 }
             }
             catch (HttpRequestException)
@@ -179,6 +248,7 @@ namespace STUFV {
             organisation.Active = true;
             organisation.isRegistered = true;
 
+            messageLabel.Content = "Verwerken...";
             UpdateOrganisation ( organisation );
         }
 
@@ -188,6 +258,7 @@ namespace STUFV {
             organisation.Active = false;
             organisation.isRegistered = true;
 
+            messageLabel.Content = "Verwerken...";
             UpdateOrganisation ( organisation );
         }
     }

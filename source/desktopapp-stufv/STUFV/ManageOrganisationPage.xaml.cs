@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -155,6 +157,46 @@ namespace STUFV
             manageOrganisationDataGrid.ItemsSource = selectOrganisations;
         }
 
+        private void SendMail(Organisation organisation, User user)
+        {
+            try
+            {
+                string active = null;
+                if (organisation.Active == true)
+                {
+                    active = "geactiveerd. Je kan terug evenementen plaatsen op de website van STUFV.";
+                }
+                else
+                {
+                    active = "gedeactiveerd. Je kan geen evenementen meer toevoegen.";
+                }
+
+                SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
+                var mail = new MailMessage();
+                mail.From = new MailAddress("stufv.test@hotmail.com");
+                mail.To.Add(user.Email);
+                mail.Subject = "STUFV: Aanpassing Status organisatie (" + organisation.Name + ")";
+                mail.Body = string.Format("Jouw organisatie werd {0}", active);
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new NetworkCredential("stufv.test@hotmail.com", "paswoord123");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+            }
+            catch (SmtpException ex)
+            {
+                MessageBox.Show("Kon mail niet verzenden: " + ex.Message);
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+        }
+
         public async Task<IEnumerable<Organisation>> GetOrganisations()
         {
             IEnumerable<Organisation> organisations = null;
@@ -186,7 +228,10 @@ namespace STUFV
 
                 if (response.IsSuccessStatusCode)
                 {
+                    User user = await GetUser(organisation.UserId);
+                    SendMail(organisation, user);
                     LoadOrganisations();
+                    messageLabel.Content = "";
                 }
             }
             catch (HttpRequestException)
@@ -287,6 +332,7 @@ namespace STUFV
 
             if (originalActive != organisation.Active)
             {
+                messageLabel.Content = "Verwerken...";
                 await UpdateOrganisation(organisation);
             }
         }
