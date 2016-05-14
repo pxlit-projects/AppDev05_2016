@@ -208,7 +208,7 @@ namespace STUFV
             return users;
         }
 
-        public async Task UpdateUser(User user)
+        public async Task UpdateUser(User user, bool mail)
         {
             try {
                 var userUrl = "/api/user/" + user.Id;
@@ -216,10 +216,13 @@ namespace STUFV
 
                 if (response.IsSuccessStatusCode)
                 {
-                    //if (scherm.user.Email != user.Email)
-                    //{
-                    //    SendMail(user);
-                    //}
+                    if (mail == true)
+                    {
+                        if (scherm.user.Email != user.Email)
+                        {
+                            SendMail(user);
+                        }
+                    }
                     LoadUsers();
                 }
                 
@@ -263,7 +266,7 @@ namespace STUFV
             if (originalActive != user.Active)
             {
                 messageLabel.Content = "Verwerken...";
-                await UpdateUser(user);
+                await UpdateUser(user, true);
                 messageLabel.Content = "";
             }
         }
@@ -292,7 +295,7 @@ namespace STUFV
 
             if (originalRoleID != user.RoleID)
             {
-                await UpdateUser(user);
+                await UpdateUser(user, false);
             }
         }
 
