@@ -16,10 +16,12 @@
     </script>
 </div>
     <div class="col-md-4 col-md-offset-1">
-        <h2>Artikels</h2>
+        <h2 style="color: #29abe0">Artikels</h2>
     </div>
     <div class="col-md-4">
-        <h2>Bekijk alle artikels</h2>
+        <a href="@Url.Action("Index", "News")">
+            <h2 style="color: #29abe0"><u>Bekijk alle artikels</u></h2>
+        </a>
     </div>
     @foreach (var item in ViewBag.Articles)
     {
@@ -44,16 +46,22 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="center"><button type="button" class="btn btn-info">Bekijk</button></td>
+                        <td align="center">
+                            <a href="@Url.Action("Details", "News", new { id = item.Id})">
+                                <p type="button" class="btn btn-info">Bekijk</p>
+                            </a>
+                        </td>
                 </tr>
             </table>
         </div>
     }
     <div class="col-md-6">
-        <h2>Aankomende evenementen</h2>
+        <h2 style="color: #29abe0">Aankomende evenementen</h2>
     </div>
     <div class="col-md-6">
-        <h2>Bekijke alle evenementen</h2>
+        <a href="@Url.Action("Index", "Events")">
+            <h2 style="color: #29abe0"><u>Bekijk alle evenementen</u></h2>
+        </a>
     </div>
         @foreach (var item in ViewBag.Events)
     {
