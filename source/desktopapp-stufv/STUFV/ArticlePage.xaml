@@ -57,7 +57,7 @@
                     </TextBlock.Background>
                 </TextBlock>
                 <TextBlock Text="Artikel plaatsen" Margin="10,25,0,0" FontSize="26"/>
-                    <Border BorderThickness="3" Background="Black" Width="825" Height="500" Margin="10,25,0,0">
+                    <Border BorderThickness="2" CornerRadius="2" BorderBrush="Black" Width="825" Height="500" Margin="10,25,0,0">
                         <StackPanel>
                             <DockPanel Background="#336699">
                                 <TextBlock Text="Titel:" Foreground="White" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>

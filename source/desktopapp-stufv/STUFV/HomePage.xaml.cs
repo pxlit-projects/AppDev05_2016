@@ -39,9 +39,6 @@ namespace STUFV
             GetAantalNieuweOrganisaties();
             GetAantalNieuweReviews();
 
-            countOrganisationLabel.Content = aantalOrganisaties;
-            countReviewLabel.Content = aantalReviews;
-
             organisationLabel.Text = "Momenteel zijn er " + aantalOrganisaties + " organisaties \ndie zich willen registeren.\n" 
                + "Je kan ze wel of niet toelaten \nin de \"Nieuwe organisaties\" \ntab of door te klikken op \nbovenstaande afbeelding.";
 

@@ -61,17 +61,16 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <StackPanel>
                         <TextBlock Text="Artikel plaatsen" Margin="10,25,0,0" FontSize="26" HorizontalAlignment="Left"/>
-                        <Button Click="Article_Click" Width="200" Height="200" Margin="10,27,15,0" VerticalAlignment="Top">
+                        <Button Click="Article_Click" Width="200" Height="200" Margin="10,27,15,0" VerticalAlignment="Top" BorderThickness="0">
                             <Button.Background>
-                                <ImageBrush ImageSource="images/artikel-ikon.png" Stretch="Fill" TileMode="None" />
+                                <ImageBrush ImageSource="images/artikel-ikon.png" Stretch="Fill" TileMode="None"/>
                             </Button.Background>
                         </Button>
                         <TextBlock Text="Plaats een artikel." FontSize="14" VerticalAlignment="Bottom" Margin="10,10,0,0"/>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="Organisaties" Margin="10,25,0,0" FontSize="26" HorizontalAlignment="Center"/>
-                        <Label x:Name="countOrganisationLabel" Content="0" FontSize="16" Background="White" BorderThickness="3" BorderBrush="Blue" HorizontalAlignment="Right" Margin="10,10,0,0" Panel.ZIndex="2"/>
-                        <Button Click="Organisation_Click" Width="200" Height="200" Margin="80,-20,15,0" VerticalAlignment="Top">
+                        <Button Click="Organisation_Click" Width="200" Height="200" Margin="80,27,15,0" VerticalAlignment="Top" BorderThickness="0">
                             <Button.Background>
                                 <ImageBrush ImageSource="images/organisatie1.png" Stretch="Fill" TileMode="None" />
                             </Button.Background>
@@ -80,8 +79,7 @@
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="Reviews" Margin="-30,25,0,0" FontSize="26" HorizontalAlignment="Center"/>
-                        <Label x:Name="countReviewLabel" Content="0" FontSize="16" Background="White" BorderThickness="3" BorderBrush="Blue" HorizontalAlignment="Right" Margin="10,10,0,0" Panel.ZIndex="2"/>
-                        <Button Click="Review_Click" Width="200" Height="200" Margin="100,-20,15,0" VerticalAlignment="Top">
+                        <Button Click="Review_Click" Width="200" Height="200" Margin="100,27,15,0" VerticalAlignment="Top" BorderThickness="0">
                             <Button.Background>
                                 <ImageBrush ImageSource="images/Icon-Content-Development.png" Stretch="Fill" TileMode="None" />
                             </Button.Background>
@@ -90,7 +88,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="10,30,10,0">
-                    <Border BorderBrush="Blue" BorderThickness="2" Background="White">
+                    <Border BorderBrush="Blue" BorderThickness="2" CornerRadius="10" Background="White">
                         <StackPanel>
                             <TextBlock FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Padding="5,0,5,0">
                         <Hyperlink NavigateUri="http://webapp-stufv20160511012914.azurewebsites.net/" RequestNavigate="Hyperlink_RequestNavigate">

@@ -59,14 +59,17 @@
                     </TextBlock.Background>
                 </TextBlock>
                 <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="500" Margin="10,25,0,0">
-                    <TextBlock Text="Zoek gebruiker " VerticalAlignment="Center"/>
-                    <TextBox x:Name="searchTextBox" Width="175" Margin="10,0,0,0"/>
-                    <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
-                    <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,0,0,0"/>
-                </StackPanel>
+                <Border BorderThickness="2" BorderBrush="Black" CornerRadius="2" HorizontalAlignment="Left" Margin="10,25,0,0" Background="LightSkyBlue">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Zoek gebruiker " VerticalAlignment="Center" Margin="10,5,0,5"/>
+                        <TextBox x:Name="searchTextBox" Width="175" Margin="10,5,0,5"/>
+                        <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,5,0,5"/>
+                        <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,5,10,5"/>
+                    </StackPanel>
+                </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
-                <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="875" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="875">
+                <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding Id}" Header="Id" Width="50">
                             <DataGridTextColumn.ElementStyle>
@@ -175,6 +178,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
+                </Border>
             </StackPanel>
 
         </DockPanel>
