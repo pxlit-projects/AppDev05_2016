@@ -3,8 +3,8 @@
     <div class="jumbotron">
         <h1>Welkom op de website van STUFV</h1>
         <p>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato de more elogio revocari iussisse, quod inexorabiles quoque principes factitarunt. et exitiale hoc vitium, quod in aliis non numquam intepescit, in illo aetatis progressu effervescebat, obstinatum eius propositum accendente adulatorum cohorte.</p>
-        <p align="center" class="btn btn-info" style="margin-left: 380px">Log in</p>
-        <p align="center" class="btn btn-success">Schrijf in</p>
+        <p align="center" class="btn btn-info" style="text-transform: none; margin-left: 390px">Log in</p>
+        <p align="center" class="btn btn-success" style="text-transform: none; margin-left: 20px">Schrijf in</p>
     </div>
 <div class="col-md-3">
     <a class="twitter-timeline" data-chrome="noscrollbar" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
@@ -15,34 +15,16 @@
                 (document, "script", "twitter-wjs");
     </script>
 </div>
-
-        @foreach (var item in ViewBag.Events)
-    {
-            <div class="col-md-8 col-md-offset-1" style="height:400px">
-                <table style="">
-                    <tr>
-                        <td><h3>@item.Name</h3></td>
-                    </tr>
-                    <tr>
-                        <td><p>@item.Start.ToShortDateString()</p></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><img src="~/Content/img/EventImages/@item.Image" style="width: 75%; height: 75%; max-height:225px; margin-bottom: 10px; border-radius: 3px;" /></td>
-                    </tr>
-                    <tr>
-                        <td align="center">
-                            <a href="@Url.Action("Details","Events", new { id = item.Id})">
-                                <p class="btn btn-info">Bekijk</p>
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        }
+    <div class="col-md-4 col-md-offset-1">
+        <h2>Artikels</h2>
+    </div>
+    <div class="col-md-4">
+        <h2>Bekijk alle artikels</h2>
+    </div>
     @foreach (var item in ViewBag.Articles)
     {
-        <div class="col-md-3 .clearfix" style="height:400px">
-            <table style="">
+        <div class="col-md-4 col-md-offset-1" style="height: 400px; width: 300px">
+            <table>
                 <tr>
                     <td><h3>@item.Title</h3></td>
                 </tr>
@@ -66,7 +48,36 @@
                 </tr>
             </table>
         </div>
-                <hr class="seperator" />
     }
+    <div class="col-md-6">
+        <h2>Aankomende evenementen</h2>
+    </div>
+    <div class="col-md-6">
+        <h2>Bekijke alle evenementen</h2>
+    </div>
+        @foreach (var item in ViewBag.Events)
+    {
+            <div class="col-md-3" style="height: 400px">
+                <table>
+                    <tr>
+                        <td><h3>@item.Name</h3></td>
+                    </tr>
+                    <tr>
+                        <td><p>@item.Start.ToShortDateString()</p></td>
+                    </tr>
+                    <tr>
+                        <td align="center"><img src="~/Content/img/EventImages/@item.Image" style="width: 75%; height: 75%; max-height:225px; margin-bottom: 10px; border-radius: 3px;" /></td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <a href="@Url.Action("Details","Events", new { id = item.Id})">
+                                <p class="btn btn-info">Bekijk</p>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    
 </div>
 }

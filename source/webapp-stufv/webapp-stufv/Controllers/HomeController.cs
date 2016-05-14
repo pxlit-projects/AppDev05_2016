@@ -16,7 +16,7 @@ namespace webapp_stufv.Controllers {
             List<Article> articleList = iarticle.getAllArticles ( );
             List<Article> articleLast3 = new List<Article>();
             int articleCount = articleList.Count;
-            for (int i = articleCount-1; i > articleCount-4; i--)
+            for (int i = articleCount - 1; i > articleCount - 5; i--)
             {
                 articleLast3.Add(articleList.ElementAt(i));
             }
@@ -25,7 +25,7 @@ namespace webapp_stufv.Controllers {
             List<Event> eventList = ievent.GetAllEvents();
             List<Event> eventLast3 = new List<Event>();
             int eventCount = eventList.Count;
-            for (int i = eventCount - 1; i > eventCount - 4; i--)
+            for (int i = eventCount - 1; i > eventCount - 5; i--)
             {
                 eventLast3.Add(eventList.ElementAt(i));
             }
