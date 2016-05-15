@@ -31,7 +31,7 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
-        <StackPanel Orientation="Horizontal">
+        <DockPanel>
             <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
                 <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                     <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
@@ -48,111 +48,125 @@
                 </ListBox>
             </Viewbox>
 
-            <Grid Width="800">
-                <StackPanel>
-                    <TextBlock Text="Logins" FontSize="40" Margin="10,5,0,0"/>
-                    <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="700" Margin="10,25,0,0">
-                        <TextBlock Text="Zoeken " VerticalAlignment="Center"/>
-                        <TextBox x:Name="searchTextBox" Width="175" Margin="10,0,0,0" SelectionChanged="SearchTextBox_SelectionChanged"/>
-                        <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
-                        <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,0,0,0" SelectionChanged="FilterBox_SelectionChanged"/>
-                        <DatePicker x:Name="searchDatePicker" Margin="10,0,0,0" Visibility="Hidden" SelectedDateChanged="SearchDatePicker_SelectedDateChanged"/>
-                    </StackPanel>
-                    <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
-                    <DataGrid x:Name="loginDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="454" Width="385" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="75">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="UserId" Width="100">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="dateColumn" Binding="{Binding DateTime, StringFormat={}{0:dd-MM-yyyy a\\t h-mm tt}}" Header="Datum login" Width="215" IsReadOnly="True">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+            <StackPanel DockPanel.Dock="Right" Background="WhiteSmoke">
+                <TextBlock Text="Logins" FontSize="40" Padding="10,5,0,5" Foreground="White">
+                    <TextBlock.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF144563" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Background>
+                </TextBlock>
+                <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
+                <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="LightSkyBlue" HorizontalAlignment="Left" Margin="10,25,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Zoeken " VerticalAlignment="Center" Margin="10,5,0,5"/>
+                    <TextBox x:Name="searchTextBox" Width="175" Margin="10,5,0,5" SelectionChanged="SearchTextBox_SelectionChanged"/>
+                    <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
+                    <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,5,0,5" SelectionChanged="FilterBox_SelectionChanged"/>
+                    <DatePicker x:Name="searchDatePicker" Margin="10,5,10,5" Visibility="Hidden" SelectedDateChanged="SearchDatePicker_SelectedDateChanged"/>
                 </StackPanel>
-            </Grid>
-            <StackPanel VerticalAlignment="Center" Margin="-330,100,0,0">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,0,0">
-                    <Image Source="images/Profile-icon.png" Width="50" Height="50"/>
-                    <Label x:Name="userLabel" FontSize="26" Margin="25,0,0,0"/>
+                </Border>
+                <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top">
+                    
+                <DataGrid x:Name="loginDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="385" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="75">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="UserId" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn x:Name="dateColumn" Binding="{Binding DateTime, StringFormat={}{0:dd-MM-yyyy a\\t h-mm tt}}" Header="Datum login" Width="215" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                </Border>
+                <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="White" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30,15,0,0">
+                    <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,10,0">
+                        <Image Source="images/Profile-icon.png" Width="50" Height="50"/>
+                        <Label x:Name="userLabel" FontSize="26" Margin="25,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel x:Name="detailsPanel" DataContext="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,40,10,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Voornaam" Width="100"/>
+                            <TextBox Text="{Binding FirstName}" Width="125"/>
+                            <TextBlock Text="Geslacht" Width="100" Margin="10,0,0,0"/>
+                            <TextBox Text="{Binding Sex}" Width="125"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="Achternaam" Width="100"/>
+                            <TextBox Text="{Binding LastName}" Width="125"/>
+                            <TextBlock Text="Email" Width="100" Margin="10,0,0,0"/>
+                            <TextBox Text="{Binding Email}" Width="125"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="Geboorteplaats" Width="100"/>
+                            <TextBox Text="{Binding BirthPlace}" Width="125"/>
+                            <TextBlock Text="Gsm-nummer" Width="100" Margin="10,0,0,0"/>
+                            <TextBox Text="{Binding MobileNr}" Width="125"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="Geboortedatum" Width="100"/>
+                            <TextBox Text="{Binding BirthDate, StringFormat={}{0:dd-MM-yyyy}}" Width="125"/>
+                            <TextBlock Text="Telefoonnummer" Width="100" Margin="10,0,0,0"/>
+                            <TextBox Text="{Binding TelNr}" Width="125"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="Postcode" Width="100"/>
+                            <TextBox Text="{Binding ZipCode}" Width="125"/>
+                            <TextBlock Text="Woonplaats" Width="100" Margin="10,0,0,0"/>
+                            <TextBox x:Name="homePlaceTextBox" Width="125"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">
+                            <TextBlock Text="Laatste login:" FontSize="18" Margin="0,5,0,0"/>
+                            <Label x:Name="latestLogin" FontSize="18" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel x:Name="detailsPanel" DataContext="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,40,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Voornaam" Width="100"/>
-                        <TextBox Text="{Binding FirstName}" Width="125"/>
-                        <TextBlock Text="Geslacht" Width="100" Margin="10,0,0,0"/>
-                        <TextBox Text="{Binding Sex}" Width="125"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBlock Text="Achternaam" Width="100"/>
-                        <TextBox Text="{Binding LastName}" Width="125"/>
-                        <TextBlock Text="Email" Width="100" Margin="10,0,0,0"/>
-                        <TextBox Text="{Binding Email}" Width="125"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBlock Text="Geboorteplaats" Width="100"/>
-                        <TextBox Text="{Binding BirthPlace}" Width="125"/>
-                        <TextBlock Text="Gsm-nummer" Width="100" Margin="10,0,0,0"/>
-                        <TextBox Text="{Binding MobileNr}" Width="125"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBlock Text="Geboortedatum" Width="100"/>
-                        <TextBox Text="{Binding BirthDate, StringFormat={}{0:dd-MM-yyyy}}" Width="125"/>
-                        <TextBlock Text="Telefoonnummer" Width="100" Margin="10,0,0,0"/>
-                        <TextBox Text="{Binding TelNr}" Width="125"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <TextBlock Text="Postcode" Width="100"/>
-                        <TextBox Text="{Binding ZipCode}" Width="125"/>
-                        <TextBlock Text="Woonplaats" Width="100" Margin="10,0,0,0"/>
-                        <TextBox x:Name="homePlaceTextBox" Width="125"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="40">
-                        <TextBlock Text="Laatste login:" FontSize="18" Margin="0,5,0,0"/>
-                        <Label x:Name="latestLogin" FontSize="18" Margin="5,0,0,0"/>
-                    </StackPanel>
+                </Border>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </DockPanel>
     </Grid>
 </Page>

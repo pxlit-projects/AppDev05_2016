@@ -5,12 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="EditArticleWindow" Height="675" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="EditArticleWindow" Height="675" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="WhiteSmoke">
     <Grid>
         <Grid>
             <StackPanel>
-                <TextBlock Text="Artikel wijzigen" FontSize="40" Margin="10,5,0,0"/>
-                <Border BorderThickness="3" Background="Black" Width="825" Height="500" Margin="10,25,0,0">
+                <TextBlock Text="Artikel wijzigen" FontSize="40" Padding="10,5,0,5" Foreground="White">
+                    <TextBlock.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF144563" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Background>
+                </TextBlock>
+                <Border BorderThickness="2" BorderBrush="Black" Width="825" Height="500" Margin="10,25,0,0">
                     <StackPanel>
                         <DockPanel Background="#336699">
                             <TextBlock Text="Titel:" Foreground="White" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
@@ -24,7 +31,6 @@
                             <TextBlock x:Name="authorBlock" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <TextBlock x:Name="dateBlock" Foreground="White" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,10,0"/>
                         </DockPanel>
-
                     </StackPanel>
                 </Border>
                 <DockPanel Margin="0,0,20,0">

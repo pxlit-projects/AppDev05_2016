@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="ReviewDetailsWindow" Height="350" Width="500">
+        Title="ReviewDetailsWindow" Height="350" Width="500" Background="WhiteSmoke">
     <Grid>
-        
+        <StackPanel>
+            <TextBlock Text="Review" FontSize="40" Padding="10,5,0,5" Foreground="White">
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF144563" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+            </TextBlock>
+        </StackPanel>
         <StackPanel x:Name="detailsPanel" DataContext="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
+            
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Review ID" Width="100"/>
                 <TextBox Text="{Binding Id}" Width="125" IsReadOnly="True"/>

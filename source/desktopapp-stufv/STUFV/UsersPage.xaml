@@ -50,7 +50,7 @@
 
 
             <StackPanel DockPanel.Dock="Right" Background="WhiteSmoke">
-                <TextBlock Text="Gebruikers" FontSize="40" Padding="10,5,10,0" Foreground="White">
+                <TextBlock Text="Gebruikers" FontSize="40" Padding="10,5,0,5" Foreground="White">
                     <TextBlock.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
                             <GradientStop Color="Black"/>
