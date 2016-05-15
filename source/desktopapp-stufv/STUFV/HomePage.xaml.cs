@@ -44,7 +44,7 @@ namespace STUFV
 
             reviewLabel.Text = "Momenteel zijn er " + aantalReviews + " reviews \ndie geflagged zijn.\n"
                + "Je kan ze wel of niet toelaten \nin de \"Controle op reviews\" \ntab of door te klikken op \nbovenstaande afbeelding.";
-
+            
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
