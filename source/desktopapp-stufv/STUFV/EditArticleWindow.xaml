@@ -34,9 +34,9 @@
                     </StackPanel>
                 </Border>
                 <DockPanel Margin="0,0,20,0">
-                    <Button x:Name="saveArticleButton" Content="Opslaan" Margin="10,15,0,0" HorizontalAlignment="Left" Click="SaveArticleButton_Click"/>
+                    <Button x:Name="saveArticleButton" Content="Opslaan"  Background="LightGreen" BorderBrush="Black" BorderThickness="1" Margin="10,15,0,0" HorizontalAlignment="Left" Click="SaveArticleButton_Click"/>
                     <Label x:Name="processLabel" Content="" Foreground="Gray" HorizontalAlignment="Left" Margin="10,15,0,0"/>
-                    <Button x:Name="closeButton" Content="Sluit venster" Margin="0,15,0,0" HorizontalAlignment="Right" Click="CloseButton_Click"/>
+                    <Button x:Name="closeButton" Content="Sluit venster" Background="White" BorderBrush="Black" BorderThickness="1" Margin="0,15,0,0" HorizontalAlignment="Right" Click="CloseButton_Click"/>
                 </DockPanel>
                 
             </StackPanel>

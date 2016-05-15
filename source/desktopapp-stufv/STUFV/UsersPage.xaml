@@ -160,18 +160,10 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <Button x:Name="detailsButton" ToolTip="Meer informatie over deze persoon" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="DetailsButton_Click">
-                                            <Button.Background>
-                                                <ImageBrush ImageSource="images/info-icon.png" Stretch="Fill" TileMode="None"/>
-                                            </Button.Background>
-                                        </Button>
-                                        <Button x:Name="mailButton" ToolTip="Verstuur een mail naar deze persoon" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="MailButton_Click">
-                                            <Button.Background>
-                                                <ImageBrush ImageSource="images/MetroUI_mail.png" Stretch="Fill" TileMode="None"/>
-                                            </Button.Background>
-                                        </Button>
-                                        <Button x:Name="changeStatusButton" ToolTip="Activeer/deactiveer deze persoon" Content="Change status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
-                                        <Button x:Name="changeRoleButton" ToolTip="Verander de rol van deze persoon" Content="Change role" Margin="0,5,5,5" Click="ChangeRoleButton_Click"/>
+                                            <Button x:Name="detailsButton" ToolTip="Meer informatie over deze persoon" Content="Details" Background="LightSkyBlue" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="DetailsButton_Click"/>
+                                            <Button x:Name="mailButton" ToolTip="Verstuur een mail naar deze persoon" Content="Mail" Background="LightSkyBlue" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="MailButton_Click"/>
+                                            <Button x:Name="changeStatusButton" ToolTip="Activeer/deactiveer deze persoon" Content="Change status" Background="Yellow" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
+                                            <Button x:Name="changeRoleButton" ToolTip="Verander de rol van deze persoon" Content="Change role" Background="Yellow" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="ChangeRoleButton_Click"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

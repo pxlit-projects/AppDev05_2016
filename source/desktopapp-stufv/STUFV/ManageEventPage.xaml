@@ -163,7 +163,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <Button x:Name="changeStatusButton" ToolTip="Verander de status van dit evenement" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
+                                            <Button x:Name="changeStatusButton" ToolTip="Verander de status van dit evenement" Content="Verander status"  Background="Yellow" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

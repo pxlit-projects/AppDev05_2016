@@ -74,7 +74,7 @@
                             
                         </StackPanel>
                     </Border>
-                    <Button x:Name="placeArticleButton" Content="Artikel plaatsen" Margin="10,15,0,0" HorizontalAlignment="Left" Click="PlaceArticleButton_Click"/>
+                <Button x:Name="placeArticleButton" Content="Artikel plaatsen" Background="White" BorderBrush="Black" BorderThickness="1" Margin="10,15,0,0" HorizontalAlignment="Left" Click="PlaceArticleButton_Click"/>
                 </StackPanel>
             
         </DockPanel>

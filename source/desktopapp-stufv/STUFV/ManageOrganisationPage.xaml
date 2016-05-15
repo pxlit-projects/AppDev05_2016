@@ -118,13 +118,9 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <Button x:Name="mailOrganisationButton" ToolTip="Verstuur een mail naar deze organisatie" Width="30" Height="30" Margin="0,5,5,5" BorderThickness="0" Click="MailOrganisationButton_Click">
-                                                <Button.Background>
-                                                    <ImageBrush ImageSource="images/MetroUI_mail.png" Stretch="Fill" TileMode="None"/>
-                                                </Button.Background>
-                                            </Button>
-                                            <Button x:Name="eventsButton" ToolTip="Bekijk de evenementen van deze organisatie" Content="Bekijk evenementen" Margin="0,5,5,5" Click="EventsButton_Click"/>
-                                            <Button x:Name="changeStatusButton" ToolTip="Verander de status van deze persoon" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
+                                            <Button x:Name="mailOrganisationButton" ToolTip="Verstuur een mail naar deze organisatie" Content="Mail" Background="LightSkyBlue" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="MailOrganisationButton_Click"/>
+                                            <Button x:Name="eventsButton" ToolTip="Bekijk de evenementen van deze organisatie" Content="Bekijk evenementen" Background="LightSkyBlue" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="EventsButton_Click"/>
+                                            <Button x:Name="changeStatusButton" ToolTip="Verander de status van deze persoon" Content="Verander status" Background="Yellow" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

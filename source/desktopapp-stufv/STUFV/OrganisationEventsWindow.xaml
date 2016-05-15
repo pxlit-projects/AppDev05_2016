@@ -122,7 +122,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                    <Button x:Name="changeStatusButton" ToolTip="Verander de status van dit evenement" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
+                                        <Button x:Name="changeStatusButton"  Background="Yellow" BorderBrush="Black" BorderThickness="1" ToolTip="Verander de status van dit evenement" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -130,7 +130,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             </Border>
-            <Button x:Name="closeButton" Content="Sluit venster" HorizontalAlignment="Right" Margin="0,10,20,0" Click="CloseButton_Click"/>
+            <Button x:Name="closeButton" Content="Sluit venster" Background="White" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Right" Margin="0,10,20,0" Click="CloseButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

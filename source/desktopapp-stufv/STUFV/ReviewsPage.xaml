@@ -128,16 +128,14 @@
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
                         <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" />
-                        <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" IsReadOnly="True" Width="350">
+                        <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" IsReadOnly="True" Width="370">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                                        <Button x:Name="userButton" ToolTip="Bekijk de user van deze review" Content="Bekijk Gebruiker" Margin="0,5,5,5" Click="UserButton_Click"/>
-                                        <Button x:Name="changeStatusButton" ToolTip="Verander de status van d
-                                                    eze persoon" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
-                                        <Button x:Name="detailsButton" ToolTip="Bekijk de grote details van deze review" Content="Details review" Margin="0,5,5,5" Click="DetailsButton_Click"/>
-                                    </StackPanel>
+                                            <Button x:Name="detailsButton" ToolTip="Bekijk de grote details van deze review" Content="Details review" Background="LightSkyBlue" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="DetailsButton_Click"/>
+                                            <Button x:Name="userButton" ToolTip="Bekijk de user van deze review" Content="Bekijk Gebruiker" Background="LightSkyBlue" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="UserButton_Click"/>
+                                            <Button x:Name="changeStatusButton" ToolTip="Verander de status van deze persoon" Content="Verander status" Background="Yellow" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
+                                        </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

@@ -151,13 +151,13 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="310" IsReadOnly="True">
+                        <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="315" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <Button x:Name="changeArticleButton" ToolTip="Breng wijzigingen toe aan dit artikel" Content="Artikel wijzigen" Margin="0,5,5,5" Click="ChangeArticleButton_Click"/>
-                                        <Button x:Name="detailsAuthorButton" ToolTip="Meer informatie over deze persoon" Content="Details Auteur" Margin="0,5,5,5" Click="DetailsAuthorButton_Click"/>
-                                        <Button x:Name="changeStatusButton" ToolTip="Verander de status van dit artikel" Content="Verander status" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
+                                            <Button x:Name="changeArticleButton" ToolTip="Breng wijzigingen toe aan dit artikel" Content="Artikel wijzigen" Background="LightSkyBlue" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="ChangeArticleButton_Click"/>
+                                            <Button x:Name="detailsAuthorButton" ToolTip="Meer informatie over deze persoon" Content="Details Auteur"  Background="LightSkyBlue" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="DetailsAuthorButton_Click"/>
+                                            <Button x:Name="changeStatusButton" ToolTip="Verander de status van dit artikel" Content="Verander status"  Background="Yellow" BorderBrush="Black" BorderThickness="1" Margin="0,5,5,5" Click="ChangeStatusButton_Click"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
