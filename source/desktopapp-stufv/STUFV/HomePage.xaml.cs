@@ -164,9 +164,12 @@ namespace STUFV
                 }
 
                 int teller = 0;
-                foreach (Review review in reviews)
+                if (reviews != null)
                 {
-                    teller++;
+                    foreach (Review review in reviews)
+                    {
+                        teller++;
+                    }
                 }
                 aantalReviews = teller;
             }

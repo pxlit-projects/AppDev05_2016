@@ -204,7 +204,7 @@ namespace STUFV
         {
             IEnumerable<Review> reviews = null;
             try {
-                var reviewUrl = "/api/reviews";
+                var reviewUrl = "/api/review";
                 HttpResponseMessage response = await client.GetAsync(reviewUrl);
                 
                 if (response.IsSuccessStatusCode)
@@ -226,7 +226,7 @@ namespace STUFV
         public async Task UpdateReview(Review review)
         {
             try {
-                var reviewUrl = "/api/reviews/" + review.Id;
+                var reviewUrl = "/api/review/" + review.Id;
                 HttpResponseMessage response = await client.PutAsJsonAsync(reviewUrl, review);
 
                 if (response.IsSuccessStatusCode)
