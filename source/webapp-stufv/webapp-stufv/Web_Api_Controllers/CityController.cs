@@ -100,7 +100,7 @@ namespace webapp_stufv.Web_Api_Controllers
                 return NotFound();
             }
 
-            _context.Organisations.Remove(city);
+            _context.Cities.Remove(city);
             await _context.SaveChangesAsync();
 
             return Ok(city);
