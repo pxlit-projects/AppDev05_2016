@@ -25,8 +25,6 @@ namespace STUFV
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
         HttpClient client = new HttpClient();
-        private int aantalOrganisaties = 0;
-        private int aantalReviews = 0;
 
         public HomePage()
         {
@@ -39,12 +37,6 @@ namespace STUFV
             GetAantalNieuweOrganisaties();
             GetAantalNieuweReviews();
 
-            organisationLabel.Text = "Momenteel zijn er " + aantalOrganisaties + " organisaties \ndie zich willen registeren.\n" 
-               + "Je kan ze wel of niet toelaten \nin de \"Nieuwe organisaties\" \ntab of door te klikken op \nbovenstaande afbeelding.";
-
-            reviewLabel.Text = "Momenteel zijn er " + aantalReviews + " reviews \ndie geflagged zijn.\n"
-               + "Je kan ze wel of niet toelaten \nin de \"Controle op reviews\" \ntab of door te klikken op \nbovenstaande afbeelding.";
-            
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
         }
 
@@ -140,7 +132,8 @@ namespace STUFV
                         teller++;
                     }
                 }
-                aantalOrganisaties = teller;
+                organisationLabel.Text = "Momenteel zijn er " + teller + " organisaties \ndie zich willen registeren.\n"
+               + "Je kan ze wel of niet toelaten \nin de \"Nieuwe organisaties\" \ntab of door te klikken op \nbovenstaande afbeelding.";
             }
             catch (HttpRequestException)
             {
@@ -155,7 +148,7 @@ namespace STUFV
         private async void GetAantalNieuweReviews()
         {
             try {
-                var reviewUrl = "/api/reviews";
+                var reviewUrl = "/api/review";
                 HttpResponseMessage response = await client.GetAsync(reviewUrl);
                 IEnumerable<Review> reviews = null;
                 if (response.IsSuccessStatusCode)
@@ -168,10 +161,14 @@ namespace STUFV
                 {
                     foreach (Review review in reviews)
                     {
-                        teller++;
+                        if (review.Flagged == "True" && review.Handled == false)
+                        {
+                            teller++;
+                        }
                     }
                 }
-                aantalReviews = teller;
+                reviewLabel.Text = "Momenteel zijn er " + teller + " reviews \ndie geflagged zijn.\n"
+               + "Je kan ze wel of niet toelaten \nin de \"Controle op reviews\" \ntab of door te klikken op \nbovenstaande afbeelding.";
             }
             catch (HttpRequestException)
             {

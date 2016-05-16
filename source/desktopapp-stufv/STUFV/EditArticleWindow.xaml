@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="EditArticleWindow" Height="675" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="WhiteSmoke">
+        Title="EditArticleWindow" Height="675" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="WhiteSmoke" Icon="images/favicon.ico">
     <Grid>
 
         <StackPanel>

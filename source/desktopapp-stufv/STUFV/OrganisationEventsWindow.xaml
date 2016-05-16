@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="OrganisationEventsWindow" Height="770" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="OrganisationEventsWindow" Height="770" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="images/favicon.ico">
     <Grid>
         <StackPanel>
             <TextBlock Text="Organisaties" FontSize="40" Padding="10,5,0,5" Foreground="White">

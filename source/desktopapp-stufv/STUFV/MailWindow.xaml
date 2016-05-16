@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="MailWindow" Height="690" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="WhiteSmoke">
+        Title="MailWindow" Height="690" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="WhiteSmoke" Icon="images/favicon.ico">
     <Grid>
         <StackPanel>
             <TextBlock Text="Mail" FontSize="40" Padding="10,5,0,5" Foreground="White">
