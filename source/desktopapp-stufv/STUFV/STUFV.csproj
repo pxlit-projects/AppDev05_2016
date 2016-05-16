@@ -121,6 +121,9 @@
     <Compile Include="EditArticleWindow.xaml.cs">
       <DependentUpon>EditArticleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MailWindow.xaml.cs">
+      <DependentUpon>MailWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManageArticlePage.xaml.cs">
       <DependentUpon>ManageArticlePage.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditArticleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

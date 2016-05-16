@@ -303,8 +303,8 @@ namespace STUFV
         {
             User user = (User)usersDataGrid.CurrentItem;
 
-            var url = "mailto:" + user.Email;
-            Process.Start(url);
+            MailWindow window = new MailWindow(user.Email);
+            window.Show();
         }
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)

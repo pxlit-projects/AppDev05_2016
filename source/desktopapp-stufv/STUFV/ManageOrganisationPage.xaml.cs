@@ -288,8 +288,8 @@ namespace STUFV
                 Organisation organisation = (Organisation)manageOrganisationDataGrid.CurrentItem;
                 User user = await GetUser(organisation.UserId);
 
-                var url = "mailto:" + user.Email;
-                Process.Start(url);
+                MailWindow window = new MailWindow(user.Email);
+                window.Show();
             }
             catch (HttpRequestException)
             {

@@ -7,39 +7,39 @@
         mc:Ignorable="d"
         Title="EditArticleWindow" Height="675" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="WhiteSmoke">
     <Grid>
-        <Grid>
-            <StackPanel>
-                <TextBlock Text="Artikel wijzigen" FontSize="40" Padding="10,5,0,5" Foreground="White">
-                    <TextBlock.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
-                            <GradientStop Color="Black"/>
-                            <GradientStop Color="#FF144563" Offset="1"/>
-                        </LinearGradientBrush>
-                    </TextBlock.Background>
-                </TextBlock>
-                <Border BorderThickness="2" BorderBrush="Black" Width="825" Height="500" Margin="10,25,0,0">
-                    <StackPanel>
-                        <DockPanel Background="#336699">
-                            <TextBlock Text="Titel:" Foreground="White" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
-                            <TextBox x:Name="titleTextBox" Background="#336699" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
-                        </DockPanel>
-                        <DockPanel>
-                            <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17" VerticalScrollBarVisibility="Auto"/>
-                        </DockPanel>
-                        <DockPanel Background="#C0C0C0" Height="24">
-                            <TextBlock Text="Auteur:" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                            <TextBlock x:Name="authorBlock" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                            <TextBlock x:Name="dateBlock" Foreground="White" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,10,0"/>
-                        </DockPanel>
-                    </StackPanel>
-                </Border>
-                <DockPanel Margin="0,0,20,0">
-                    <Button x:Name="saveArticleButton" Content="Opslaan"  Background="LightGreen" BorderBrush="Black" BorderThickness="1" Margin="10,15,0,0" HorizontalAlignment="Left" Click="SaveArticleButton_Click"/>
-                    <Label x:Name="processLabel" Content="" Foreground="Gray" HorizontalAlignment="Left" Margin="10,15,0,0"/>
-                    <Button x:Name="closeButton" Content="Sluit venster" Background="White" BorderBrush="Black" BorderThickness="1" Margin="0,15,0,0" HorizontalAlignment="Right" Click="CloseButton_Click"/>
-                </DockPanel>
-                
-            </StackPanel>
-        </Grid>
+
+        <StackPanel>
+            <TextBlock Text="Artikel wijzigen" FontSize="40" Padding="10,5,0,5" Foreground="White">
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF144563" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+            </TextBlock>
+            <Border BorderThickness="2" BorderBrush="Black" Width="825" Height="500" Margin="10,25,0,0">
+                <StackPanel>
+                    <DockPanel Background="#336699">
+                        <TextBlock Text="Titel:" Foreground="White" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
+                        <TextBox x:Name="titleTextBox" Background="#336699" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17" VerticalScrollBarVisibility="Auto"/>
+                    </DockPanel>
+                    <DockPanel Background="#C0C0C0" Height="24">
+                        <TextBlock Text="Auteur:" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <TextBlock x:Name="authorBlock" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <TextBlock x:Name="dateBlock" Foreground="White" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,10,0"/>
+                    </DockPanel>
+                </StackPanel>
+            </Border>
+            <DockPanel Margin="0,0,20,0">
+                <Button x:Name="saveArticleButton" Content="Opslaan"  Background="LightGreen" BorderBrush="Black" BorderThickness="1" Margin="10,15,0,0" HorizontalAlignment="Left" Click="SaveArticleButton_Click"/>
+                <Label x:Name="processLabel" Content="" Foreground="Gray" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                <Button x:Name="closeButton" Content="Sluit venster" Background="White" BorderBrush="Black" BorderThickness="1" Margin="0,15,0,0" HorizontalAlignment="Right" Click="CloseButton_Click"/>
+            </DockPanel>
+
+        </StackPanel>
+
     </Grid>
 </Window>
