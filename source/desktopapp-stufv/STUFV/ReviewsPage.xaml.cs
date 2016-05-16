@@ -43,6 +43,8 @@ namespace STUFV
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
             searchTextBox.SelectionChanged += SearchTextBox_SelectionChanged;
+            alleReviewsButton.Checked += AlleReviewsButton_GotFocus;
+            nbReviewsButton.Checked += NbReviewsButton_GotFocus;
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -87,6 +89,18 @@ namespace STUFV
             }
         }
 
+        private void AlleReviewsButton_GotFocus(object sender, RoutedEventArgs e)
+        {
+            searchTextBox.Text = "";
+            LoadReviews();
+        }
+
+        private void NbReviewsButton_GotFocus(object sender, RoutedEventArgs e)
+        {
+            searchTextBox.Text = "";
+            LoadReviews();
+        }
+
         private void FilterBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             searchTextBox.Text = "";
@@ -96,7 +110,25 @@ namespace STUFV
         {
             if (searchTextBox.Text != "")
             {
-                IEnumerable<Review> allReviews = await GetReviews();
+                IEnumerable<Review> reviews = await GetReviews();
+                IEnumerable<Review> allReviews = null;
+
+                if (alleReviewsButton.IsChecked == true)
+                {
+                    allReviews = reviews;
+                }
+                else if (nbReviewsButton.IsChecked == true)
+                {
+                    List<Review> groupReviews = new List<Review>();
+                    foreach (Review review in reviews)
+                    {
+                        if (review.Flagged == "True" && review.Handled == false)
+                        {
+                            groupReviews.Add(review);
+                        }
+                        allReviews = groupReviews;
+                    }
+                }
 
                 string filter = filterBox.SelectedValue.ToString();
 
@@ -149,8 +181,23 @@ namespace STUFV
 
         public async void LoadReviews()
         {
-           
-            ReviewsDataGrid.ItemsSource = await GetReviews();
+            IEnumerable<Review> reviews = await GetReviews();
+            if (alleReviewsButton.IsChecked == true)
+            {
+                ReviewsDataGrid.ItemsSource = reviews;
+            }
+            else if (nbReviewsButton.IsChecked == true)
+            {
+                List<Review> selectReviews = new List<Review>();
+                foreach (Review review in reviews)
+                {
+                    if (review.Flagged == "True" && review.Handled == false)
+                    {
+                        selectReviews.Add(review);
+                    }
+                }
+                ReviewsDataGrid.ItemsSource = selectReviews;
+            }            
         }
 
         public async Task<IEnumerable<Review>> GetReviews()
@@ -235,22 +282,27 @@ namespace STUFV
             return user;
         }
 
-
-
         private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
         {
             Review review = (Review)ReviewsDataGrid.CurrentItem;
             bool originalActive = review.Active;
             
-
-            if (review.Active == true)
+            if (review.Handled == false && review.Flagged == "true" && review.Active == true)
+            {
+                if (MessageBox.Show(String.Format("Bent u zeker dat u deze review wilt deactiveren?"),
+                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    review.Active = false;
+                    review.Handled = true;
+                }
+            }
+            else if (review.Active == true)
             {
                 if (MessageBox.Show(String.Format("Bent u zeker dat u deze review wilt deactiveren?"),
                     "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     review.Active = false;
                 }
-
             }
             else
             {
@@ -265,6 +317,13 @@ namespace STUFV
             {
                 await UpdateReview(review);
             }
+        }
+
+        private async void ReadButton_Click(object sender, RoutedEventArgs e)
+        {
+            Review review = (Review)ReviewsDataGrid.CurrentItem;
+            review.Handled = true;
+            await UpdateReview(review);
         }
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)

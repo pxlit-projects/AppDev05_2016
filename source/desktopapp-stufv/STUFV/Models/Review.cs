@@ -29,6 +29,9 @@ namespace STUFV
         [Required]
         public string Flagged { get; set; }
 
+        [Required]
+        public Boolean Handled { get; set; }
+
         public int Rating { get; set; }
 
         [Required]

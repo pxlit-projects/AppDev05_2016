@@ -29,6 +29,9 @@ namespace webapp_stufv.Models {
         public Boolean Flagged { get; set; }
 
         [Required]
+        public Boolean Handled { get; set; }
+
+        [Required]
         public DateTime DateTime { get; set; }
 
         public Boolean Active { get; set; }
