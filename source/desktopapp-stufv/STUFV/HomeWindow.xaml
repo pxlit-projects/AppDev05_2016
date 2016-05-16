@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="HomeWindow" MinHeight="650" MinWidth="1000" WindowState="Maximized" WindowStartupLocation="CenterScreen" Background="White" Icon="images/favicon.ico">
+        Title="STUFV" MinHeight="650" MinWidth="1000" WindowState="Maximized" WindowStartupLocation="CenterScreen" Background="White" Icon="images/favicon.ico">
     <Grid>
         <Frame x:Name="displayFrame"></Frame>
     </Grid>
