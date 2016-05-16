@@ -276,6 +276,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Web_Api_Controllers\ArticleController.cs" />
+    <Compile Include="Web_Api_Controllers\CityController.cs" />
     <Compile Include="Web_Api_Controllers\DesDriverController.cs" />
     <Compile Include="Web_Api_Controllers\EmergencyController.cs" />
     <Compile Include="Web_Api_Controllers\EventController.cs" />

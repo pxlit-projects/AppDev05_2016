@@ -48,6 +48,9 @@ namespace STUFV
         [Required]
         public Boolean Active { get; set; }
 
+        [Required]
+        public Boolean Handled { get; set; }
+
         public virtual ICollection<Attendance> Attendances { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }

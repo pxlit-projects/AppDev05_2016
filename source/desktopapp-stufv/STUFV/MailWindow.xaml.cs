@@ -61,7 +61,6 @@ namespace STUFV
         {
             if (subjectBox.Text != "")
             {
-                processLabel.Content = "Bezig met verzenden...";
                 try
                 {
                     SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
