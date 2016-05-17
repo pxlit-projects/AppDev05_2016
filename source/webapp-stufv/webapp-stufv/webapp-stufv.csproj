@@ -214,6 +214,7 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GuidelinesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstagramController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OrganisationController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -290,7 +291,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Global.css" />
-    <Content Include="Content\img\Calendar.png" />
+    <Content Include="Content\img\ProfilePictures\Calendar.png" />
     <Content Include="Content\img\collapse.png" />
     <Content Include="Content\img\euro.png" />
     <Content Include="Content\img\hamburger.png" />
@@ -304,6 +305,8 @@
     <Content Include="Content\img\thumbsup.png" />
     <Content Include="Content\img\vinkje.png" />
     <Content Include="Content\img\EventImages\noimageavailable.png" />
+    <Content Include="Content\instafeed.js" />
+    <Content Include="Content\instafeed.min.js" />
     <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -365,6 +368,7 @@
     <Content Include="Views\Events\FlagReaction.cshtml" />
     <Content Include="Views\Profile\Users.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Instagram\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
