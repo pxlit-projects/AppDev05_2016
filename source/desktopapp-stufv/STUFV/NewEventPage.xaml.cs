@@ -20,14 +20,14 @@ using System.Windows.Shapes;
 namespace STUFV
 {
     /// <summary>
-    /// Interaction logic for ManageEventPage.xaml
+    /// Interaction logic for NewEventPage.xaml
     /// </summary>
-    public partial class ManageEventPage : Page
+    public partial class NewEventPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
         HttpClient client = new HttpClient();
 
-        public ManageEventPage()
+        public NewEventPage()
         {
             InitializeComponent();
 
@@ -149,7 +149,7 @@ namespace STUFV
                 else
                 {
                     messageLabel.Content = "Er zijn " + selectEvents.Count + " resultaten gevonden!";
-                    eventDataGrid.ItemsSource = selectEvents;
+                    newEventDataGrid.ItemsSource = selectEvents;
                 }
             }
             else
@@ -179,7 +179,7 @@ namespace STUFV
                 else
                 {
                     messageLabel.Content = "Er zijn " + selectEvents.Count + " resultaten gevonden!";
-                    eventDataGrid.ItemsSource = selectEvents;
+                    newEventDataGrid.ItemsSource = selectEvents;
                 }
             }
             else
@@ -191,7 +191,7 @@ namespace STUFV
 
         private async void LoadEvents()
         {
-            eventDataGrid.ItemsSource = await GetEvents();
+            newEventDataGrid.ItemsSource = await GetEvents();
         }
 
         private void SendMail(Event orgEvent, User user)
@@ -201,18 +201,18 @@ namespace STUFV
                 string active = null;
                 if (orgEvent.Active == true)
                 {
-                    active = "geactiveerd. Je kan je event online bekijken op de website van STUFV.";
+                    active = "geaccepteerd. Je kan je event online bekijken op de website van STUFV.";
                 }
                 else
                 {
-                    active = "gedeactiveerd. Het evenement is nu niet meer zichtbaar op de website van STUFV.";
+                    active = "niet geaccepteerd. Voor meer informatie, contacteer ons via email.";
                 }
 
                 SmtpClient SmtpServer = new SmtpClient("smtp.live.com");
                 var mail = new MailMessage();
                 mail.From = new MailAddress("stufv.test@hotmail.com");
                 mail.To.Add(user.Email);
-                mail.Subject = "STUFV: Aanpassing Status event (" + orgEvent.Name + ")";
+                mail.Subject = "STUFV: Toelating event (" + orgEvent.Name + ")";
                 mail.Body = string.Format("Jouw evenement werd {0}", active);
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
@@ -238,7 +238,8 @@ namespace STUFV
         {
             IEnumerable<Event> events = null;
             List<Event> relatedEvents = new List<Event>();
-            try {
+            try
+            {
                 var eventUrl = "/api/event";
                 HttpResponseMessage response = await client.GetAsync(eventUrl);
 
@@ -247,7 +248,7 @@ namespace STUFV
                     events = await response.Content.ReadAsAsync<IEnumerable<Event>>();
                     foreach (Event orgEvent in events)
                     {
-                        if (orgEvent.Handled == true)
+                        if (orgEvent.Handled == false)
                         {
                             relatedEvents.Add(orgEvent);
                         }
@@ -267,7 +268,8 @@ namespace STUFV
 
         private async Task UpdateEvent(Event orgEvent)
         {
-            try {
+            try
+            {
                 var eventUrl = "/api/event/" + orgEvent.Id;
                 HttpResponseMessage response = await client.PutAsJsonAsync(eventUrl, orgEvent);
 
@@ -338,33 +340,26 @@ namespace STUFV
             return organisation;
         }
 
-        private async void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        private async void GoodButton_Click(object sender, RoutedEventArgs e)
         {
-            Event orgEvent = (Event)eventDataGrid.CurrentItem;
-            bool originalActive = orgEvent.Active;
+            Event orgEvent = (Event)newEventDataGrid.CurrentItem;
 
-            if (orgEvent.Active == true)
-            {
-                if (MessageBox.Show(String.Format("Bent u zeker dat u het event, {0}, wilt deactiveren?", orgEvent.Name),
-                    "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                {
-                    orgEvent.Active = false;
-                }
-            }
-            else
-            {
-                if (MessageBox.Show(String.Format("Bent u zeker dat u het event, {0}, wilt activeren?", orgEvent.Name),
-                    "Activeren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                {
-                    orgEvent.Active = true;
-                }
-            }
+            orgEvent.Handled = true;
+            orgEvent.Active = true;
 
-            if (originalActive != orgEvent.Active)
-            {
-                messageLabel.Content = "Verwerken...";
-                await UpdateEvent(orgEvent);
-            }
+            messageLabel.Content = "Verwerken...";
+            await UpdateEvent(orgEvent);
+        }
+
+        private async void BadButton_Click(object sender, RoutedEventArgs e)
+        {
+            Event orgEvent = (Event)newEventDataGrid.CurrentItem;
+
+            orgEvent.Handled = true;
+            orgEvent.Active = false;
+
+            messageLabel.Content = "Verwerken...";
+            await UpdateEvent(orgEvent);
         }
     }
 }

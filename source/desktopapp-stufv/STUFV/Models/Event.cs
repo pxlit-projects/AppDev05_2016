@@ -51,6 +51,8 @@ namespace STUFV
         [Required]
         public Boolean Handled { get; set; }
 
+        public string Image { get; set; }
+
         public virtual ICollection<Attendance> Attendances { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }
@@ -59,6 +61,6 @@ namespace STUFV
 
         public virtual ICollection<Passenger> Passengers { get; set; }
 
-       
+
     }
 }
