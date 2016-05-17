@@ -1,0 +1,28 @@
+﻿@section Content {
+    <script src="~/Content/instafeed.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+            var feed = new Instafeed({
+                get: "tagged",
+                tagName: "stufv",
+                accessToken: "3235205639.467ede5.d4cac5c1540f4c2da81d12d465232815"
+            });
+            feed.run();
+    </script>
+    <div class="page-header">
+        <div class="well">
+            <h1>Instagram</h1>
+        </div>
+    </div>
+    <div id="wrapper">
+        <div id="insta-wrap">
+            <div id="instafeed"></div>
+        </div>
+    </div>
+
+
+
+
+
+
+}
+
