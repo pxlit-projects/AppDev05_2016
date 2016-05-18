@@ -228,5 +228,25 @@ namespace webapp_stufv.Controllers {
                 return RedirectToAction ( "Details", "Events", new { id = eventId } );
             }
         }
+        public ActionResult AcceptPas(int pasId, int eventId) {
+            using (var context = new STUFVModelContext()) {
+                Passenger passenger = context.Passengers.Single(e => e.Id == pasId);
+                passenger.Accepted = true;
+                context.SaveChanges();
+            }
+            BobSettings(eventId);
+            return View(@"~\Views\Events\BobSettings.cshtml");
+        }
+        public ActionResult RemovePas(int pasId, int eventId)
+        {
+            using (var context = new STUFVModelContext())
+            {
+                Passenger passenger = context.Passengers.Single(e => e.Id == pasId);
+                passenger.Accepted = false;
+                context.SaveChanges();
+            }
+            BobSettings(eventId);
+            return View(@"~\Views\Events\BobSettings.cshtml");
+        }
     }
 }

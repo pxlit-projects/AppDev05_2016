@@ -33,7 +33,7 @@
                             </a>
                         </td>
                         <td class="col-lg-offset-4 col-md-2">
-                            <a href="@Url.Action("RemovePas", "Events", new { id = item.Id })">
+                            <a href="@Url.Action("RemovePas", "Events", new {pasId = item.Id, eventId = ViewBag.EventId })">
                                 <p class="btn btn-danger">Verwijder</p>
                             </a>
                         </td>
@@ -78,7 +78,7 @@
                             </a>
                         </td>
                         <td class="col-lg-offset-4 col-md-2">
-                            <a href="@Url.Action("AcceptPas", "Events", new { id = item.Id })">
+                            <a href="@Url.Action("AcceptPas", "Events", new { pasId = item.Id, eventId = ViewBag.EventId})">
                                 <p class="btn btn-danger">Accepteer</p>
                             </a>
                         </td>
