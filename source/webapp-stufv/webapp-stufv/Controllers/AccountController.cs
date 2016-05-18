@@ -67,6 +67,7 @@ namespace webapp_stufv.Controllers {
             DateTime birthDate = DateTime.Parse ( Request.Form[ "BirthDate" ] );
             String birthPlace = Request.Form[ "BirthPlace" ];
             String sex = Request.Form[ "Sex" ];
+            String street = Request.Form["Street"];
             String zipCode = Request.Form[ "ZipCode" ];
             String telNr = Request.Form[ "TelNr" ];
             String mobileNr = Request.Form[ "MobileNr" ];
@@ -79,6 +80,7 @@ namespace webapp_stufv.Controllers {
                 PassWord = encPass,
                 BirthDate = birthDate,
                 BirthPlace = birthPlace,
+                Street = street,
                 ZipCode = zipCode,
                 Sex = sex,
                 TelNr = telNr,
