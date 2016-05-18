@@ -80,7 +80,7 @@ namespace STUFV
             }
         }
 
-        public async void loadAllStats()
+        public async void loadAllStats(object sender, RoutedEventArgs e)
         {
             IEnumerable < Review > reviews = await GetReviews();
             IEnumerable < User > users = await GetUsers();
