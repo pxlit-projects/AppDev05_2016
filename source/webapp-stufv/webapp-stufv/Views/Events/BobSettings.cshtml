@@ -5,7 +5,7 @@
     </div>
     @if (Model.Item1.Count() > 0)
     {
-        <p>Je Auto</p>
+        <h3>Je Auto</h3>
         <table class="row">
             <thead>
                 <tr>
@@ -25,14 +25,14 @@
                 {
                     <tr>
                         <td class="col-lg-4">
+                            <img class="profileimg" src="~/Content/img/ProfilePictures/@item.GetProfilePicture()" />
+                        </td>
+                        <td class="col-lg-2">
                             <a href="@Url.Action("Users", "Profile", new { id = item.UserId })">
                                 @item.GetPassengerName()
                             </a>
                         </td>
-                        <td class="col-lg-2">
-                            <img src="~/Content/img/ProfilePictures/@item.GetProfilePicture()" />
-                        </td>
-                        <td class="col-lg-6">
+                        <td class="col-lg-offset-4 col-md-2">
                             <a href="@Url.Action("RemovePas", "Events", new { id = item.Id })">
                                 <p class="btn btn-danger">Verwijder</p>
                             </a>
@@ -48,8 +48,55 @@
             Je hebt nog niemand geaccepteerd.
         </div>
     }
+@if (Model.Item2.Count() > 0)
+    {
+    <h3>AnderePassagiers</h3>
+        <table class="row">
+            <thead>
+                <tr>
+                    <th class="col-lg-4">
+                        Foto
+                    </th>
+                    <th class="col-lg-2">
+                        Naam
+                    </th>
+                    <th class="col-lg-6">
 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Item2)
+                {
+                    <tr>
+                        <td class="col-lg-4">
+                            <img class="profileimg" src="~/Content/img/ProfilePictures/@item.GetProfilePicture()" />
+                        </td>
+                        <td class="col-lg-2">
+                            <a href="@Url.Action("Users", "Profile", new { id = item.UserId })">
+                                @item.GetPassengerName()
+                            </a>
+                        </td>
+                        <td class="col-lg-offset-4 col-md-2">
+                            <a href="@Url.Action("AcceptPas", "Events", new { id = item.Id })">
+                                <p class="btn btn-danger">Accepteer</p>
+                            </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+}
+else {
+    <div class="alert alert-warning" style="margin-top: 5px;">
+        Er zijn geen andere passagiers beschikbaar.
+    </div>
+}
     <div class="right">
+        <a href="@Url.Action("RemoveBob", "Events", new { id = ViewBag.EventId })">
+            <p class="btn btn-danger">Ik wil geen bob meer zijn</p>
+        </a>
         <a href="@Url.Action("Details", "Events", new { id = ViewBag.EventId })">
             <p class="btn btn-danger">Terug</p>
         </a>

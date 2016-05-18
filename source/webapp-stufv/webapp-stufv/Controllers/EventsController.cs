@@ -104,6 +104,7 @@ namespace webapp_stufv.Controllers {
         }
         public ActionResult BobSettings(int id) {
             ViewBag.Title = "BOB instelligen";
+            ViewBag.EventId = id;
             List<DesDriver> drivers = idesdriver.GetAllDrivers();
             int userId = (int)Session["userId"];
             DesDriver driver = drivers.Single(e => e.UserId == userId && e.EventId == id);

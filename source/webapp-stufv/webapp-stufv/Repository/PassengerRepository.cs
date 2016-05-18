@@ -80,15 +80,7 @@ namespace webapp_stufv.Repository
         {
             int count = 0;
             List<Passenger> passengers = GetAllPassengers();
-            int x;
-            for (x = 0; x < passengers.Count(); x++)
-            {
-                if (passengers.ElementAt(x).DesDriverId.Equals(id))
-                {
-                    count += 1;
-                }
-            }
-
+            count = passengers.Count(e => e.DesDriverId == id && e.Active && e.Accepted);
             return count;
         }
     }
