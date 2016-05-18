@@ -85,15 +85,43 @@ namespace STUFV
             IEnumerable < Review > reviews = await GetReviews();
             IEnumerable < User > users = await GetUsers();
             IEnumerable < Organisation > organisations = await GetOrganisations();
-            IEnumerable<Event> events = await GetEvents();
+            IEnumerable < Event > events = await GetEvents();
+            IEnumerable < Article > articles = await getArticles();
             int reviewCount = reviews.ToList().Count();
             int userCount = users.ToList().Count();
             int organisationCount = organisations.ToList().Count();
             int eventCount = events.ToList().Count();
+            int articleCount = articles.ToList().Count();
             userLabel.Content = userCount.ToString();
             organisationLabel.Content = organisationCount.ToString();
             reviewLabel.Content = reviewCount.ToString();
             eventLabel.Content = eventCount.ToString();
+            artikelLabel.Content = articleCount.ToString();
+        }
+
+        public async Task<IEnumerable<Article>> getArticles()
+        {
+            IEnumerable<Article> articles = null;
+
+            try
+            {
+                var articleUrl = "/api/article";
+                HttpResponseMessage response = await client.GetAsync(articleUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    articles = await response.Content.ReadAsAsync<IEnumerable<Article>>();
+                }
+            }
+            catch(HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+            return articles;
         }
 
         public async Task<IEnumerable<User>> GetUsers()
