@@ -82,6 +82,15 @@ namespace webapp_stufv.Controllers {
         public ActionResult RemoveBob ( int id ) {
             ViewBag.id = id;
             idesdriver.unSetDES ( ( int ) Session[ "userId" ], id );
+            using (var context = new STUFVModelContext())
+            {
+                DesDriver driver = context.DesDrivers.Single(e => e.UserId == (int)Session["userId"] && e.EventId == id);
+                List<Passenger> passengers = context.Passengers.Where(e => e.DesDriverId == driver.Id).ToList();
+                for (int i = 0; i < passengers.Count(); i++) {
+                    passengers.ElementAt(i).Active = false;
+                }
+                context.SaveChanges();
+            }
             Details(id);
             return View("~/Views/Events/Details.cshtml");
         }
