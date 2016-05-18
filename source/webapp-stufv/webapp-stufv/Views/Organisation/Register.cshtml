@@ -4,27 +4,45 @@
 
 <h2>Register</h2>
     <div class="col-md-8">
-    @using (Html.BeginForm("Process", "Organisation", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("Process", "Organisation", FormMethod.Post, new { @class = "form-horizontal", role = "form",name = "registerform", id = "registerform" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-group">
             <div class="col-md-2 control-label">Naam organistatie</div>
-            <div class="col-md-10">
+            <div class="col-md-10" id="namevalidation">
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-2 control-label">Bescrijving </div>
-            <div class="col-md-10">
+            <div class="col-md-10" id="descriptionvalidation">
                 @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Registreer organisatie" />
+                <input type="submit" class="btn btn-default" value="Registreer organisatie" onclick="return ValidateReg()"/>
             </div>
         </div>
     }
 </div>
-
+    <script>
+        function ValidateReg() {
+            var name = IsEmpty("#namevalidation", document.registerform.Name);
+            var description = IsEmpty("#descriptionvalidation", document.registerform.Description);
+            if (name && description) {
+                return true;
+            }
+            return false;
+        }
+        function IsEmpty(id, text) {
+            if (text.value == "") {
+                $(id).attr("class", "col-md-10 has-error");
+                return false;
+            } else {
+                $(id).attr("class", "col-md-10 has-success");
+                return true;
+            }
+        }
+    </script>
     }
