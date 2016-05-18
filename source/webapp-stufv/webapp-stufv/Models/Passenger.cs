@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using webapp_stufv.Repository;
 
 namespace webapp_stufv.Models
 {
@@ -26,6 +27,15 @@ namespace webapp_stufv.Models
         public virtual User User { get; set; }
         public virtual DesDriver DesDriver { get; set;}
 
-      
+        public string GetPassengerName()
+        {
+            IPassengerRepository ipas = new PassengerRepository();
+            return ipas.GetPassengerName(UserId);
+        }
+        public string GetProfilePicture()
+        {
+            IPassengerRepository ipas = new PassengerRepository();
+            return ipas.GetProfilePicture(UserId);
+        }
     }
 }

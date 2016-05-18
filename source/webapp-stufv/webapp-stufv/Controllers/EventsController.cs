@@ -103,8 +103,15 @@ namespace webapp_stufv.Controllers {
             return View("~/Views/Events/Details.cshtml");
         }
         public ActionResult BobSettings(int id) {
-
-            return View();
+            ViewBag.Title = "BOB instelligen";
+            List<DesDriver> drivers = idesdriver.GetAllDrivers();
+            int userId = (int)Session["userId"];
+            DesDriver driver = drivers.Single(e => e.UserId == userId && e.EventId == id);
+            List<Passenger> passengers = ipassenger.GetAllPassengers();
+            List<Passenger> acceptedPassengers = passengers.Where(e => e.DesDriverId == driver.Id && e.Accepted && e.Active).ToList();
+            List<Passenger> notAcceptedPassengers = passengers.Where(e => e.DesDriverId == driver.Id && !e.Accepted && e.Active).ToList();
+            var tuple = new Tuple<IEnumerable<Passenger>, IEnumerable<Passenger>>(acceptedPassengers, notAcceptedPassengers);
+            return View(tuple);
         }
 
         public ActionResult AlcohoLFree ( string value ) {

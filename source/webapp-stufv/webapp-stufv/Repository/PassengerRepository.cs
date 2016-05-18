@@ -17,7 +17,18 @@ namespace webapp_stufv.Repository
                 return passengers;
             }
         }
-
+        public string GetPassengerName(int userId) {
+            IUserRepository iuser = new UserRepository();
+            List<User> users = iuser.GetAllUsers();
+            User user = users.Single(e => e.Id == userId);
+            return user.LastName + " " + user.FirstName;
+        }
+        public string GetProfilePicture(int userId) {
+            IUserRepository iuser = new UserRepository();
+            List<User> users = iuser.GetAllUsers();
+            User user = users.Single(e => e.Id == userId);
+            return user.ProfilePicture;
+        }
         public bool IsPassenger(int desId, int userId, out int eventId)
         {
             List<Passenger> passengers = GetAllPassengers();

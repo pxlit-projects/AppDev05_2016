@@ -13,6 +13,7 @@ namespace webapp_stufv.Repository
         int PassengersPerDriver(int id);
         bool IsPassenger(int desId, int userId, out int eventId);
         bool SignedUp(int desId, int userId);
-
+        string GetPassengerName(int userId);
+        string GetProfilePicture(int userId);
     }
 }

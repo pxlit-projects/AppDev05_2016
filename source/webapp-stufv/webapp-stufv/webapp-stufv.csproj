@@ -291,7 +291,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Global.css" />
-    <Content Include="Content\img\ProfilePictures\Calendar.png" />
+    <Content Include="Content\img\Calendar.png" />
     <Content Include="Content\img\collapse.png" />
     <Content Include="Content\img\euro.png" />
     <Content Include="Content\img\hamburger.png" />
@@ -369,6 +369,7 @@
     <Content Include="Views\Profile\Users.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Instagram\Index.cshtml" />
+    <Content Include="Views\Events\BobSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

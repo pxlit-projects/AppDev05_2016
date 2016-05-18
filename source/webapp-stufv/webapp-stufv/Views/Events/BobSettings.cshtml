@@ -1,0 +1,62 @@
+﻿@model Tuple < IEnumerable<webapp_stufv.Models.Passenger>, IEnumerable<webapp_stufv.Models.Passenger>>
+@section content{
+    <div class="page-header">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    @if (Model.Item1.Count() > 0)
+    {
+        <p>Je Auto</p>
+        <table class="row">
+            <thead>
+                <tr>
+                    <th class="col-lg-4">
+                        Foto
+                    </th>
+                    <th class="col-lg-2">
+                        Naam
+                    </th>
+                    <th class="col-lg-6">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Item1)
+                {
+                    <tr>
+                        <td class="col-lg-4">
+                            <a href="@Url.Action("Users", "Profile", new { id = item.UserId })">
+                                @item.GetPassengerName()
+                            </a>
+                        </td>
+                        <td class="col-lg-2">
+                            <img src="~/Content/img/ProfilePictures/@item.GetProfilePicture()" />
+                        </td>
+                        <td class="col-lg-6">
+                            <a href="@Url.Action("RemovePas", "Events", new { id = item.Id })">
+                                <p class="btn btn-danger">Verwijder</p>
+                            </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    }
+    else {
+        <div class="alert alert-warning">
+            Je hebt nog niemand geaccepteerd.
+        </div>
+    }
+
+    <div class="right">
+        <a href="@Url.Action("Details", "Events", new { id = ViewBag.EventId })">
+            <p class="btn btn-danger">Terug</p>
+        </a>
+    </div>
+
+}
+
+
+
+
