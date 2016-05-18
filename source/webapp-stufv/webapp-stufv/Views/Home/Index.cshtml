@@ -1,14 +1,20 @@
 ﻿@section content {
 <link rel="stylesheet" type="text/css" href="~/Content/Global.css">
+<script src="~/Content/js/jquery.min.js"></script>
+<script>
+    function closeBox() {
+        $("#box").hide();
+    }
+</script>
 <div class="container">
 @foreach (var item in ViewBag.Tips)
 {
-    <div class="box">
+    <div id="box">
         <div class="col-md-11">
-            <p class="tip">@item.TipText</p>
+            <p id="tip">@item.TipText</p>
         </div>
         <div class="col-md-1">
-            <img class="closeImg" align="right" src="~/Content/img/close.png" />
+            <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
         </div>   
     </div>    
 }

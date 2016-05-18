@@ -311,6 +311,8 @@
     <Content Include="Content\instafeed.js" />
     <Content Include="Content\instafeed.min.js" />
     <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

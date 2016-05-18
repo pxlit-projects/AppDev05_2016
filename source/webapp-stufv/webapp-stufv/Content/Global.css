@@ -477,20 +477,20 @@ a:hover {
     filter: alpha(opacity-100);
 }
 
-.box {
+#box {
     width: 1140px;
     height: 40px;
     padding: 0px;
     background-color: lightgray;
 }
 
-.tip {
+#tip {
     padding-top: 8px;
     margin-left: 15px;
     font-weight: bold;
 }
 
-.closeImg {
+#closeImg {
     margin-top: 8px;
     width: 15px;
     height: 15px;
