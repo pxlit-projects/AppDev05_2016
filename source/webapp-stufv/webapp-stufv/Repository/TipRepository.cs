@@ -8,13 +8,11 @@ namespace webapp_stufv.Repository
 {
     public class TipRepository : ITipRepository
     {
-        public List<Tip> getAllTips()
+        public List<Tip> GetAllTips()
         {
             using (var context = new STUFVModelContext())
             {
-                List<Tip> tips = new List<Tip>();
-                tips = context.Tips.ToList();
-                return tips;
+                return context.Tips.ToList();
             }
         }
     }

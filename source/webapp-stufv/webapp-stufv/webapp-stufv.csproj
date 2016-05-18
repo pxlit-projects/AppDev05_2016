@@ -268,9 +268,11 @@
     <Compile Include="Repository\IGuidelineRepository.cs" />
     <Compile Include="Repository\IOrganisationRepository.cs" />
     <Compile Include="Repository\IPassengerRepository.cs" />
+    <Compile Include="Repository\ITipRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\OrganisationRepository.cs" />
     <Compile Include="Repository\PassengerRepository.cs" />
+    <Compile Include="Repository\TipRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
