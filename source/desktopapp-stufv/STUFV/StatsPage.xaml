@@ -35,7 +35,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal">
+        <DockPanel>
             <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
                 <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                     <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
@@ -104,7 +104,7 @@
                     </Border>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </DockPanel>
 
     </Grid>
 </Page>
