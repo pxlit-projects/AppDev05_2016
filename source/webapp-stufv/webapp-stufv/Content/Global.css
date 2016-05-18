@@ -18,6 +18,9 @@ body {
     text-align: right;
     z-index: 2000;
 }
+.becomebob .collapse.in {
+    height:115px;
+}
 
     .footer p {
         display: inline-block;
