@@ -483,8 +483,15 @@ a:hover {
     padding: 0px;
     background-color: lightgray;
 }
+
 .tip {
     padding-top: 8px;
     margin-left: 15px;
     font-weight: bold;
+}
+
+.closeImg {
+    margin-top: 8px;
+    width: 15px;
+    height: 15px;
 }

@@ -4,7 +4,12 @@
 @foreach (var item in ViewBag.Tips)
 {
     <div class="box">
-        <p class="tip">@item.TipText</p>
+        <div class="col-md-11">
+            <p class="tip">@item.TipText</p>
+        </div>
+        <div class="col-md-1">
+            <img class="closeImg" align="right" src="~/Content/img/close.png" />
+        </div>   
     </div>    
 }
     
