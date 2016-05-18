@@ -35,7 +35,7 @@ namespace webapp_stufv.Controllers {
                 ViewBag.Description = "U heeft geen organisatie geregistreerd.";
             }
 
-            return View ( new Tuple<IEnumerable<Event>, Organisation> ( null, null ) );
+            return View ( new Tuple<IEnumerable<Event>, Organisation, IEnumerable<EventTypes>> ( null, null,null ) );
         }
 
         public ActionResult Register ( ) {
