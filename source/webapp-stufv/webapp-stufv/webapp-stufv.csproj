@@ -268,9 +268,11 @@
     <Compile Include="Repository\IGuidelineRepository.cs" />
     <Compile Include="Repository\IOrganisationRepository.cs" />
     <Compile Include="Repository\IPassengerRepository.cs" />
+    <Compile Include="Repository\ITipRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\OrganisationRepository.cs" />
     <Compile Include="Repository\PassengerRepository.cs" />
+    <Compile Include="Repository\TipRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
@@ -290,6 +292,7 @@
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\close.png" />
     <Content Include="Content\Global.css" />
     <Content Include="Content\img\Calendar.png" />
     <Content Include="Content\img\collapse.png" />
@@ -308,6 +311,8 @@
     <Content Include="Content\instafeed.js" />
     <Content Include="Content\instafeed.min.js" />
     <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

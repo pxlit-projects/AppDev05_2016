@@ -11,6 +11,8 @@ namespace webapp_stufv.Controllers {
 
         private IEventRepository ievent = new EventRepository ( );
         private IArticleRepository iarticle = new ArticleRepository ( );
+        private ITipRepository itips = new TipRepository ( );
+        private Random rnd = new Random();
 
         public ActionResult Index ( ) {
             List<Article> articleList = iarticle.getAllArticles ( );
@@ -30,6 +32,12 @@ namespace webapp_stufv.Controllers {
                 eventLast3.Add(eventList.ElementAt(i));
             }
             ViewBag.Events = eventLast3;
+
+            List<Tip> tips = itips.GetAllTips();
+            int r = rnd.Next(tips.Count);
+            List<Tip> tipsRandom = new List<Tip>();
+            tipsRandom.Add(tips[r]);
+            ViewBag.Tips = tipsRandom;
             return View ( );
         }
     }
