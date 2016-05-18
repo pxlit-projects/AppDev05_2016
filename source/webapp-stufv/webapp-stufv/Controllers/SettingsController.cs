@@ -32,8 +32,7 @@ namespace webapp_stufv.Controllers
                 user.TelNr = Request.Form["TelNr"];
                 context.SaveChanges();
             }
-            Index();
-            return View(@"~\Views\Settings\Index.cshtml");
+            return RedirectToAction("Index", "Settings");
         }
         private void ProfileImgUpload(HttpPostedFileBase file)
         {

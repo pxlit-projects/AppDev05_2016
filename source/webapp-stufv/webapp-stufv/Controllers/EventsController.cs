@@ -68,16 +68,14 @@ namespace webapp_stufv.Controllers {
         public ActionResult RemoveAttend ( int id ) {
             iattend.UnSignAttend ( ( int ) Session[ "userId" ], id );
             ViewBag.id = id;
-            Details(id);
-            return View ("~/Views/Events/Details.cshtml");
+            return RedirectToAction("Details", "Events", new { id = id });
         }
         public ActionResult BobProcess ( int id ) {
             int NrOfPlaces;
             int.TryParse ( Request.Form[ "Item2.NrOfPlaces" ], out NrOfPlaces );
             ViewBag.id = id;
             idesdriver.SetDES ( ( int ) Session[ "userId" ], id, NrOfPlaces );
-            Details(id);
-            return View("~/Views/Events/Details.cshtml");
+            return RedirectToAction("Details", "Events", new { id = id });
         }
         public ActionResult RemoveBob ( int id ) {
             ViewBag.id = id;
@@ -91,8 +89,7 @@ namespace webapp_stufv.Controllers {
                 }
                 context.SaveChanges();
             }
-            Details(id);
-            return View("~/Views/Events/Details.cshtml");
+            return RedirectToAction("Details", "Events", new { id = id });
         }
         public ActionResult FindBob ( int id ) {
             ViewBag.Title = "Find bob";
@@ -108,8 +105,7 @@ namespace webapp_stufv.Controllers {
             } else {
                 ipassenger.NewPassenger ( ( int ) Session[ "userId" ], id, out eventId);
             }
-            Details(eventId);
-            return View("~/Views/Events/Details.cshtml");
+            return RedirectToAction("Details", "Events", new { id = id });
         }
         public ActionResult BobSettings(int id) {
             ViewBag.Title = "BOB instelligen";
@@ -243,8 +239,7 @@ namespace webapp_stufv.Controllers {
                 passenger.Accepted = true;
                 context.SaveChanges();
             }
-            BobSettings(eventId);
-            return View(@"~\Views\Events\BobSettings.cshtml");
+            return RedirectToAction("BobSettings", "Events", new { id = eventId });
         }
         public ActionResult RemovePas(int pasId, int eventId)
         {
@@ -254,8 +249,7 @@ namespace webapp_stufv.Controllers {
                 passenger.Accepted = false;
                 context.SaveChanges();
             }
-            BobSettings(eventId);
-            return View(@"~\Views\Events\BobSettings.cshtml");
+            return RedirectToAction("BobSettings", "Events", new { id = eventId });
         }
     }
 }
