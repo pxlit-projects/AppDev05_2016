@@ -22,6 +22,14 @@ namespace webapp_stufv.Controllers
             User user = allUsers.Single(r => r.Id == id);
             ProfileSettings settings = ProfileSettings.GetAllProfileSettings().Single(e => e.UserId == id);
             var tuple = new Tuple<User, ProfileSettings>(user, settings);
+            if (!settings.FirstName && !settings.LastName && !settings.BirthDate && !settings.Email &&
+                !settings.MobileNr && !settings.Street && !settings.TelNr && !settings.ZipCode)
+            {
+                ViewBag.Show = false;
+            }
+            else {
+                ViewBag.Show = true;
+            }
             return View(tuple);
         }
     }

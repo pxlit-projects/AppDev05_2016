@@ -2,7 +2,8 @@
 
 @section content{
     <div class="container">
-
+        @if (ViewBag.Show)
+        {
         <div class="page-header">
             <div class="well">
                 <h1>
@@ -103,6 +104,11 @@
             </div>
 
         </div>
+        }
+        else {
+            <div class="label label-warning h3">Deze gebruiker heeft er voor gekozen om zijn profiel niet weer te geven.</div>
+        }
     </div>
-}
+            
+        }
 
