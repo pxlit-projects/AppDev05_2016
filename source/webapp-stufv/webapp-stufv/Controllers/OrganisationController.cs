@@ -59,7 +59,11 @@ namespace webapp_stufv.Controllers {
             ViewBag.Title = "Verander evenement: " + changeEvent.Name + ".";
             return View(tuple);
         }
-
+        public ActionResult ChangeEventProcess() {
+            int eventId = (int)Session["eventId"];
+            Session["eventId"] = null;
+            return RedirectToAction("Index", "Organisation");
+        }
         public ActionResult NewEvent ( HttpPostedFileBase file ) {
             string filename = "noimageavailable.png";
             Boolean alcoholFree = false;
