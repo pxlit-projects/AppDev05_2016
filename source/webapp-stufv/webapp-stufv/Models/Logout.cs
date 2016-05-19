@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace webapp_stufv.Models {
-    [Table("Login")]
-    public class Login {
+namespace webapp_stufv.Models { 
+    [Table("Logout")]
+    public class Logout { 
         [Key]
         public int Id { get; set; }
 

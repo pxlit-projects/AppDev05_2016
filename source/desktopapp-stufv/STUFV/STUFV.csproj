@@ -139,6 +139,7 @@
     <Compile Include="ManageOrganisationPage.xaml.cs">
       <DependentUpon>ManageOrganisationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Cities.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Models\EventTypes.cs" />
     <Compile Include="Models\FAQ.cs" />
     <Compile Include="Models\Guideline.cs" />
+    <Compile Include="Models\Logout.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Organisation.cs" />
     <Compile Include="Models\Passenger.cs" />

@@ -127,6 +127,7 @@ namespace STUFV
         public async Task<IEnumerable<User>> GetUsers()
         {
             IEnumerable<User> users = null;
+            
             try
             {
                 var userUrl = "/api/user";

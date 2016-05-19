@@ -158,7 +158,7 @@ namespace STUFV
                 if (existPassword)
                 {
                     messageLabel.Content = "Bezig met aanmelden...";
-                    Login login = new Login();
+                    Logout login = new Logout();
                     login.UserId = user.Id;
                     login.DateTime = DateTime.Now.AddHours(2);
                     InsertLogin(login);
@@ -269,7 +269,7 @@ namespace STUFV
             return user;
         }
 
-        public async void InsertLogin(Login login)
+        public async void InsertLogin(Logout login)
         {
             try
             {
