@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -24,6 +25,11 @@ namespace STUFV
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
         HttpClient client = new HttpClient();
+        List<Review> reviews;
+        List<User> users;
+        List<Organisation> organisations;
+        List<Event> events;
+        List<Login> logins;
 
         public StatsPage()
         {
@@ -87,6 +93,12 @@ namespace STUFV
             IEnumerable < Organisation > organisations = await GetOrganisations();
             IEnumerable < Event > events = await GetEvents();
             IEnumerable < Article > articles = await getArticles();
+            IEnumerable<Login> logins = await GetLogins();
+            this.reviews = reviews.ToList();
+            this.users = users.ToList();
+            this.organisations = organisations.ToList();
+            this.events = events.ToList();
+            this.logins = logins.ToList();
             int reviewCount = reviews.ToList().Count();
             int userCount = users.ToList().Count();
             int organisationCount = organisations.ToList().Count();
@@ -97,6 +109,23 @@ namespace STUFV
             reviewLabel.Content = reviewCount.ToString();
             eventLabel.Content = eventCount.ToString();
             artikelLabel.Content = articleCount.ToString();
+            CreateGraph();
+        }
+
+        public void CreateGraph()
+        {
+            foreach (Login login in logins)
+            {
+
+            }
+
+            ((LineSeries)chart.Series[0]).ItemsSource =
+                    new KeyValuePair<DateTime, int>[]{
+        new KeyValuePair<DateTime,int>(DateTime.Now, 100),
+        new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(1), 130),
+        new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(2), 150),
+        new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(3), 125),
+        new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(4),155) };
         }
 
         public async Task<IEnumerable<Article>> getArticles()
@@ -227,6 +256,30 @@ namespace STUFV
                 scherm.Close();
             }
             return relatedEvents;
+        }
+
+        public async Task<IEnumerable<Login>> GetLogins()
+        {
+            IEnumerable<Login> logins = null;
+            try
+            {
+                var loginUrl = "/api/login";
+                HttpResponseMessage response = await client.GetAsync(loginUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    logins = await response.Content.ReadAsAsync<IEnumerable<Login>>();
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
+            return logins;
         }
     }
 }
