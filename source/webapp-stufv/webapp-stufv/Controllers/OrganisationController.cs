@@ -59,9 +59,35 @@ namespace webapp_stufv.Controllers {
             ViewBag.Title = "Verander evenement: " + changeEvent.Name + ".";
             return View(tuple);
         }
-        public ActionResult ChangeEventProcess() {
+        public ActionResult ChangeEventProcess(HttpPostedFileBase file) {
             int eventId = (int)Session["eventId"];
             Session["eventId"] = null;
+            bool alcoholFree = false;
+            if (Request.Form["AlcoholFree"] != null)
+            {
+                alcoholFree = true;
+            }
+            DateTime start = DateTime.Parse(Request.Form["Start"]);
+            DateTime end = DateTime.Parse(Request.Form["End"]);
+            using (var context = new STUFVModelContext())
+            {
+                Event changeEvent = context.Events.Single(e => e.Id == eventId);
+                changeEvent.Name = Request.Form["Name"];
+                changeEvent.Description = Request.Form["Description"];
+                changeEvent.Start = start;
+                changeEvent.End = end;
+                changeEvent.Street = Request.Form["Street"];
+                changeEvent.ZipCode = Request.Form["ZipCode"];
+                changeEvent.Type = int.Parse(Request.Form["Type"]);
+                changeEvent.EntranceFee = double.Parse(Request.Form["EntranceFee"]);
+                changeEvent.AlcoholFree = alcoholFree;
+                if (file != null)
+                {
+                    EventImgUpload(file);
+                    changeEvent.Image = file.FileName;
+                }
+                context.SaveChanges();
+            }
             return RedirectToAction("Index", "Organisation");
         }
         public ActionResult NewEvent ( HttpPostedFileBase file ) {

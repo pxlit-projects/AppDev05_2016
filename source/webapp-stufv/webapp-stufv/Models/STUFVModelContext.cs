@@ -28,6 +28,7 @@ namespace webapp_stufv.Models
         public DbSet<Emergency> Emergencies { get; set; }
         public DbSet<ArticleVote> ArticleVotes { get; set; }
         public DbSet<Tip> Tips { get; set; }
+        public DbSet<ProfileSettings> ProfileSettings{ get; set; }
         public object Event { get; internal set; }
 
         public STUFVModelContext() {
