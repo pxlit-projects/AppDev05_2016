@@ -246,7 +246,7 @@ namespace STUFV
                 }
 
                 userLabel.Content = string.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
-                homePlaceTextBox.Text = "ToDo";
+                await GetCity(user.ZipCode);
 
                 foreach (Logout forLogin in logins)
                 {
@@ -326,6 +326,30 @@ namespace STUFV
                 }
             }
             return user;
+        }
+
+        public async Task GetCity(string id)
+        {
+            Cities city = null;
+            try
+            {
+                var cityUrl = "/api/city/" + id;
+                HttpResponseMessage response = await client.GetAsync(cityUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    city = await response.Content.ReadAsAsync<Cities>();
+                    homePlaceTextBox.Text = city.City;
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
         }
     }
 }

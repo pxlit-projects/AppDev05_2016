@@ -142,6 +142,7 @@ namespace STUFV
 
         private async void Login()
         {
+            loginButton.IsEnabled = false;
             messageLabel.Content = "Velden controleren...";
 
             bool existEmail = await Exist(emailBox.Text);
@@ -188,6 +189,10 @@ namespace STUFV
                 loginButton.IsEnabled = false;
                 counter = attempts * 5;
                 loginTimer.Start();
+            }
+            else
+            {
+                loginButton.IsEnabled = true;
             }
         }
 
