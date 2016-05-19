@@ -54,6 +54,8 @@ namespace webapp_stufv.Models {
 
         public virtual ICollection<Login> Logins { get; set; }
 
+        public virtual ICollection<Logout> Logouts { get; set; }
+
         public virtual ICollection<DesDriver> DesDrivers { get; set; }
 
         public virtual ICollection<Article> Articles { get; set; }

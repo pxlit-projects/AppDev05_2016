@@ -242,6 +242,11 @@
     <Compile Include="Models\Guideline.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Login.cs" />
+<<<<<<< HEAD
+    <Compile Include="Models\MessageServices.cs" />
+=======
+    <Compile Include="Models\Logout.cs" />
+>>>>>>> origin/master
     <Compile Include="Models\Organisation.cs" />
     <Compile Include="Models\EventTypes.cs" />
     <Compile Include="Models\Passenger.cs" />
