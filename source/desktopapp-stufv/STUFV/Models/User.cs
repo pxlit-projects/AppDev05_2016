@@ -53,7 +53,9 @@ namespace STUFV
 
         public virtual ICollection<Review> Reviews { get; set; }
 
-        public virtual ICollection<Login> Logins { get; set; }
+        public virtual ICollection<Logout> Logins { get; set; }
+
+        public virtual ICollection<Logout> Logouts { get; set; }
 
         public virtual ICollection<DesDriver> DesDrivers { get; set; }
 

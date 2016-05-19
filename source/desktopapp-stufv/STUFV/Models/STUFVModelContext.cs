@@ -18,6 +18,7 @@ namespace STUFV
         public DbSet<FAQ> FAQs { get; set; }
         public DbSet<Guideline> Guidelines { get; set; }
         public DbSet<Login> Logins { get; set; }
+        public DbSet<Logout> Logouts { get; set; }
         public DbSet<Organisation> Organisations { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Review> Reviews { get; set; }

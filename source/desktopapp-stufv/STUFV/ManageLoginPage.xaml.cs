@@ -108,12 +108,12 @@ namespace STUFV
         {
             if (searchTextBox.Text != "")
             {
-                IEnumerable<Login> allLogins = await GetLogins();
+                IEnumerable<Logout> allLogins = await GetLogins();
 
                 string filter = filterBox.SelectedValue.ToString();
 
-                List<Login> selectLogins = new List<Login>();
-                foreach (Login login in allLogins)
+                List<Logout> selectLogins = new List<Logout>();
+                foreach (Logout login in allLogins)
                 {
                     switch (filter)
                     {
@@ -186,12 +186,12 @@ namespace STUFV
         {
             if (searchDatePicker.SelectedDate != null)
             {
-                IEnumerable<Login> allLogins = await GetLogins();
+                IEnumerable<Logout> allLogins = await GetLogins();
 
                 string filter = filterBox.SelectedValue.ToString();
 
-                List<Login> selectLogins = new List<Login>();
-                foreach (Login login in allLogins)
+                List<Logout> selectLogins = new List<Logout>();
+                foreach (Logout login in allLogins)
                 {
                     switch (filter)
                     {
@@ -227,10 +227,10 @@ namespace STUFV
             if (searchTextBox.IsFocused == false && searchDatePicker.IsDropDownOpen == false
                 && searchDatePicker.IsFocused == false && filterBox.IsFocused == false)
             {
-                IEnumerable<Login> logins = await GetLogins();
+                IEnumerable<Logout> logins = await GetLogins();
                 List<DateTime> loginDates = new List<DateTime>();
 
-                Login login = (Login)loginDataGrid.CurrentItem;
+                Logout login = (Logout)loginDataGrid.CurrentItem;
                 User user = await GetUser(login.UserId);
 
                 string role = null;
@@ -248,7 +248,7 @@ namespace STUFV
                 userLabel.Content = string.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
                 homePlaceTextBox.Text = "ToDo";
 
-                foreach (Login forLogin in logins)
+                foreach (Logout forLogin in logins)
                 {
                     if (forLogin.UserId == login.UserId) { loginDates.Add(forLogin.DateTime); }
                 }
@@ -261,22 +261,22 @@ namespace STUFV
 
         public async void LoadLogins()
         {
-            IEnumerable<Login> getLogins = await GetLogins();
-            List<Login> logins = getLogins.ToList();
+            IEnumerable<Logout> getLogins = await GetLogins();
+            List<Logout> logins = getLogins.ToList();
 
             loginDataGrid.ItemsSource = logins;
         }
 
-        public async Task<IEnumerable<Login>> GetLogins()
+        public async Task<IEnumerable<Logout>> GetLogins()
         {
-            IEnumerable<Login> logins = null;
+            IEnumerable<Logout> logins = null;
             try {
                 var loginUrl = "/api/login";
                 HttpResponseMessage response = await client.GetAsync(loginUrl);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    logins = await response.Content.ReadAsAsync<IEnumerable<Login>>();
+                    logins = await response.Content.ReadAsAsync<IEnumerable<Logout>>();
                 }
             }
             catch (HttpRequestException)
