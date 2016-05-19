@@ -235,6 +235,7 @@
     <Compile Include="Models\ArticleVote.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Cities.cs" />
+    <Compile Include="Models\Partner.cs" />
     <Compile Include="Models\ProfileSettings.cs" />
     <Compile Include="Models\DesDriver.cs" />
     <Compile Include="Models\Emergency.cs" />
