@@ -142,7 +142,7 @@ namespace webapp_stufv.Controllers {
             if ( !needle.Equals ( "" ) ) {
                 return events.Where ( e => e.Name.Contains ( needle ) ).ToList ( );
             } else {
-                return null;
+                return events;
             }
         }
 
