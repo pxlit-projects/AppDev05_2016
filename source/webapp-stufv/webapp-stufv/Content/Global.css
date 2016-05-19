@@ -21,7 +21,9 @@ body {
 .becomebob .collapse.in {
     height:115px;
 }
-
+.slider {
+    padding-top: 5px;
+}
     .footer p {
         display: inline-block;
         margin-right: 5px;
