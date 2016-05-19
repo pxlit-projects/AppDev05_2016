@@ -34,6 +34,14 @@ namespace webapp_stufv.Controllers
             }
             return RedirectToAction("Index", "Settings");
         }
+        public ActionResult DeactivateAccount() {
+            using (var context = new STUFVModelContext())
+            {
+                context.Users.Single(e => e.Id == (int)Session["userId"]).Active = false;
+                context.SaveChanges();
+            }
+                return RedirectToAction("Logout", "AccountControler");
+        }
         private void ProfileImgUpload(HttpPostedFileBase file)
         {
             if (file != null)
