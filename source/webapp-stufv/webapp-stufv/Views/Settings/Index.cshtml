@@ -28,7 +28,7 @@
                             <input class="form-control" id="Email" name="Email" type="text" value="@Model.Item1.Email" readonly>
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showEmail" @if (Model.Item2.Email) { @ViewBag.Checked }>
+                            <input type="checkbox" name="showEmail" @if (Model.Item2.Email) { @ViewBag.Checked  }>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -37,7 +37,7 @@
                             <input class="form-control" id="FirstName" name="FirstName" type="text" value="@Model.Item1.FirstName" readonly>
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showFirstName" @if (Model.Item2.FirstName) { @ViewBag.Checked }>
+                            <input type="checkbox" name="showFirstName" @if (Model.Item2.FirstName) { @ViewBag.Checked  }>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -46,7 +46,7 @@
                             <input class="form-control" id="LastName" name="LastName" type="text" value="@Model.Item1.LastName" readonly>
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showLastName" @if (Model.Item2.LastName) { @ViewBag.Checked }>
+                            <input type="checkbox" name="showLastName" @if (Model.Item2.LastName) { @ViewBag.Checked  }>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -55,7 +55,7 @@
                             <input class="form-control" id="BirthDate" name="BirthDate" type="text" value="@Model.Item1.BirthDate.ToLongDateString()" readonly>
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showBirthDate" @if (Model.Item2.BirthDate) { @ViewBag.Checked }>
+                            <input type="checkbox" name="showBirthDate" @if (Model.Item2.BirthDate) { @ViewBag.Checked  }>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -64,7 +64,7 @@
                             <input class="form-control" id="Steet" name="Street" type="text" value="@Model.Item1.Street">
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showStreet" @if (Model.Item2.Street) { @ViewBag.Checked }>
+                            <input type="checkbox" name="showStreet" @if (Model.Item2.Street) { @ViewBag.Checked  }>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -73,7 +73,7 @@
                             <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="@Model.Item1.ZipCode">
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showZipCode" @if (Model.Item2.ZipCode) { @ViewBag.Checked }>
+                            <input type="checkbox" name="showZipCode" @if (Model.Item2.ZipCode) { @ViewBag.Checked  }>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -82,7 +82,7 @@
                             <input class="form-control" id="MobileNr" name="MobileNr" type="text" value="@Model.Item1.MobileNr">
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showMobileNr" @if (Model.Item2.MobileNr) { @ViewBag.Checked }>
+                            <input type="checkbox" name="showMobileNr" @if (Model.Item2.MobileNr) { @ViewBag.Checked  }>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -91,7 +91,8 @@
                             <input class="form-control" id="TelNr" name="TelNr" type="text" value="@Model.Item1.TelNr">
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showTelNr" @if (Model.Item2.TelNr) { @ViewBag.Checked }>
+                            <input type="checkbox" name="showTelNr" @if (Model.Item2.TelNr)
+                            { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -109,12 +110,12 @@
                     Verwijder Account
                 </button>
             </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-offset-3 col-md-9">
-                    <div id="changepassword" class="collapse">
-                     @using (Html.BeginForm("ChangePassword", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "passform", enctype = "multipart/form-data", id = "passform", @class = "form-horizontal", role = "form" }))
-                     {
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-3 col-md-9">
+                <div id="changepassword" class="collapse">
+                    @using (Html.BeginForm("ChangePassword", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "passform", enctype = "multipart/form-data", id = "passform", @class = "form-horizontal", role = "form" }))
+                    {
                         <div class="row form-group">
                             <div class="col-md-2 control-label">Oud passwoord: </div>
                             <div class="col-md-5" id="oldpassvalidation">
@@ -138,14 +139,14 @@
                                 <input type="submit" class="btn btn-info" value="Opslaan" onclick="return ValidatePass()" />
                             </div>
                         </div>
-                            }
-                        </div> <br />
-                </div>
+                    }
+                </div> <br />
             </div>
         </div>
-<script src="~/Content/js/jquery.min.js"></script>
-<link href="~/Content/bootstrap-switch.min.css" rel="stylesheet" />
-<script src="~/Content/js/bootstrap-switch.min.js"></script>
+    </div>
+    <script src="~/Content/js/jquery.min.js"></script>
+    <link href="~/Content/bootstrap-switch.min.css" rel="stylesheet" />
+    <script src="~/Content/js/bootstrap-switch.min.js"></script>
     <script>
         $(function () {
             $.fn.bootstrapSwitch.defaults.size = 'normal';

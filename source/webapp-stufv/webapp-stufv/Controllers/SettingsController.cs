@@ -46,20 +46,23 @@ namespace webapp_stufv.Controllers
             }
             return RedirectToAction("Index", "Settings");
         }
-        public Boolean CheckState(string state) {
-            if (state == null) {
+        public Boolean CheckState(string state)
+        {
+            if (state == null)
+            {
                 return false;
             }
             return true;
         }
-        public ActionResult DeactivateAccount() {
+        public ActionResult DeactivateAccount()
+        {
             using (var context = new STUFVModelContext())
             {
                 int userId = (int)Session["userId"];
                 context.Users.Single(e => e.Id == userId).Active = false;
                 context.SaveChanges();
             }
-                return RedirectToAction("Logout", "Account");
+            return RedirectToAction("Logout", "Account");
         }
         private void ProfileImgUpload(HttpPostedFileBase file)
         {
@@ -73,7 +76,8 @@ namespace webapp_stufv.Controllers
                 {
                     var user = context.Users.FirstOrDefault(c => c.Id == userId);
                     string oldPath = @"..\Content\img\ProfilePictures\" + user.ProfilePicture;
-                    if (System.IO.File.Exists(oldPath)) {
+                    if (System.IO.File.Exists(oldPath))
+                    {
                         System.IO.File.Delete(oldPath);
                     }
                     user.ProfilePicture = pic;
