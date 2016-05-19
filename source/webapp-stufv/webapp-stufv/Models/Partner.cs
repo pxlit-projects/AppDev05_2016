@@ -20,8 +20,9 @@ namespace webapp_stufv.Models
         public string Image { get; set; }
 
         [Required]
-        public Boolean Active { get; set; }
+        public String URL { get; set; }
 
-
+        [Required]
+        public Boolean Active { get; set; }     
     }
 }
