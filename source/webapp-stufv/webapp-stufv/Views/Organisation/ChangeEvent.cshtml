@@ -1,0 +1,135 @@
+﻿@model Tuple<webapp_stufv.Models.Event, IEnumerable<webapp_stufv.Models.EventTypes>>
+@section Content {
+    <div class="container">
+    <div class="page-header">
+        <div class="well">
+            <h1>
+                @ViewBag.Title
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            @using (Html.BeginForm("ChangeEventProcess", "Organisation", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", role = "form", name = "eventform", id = "eventform" }))
+    {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-md-3 control-label">Foto voor het evenement</div>
+                    <div class="col-md-9">
+                        <input type="file" name="file" id="file" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">Naam van het evenement</div>
+                    <div class="col-md-9" id="nameValidation">
+                        <input type="text" id="Name" name="Name" placeholder="Naam van het event" value="@Model.Item1.Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3 control-label">Beschijving</div>
+                    <div class="col-md-9" id="discriptionValidation">
+                        <input type="text" id="Description" name="Description" placeholder="Beschrijving van het event" value="@Model.Item1.Description" class="form-control" />
+                    </div>
+                </div>
+                <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+                <script src="../../Content/js/bootstrap-datetimepicker.min.js"></script>
+                <link href="../../Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+                <div class="form-group">
+                    <div class="col-md-3 control-label">Start tijd </div>
+                    <div class="col-md-9" id="startValidation">
+                        <div class="input-append date form_datetime">
+                            <input class="form-control" id="Start" name="Start" size="16" type="text" value="@Model.Item1.Start" readonly>
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
+                    </script>
+                </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">Stop tijd </div>
+                            <div class="col-md-9" id="endValidation">
+                                <div class="input-append date form_datetime">
+                                    <input class="form-control" id="End" name="End" size="16" type="text" value="@Model.Item1.End" readonly>
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(".form_datetime").datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
+                            </script>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">Straat</div>
+                            <div class="col-md-9" id="streetValidation">
+                                <input type="text" id="Street" name="Street" placeholder="Straat" value="@Model.Item1.Street" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">Postcode</div>
+                            <div class="col-md-9" id="zipcodeValidation">
+                                <input type="text" id="ZipCode" name="ZipCode" placeholder="Postcode" value="@Model.Item1.ZipCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">Type</div>
+                            <div class="col-md-9" id="typeValidation">
+                                <select class="form-control" id="Type" name="Type">
+                                    @foreach (var item in Model.Item2)
+                                    {
+                                        <option value="@item.Id">@item.Description</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">Inkom prijs</div>
+                            <div class="col-md-9" id="feeValidation">
+                                <input type="text" id="EntranceFee" name="EntranceFee" placeholder="Inkom" value="@Model.Item1.EntranceFee" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">Alcohol Vrij?</div>
+                            <div class="col-md-9" id="alchoholfreeValidation">
+                                <input style="margin-top: 15px;" type="checkbox" value="True" name="AlcoholFree" value="@Model.Item1.AlcoholFree" id="AlcoholFree">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-2">
+                                <input type="submit" class="btn btn-success" value="Verander evenement" onclick="return eventValidation()" />
+                            </div>
+                        </div>
+
+
+            }
+        </div>
+        <div class="col-md-4">
+            <img class="eventimg" src="~/Content/img/EventImages/@Model.Item1.Image" />
+        </div>
+    </div>
+    <script>
+        function eventValidation() {
+            var name = IsEmpty("#nameValidation", document.eventform.Name);
+            var start = IsEmpty("#startValidation", document.eventform.Start);
+            var desc = IsEmpty("#discriptionValidation", document.eventform.Description);
+            var end = IsEmpty("#endValidation", document.eventform.End);
+            var zipcode = IsEmpty("#zipcodeValidation", document.eventform.ZipCode);
+            var street = IsEmpty("#streetValidation", document.eventform.Street);
+            var entrancefee = IsEmpty("#feeValidation", document.eventform.EntranceFee);
+            if (name && start && desc && end && zipcode && street && entrancefee) {
+                return true;
+            }
+            return false;
+        }
+        function IsEmpty(id, text) {
+            if (text.value == "") {
+                $(id).attr("class", "col-md-9 has-error");
+                return false;
+            } else {
+                $(id).attr("class", "col-md-9 has-success");
+                return true;
+            }
+        }
+    </script>
+</div>
+
+}

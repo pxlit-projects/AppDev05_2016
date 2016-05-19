@@ -10,7 +10,7 @@ namespace webapp_stufv.Controllers {
     public class OrganisationController : Controller {
 
         private IOrganisationRepository iorganisation = new OrganisationRepository ( );
-
+        private IEventRepository ievent = new EventRepository();
         // GET: Organisation
 
         public ActionResult Index ( ) {
@@ -50,6 +50,14 @@ namespace webapp_stufv.Controllers {
             iorganisation.NewOrganisation ( ( int ) Session[ "userId" ], name, description );
             Session[ "organisation" ] = 1;
             return View ( );
+        }
+        public ActionResult ChangeEvent(int id) {
+            Event changeEvent = ievent.GetAllEvents().Single(e => e.Id == id);
+            List<EventTypes> types = EventTypes.GetAllTypes();
+            var tuple = new Tuple<Event, IEnumerable<EventTypes>>(changeEvent, types);
+            Session["eventId"] = changeEvent.Id;
+            ViewBag.Title = "Verander evenement: " + changeEvent.Name + ".";
+            return View(tuple);
         }
 
         public ActionResult NewEvent ( HttpPostedFileBase file ) {

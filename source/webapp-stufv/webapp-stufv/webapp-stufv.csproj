@@ -376,6 +376,7 @@
     <Content Include="Views\Instagram\Index.cshtml" />
     <Content Include="Views\Events\BobSettings.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Organisation\ChangeEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,5 +18,14 @@ namespace webapp_stufv.Models
         public string Description { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
+        public static List<EventTypes> GetAllTypes()
+        {
+            List<EventTypes> types;
+            using (var context = new STUFVModelContext())
+            {
+                types = context.EventTypes.ToList();
+            }
+            return types;
+        }
     }
 }

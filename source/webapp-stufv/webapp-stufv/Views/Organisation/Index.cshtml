@@ -17,7 +17,7 @@
                         <div class="list-group">
                             @foreach (var item in Model.Item1)
                             {
-                                <a class="list-group-item" href=@Url.Action( "Details", "Events", new { id = item.Id } )>
+                                <a class="list-group-item" href=@Url.Action( "ChangeEvent", "Organisation", new { id = item.Id } )>
                                     <p class="list-group-item-heading"> @item.Name </p>
                                     <p class="list-group-item-text"> @item.Description.Substring(0, @item.Description.Length / 2)... </p>
                                 </a>
