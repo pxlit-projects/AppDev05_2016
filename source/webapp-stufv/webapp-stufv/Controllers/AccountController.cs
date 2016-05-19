@@ -60,6 +60,25 @@ namespace webapp_stufv.Controllers {
             }
             return View ( );
         }
+        public ActionResult ChangePassword() {
+            string salt = iuser.GetSalt(Session["Email"].ToString());
+            var encpass = MD5Encrypt(Request.Form["OldPass"], salt);
+            int userId = (int)Session["userId"];
+            using (var context = new STUFVModelContext())
+            {
+                User user = context.Users.Single(e => e.Id == userId);
+                if (encpass == user.PassWord)
+                {
+                    var newpass = MD5Encrypt(Request.Form["NewPass"], salt);
+                    user.PassWord = newpass;
+                    context.SaveChanges();
+                }
+                else {
+                    return View();
+                }
+            }
+            return RedirectToAction("Index", "Settings");
+        }
         private void CreateUser ( String email ) {
             String firstName = Request.Form[ "FirstName" ];
             String lastName = Request.Form[ "LastName" ];

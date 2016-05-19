@@ -11,6 +11,7 @@
                 </h1>
             </div>
         </div>
+        <div class="label-info">@ViewBag.Desc</div>
         <div class="row profile">
             @using (Html.BeginForm("ChangeSettings", "Settings", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "changeform", enctype = "multipart/form-data", id = "changeform", @class = "form-horizontal", role = "form" }))
             {
@@ -68,15 +69,77 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-md-5 col-lg-offset-2">
+                        <div class="col-md-2 col-lg-offset-2">
                             <input type="submit" class="btn btn-info" value="Opslaan" onclick="return ValidateChange()" />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#changepassword">Verander Wachtwoord</button>
                         </div>
                     </div>
                 </div>
             }
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-3 col-md-9">
+                    <div id="changepassword" class="collapse">
+                     @using (Html.BeginForm("ChangePassword", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "passform", enctype = "multipart/form-data", id = "passform", @class = "form-horizontal", role = "form" }))
+                     {
+                        <div class="row form-group">
+                            <div class="col-md-2 control-label">Oud passwoord: </div>
+                            <div class="col-md-5" id="oldpassvalidation">
+                                <input class="form-control" id="OldPass" name="OldPass" type="password">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-2 control-label">Nieuw passwoord: </div>
+                            <div class="col-md-5" id="newpassvalidation">
+                                <input class="form-control" id="NewPass" name="NewPass" type="password">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-2 control-label">Nieuw passwoord: </div>
+                            <div class="col-md-5" id="againpassvalidation">
+                                <input class="form-control" id="AgainPassword" name="AgainPassword" type="password">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-2 col-lg-offset-2">
+                                <input type="submit" class="btn btn-info" value="Opslaan" onclick="return ValidatePass()" />
+                            </div>
+                        </div>
+                            }
+                        </div> <br />
+                </div>
+            </div>
         </div>
-    </div>
     <script>
+        function ValidatePass() {
+            var oldpass = IsEmpty("#oldpassvalidation", document.passform.OldPass);
+            var newpass = ValidateRegPass();
+            if (oldpass && newpass) {
+                return true;
+            }
+            return false;
+        }
+        function ValidateRegPass() {
+            var inputText = document.passform.NewPass;
+            var inputText2 = document.passform.AgainPassword;
+            if (inputText.value == "") {
+                $('#newpassvalidation').attr("class", "col-md-5 has-error");
+                return false;
+            } else if (inputText2.value == "") {
+                $('#againpassvalidation').attr("class", "col-md-5 has-error");
+                return false;
+            } else if (inputText.value == inputText2.value) {
+                $('#newpassvalidation').attr("class", "col-md-5 has-success");
+                $('#againpassvalidation').attr("class", "col-md-5 has-success");
+                return true;
+            } else {
+                $('#newpassvalidation').attr("class", "col-md-5 has-error");
+                $('#againpassvalidation').attr("class", "col-md-5 has-error");
+                return false;
+            }
+        }
         function ValidateChange() {
             var street = IsEmpty("#streetvalidation", document.changeform.Street);
             var zipcode = IsEmpty("#zipcodevalidation", document.changeform.ZipCode);
