@@ -208,8 +208,7 @@ namespace webapp_stufv.Controllers {
         public ActionResult filter ( ) {
             using ( var context = new STUFVModelContext ( ) ) {
                 IEnumerable<Event> events = context.Events.ToList ( );
-
-                DateTime date = DateTime.Parse ( Request.Form[ "Date" ] );
+                DateTime date;
 
                 if ( Session[ "AlcoholFree" ] != null ) {
                     events = filterAlcohol ( events, Session[ "AlcoholFree" ].ToString ( ) );
@@ -220,7 +219,12 @@ namespace webapp_stufv.Controllers {
                 }
                 events = filterName ( events, Request.Form[ "Name" ] );
                 events = filterZipCode ( events, Request.Form[ "ZipCode" ] );
-                events = filterDate ( events, date );
+                if (Request.Form["Date"] != "")
+                {
+                    date = DateTime.Parse(Request.Form["Date"]);
+                    events = filterDate(events, date);
+                }
+                
 
                 ViewBag.Title = "Evenementen";
 
