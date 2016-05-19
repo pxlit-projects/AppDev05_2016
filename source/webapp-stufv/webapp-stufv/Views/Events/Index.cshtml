@@ -3,7 +3,7 @@
     <div class="container">
         <div class="page-header">
             <div class="well">
-                <h3>@ViewBag.Title</h3>
+                <h1>@ViewBag.Title</h1>
             </div>
         </div>
         <nav class="navbar navbar-inverse">
@@ -41,25 +41,24 @@
                             </ul>
                         </li>
                     </ul>
-
-                </div>
-                    <form class="navbar-form navbar-left" role="search" method="post" action=@Url.Action("Filter", "Events")>
+                    <form class="navbar-form navbar-left inline" role="search" method="post" action=@Url.Action("Filter", "Events")>
                         <div class="form-group">
-                        <div class="col-md-2" id="birthdatevalidation">
-                            <div class="input-append date form_datetime">
-                                <input class="form-control" id="BirthDate" name="BirthDate" size="16" type="text" value="" readonly>
-                                <span class="add-on"><i class="icon-th"></i></span>
-                            </div>
+                            <div class="col-md-2 control-label">Datum: </div>
+                            <div class="col-md-2" id="birthdatevalidation">
+                                <div class="input-append date form_datetime">
+                                    <input class="form-control" id="BirthDate" name="BirthDate" size="16" type="text" value="" readonly>
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
 
-                            <script type="text/javascript">
-                        $(".form_datetime").datetimepicker({
-                            language: 'nl',
-                            format: "dd MM yyyy",
-                            autoclose: true,
-                            minView: 2
-                        });
-                            </script>
-                        </div>
+                                <script type="text/javascript">
+                                    $(".form_datetime").datetimepicker({
+                                        language: 'nl',
+                                        format: "dd MM yyyy",
+                                        autoclose: true,
+                                        minView: 2
+                                    });
+                                </script>
+                            </div>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Postcode" name="Zipcode" id="Zipcode">
@@ -69,8 +68,8 @@
                         </div>
                         <button type="submit" class="btn btn-default">Zoek</button>
                     </form>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+            </div><!-- /.navbar-collapse -->
         </nav>
         @foreach ( var item in Model ) {
             <div class="eventpage">
