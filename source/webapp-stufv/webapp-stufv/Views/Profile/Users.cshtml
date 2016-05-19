@@ -1,4 +1,4 @@
-﻿@model webapp_stufv.Models.User
+﻿@model Tuple<webapp_stufv.Models.User, webapp_stufv.Models.ProfileSettings>
 
 @section content{
     <div class="container">
@@ -6,46 +6,102 @@
         <div class="page-header">
             <div class="well">
                 <h1>
-                    @Model.FirstName @Model.LastName 
+                    @if (Model.Item2.FirstName)
+                    {
+                        @Model.Item1.FirstName
+                    }
+                    else {
+                        @Model.Item1.FirstName.Substring(0, 2).Replace(Model.Item1.FirstName.Substring(1, 1), ".");
+                    }
+                    @if (Model.Item2.LastName)
+                    {
+                        @Model.Item1.LastName
+                    }
+                    else {
+                        @Model.Item1.LastName.Substring(0, 2).Replace(Model.Item1.LastName.Substring(1, 1), ".");
+                    }
                 </h1>
             </div>
         </div>
         <div class="row profile">
             <div class="col-md-3">
-                <img class="profileimg" src="~/Content/img/ProfilePictures/@Model.ProfilePicture" />
+                <img class="profileimg" src="~/Content/img/ProfilePictures/@Model.Item1.ProfilePicture" />
             </div>
             <div class="col-md-9">
-                <div class="row form-group">
-                    <div class="col-md-2 control-label">Email adres: </div>
-                    <div class="col-md-5">
-                        <input class="form-control" id="Email" name="Email" type="text" value="@Model.Email" readonly>
+                @if (Model.Item2.Email)
+                {
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Email adres: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="Email" name="Email" type="text" value="@Model.Item1.Email" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-2 control-label">Voornaam: </div>
-                    <div class="col-md-5">
-                        <input class="form-control" id="FirstName" name="FirstName" type="text" value="@Model.FirstName" readonly>
+                }
+                @if (Model.Item2.FirstName)
+                {
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Voornaam: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="FirstName" name="FirstName" type="text" value="@Model.Item1.FirstName" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-2 control-label">Achternaam: </div>
-                    <div class="col-md-5">
-                        <input class="form-control" id="LastName" name="LastName" type="text" value="@Model.LastName" readonly>
+                }
+                @if (Model.Item2.LastName)
+                {
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Achternaam: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="LastName" name="LastName" type="text" value="@Model.Item1.LastName" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-2 control-label">Geboortedatum: </div>
-                    <div class="col-md-5">
-                        <input class="form-control" id="BirthDate" name="BirthDate" type="text" value="@Model.BirthDate.ToLongDateString()" readonly>
+                }
+                @if (Model.Item2.BirthDate)
+                {
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Geboortedatum: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="BirthDate" name="BirthDate" type="text" value="@Model.Item1.BirthDate.ToLongDateString()" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-2 control-label">Postcode: </div>
-                    <div class="col-md-5">
-                        <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="@Model.ZipCode" readonly>
+                }
+                @if (Model.Item2.Street)
+                {
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Straat: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="Street" name="Street" type="text" value="@Model.Item1.Street" readonly>
+                        </div>
                     </div>
-                </div>
+                }
+                @if (Model.Item2.ZipCode)
+                {
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Postcode: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="@Model.Item1.ZipCode" readonly>
+                        </div>
+                    </div>
+                }
+                @if (Model.Item2.TelNr)
+                {
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Telefoonnummer: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="TelNr" name="TelNr" type="text" value="@Model.Item1.TelNr" readonly>
+                        </div>
+                    </div>
+                }
+                @if (Model.Item2.MobileNr)
+                {
+                    <div class="row form-group">
+                        <div class="col-md-2 control-label">Mobiel Nummer: </div>
+                        <div class="col-md-5">
+                            <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="@Model.Item1.MobileNr" readonly>
+                        </div>
+                    </div>
+                }
             </div>
+
         </div>
     </div>
 }
