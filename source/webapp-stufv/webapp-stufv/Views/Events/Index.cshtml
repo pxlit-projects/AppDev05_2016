@@ -18,29 +18,50 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Alcoholvrij <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href=@Url.Action("AlcoholFree", "Events", new {value = "yes"})>Ja</a></li>
-                                    <li><a href=@Url.Action("AlcoholFree", "Events", new { value = "no" })>Nee</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href=@Url.Action("AlcoholFree", "Events", new { value = "neutral" })>Maakt niet uit</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Sorteren <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href=@Url.Action("Sort", "Events", new {value = "atoz"})>Naam: 'a' naar 'z' </a></li>
-                                    <li><a href=@Url.Action("Sort", "Events", new { value = "ztoa" })>Naam: 'z' naar 'a'</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href=@Url.Action("Sort", "Events", new { value = "entranceasc" })>Inkom oplopend</a></li>
-                                    <li><a href=@Url.Action("Sort", "Events", new { value = "entrancedesc" })>Inkom aflopend</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Alcoholvrij <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href=@Url.Action("AlcoholFree", "Events", new {value = "yes"})>Ja</a></li>
+                                <li><a href=@Url.Action("AlcoholFree", "Events", new { value = "no" })>Nee</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href=@Url.Action("AlcoholFree", "Events", new { value = "neutral" })>Maakt niet uit</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Sorteren <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href=@Url.Action("Sort", "Events", new {value = "atoz"})>Naam: 'a' naar 'z' </a></li>
+                                <li><a href=@Url.Action("Sort", "Events", new { value = "ztoa" })>Naam: 'z' naar 'a'</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href=@Url.Action("Sort", "Events", new { value = "entranceasc" })>Inkom oplopend</a></li>
+                                <li><a href=@Url.Action("Sort", "Events", new { value = "entrancedesc" })>Inkom aflopend</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-2 control-label">Datum: </div>
+                    <div class="col-md-10" id="birthdatevalidation">
+                        <div class="input-append date form_datetime">
+                            <input class="form-control" id="BirthDate" name="BirthDate" size="16" type="text" value="" readonly>
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+
+                        <script type="text/javascript">
+                        $(".form_datetime").datetimepicker({
+                            language: 'nl',
+                            format: "dd MM yyyy",
+                            autoclose: true,
+                            minView: 2
+                        });
+                        </script>
+                    </div>
+                </div>
                     <form class="navbar-form navbar-left" role="search" method="post" action=@Url.Action("Filter", "Events")>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Postcode" name="Zipcode" id="Zipcode">

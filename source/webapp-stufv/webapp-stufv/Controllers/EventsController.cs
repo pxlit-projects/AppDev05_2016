@@ -209,10 +209,17 @@ namespace webapp_stufv.Controllers {
             using ( var context = new STUFVModelContext ( ) ) {
                 IEnumerable<Event> events = context.Events.ToList ( );
 
-                events = filterAlcohol ( events, Session[ "AlcoholFree" ].ToString ( ) );
-                events = filterSort ( events, Session[ "Sort" ].ToString ( ) );
+                if ( Session[ "AlcoholFree" ] != null ) {
+                    events = filterAlcohol ( events, Session[ "AlcoholFree" ].ToString ( ) );
+                }
+
+                if ( Session[ "Sort" ] != null ) {
+                    events = filterSort ( events, Session[ "Sort" ].ToString ( ) );
+                }
                 events = filterName ( events, Request.Form[ "Name" ] );
                 events = filterZipCode ( events, Request.Form[ "ZipCode" ] );
+
+                ViewBag.Title = "Evenementen";
 
                 return View ( "~/Views/Events/Index.cshtml", events );
             }
