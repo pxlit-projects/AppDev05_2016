@@ -13,7 +13,7 @@ namespace webapp_stufv.Models {
 
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
         public DateTime DateTime { get; set; }

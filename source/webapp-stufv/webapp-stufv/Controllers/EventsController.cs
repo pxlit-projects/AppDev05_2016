@@ -132,7 +132,7 @@ namespace webapp_stufv.Controllers {
 
         public IEnumerable<Event> filterZipCode ( IEnumerable<Event> events, string zip ) {
             if ( !zip.Equals ( "" ) ) {
-                return events.Where ( e => e.ZipCode.Contains ( zip ) );
+                return events.Where ( e => e.ZipCode.Contains ( zip ) ).ToList ( );
             } else {
                 return events;
             }
@@ -140,7 +140,7 @@ namespace webapp_stufv.Controllers {
 
         public IEnumerable<Event> filterName ( IEnumerable<Event> events, string needle ) {
             if ( !needle.Equals ( "" ) ) {
-                return events.Where ( e => e.Name.Contains ( needle ) );
+                return events.Where ( e => e.Name.Contains ( needle ) ).ToList ( );
             } else {
                 return null;
             }
@@ -243,9 +243,9 @@ namespace webapp_stufv.Controllers {
 
         public IEnumerable<Event> filterAlcohol ( IEnumerable<Event> events, string value ) {
             if ( value.Equals ( "yes" ) ) {
-                events = events.Where ( e => e.AlcoholFree == true );
+                events = events.Where ( e => e.AlcoholFree == true ).ToList ( );
             } else if ( value.Equals ( "no" ) ) {
-                events = events.Where ( e => e.AlcoholFree == false );
+                events = events.Where ( e => e.AlcoholFree == false ).ToList ( );
             } else {
                 return events;
             }
