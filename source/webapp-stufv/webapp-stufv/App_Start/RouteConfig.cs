@@ -64,6 +64,11 @@ namespace webapp_stufv {
                 url: "Instagram/{action}/{id}",
                 defaults: new { controller = "Instagram", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Partner",
+                url: "Partner/{action}/{id}",
+                defaults: new { controller = "Partner", action = "Index", id = UrlParameter.Optional }
+            );
             routes.MapRoute (
                 name: "Default",
                 url: "{controller}/{action}/{id}",
