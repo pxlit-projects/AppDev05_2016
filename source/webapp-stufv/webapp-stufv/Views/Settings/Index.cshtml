@@ -13,7 +13,7 @@
             @using (Html.BeginForm("ChangeSettings", "Settings", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "changeform", enctype = "multipart/form-data", id = "changeform", @class = "form-horizontal", role = "form" }))
             {
                 <div class="col-md-3">
-                    <img class="profileimg" src="~/Content/img/ProfilePictures/@Model.Item1.ProfilePicture" />
+                    <img class="img-thumbnail profileimg" src="~/Content/img/ProfilePictures/@Model.Item1.ProfilePicture" />
                     <input type="file" name="file" id="file" style="width: 100%;" />
                 </div>
                 <div class="col-md-9">
@@ -105,11 +105,6 @@
                     </div>
                 </div>
             }
-            <div class="col-md-2 col-lg-offset-4">
-                <button class="btn btn-danger" data-toggle="modal" data-target="#modaldeactivate">
-                    Verwijder Account
-                </button>
-            </div>
         </div>
         <div class="row">
             <div class="col-lg-offset-3 col-md-9">
@@ -142,6 +137,11 @@
                     }
                 </div> <br />
             </div>
+        </div>
+        <div class="col-md-9 col-lg-offset-6">
+            <button class="btn btn-danger" data-toggle="modal" data-target="#modaldeactivate">
+                Verwijder Account
+            </button>
         </div>
     </div>
     <script src="~/Content/js/jquery.min.js"></script>
