@@ -37,10 +37,11 @@ namespace webapp_stufv.Controllers
         public ActionResult DeactivateAccount() {
             using (var context = new STUFVModelContext())
             {
-                context.Users.Single(e => e.Id == (int)Session["userId"]).Active = false;
+                int userId = (int)Session["userId"];
+                context.Users.Single(e => e.Id == userId).Active = false;
                 context.SaveChanges();
             }
-                return RedirectToAction("Logout", "AccountControler");
+                return RedirectToAction("Logout", "Account");
         }
         private void ProfileImgUpload(HttpPostedFileBase file)
         {

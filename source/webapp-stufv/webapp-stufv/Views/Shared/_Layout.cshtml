@@ -128,7 +128,6 @@
             </div>
         </div>
     </div>
-
     <div id="modallogout" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -145,7 +144,22 @@
             </div>
         </div>
     </div>
-
+    <div id="modaldeactivate" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-4">
+                            Ben je zeker?
+                            <form class="inline" action='@Url.Action("DeactivateAccount", "Settings")' method="get">
+                                <button class="btn btn-warning">Ja</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Input validation Scripts -->
     <script>
         function Validate() {
