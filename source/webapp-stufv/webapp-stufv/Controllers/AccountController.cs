@@ -110,8 +110,22 @@ namespace webapp_stufv.Controllers {
                 Email = email.ToLower(),
                 ProfilePicture = "noimageavailable.png"
             };
+            int userId = iuser.GetAllUsers().Single(e => e.Email == email).Id;
+            var settings = new ProfileSettings
+            {
+                FirstName = true,
+                LastName = true,
+                BirthDate = true,
+                Street = false,
+                ZipCode = true,
+                TelNr = false,
+                MobileNr = false,
+                Email = true,
+                UserId = userId
+            };
             using ( var context = new STUFVModelContext ( ) ) {
                 context.Users.Add ( user );
+                context.ProfileSettings.Add(settings);
                 context.SaveChanges ( );
             }
         }
