@@ -10,6 +10,7 @@ namespace webapp_stufv.Models
     [Table("ProfileSettings")]
     public class ProfileSettings
     {
+        [Key]
         [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; }
