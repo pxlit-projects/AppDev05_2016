@@ -1,10 +1,4 @@
 ﻿@section content {
-    <script src="~/Content/js/jquery.min.js"></script>
-    <script>
-        function Open() {
-            $("#box").hide();
-        }
-    </script>
     <div class="container">
         <div class="page-header">
             <div class="well">
@@ -19,7 +13,7 @@
                         <td><p style="font-weight: bold" align="center">@item.Name</p></td>
                     </tr>
                     <tr>
-                        <td align="center"><a href="https://www.google.be"><img src="~/Content/img/partner.jpg"></a></td>
+                        <td align="center"><a href="@item.URL"><img src="~/Content/img/partner.jpg"></a></td>
                     </tr>
                 </table>               
             </div>
