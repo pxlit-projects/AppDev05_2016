@@ -142,6 +142,7 @@ namespace STUFV
 
         private async void Login()
         {
+            loginButton.IsEnabled = false;
             messageLabel.Content = "Velden controleren...";
 
             bool existEmail = await Exist(emailBox.Text);
@@ -158,7 +159,7 @@ namespace STUFV
                 if (existPassword)
                 {
                     messageLabel.Content = "Bezig met aanmelden...";
-                    Logout login = new Logout();
+                    Login login = new Login();
                     login.UserId = user.Id;
                     login.DateTime = DateTime.Now.AddHours(2);
                     InsertLogin(login);
@@ -188,6 +189,10 @@ namespace STUFV
                 loginButton.IsEnabled = false;
                 counter = attempts * 5;
                 loginTimer.Start();
+            }
+            else
+            {
+                loginButton.IsEnabled = true;
             }
         }
 
@@ -269,7 +274,7 @@ namespace STUFV
             return user;
         }
 
-        public async void InsertLogin(Logout login)
+        public async void InsertLogin(Login login)
         {
             try
             {

@@ -108,12 +108,12 @@ namespace STUFV
         {
             if (searchTextBox.Text != "")
             {
-                IEnumerable<Logout> allLogins = await GetLogins();
+                IEnumerable<Login> allLogins = await GetLogins();
 
                 string filter = filterBox.SelectedValue.ToString();
 
-                List<Logout> selectLogins = new List<Logout>();
-                foreach (Logout login in allLogins)
+                List<Login> selectLogins = new List<Login>();
+                foreach (Login login in allLogins)
                 {
                     switch (filter)
                     {
@@ -186,12 +186,12 @@ namespace STUFV
         {
             if (searchDatePicker.SelectedDate != null)
             {
-                IEnumerable<Logout> allLogins = await GetLogins();
+                IEnumerable<Login> allLogins = await GetLogins();
 
                 string filter = filterBox.SelectedValue.ToString();
 
-                List<Logout> selectLogins = new List<Logout>();
-                foreach (Logout login in allLogins)
+                List<Login> selectLogins = new List<Login>();
+                foreach (Login login in allLogins)
                 {
                     switch (filter)
                     {
@@ -227,10 +227,10 @@ namespace STUFV
             if (searchTextBox.IsFocused == false && searchDatePicker.IsDropDownOpen == false
                 && searchDatePicker.IsFocused == false && filterBox.IsFocused == false)
             {
-                IEnumerable<Logout> logins = await GetLogins();
+                IEnumerable<Login> logins = await GetLogins();
                 List<DateTime> loginDates = new List<DateTime>();
 
-                Logout login = (Logout)loginDataGrid.CurrentItem;
+                Login login = (Login)loginDataGrid.CurrentItem;
                 User user = await GetUser(login.UserId);
 
                 string role = null;
@@ -246,9 +246,9 @@ namespace STUFV
                 }
 
                 userLabel.Content = string.Format("{0} {1} ({2})", user.FirstName, user.LastName, role);
-                homePlaceTextBox.Text = "ToDo";
+                await GetCity(user.ZipCode);
 
-                foreach (Logout forLogin in logins)
+                foreach (Login forLogin in logins)
                 {
                     if (forLogin.UserId == login.UserId) { loginDates.Add(forLogin.DateTime); }
                 }
@@ -261,22 +261,22 @@ namespace STUFV
 
         public async void LoadLogins()
         {
-            IEnumerable<Logout> getLogins = await GetLogins();
-            List<Logout> logins = getLogins.ToList();
+            IEnumerable<Login> getLogins = await GetLogins();
+            List<Login> logins = getLogins.ToList();
 
             loginDataGrid.ItemsSource = logins;
         }
 
-        public async Task<IEnumerable<Logout>> GetLogins()
+        public async Task<IEnumerable<Login>> GetLogins()
         {
-            IEnumerable<Logout> logins = null;
+            IEnumerable<Login> logins = null;
             try {
                 var loginUrl = "/api/login";
                 HttpResponseMessage response = await client.GetAsync(loginUrl);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    logins = await response.Content.ReadAsAsync<IEnumerable<Logout>>();
+                    logins = await response.Content.ReadAsAsync<IEnumerable<Login>>();
                 }
             }
             catch (HttpRequestException)
@@ -326,6 +326,30 @@ namespace STUFV
                 }
             }
             return user;
+        }
+
+        public async Task GetCity(string id)
+        {
+            Cities city = null;
+            try
+            {
+                var cityUrl = "/api/city/" + id;
+                HttpResponseMessage response = await client.GetAsync(cityUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    city = await response.Content.ReadAsAsync<Cities>();
+                    homePlaceTextBox.Text = city.City;
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
+            }
         }
     }
 }
