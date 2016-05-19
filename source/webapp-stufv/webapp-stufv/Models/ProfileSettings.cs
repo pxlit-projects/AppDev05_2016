@@ -31,5 +31,13 @@ namespace webapp_stufv.Models
         public Boolean MobileNr { get; set; }
         [Required]
         public Boolean TelNr { get; set; }
+
+        public static List<ProfileSettings> GetAllProfileSettings()
+        {
+            using (var context = new STUFVModelContext())
+            {
+                return context.ProfileSettings.ToList();
+            }
+        }
     }
 }

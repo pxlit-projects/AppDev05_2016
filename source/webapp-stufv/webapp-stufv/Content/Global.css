@@ -5,6 +5,7 @@
     width: 20px;
     border: none;
 }
+
 body {
     background-color: white;
 }
@@ -18,18 +19,21 @@ body {
     text-align: right;
     z-index: 2000;
 }
+
 .becomebob .collapse.in {
-    height:115px;
+    height: 115px;
 }
+
 .slider {
     padding-top: 5px;
 }
-    .footer p {
-        display: inline-block;
-        margin-right: 5px;
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
+
+.footer p {
+    display: inline-block;
+    margin-right: 5px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 
 
 .eventshort td {
@@ -46,6 +50,8 @@ body {
 .profileimg {
     max-height: 200px;
     max-width: 200px;
+    width: 200px;
+    height: 200px;
     margin: 5px;
     margin-right: 25px;
     border-radius: 3px;
@@ -474,10 +480,10 @@ a:hover {
     filter: alpha(opacity=50);
 }
 
-#instafeed img:hover {
-    opacity: 1;
-    filter: alpha(opacity-100);
-}
+    #instafeed img:hover {
+        opacity: 1;
+        filter: alpha(opacity-100);
+    }
 
 #box {
     width: 1140px;
