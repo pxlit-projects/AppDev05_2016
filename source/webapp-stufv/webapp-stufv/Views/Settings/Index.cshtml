@@ -1,11 +1,11 @@
-﻿@model webapp_stufv.Models.User
+﻿@model Tuple<webapp_stufv.Models.User, webapp_stufv.Models.ProfileSettings>
 @section content{
     <div class="container">
 
         <div class="page-header">
             <div class="well">
                 <h1>
-                    @Model.FirstName @Model.LastName
+                    @Model.Item1.FirstName @Model.Item1.LastName
                 </h1>
             </div>
         </div>
@@ -13,7 +13,7 @@
             @using (Html.BeginForm("ChangeSettings", "Settings", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "changeform", enctype = "multipart/form-data", id = "changeform", @class = "form-horizontal", role = "form" }))
             {
                 <div class="col-md-3">
-                    <img class="profileimg" src="~/Content/img/ProfilePictures/@Model.ProfilePicture" />
+                    <img class="profileimg" src="~/Content/img/ProfilePictures/@Model.Item1.ProfilePicture" />
                     <input type="file" name="file" id="file" style="width: 100%;" />
                 </div>
                 <div class="col-md-9">
@@ -25,73 +25,73 @@
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Email adres: </div>
                         <div class="col-md-5">
-                            <input class="form-control" id="Email" name="Email" type="text" value="@Model.Email" readonly>
+                            <input class="form-control" id="Email" name="Email" type="text" value="@Model.Item1.Email" readonly>
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showEmail">
+                            <input type="checkbox" name="showEmail" @if (Model.Item2.Email) { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Voornaam: </div>
                         <div class="col-md-5">
-                            <input class="form-control" id="FirstName" name="FirstName" type="text" value="@Model.FirstName" readonly>
+                            <input class="form-control" id="FirstName" name="FirstName" type="text" value="@Model.Item1.FirstName" readonly>
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showFirstName">
+                            <input type="checkbox" name="showFirstName" @if (Model.Item2.FirstName) { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Achternaam: </div>
                         <div class="col-md-5">
-                            <input class="form-control" id="LastName" name="LastName" type="text" value="@Model.LastName" readonly>
+                            <input class="form-control" id="LastName" name="LastName" type="text" value="@Model.Item1.LastName" readonly>
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showLastName">
+                            <input type="checkbox" name="showLastName" @if (Model.Item2.LastName) { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Geboortedatum: </div>
                         <div class="col-md-5">
-                            <input class="form-control" id="BirthDate" name="BirthDate" type="text" value="@Model.BirthDate.ToLongDateString()" readonly>
+                            <input class="form-control" id="BirthDate" name="BirthDate" type="text" value="@Model.Item1.BirthDate.ToLongDateString()" readonly>
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showBirthDate">
+                            <input type="checkbox" name="showBirthDate" @if (Model.Item2.BirthDate) { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Straat: </div>
                         <div class="col-md-5" id="streetvalidation">
-                            <input class="form-control" id="Steet" name="Street" type="text" value="@Model.Street">
+                            <input class="form-control" id="Steet" name="Street" type="text" value="@Model.Item1.Street">
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showStreet">
+                            <input type="checkbox" name="showStreet" @if (Model.Item2.Street) { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Postcode: </div>
                         <div class="col-md-5" id="zipcodevalidation">
-                            <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="@Model.ZipCode">
+                            <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="@Model.Item1.ZipCode">
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showZipCode">
+                            <input type="checkbox" name="showZipCode" @if (Model.Item2.ZipCode) { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">GSM nummer: </div>
                         <div class="col-md-5" id="mobilenrvalidation">
-                            <input class="form-control" id="MobileNr" name="MobileNr" type="text" value="@Model.MobileNr">
+                            <input class="form-control" id="MobileNr" name="MobileNr" type="text" value="@Model.Item1.MobileNr">
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showMobileNr">
+                            <input type="checkbox" name="showMobileNr" @if (Model.Item2.MobileNr) { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-2 control-label">Telefoon nummer: </div>
                         <div class="col-md-5" id="telnrvalidation">
-                            <input class="form-control" id="TelNr" name="TelNr" type="text" value="@Model.TelNr">
+                            <input class="form-control" id="TelNr" name="TelNr" type="text" value="@Model.Item1.TelNr">
                         </div>
                         <div class="col-md-2 slider">
-                            <input type="checkbox" name="showTelNr">
+                            <input type="checkbox" name="showTelNr" @if (Model.Item2.TelNr) { @ViewBag.Checked }>
                         </div>
                     </div>
                     <div class="row form-group">

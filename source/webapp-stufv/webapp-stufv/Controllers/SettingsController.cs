@@ -17,7 +17,10 @@ namespace webapp_stufv.Controllers
         {
             List<User> allUsers = iuser.GetAllUsers();
             User user = allUsers.Single(r => r.Id == (int)Session["userId"]);
-            return View(user);
+            ProfileSettings settings = ProfileSettings.GetAllProfileSettings().Single(r => r.UserId == (int)Session["userId"]);
+            var tuple = new Tuple<User, ProfileSettings>(user, settings);
+            ViewBag.Checked = "checked";
+            return View(tuple);
         }
         public ActionResult ChangeSettings(HttpPostedFileBase file)
         {
@@ -30,9 +33,24 @@ namespace webapp_stufv.Controllers
                 user.ZipCode = Request.Form["ZipCode"];
                 user.MobileNr = Request.Form["MobileNr"];
                 user.TelNr = Request.Form["TelNr"];
+                var settings = context.ProfileSettings.Single(c => c.UserId == userId);
+                settings.Email = CheckState(Request.Form["ShowEmail"]);
+                settings.FirstName = CheckState(Request.Form["ShowFirstName"]);
+                settings.LastName = CheckState(Request.Form["ShowLastName"]);
+                settings.BirthDate = CheckState(Request.Form["ShowBirthDate"]);
+                settings.Street = CheckState(Request.Form["ShowStreet"]);
+                settings.ZipCode = CheckState(Request.Form["ShowZipCode"]);
+                settings.TelNr = CheckState(Request.Form["ShowTelNr"]);
+                settings.MobileNr = CheckState(Request.Form["ShowMobileNr"]);
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Settings");
+        }
+        public Boolean CheckState(string state) {
+            if (state == null) {
+                return false;
+            }
+            return true;
         }
         public ActionResult DeactivateAccount() {
             using (var context = new STUFVModelContext())
