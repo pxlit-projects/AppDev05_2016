@@ -25,6 +25,7 @@ namespace webapp_stufv.Controllers {
                         select r;
             return View ( model );
         }
+
         public ActionResult Details ( int id ) {
             if ( Session[ "email" ] == null || Session[ "email" ].Equals ( "" ) ) { } else {
                 int userId = ( int ) Session[ "userId" ];
@@ -44,7 +45,7 @@ namespace webapp_stufv.Controllers {
             using ( var context = new STUFVModelContext ( ) ) {
                 reviews = context.Reviews.Include ( "User" ).Where ( r => r.EventId == id ).ToList ( );
             }
-                var tuple = new Tuple<Event, DesDriver, string, IEnumerable<Review>> ( _events.Single ( r => r.Id == id ), new DesDriver ( ), new EventRepository ( ).getCity ( _events.Single ( r => r.Id == id ).ZipCode ), reviews );
+            var tuple = new Tuple<Event, DesDriver, string, IEnumerable<Review>> ( _events.Single ( r => r.Id == id ), new DesDriver ( ), new EventRepository ( ).getCity ( _events.Single ( r => r.Id == id ).ZipCode ), reviews );
             ViewBag.Title = tuple.Item1.Name;
             return View ( tuple );
         }
@@ -68,28 +69,27 @@ namespace webapp_stufv.Controllers {
         public ActionResult RemoveAttend ( int id ) {
             iattend.UnSignAttend ( ( int ) Session[ "userId" ], id );
             ViewBag.id = id;
-            return RedirectToAction("Details", "Events", new { id = id });
+            return RedirectToAction ( "Details", "Events", new { id = id } );
         }
         public ActionResult BobProcess ( int id ) {
             int NrOfPlaces;
             int.TryParse ( Request.Form[ "Item2.NrOfPlaces" ], out NrOfPlaces );
             ViewBag.id = id;
             idesdriver.SetDES ( ( int ) Session[ "userId" ], id, NrOfPlaces );
-            return RedirectToAction("Details", "Events", new { id = id });
+            return RedirectToAction ( "Details", "Events", new { id = id } );
         }
         public ActionResult RemoveBob ( int id ) {
             ViewBag.id = id;
             idesdriver.unSetDES ( ( int ) Session[ "userId" ], id );
-            using (var context = new STUFVModelContext())
-            {
-                DesDriver driver = context.DesDrivers.Single(e => e.UserId == (int)Session["userId"] && e.EventId == id);
-                List<Passenger> passengers = context.Passengers.Where(e => e.DesDriverId == driver.Id).ToList();
-                for (int i = 0; i < passengers.Count(); i++) {
-                    passengers.ElementAt(i).Active = false;
+            using ( var context = new STUFVModelContext ( ) ) {
+                DesDriver driver = context.DesDrivers.Single ( e => e.UserId == ( int ) Session[ "userId" ] && e.EventId == id );
+                List<Passenger> passengers = context.Passengers.Where ( e => e.DesDriverId == driver.Id ).ToList ( );
+                for ( int i = 0 ; i < passengers.Count ( ) ; i++ ) {
+                    passengers.ElementAt ( i ).Active = false;
                 }
-                context.SaveChanges();
+                context.SaveChanges ( );
             }
-            return RedirectToAction("Details", "Events", new { id = id });
+            return RedirectToAction ( "Details", "Events", new { id = id } );
         }
         public ActionResult FindBob ( int id ) {
             ViewBag.Title = "Find bob";
@@ -100,94 +100,49 @@ namespace webapp_stufv.Controllers {
         public ActionResult JoinBob ( int id ) {
             ViewBag.Title = "Find bob";
             int eventId = 0;
-            if ( ipassenger.IsPassenger ( id, ( int ) Session[ "userId" ] , out eventId) ) {
+            if ( ipassenger.IsPassenger ( id, ( int ) Session[ "userId" ], out eventId ) ) {
                 ViewBag.Title = "Je bent al geacepteerd door een bob.";
             } else {
-                ipassenger.NewPassenger ( ( int ) Session[ "userId" ], id, out eventId);
+                ipassenger.NewPassenger ( ( int ) Session[ "userId" ], id, out eventId );
             }
-            return RedirectToAction("Details", "Events", new { id = id });
+            return RedirectToAction ( "Details", "Events", new { id = id } );
         }
-        public ActionResult BobSettings(int id) {
+        public ActionResult BobSettings ( int id ) {
             ViewBag.Title = "BOB instelligen";
             ViewBag.EventId = id;
-            List<DesDriver> drivers = idesdriver.GetAllDrivers();
-            int userId = (int)Session["userId"];
-            DesDriver driver = drivers.Single(e => e.UserId == userId && e.EventId == id);
-            List<Passenger> passengers = ipassenger.GetAllPassengers();
-            List<Passenger> acceptedPassengers = passengers.Where(e => e.DesDriverId == driver.Id && e.Accepted && e.Active).ToList();
-            List<Passenger> notAcceptedPassengers = passengers.Where(e => e.DesDriverId == driver.Id && !e.Accepted && e.Active).ToList();
-            var tuple = new Tuple<IEnumerable<Passenger>, IEnumerable<Passenger>>(acceptedPassengers, notAcceptedPassengers);
-            return View(tuple);
+            List<DesDriver> drivers = idesdriver.GetAllDrivers ( );
+            int userId = ( int ) Session[ "userId" ];
+            DesDriver driver = drivers.Single ( e => e.UserId == userId && e.EventId == id );
+            List<Passenger> passengers = ipassenger.GetAllPassengers ( );
+            List<Passenger> acceptedPassengers = passengers.Where ( e => e.DesDriverId == driver.Id && e.Accepted && e.Active ).ToList ( );
+            List<Passenger> notAcceptedPassengers = passengers.Where ( e => e.DesDriverId == driver.Id && !e.Accepted && e.Active ).ToList ( );
+            var tuple = new Tuple<IEnumerable<Passenger>, IEnumerable<Passenger>> ( acceptedPassengers, notAcceptedPassengers );
+            return View ( tuple );
         }
 
         public ActionResult AlcohoLFree ( string value ) {
-            using ( var context = new STUFVModelContext ( ) ) {
-                IEnumerable<Event> events;
-
-                if ( value.Equals ( "yes" ) ) {
-                    events = context.Events.Where ( e => e.AlcoholFree == true ).ToList ( );
-                } else if ( value.Equals ( "no" ) ) {
-                    events = context.Events.Where ( e => e.AlcoholFree == false ).ToList ( );
-                } else {
-                    events = context.Events.ToList ( );
-                }
-
-                ViewBag.Title = "Evenementen";
-
-                return View ( "~/Views/Events/Index.cshtml", events );
-            }
+            Session[ "AlcoholFree" ] = value;
+            return RedirectToAction ( "Index", "Events" );
         }
 
         public ActionResult Sort ( string value ) {
-            using ( var context = new STUFVModelContext ( ) ) {
-                IEnumerable<Event> events;
-                IEnumerable<Event> model;
+            Session[ "Sort" ] = value;
+            return RedirectToAction ( "Index", "Events" );
+        }
 
-                events = context.Events.ToList ( );
-
-                if ( value.Equals ( "atoz" ) ) {
-                    model = from r in events
-                            orderby r.Name
-                            select r;
-                } else if ( value.Equals ( "ztoa" ) ) {
-                    model = from r in events
-                            orderby r.Name descending
-                            select r;
-                } else if ( value.Equals ( "entranceasc" ) ) {
-                    model = from r in events
-                            orderby r.EntranceFee
-                            select r;
-                } else {
-                    model = from r in events
-                            orderby r.EntranceFee descending
-                            select r;
-                }
-
-                ViewBag.Title = "Evenementen";
-
-                return View ( "~/Views/Events/Index.cshtml", model );
+        public IEnumerable<Event> filterZipCode ( IEnumerable<Event> events, string zip ) {
+            if ( !zip.Equals ( "" ) ) {
+                return events.Where ( e => e.ZipCode.Contains ( zip ) );
+            } else {
+                return events;
             }
         }
 
-        public ActionResult filterZipCode ( ) {
-            using ( var context = new STUFVModelContext ( ) ) {
-                var zipCode = Request.Form[ "Zipcode" ];
-                var events = context.Events.Where ( e => e.ZipCode == zipCode ).ToList ( );
-
-                ViewBag.Title = "Evenementen";
-
-                return View ( "~/Views/Events/Index.cshtml", events );
-            }
-        }
-
-        public ActionResult filterName ( ) {
-            using ( var context = new STUFVModelContext ( ) ) {
-                var name = Request.Form[ "Name" ];
-                var events = context.Events.Where ( e => e.Name.Contains ( name ) ).ToList ( );
-
-                ViewBag.Title = "Evenementen";
-
-                return View ( "~/Views/Events/Index.cshtml", events );
+        public IEnumerable<Event> filterName ( IEnumerable<Event> events, string needle ) {
+            if ( !needle.Equals ( "" ) ) {
+                return events.Where ( e => e.Name.Contains ( needle ) );
+            } else {
+                return null;
             }
         }
 
@@ -213,7 +168,7 @@ namespace webapp_stufv.Controllers {
             return RedirectToAction ( "Details", "Events", new { id = eventid } );
         }
 
-        public ActionResult FlagReaction (int id) {
+        public ActionResult FlagReaction ( int id ) {
             using ( var context = new STUFVModelContext ( ) ) {
                 Review review = context.Reviews.Find ( id );
                 review.Flagged = true;
@@ -224,7 +179,7 @@ namespace webapp_stufv.Controllers {
             }
         }
 
-        public ActionResult DeleteReaction (int id, int eventId) {
+        public ActionResult DeleteReaction ( int id, int eventId ) {
             using ( var context = new STUFVModelContext ( ) ) {
                 Review review = context.Reviews.Find ( id );
                 context.Reviews.Remove ( review );
@@ -233,23 +188,69 @@ namespace webapp_stufv.Controllers {
                 return RedirectToAction ( "Details", "Events", new { id = eventId } );
             }
         }
-        public ActionResult AcceptPas(int pasId, int eventId) {
-            using (var context = new STUFVModelContext()) {
-                Passenger passenger = context.Passengers.Single(e => e.Id == pasId);
+        public ActionResult AcceptPas ( int pasId, int eventId ) {
+            using ( var context = new STUFVModelContext ( ) ) {
+                Passenger passenger = context.Passengers.Single ( e => e.Id == pasId );
                 passenger.Accepted = true;
-                context.SaveChanges();
+                context.SaveChanges ( );
             }
-            return RedirectToAction("BobSettings", "Events", new { id = eventId });
+            return RedirectToAction ( "BobSettings", "Events", new { id = eventId } );
         }
-        public ActionResult RemovePas(int pasId, int eventId)
-        {
-            using (var context = new STUFVModelContext())
-            {
-                Passenger passenger = context.Passengers.Single(e => e.Id == pasId);
+        public ActionResult RemovePas ( int pasId, int eventId ) {
+            using ( var context = new STUFVModelContext ( ) ) {
+                Passenger passenger = context.Passengers.Single ( e => e.Id == pasId );
                 passenger.Accepted = false;
-                context.SaveChanges();
+                context.SaveChanges ( );
             }
-            return RedirectToAction("BobSettings", "Events", new { id = eventId });
+            return RedirectToAction ( "BobSettings", "Events", new { id = eventId } );
+        }
+
+        public ActionResult filter ( ) {
+            using ( var context = new STUFVModelContext ( ) ) {
+                IEnumerable<Event> events = context.Events.ToList ( );
+
+                events = filterAlcohol ( events, Session[ "AlcoholFree" ].ToString ( ) );
+                events = filterSort ( events, Session[ "Sort" ].ToString ( ) );
+                events = filterName ( events, Request.Form[ "Name" ] );
+                events = filterZipCode ( events, Request.Form[ "ZipCode" ] );
+
+                return View ( "~/Views/Events/Index.cshtml", events );
+            }
+        }
+
+
+        private IEnumerable<Event> filterSort ( IEnumerable<Event> events, string value ) {
+            if ( value.Equals ( "atoz" ) ) {
+                events = from r in events
+                         orderby r.Name
+                         select r;
+            } else if ( value.Equals ( "ztoa" ) ) {
+                events = from r in events
+                         orderby r.Name descending
+                         select r;
+            } else if ( value.Equals ( "entranceasc" ) ) {
+                events = from r in events
+                         orderby r.EntranceFee
+                         select r;
+            } else {
+                events = from r in events
+                         orderby r.EntranceFee descending
+                         select r;
+            }
+
+            return events;
+        }
+
+        public IEnumerable<Event> filterAlcohol ( IEnumerable<Event> events, string value ) {
+            if ( value.Equals ( "yes" ) ) {
+                events = events.Where ( e => e.AlcoholFree == true );
+            } else if ( value.Equals ( "no" ) ) {
+                events = events.Where ( e => e.AlcoholFree == false );
+            } else {
+                return events;
+            }
+
+            return events;
         }
     }
 }
