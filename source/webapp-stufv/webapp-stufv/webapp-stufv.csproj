@@ -217,6 +217,7 @@
     <Compile Include="Controllers\InstagramController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OrganisationController.cs" />
+    <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -387,6 +388,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
+    <Folder Include="Views\Partner\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
