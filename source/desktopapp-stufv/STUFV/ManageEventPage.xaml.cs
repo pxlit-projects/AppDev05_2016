@@ -319,7 +319,7 @@ namespace STUFV
             Organisation organisation = null;
             try
             {
-                var organisationUrl = "/api/organisation/" + id;
+                var organisationUrl = "/api/organisations/" + id;
                 HttpResponseMessage response = await client.GetAsync(organisationUrl);
 
                 if (response.IsSuccessStatusCode)

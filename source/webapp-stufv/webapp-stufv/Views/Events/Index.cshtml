@@ -3,7 +3,7 @@
     <div class="container">
         <div class="page-header">
             <div class="well">
-                <h3>@ViewBag.Title</h3>
+                <h1>@ViewBag.Title</h1>
             </div>
         </div>
         <nav class="navbar navbar-inverse">
@@ -18,30 +18,47 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Alcoholvrij <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href=@Url.Action("AlcoholFree", "Events", new {value = "yes"})>Ja</a></li>
-                                    <li><a href=@Url.Action("AlcoholFree", "Events", new { value = "no" })>Nee</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href=@Url.Action("AlcoholFree", "Events", new { value = "neutral" })>Maakt niet uit</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Sorteren <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href=@Url.Action("Sort", "Events", new {value = "atoz"})>Naam: 'a' naar 'z' </a></li>
-                                    <li><a href=@Url.Action("Sort", "Events", new { value = "ztoa" })>Naam: 'z' naar 'a'</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href=@Url.Action("Sort", "Events", new { value = "entranceasc" })>Inkom oplopend</a></li>
-                                    <li><a href=@Url.Action("Sort", "Events", new { value = "entrancedesc" })>Inkom aflopend</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    <form class="navbar-form navbar-left" role="search" method="post" action=@Url.Action("Filter", "Events")>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Alcoholvrij <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href=@Url.Action("AlcoholFree", "Events", new {value = "yes"})>Ja</a></li>
+                                <li><a href=@Url.Action("AlcoholFree", "Events", new { value = "no" })>Nee</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href=@Url.Action("AlcoholFree", "Events", new { value = "neutral" })>Maakt niet uit</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Sorteren <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href=@Url.Action("Sort", "Events", new {value = "atoz"})>Naam: 'a' naar 'z' </a></li>
+                                <li><a href=@Url.Action("Sort", "Events", new { value = "ztoa" })>Naam: 'z' naar 'a'</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href=@Url.Action("Sort", "Events", new { value = "entranceasc" })>Inkom oplopend</a></li>
+                                <li><a href=@Url.Action("Sort", "Events", new { value = "entrancedesc" })>Inkom aflopend</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left inline" role="search" method="post" action=@Url.Action("Filter", "Events")>
+                        <div class="form-group">
+                            <div class="col-md-2" id="birthdatevalidation">
+                                <div class="input-append date form_datetime">
+                                    <input class="form-control" id="Date" name="Date" size="16" type="text" value="" readonly placeholder="Datum">
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+
+                                <script type="text/javascript">
+                                    $(".form_datetime").datetimepicker({
+                                        language: 'nl',
+                                        format: "dd MM yyyy",
+                                        autoclose: true,
+                                        minView: 2
+                                    });
+                                </script>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Postcode" name="Zipcode" id="Zipcode">
                         </div>
@@ -50,8 +67,8 @@
                         </div>
                         <button type="submit" class="btn btn-default">Zoek</button>
                     </form>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+            </div><!-- /.navbar-collapse -->
         </nav>
         @foreach ( var item in Model ) {
             <div class="eventpage">
