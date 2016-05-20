@@ -17,9 +17,12 @@ namespace webapp_stufv {
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js" ) );
 
+            bundles.Add ( new ScriptBundle ( "~/bundles/datepicker" ).Include (
+                      "~/Content/js/bootstrap-datetimepicker.min.js" ) );
+
             bundles.Add ( new StyleBundle ( "~/Content/css" ).Include (
                       "~/Content/bootstrap.css",
-                      "~/Content/Global.css") );
+                      "~/Content/Global.css" ) );
         }
     }
 }
