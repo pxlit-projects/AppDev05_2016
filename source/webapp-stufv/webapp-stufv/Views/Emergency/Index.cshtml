@@ -1,31 +1,30 @@
 ﻿@section Content{
     @model IEnumerable<webapp_stufv.Models.Emergency>
 
-    <div class="page-header">
-        <h1>@ViewBag.Title</h1>
-    </div>
-
-    <table class="table">
-        <tr>
-            <th>
+    <div class="container">
+        <br />
+        <div class="well">
+            <h1>@ViewBag.Title</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <p class="text-capitalize"> Instantie </p>
-            </th>
-            <th>
+            </div>
+            <div class="col-md-6">
                 <p class="text-capitalize"> Telefoon nummer </p>
-            </th>
-            <th></th>
-        </tr>
+            </div>
+        </div>
 
         @foreach ( var item in Model ) {
-            <tr>
-                <td>
+            <div class="row">
+                <div class="col-md-6">
                     <p class="text-danger"> @Html.DisplayFor( modelItem => item.Name ) </p>
-                </td>
-                <td>
+                </div>
+                <div class="col-md-6">
                     <p class="lead"> @Html.DisplayFor( modelItem => item.TelNr ) </p>
-                </td>
-            </tr>
+                </div>
+            </div>
         }
 
-    </table>
+    </div>
 }
