@@ -9,19 +9,18 @@
             </div>
             <h4> Vul je gegevens in. </h4>
         </div>
-        @using (Html.BeginForm("CreateAccount", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "registerform", id = "registerform", @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
+        @using ( Html.BeginForm( "CreateAccount", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "registerform", id = "registerform", @class = "form-horizontal", role = "form" } ) ) {
+            @Html.AntiForgeryToken( )
             <div class="form-group">
                 <div class="col-md-2 control-label">Email adres: </div>
                 <div class="col-md-10" id="emailValidation">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.TextBoxFor( m => m.Email, new { @class = "form-control" } )
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2 control-label">Wachtwoord: </div>
                 <div class="col-md-10" id="Passwordvalidation">
-                    @Html.PasswordFor(m => m.PassWord, new { @class = "form-control" })
+                    @Html.PasswordFor( m => m.PassWord, new { @class = "form-control" } )
                 </div>
             </div>
             <div class="form-group">
@@ -33,13 +32,13 @@
             <div class="form-group">
                 <div class="col-md-2 control-label">Voornaam: </div>
                 <div class="col-md-10" id="namevalidation">
-                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    @Html.TextBoxFor( m => m.FirstName, new { @class = "form-control" } )
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2 control-label">Achternaam: </div>
                 <div class="col-md-10" id="lastnamevalidation">
-                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    @Html.TextBoxFor( m => m.LastName, new { @class = "form-control" } )
                 </div>
             </div>
             <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -66,7 +65,7 @@
             <div class="form-group">
                 <div class="col-md-2 control-label">Geboorteplaats: </div>
                 <div class="col-md-10" id="birthplacevalidation">
-                    @Html.EditorFor(m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor( m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control" } } )
                 </div>
             </div>
             <div class="form-group">
@@ -75,14 +74,14 @@
                     <table>
                         <tr>
                             <td>
-                                @Html.RadioButtonFor(m => m.Sex, "M", new { htmlAttributes = new { @class = "radio" } })
-                                @Html.Label("Man")
+                                @Html.RadioButtonFor( m => m.Sex, "M", new { htmlAttributes = new { @class = "radio" } } )
+                                @Html.Label( "Man" )
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                @Html.RadioButtonFor(m => m.Sex, "V", new { htmlAttributes = new { @class = "radio" } })
-                                @Html.Label("Vrouw")
+                                @Html.RadioButtonFor( m => m.Sex, "V", new { htmlAttributes = new { @class = "radio" } } )
+                                @Html.Label( "Vrouw" )
                             </td>
                         </tr>
                     </table>
@@ -91,25 +90,25 @@
             <div class="form-group">
                 <div class="col-md-2 control-label">Straat en huisnummer: </div>
                 <div class="col-md-10" id="streetvalidation">
-                    @Html.EditorFor(m => m.Street, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor( m => m.Street, new { htmlAttributes = new { @class = "form-control" } } )
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2 control-label">Postcode: </div>
                 <div class="col-md-10" id="zipcodevalidation">
-                    @Html.EditorFor(m => m.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor( m => m.ZipCode, new { htmlAttributes = new { @class = "form-control" } } )
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label">Telefoon nummer: </div>
+                <div class="col-md-10" id="telnrvalidation">
+                    @Html.EditorFor( m => m.TelNr, new { htmlAttributes = new { @class = "form-control" } } )
                 </div>
             </div>
                     <div class="form-group">
-                        <div class="col-md-2 control-label">Telefoon nummer: </div>
-                        <div class="col-md-10" id="telnrvalidation">
-                            @Html.EditorFor(m => m.TelNr, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-md-2 control-label">GSM nummer: </div>
                         <div class="col-md-10" id="mobilenrvalidation">
-                            @Html.EditorFor(m => m.MobileNr, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor( m => m.MobileNr, new { htmlAttributes = new { @class = "form-control" } } )
                         </div>
                     </div>
 
@@ -121,67 +120,6 @@
         }
 
     </div>
-
-    <!-- Input validation Script Register -->
-    <script>
-        function ValidateReg() {
-            var email = ValidateRegEmail();
-            var password = ValidateRegPass();
-            var firstname = IsEmpty("#namevalidation", document.registerform.FirstName);
-            var lastname = IsEmpty("#lastnamevalidation", document.registerform.LastName);
-            var birthdate = IsEmpty("#birthdatevalidation", document.registerform.BirthDate);
-            var birthplace = IsEmpty("#birthplacevalidation", document.registerform.BirthPlace);
-            var zipcode = IsEmpty("#zipcodevalidation", document.registerform.ZipCode);
-            var telnr = IsEmpty("#telnrvalidation", document.registerform.TelNr);
-            var mobilenr = IsEmpty("#mobilenrvalidation", document.registerform.MobileNr);
-            var sex = IsEmpty("#sexvalidation", document.registerform.Sex);
-            var street = IsEmpty("#streetvalidation", document.registerform.Street);
-            if (email && password && firstname && lastname && birthplace && birthdate && zipcode && telnr && mobilenr && sex) {
-                return true;
-            }
-            return false;
-        }
-        function ValidateRegEmail() {
-            var inputText = document.registerform.Email;
-            var mailformat = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if (inputText.value.match(mailformat)) {
-                $('#emailValidation').attr("class", "col-md-10 has-success");
-                return true;
-            } else {
-                $('#emailValidation').attr("class", "col-md-10 has-error");
-                return false;
-            }
-        }
-        function ValidateRegPass() {
-            var inputText = document.registerform.PassWord;
-            var inputText2 = document.registerform.CheckPass;
-            if (inputText.value == "") {
-                $('#Passwordvalidation').attr("class", "col-md-10 has-error");
-                return false;
-            } else if (inputText2.value == "") {
-                $('#CheckpassValidation').attr("class", "col-md-10 has-error");
-                return false;
-            } else if (inputText.value == inputText2.value) {
-                $('#Passwordvalidation').attr("class", "col-md-10 has-success");
-                $('#CheckpassValidation').attr("class", "col-md-10 has-success");
-                return true;
-            } else {
-                $('#Passwordvalidation').attr("class", "col-md-10 has-error");
-                $('#CheckpassValidation').attr("class", "col-md-10 has-error");
-                return false;
-            }
-        }
-        function IsEmpty(id, text) {
-            if (text.value == "") {
-                $(id).attr("class", "col-md-10 has-error");
-                return false;
-            } else {
-                $(id).attr("class", "col-md-10 has-success");
-                return true;
-            }
-        }
-
-    </script>
 }
 
 
