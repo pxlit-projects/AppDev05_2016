@@ -12,7 +12,8 @@ namespace webapp_stufv {
                       "~/Scripts/bootstrap-switch.min.js",
                       "~/Scripts/modernizr-*",
                       "~/Scripts/jquery-{version}.js",
-                      "~/Scripts/global.js" ) );
+                      "~/Scripts/global.js",
+                      "~/Scripts/jquery-12.4.js") );
 
             bundles.Add( new StyleBundle( "~/Content/css" ).Include(
                       "~/Content/bootstrap.css",
