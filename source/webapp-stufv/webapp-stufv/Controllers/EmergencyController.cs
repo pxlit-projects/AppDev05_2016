@@ -5,14 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using webapp_stufv.Repository;
 
-namespace webapp_stufv.Controllers {
-   
+namespace webapp_stufv.Controllers {   
     public class EmergencyController : Controller {
-        private IEmergencyRepository iemer = new EmergencyRepository();
-        // GET: Emergency
+
+        private IEmergencyRepository _iemer = new EmergencyRepository();
+
+        /*
+         * Emergency/Index
+         */
         public ActionResult Index ( ) {
             ViewBag.Title = "Noodnummers";
-            return View ( iemer.getAllEmergencies ( ) );
+            return View ( _iemer.getAllEmergencies ( ) );
         }
     }
 }
