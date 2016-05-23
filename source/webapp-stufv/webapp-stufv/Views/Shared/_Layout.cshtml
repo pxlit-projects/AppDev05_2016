@@ -52,7 +52,7 @@
                 <li>
                     @Html.ActionLink( "Contact", "Index", "Contact" )
                 </li>
-                @if ( Session.IsNewSession ) {
+                @if ( Session["email"] == null ) {
                     <li>
                         @Html.ActionLink( "Registreren", "Register", "Account" )
                     </li>

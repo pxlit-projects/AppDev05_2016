@@ -21,8 +21,12 @@ namespace webapp_stufv.Controllers {
          * Account/Register
          */
         public ActionResult Register( ) {
-            ViewBag.Title = "Registratie";
-            return View( );
+            if ( Session[ "email" ] == null ) {
+                ViewBag.Title = "Registratie";
+                return View( );
+            } else {
+                return RedirectToAction( "Index", "Home" );
+            }
         }
 
         /*
@@ -30,7 +34,7 @@ namespace webapp_stufv.Controllers {
          * Processes a login
          */
         public ActionResult Process( ) {
-            if ( Session.IsNewSession ) {
+            if ( Session[ "email" ] == null && Request.Form[ "Email" ] != null && Request.Form[ "Password" ] != null ) {
                 var email = Request.Form[ "Email" ].ToLower( );
                 var password = Request.Form[ "Password" ];
 
@@ -53,7 +57,7 @@ namespace webapp_stufv.Controllers {
                     return View( );
                 }
             } else {
-                return RedirectToAction( "Index", "Settings" );
+                return RedirectToAction( "Index", "Home" );
             }
         }
 
@@ -70,7 +74,7 @@ namespace webapp_stufv.Controllers {
          * Starts the process to register a new account
          */
         public ActionResult CreateAccount( ) {
-            if ( Session.IsNewSession ) {
+            if ( Session[ "email" ] == null ) {
                 String email = Request.Form[ "Email" ];
                 if ( _iuser.Exist( email ) ) {
                     ViewBag.Title = "Oops!";
@@ -83,7 +87,7 @@ namespace webapp_stufv.Controllers {
 
                 return View( );
             } else {
-                return RedirectToAction( "Index", "Settings" );
+                return RedirectToAction( "Index", "Home" );
             }
         }
 
@@ -91,7 +95,7 @@ namespace webapp_stufv.Controllers {
          * Account/ChangePassword
          */
         public ActionResult ChangePassword( ) {
-            if ( !Session.IsNewSession ) {
+            if ( Session[ "email" ] == null ) {
                 string salt = _iuser.GetSalt( Session[ "Email" ].ToString( ) );
                 var encpass = MD5Encrypt( Request.Form[ "OldPass" ], salt );
                 int userId = ( int ) Session[ "userId" ];
@@ -108,7 +112,7 @@ namespace webapp_stufv.Controllers {
                 }
             }
 
-            return RedirectToAction( "Index", "Settings" );
+            return RedirectToAction( "Index", "Home" );
         }
 
         /*
