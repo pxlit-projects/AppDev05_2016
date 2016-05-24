@@ -79,6 +79,7 @@ namespace webapp_stufv.Migrations
                     PassWord = encPass,
                     Salt = salt,
                     ProfilePicture = "noimageavailable.png",
+                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
                 },
                 new User
                 {
@@ -98,6 +99,7 @@ namespace webapp_stufv.Migrations
                     PassWord = encPass,
                     Salt = salt,
                     ProfilePicture = "noimageavailable.png",
+                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
                 }
                 );
 
@@ -148,6 +150,7 @@ namespace webapp_stufv.Migrations
                     Name = "Testorganisatie 1",
                     Description = "Wij zijn een testorganisatie",
                     isRegistered = true,
+                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42"),
                     UserId = 1
                 },
                 new Organisation
@@ -182,7 +185,8 @@ namespace webapp_stufv.Migrations
                     OrganisationId = 1,
                     ZipCode = "3840",
                     Type = 1,
-                    Street = "Stationstraat 4"
+                    Street = "Stationstraat 4",
+                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
                 },
                 new Event
                 {
@@ -196,7 +200,8 @@ namespace webapp_stufv.Migrations
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
-                    Street = "Stationstraat 42"
+                    Street = "Stationstraat 42",
+                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
                 },
                 new Event
                 {
@@ -210,7 +215,8 @@ namespace webapp_stufv.Migrations
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
-                    Street = "Stationstraat 42"
+                    Street = "Stationstraat 42",
+                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
                 },
                 new Event
                 {
@@ -224,7 +230,8 @@ namespace webapp_stufv.Migrations
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
-                    Street = "Stationstraat 42"
+                    Street = "Stationstraat 42",
+                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
                 },
                 new Event
                 {
@@ -238,7 +245,8 @@ namespace webapp_stufv.Migrations
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
-                    Street = "Stationstraat 42"
+                    Street = "Stationstraat 42",
+                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
                 }
                 );
 

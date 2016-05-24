@@ -48,6 +48,8 @@ namespace STUFV
         [Required]
         public Boolean Active { get; set; }
 
+        public DateTime? RegisterDate { get; set; }
+
         public string Image { get; set; }
 
         public virtual ICollection<Attendance> Attendances { get; set; }

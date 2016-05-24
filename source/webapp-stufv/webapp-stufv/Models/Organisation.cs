@@ -27,6 +27,8 @@ namespace webapp_stufv.Models {
         [Required]
         public Boolean isRegistered { get; set; }
 
+        public DateTime? RegisterDate { get; set; }
+
         public virtual ICollection<Event> Events { get; set; }
 
       

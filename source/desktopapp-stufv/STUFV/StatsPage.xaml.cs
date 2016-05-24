@@ -257,6 +257,7 @@ namespace STUFV
         public async Task<IEnumerable<Organisation>> GetOrganisations()
         {
             IEnumerable<Organisation> organisations = null;
+            List<Organisation> relatedOrganisations = new List<Organisation>();
             try
             {
                 var organisationUrl = "/api/organisations";
@@ -265,6 +266,13 @@ namespace STUFV
                 if (response.IsSuccessStatusCode)
                 {
                     organisations = await response.Content.ReadAsAsync<IEnumerable<Organisation>>();
+                    foreach (Organisation organisation in organisations)
+                    {
+                        if (organisation.isRegistered == true)
+                        {
+                            relatedOrganisations.Add(organisation);
+                        }
+                    }
                 }
             }
             catch (HttpRequestException)
@@ -275,7 +283,7 @@ namespace STUFV
                 window.Show();
                 scherm.Close();
             }
-            return organisations;
+            return relatedOrganisations;
         }
 
         private async Task<IEnumerable<Event>> GetEvents()

@@ -28,6 +28,9 @@ namespace STUFV
         [Required]
         public Boolean isRegistered { get; set; }
 
+        [Required]
+        public DateTime? RegisterDate { get; set; }
+
         public virtual ICollection<Event> Events { get; set; }
 
        

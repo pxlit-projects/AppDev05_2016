@@ -251,6 +251,7 @@ namespace STUFV {
 
             organisation.Active = true;
             organisation.isRegistered = true;
+            organisation.RegisterDate = DateTime.Now;
 
             messageLabel.Content = "Verwerken...";
             UpdateOrganisation ( organisation );
