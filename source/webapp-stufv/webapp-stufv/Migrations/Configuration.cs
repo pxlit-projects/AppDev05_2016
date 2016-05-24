@@ -79,7 +79,7 @@ namespace webapp_stufv.Migrations
                     PassWord = encPass,
                     Salt = salt,
                     ProfilePicture = "noimageavailable.png",
-                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
+                    RegisterDate = DateTime.Now
                 },
                 new User
                 {
@@ -99,44 +99,48 @@ namespace webapp_stufv.Migrations
                     PassWord = encPass,
                     Salt = salt,
                     ProfilePicture = "noimageavailable.png",
-                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
+                    RegisterDate = DateTime.Now
                 }
                 );
 
             context.Articles.AddOrUpdate(
                 new Article
                 {
+                    Id = 1,
                     Active = true,
                     Title = "Artikel 1",
                     Content = "Dit is artikel 1",
-                    DateTime = DateTime.Parse("14-03-1996"),
+                    DateTime = DateTime.Now,
                     ThumbsUp = 0,
                     UserId = 1
                 },
                 new Article
                 {
+                    Id = 2,
                     Active = true,
                     Title = "Artikel 2",
                     Content = "Dit is artikel 2",
-                    DateTime = DateTime.Parse("14-03-1996"),
+                    DateTime = DateTime.Now,
                     ThumbsUp = 0,
                     UserId = 1
                 },
                 new Article
                 {
+                    Id = 3,
                     Active = true,
                     Title = "Artikel 3",
                     Content = "Dit is artikel 3",
-                    DateTime = DateTime.Parse("14-03-1996"),
+                    DateTime = DateTime.Now,
                     ThumbsUp = 0,
                     UserId = 1
                 },
                 new Article
                 {
+                    Id = 4,
                     Active = true,
                     Title = "Artikel 4",
                     Content = "Dit is artikel 4",
-                    DateTime = DateTime.Parse("14-03-1996"),
+                    DateTime = DateTime.Now,
                     ThumbsUp = 0,
                     UserId = 1
                 }
@@ -150,7 +154,7 @@ namespace webapp_stufv.Migrations
                     Name = "Testorganisatie 1",
                     Description = "Wij zijn een testorganisatie",
                     isRegistered = true,
-                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42"),
+                    RegisterDate = DateTime.Now,
                     UserId = 1
                 },
                 new Organisation
@@ -175,21 +179,23 @@ namespace webapp_stufv.Migrations
             context.Events.AddOrUpdate(
                 new Event
                 {
+                    Id = 1,
                     Active = true,
                     AlcoholFree = true,
                     Name = "Event 1",
                     Description = "Dit is een vette event",
-                    End = DateTime.Parse("14-03-2017").AddDays(1),
-                    Start = DateTime.Parse("14-03-2017"),
+                    End = DateTime.Now.AddDays(1),
+                    Start = DateTime.Now,
                     EntranceFee = 5,
                     OrganisationId = 1,
                     ZipCode = "3840",
                     Type = 1,
                     Street = "Stationstraat 4",
-                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
+                    RegisterDate = DateTime.Now
                 },
                 new Event
                 {
+                    Id = 2,
                     Active = true,
                     AlcoholFree = false,
                     Name = "Event 2",
@@ -201,52 +207,55 @@ namespace webapp_stufv.Migrations
                     ZipCode = "3600",
                     Type = 1,
                     Street = "Stationstraat 42",
-                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
+                    RegisterDate = DateTime.Now
                 },
                 new Event
                 {
+                    Id = 3,
                     Active = true,
                     AlcoholFree = false,
                     Name = "Event 3",
                     Description = "Dit is een vette event",
-                    End = DateTime.Parse("14-03-2017").AddDays(1),
-                    Start = DateTime.Parse("14-03-2017"),
+                    End = DateTime.Now.AddDays(1),
+                    Start = DateTime.Now,
                     EntranceFee = 5,
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
                     Street = "Stationstraat 42",
-                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
+                    RegisterDate = DateTime.Now
                 },
                 new Event
                 {
+                    Id = 4,
                     Active = true,
                     AlcoholFree = true,
                     Name = "Event 4",
                     Description = "Dit is een vette event",
-                    End = DateTime.Parse("14-03-2017").AddDays(1),
-                    Start = DateTime.Parse("14-03-2017"),
+                    End = DateTime.Now.AddDays(1),
+                    Start = DateTime.Now,
                     EntranceFee = 5,
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
                     Street = "Stationstraat 42",
-                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
+                    RegisterDate = DateTime.Now
                 },
                 new Event
                 {
+                    Id = 5,
                     Active = true,
                     AlcoholFree = false,
                     Name = "Event 5",
                     Description = "Dit is een vette event",
-                    End = DateTime.Parse("14-03-2017").AddDays(1),
-                    Start = DateTime.Parse("14-03-2017"),
+                    End = DateTime.Now.AddDays(1),
+                    Start = DateTime.Now,
                     EntranceFee = 5,
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
                     Street = "Stationstraat 42",
-                    RegisterDate = Convert.ToDateTime("24/05/2016 14:50:50.42")
+                    RegisterDate = DateTime.Now
                 }
                 );
 

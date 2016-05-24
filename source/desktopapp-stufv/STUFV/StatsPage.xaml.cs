@@ -129,22 +129,124 @@ namespace STUFV
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            string filter = filterBox.SelectedValue.ToString();
+            string filter = "";
+            string time = "";
 
-            string time = timeBox.SelectedValue.ToString();
+            try
+            {
+                filter = filterBox.SelectedValue.ToString();
+                time = timeBox.SelectedValue.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Enkele waarden ontbreken!");
+            }
 
             if (filter != "" && time != "")
             {
-                CreateGraph(time);
+                CreateGraph(filter, time);
             }
         }
 
-        public void CreateGraph(string time)
+        public void CreateGraph(string filter,string time)
         {
-            string timeText = "";
             switch (time)
             {
                 case "Vandaag":
+                    List<KeyValuePair<string, int>> listKeys = listKeys = new List<KeyValuePair<string, int>>();
+                    DateTime currentHour = DateTime.Now.AddHours(-DateTime.Now.Hour);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i <= DateTime.Now.Hour; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).Hour == currentHour.Hour &&
+                                        Convert.ToDateTime(user.RegisterDate).ToShortDateString() == DateTime.Now.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
+                                currentHour = currentHour.AddHours(1);
+                            }
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i <= DateTime.Now.Hour; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).Hour == currentHour.Hour &&
+                                        Convert.ToDateTime(organisation.RegisterDate).ToShortDateString() == DateTime.Now.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
+                                currentHour = currentHour.AddHours(1);
+                            }
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i <= DateTime.Now.Hour; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).Hour == currentHour.Hour &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).ToShortDateString() == DateTime.Now.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
+                                currentHour = currentHour.AddHours(1);
+                            }
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i <= DateTime.Now.Hour; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).Hour == currentHour.Hour &&
+                                        Convert.ToDateTime(review.DateTime).ToShortDateString() == DateTime.Now.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
+                                currentHour = currentHour.AddHours(1);
+                            }
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i <= DateTime.Now.Hour; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.Hour == currentHour.Hour &&
+                                        login.DateTime.ToShortDateString() == DateTime.Now.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
+                                currentHour = currentHour.AddHours(1);
+                            }
+                            break;
+                    }
+
+                    titleSeries.Title = "Aantal logins per uur";
+                    ((LineSeries)chart.Series[0]).ItemsSource = listKeys;
                     break;
                 case "Gisteren":
                     break;
@@ -163,27 +265,6 @@ namespace STUFV
                 case "Afgelopen 10 jaar":
                     break;
             }
-
-            List<KeyValuePair<string, int>> listKeys = listKeys = new List<KeyValuePair<string, int>>();
-            DateTime currentHour = DateTime.Now.AddHours(-DateTime.Now.Hour);
-
-            for (int i = 0; i <= DateTime.Now.Hour; i++)
-            {
-                int counter = 0;
-                foreach (var login in logins)
-                {
-                    if (login.DateTime.Hour == currentHour.Hour && 
-                        login.DateTime.ToShortDateString() == DateTime.Now.ToShortDateString())
-                    {
-                        counter++;
-                    }
-                }
-                listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
-                currentHour = currentHour.AddHours(1);
-            }
-
-            titleSeries.Title = "Aantal logins per uur";
-            ((LineSeries)chart.Series[0]).ItemsSource = listKeys;
         }
 
         public async Task<IEnumerable<Article>> getArticles()

@@ -149,7 +149,8 @@ namespace webapp_stufv.Controllers {
                 Active = true,
                 RoleID = 1,
                 Email = email.ToLower( ),
-                ProfilePicture = "noimageavailable.png"
+                ProfilePicture = "noimageavailable.png",
+                RegisterDate = DateTime.Now
             };
 
             using ( var context = new STUFVModelContext( ) ) {
