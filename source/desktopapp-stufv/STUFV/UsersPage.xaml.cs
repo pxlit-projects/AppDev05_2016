@@ -60,10 +60,10 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
                     break;
                 case 2:
-                    scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("TipPage.xaml", UriKind.Relative);
                     break;
                 case 3:
-                    scherm.displayFrame.Source = new Uri("NewEventPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 4:
                     scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
@@ -84,9 +84,15 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
                     break;
                 case 10:
-                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManagePartnerPage.xaml", UriKind.Relative);
                     break;
                 case 11:
+                    scherm.displayFrame.Source = new Uri("ManageTipPage.xaml", UriKind.Relative);
+                    break;
+                case 12:
+                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    break;
+                case 13:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
             }

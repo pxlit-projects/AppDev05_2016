@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,35 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace STUFV
 {
     /// <summary>
-    /// Interaction logic for ArtikelPage.xaml
+    /// Interaction logic for ManageTipPage.xaml
     /// </summary>
-    public partial class ArticlePage : Page
+    public partial class ManageTipPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
-        DispatcherTimer timer;
-        HttpClient client = new HttpClient();
 
-        public ArticlePage()
+        public ManageTipPage()
         {
             InitializeComponent();
-
-            authorBlock.Text = scherm.user.FirstName + " " + scherm.user.LastName;
-
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
-
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
-
-            client.BaseAddress = new Uri("http://localhost:54238/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -93,45 +76,6 @@ namespace STUFV
                 case 13:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
-            }
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            dateBlock.Text = DateTime.Now.ToLongDateString() + ", " + DateTime.Now.ToLongTimeString();
-        }
-
-        private void PlaceArticleButton_Click(object sender, RoutedEventArgs e)
-        {
-            Article article = new Article();
-            article.Title = titleTextBox.Text;
-            article.Content = contentTextBox.Text;
-            article.UserId = scherm.user.Id;
-            article.DateTime = DateTime.Now.AddHours(2);
-            article.Active = true;
-            article.ThumbsUp = 0;
-            AddArticle(article);
-        }
-
-        private async void AddArticle(Article article)
-        {
-            try {
-                var userUrl = "/api/article";
-                HttpResponseMessage response = await client.PostAsJsonAsync(userUrl, article);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show(String.Format("Artikel succesvol geplaatst op {0}. Auteur: {1} {2}",
-                                article.DateTime.ToLongDateString(), scherm.user.FirstName, scherm.user.LastName));
-                }
-            }
-            catch (HttpRequestException)
-            {
-                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.", 
-                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
-                LoginWindow window = new LoginWindow();
-                window.Show();
-                scherm.Close();
             }
         }
     }
