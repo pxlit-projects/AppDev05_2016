@@ -30,7 +30,7 @@ namespace STUFV
         {
             InitializeComponent();
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.BaseAddress = new Uri("http://localhost:54238/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -169,10 +169,10 @@ namespace STUFV
                 int teller = 0;
                 foreach (Event orgEvent in events)
                 {
-                    if (orgEvent.Handled == false)
-                    {
+                    //if (orgEvent.Handled == false)
+                    //{
                         teller++;
-                    }
+                    //}
                 }
                 eventLabel.Text = "Momenteel zijn er " + teller + " evenementen \ndie aanvaard willen worden.\n"
                + "Je kan ze wel of niet toelaten \nin de \"Nieuwe evenementen\" \ntab of door te klikken op \nbovenstaande afbeelding.";

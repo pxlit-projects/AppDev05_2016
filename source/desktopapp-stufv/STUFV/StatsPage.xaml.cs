@@ -36,9 +36,19 @@ namespace STUFV
             InitializeComponent();
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.BaseAddress = new Uri("http://localhost:54238/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            List<string> filterItems = new List<string> { "Aantal gebruikers", "Aantal organisaties", "Aantal evenementen",
+                "Aantal reviews", "Aantal logins" };
+
+            filterBox.ItemsSource = filterItems;
+
+            List<string> timeItems = new List<string> { "Vandaag", "Gisteren", "Deze week", "Vorige week","Deze maand",
+                "Vorige maand", "Dit jaar","Vorig jaar", "Afgelopen 10 jaar" };
+
+            timeBox.ItemsSource = timeItems;
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -88,11 +98,11 @@ namespace STUFV
 
         public async void loadAllStats(object sender, RoutedEventArgs e)
         {
-            IEnumerable < Review > reviews = await GetReviews();
-            IEnumerable < User > users = await GetUsers();
-            IEnumerable < Organisation > organisations = await GetOrganisations();
-            IEnumerable < Event > events = await GetEvents();
-            IEnumerable < Article > articles = await getArticles();
+            IEnumerable<Review> reviews = await GetReviews();
+            IEnumerable<User> users = await GetUsers();
+            IEnumerable<Organisation> organisations = await GetOrganisations();
+            IEnumerable<Event> events = await GetEvents();
+            IEnumerable<Article> articles = await getArticles();
             IEnumerable<Login> logins = await GetLogins();
             this.reviews = reviews.ToList();
             this.users = users.ToList();
@@ -109,23 +119,65 @@ namespace STUFV
             reviewLabel.Content = reviewCount.ToString();
             eventLabel.Content = eventCount.ToString();
             artikelLabel.Content = articleCount.ToString();
-            CreateGraph();
         }
 
-        public void CreateGraph()
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Login login in logins)
-            {
+            string filter = filterBox.SelectedValue.ToString();
 
+            string time = timeBox.SelectedValue.ToString();
+
+            if (filter != "" && time != "")
+            {
+                CreateGraph(time);
+            }
+        }
+
+        public void CreateGraph(string time)
+        {
+            string timeText = "";
+            switch (time)
+            {
+                case "Vandaag":
+                    break;
+                case "Gisteren":
+                    break;
+                case "Deze week":
+                    break;
+                case "Vorige week":
+                    break;
+                case "Deze maand":
+                    break;
+                case "Vorige maand":
+                    break;
+                case "Dit jaar":
+                    break;
+                case "Vorig jaar":
+                    break;
+                case "Afgelopen 10 jaar":
+                    break;
             }
 
-            ((LineSeries)chart.Series[0]).ItemsSource =
-                    new KeyValuePair<DateTime, int>[]{
-        new KeyValuePair<DateTime,int>(DateTime.Now, 100),
-        new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(1), 130),
-        new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(2), 150),
-        new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(3), 125),
-        new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(4),155) };
+            List<KeyValuePair<string, int>> listKeys = listKeys = new List<KeyValuePair<string, int>>();
+            DateTime currentHour = DateTime.Now.AddHours(-DateTime.Now.Hour);
+
+            for (int i = 0; i <= DateTime.Now.Hour; i++)
+            {
+                int counter = 0;
+                foreach (var login in logins)
+                {
+                    if (login.DateTime.Hour == currentHour.Hour && 
+                        login.DateTime.ToShortDateString() == DateTime.Now.ToShortDateString())
+                    {
+                        counter++;
+                    }
+                }
+                listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
+                currentHour = currentHour.AddHours(1);
+            }
+
+            titleSeries.Title = "Aantal logins per uur";
+            ((LineSeries)chart.Series[0]).ItemsSource = listKeys;
         }
 
         public async Task<IEnumerable<Article>> getArticles()
@@ -142,7 +194,7 @@ namespace STUFV
                     articles = await response.Content.ReadAsAsync<IEnumerable<Article>>();
                 }
             }
-            catch(HttpRequestException)
+            catch (HttpRequestException)
             {
                 MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
     "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -156,7 +208,7 @@ namespace STUFV
         public async Task<IEnumerable<User>> GetUsers()
         {
             IEnumerable<User> users = null;
-            
+
             try
             {
                 var userUrl = "/api/user";
@@ -229,7 +281,6 @@ namespace STUFV
         private async Task<IEnumerable<Event>> GetEvents()
         {
             IEnumerable<Event> events = null;
-            List<Event> relatedEvents = new List<Event>();
             try
             {
                 var eventUrl = "/api/event";
@@ -238,13 +289,6 @@ namespace STUFV
                 if (response.IsSuccessStatusCode)
                 {
                     events = await response.Content.ReadAsAsync<IEnumerable<Event>>();
-                    foreach (Event orgEvent in events)
-                    {
-                        if (orgEvent.Handled == true)
-                        {
-                            relatedEvents.Add(orgEvent);
-                        }
-                    }
                 }
             }
             catch (HttpRequestException)
@@ -255,7 +299,7 @@ namespace STUFV
                 window.Show();
                 scherm.Close();
             }
-            return relatedEvents;
+            return events;
         }
 
         public async Task<IEnumerable<Login>> GetLogins()

@@ -47,7 +47,7 @@ namespace STUFV
             loginTimer.Interval = TimeSpan.FromSeconds(1);
             loginTimer.Tick += LoginTimer_Tick;
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.BaseAddress = new Uri("http://localhost:54238/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
@@ -161,7 +161,7 @@ namespace STUFV
                     messageLabel.Content = "Bezig met aanmelden...";
                     Login login = new Login();
                     login.UserId = user.Id;
-                    login.DateTime = DateTime.Now.AddHours(2);
+                    login.DateTime = DateTime.Now;
                     InsertLogin(login);
                     homeWindow = new HomeWindow(user);
                     Application.Current.MainWindow = homeWindow;

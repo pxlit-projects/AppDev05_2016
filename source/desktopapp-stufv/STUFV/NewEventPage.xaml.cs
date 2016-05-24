@@ -31,7 +31,7 @@ namespace STUFV
         {
             InitializeComponent();
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.BaseAddress = new Uri("http://localhost:54238/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -248,10 +248,10 @@ namespace STUFV
                     events = await response.Content.ReadAsAsync<IEnumerable<Event>>();
                     foreach (Event orgEvent in events)
                     {
-                        if (orgEvent.Handled == false)
-                        {
-                            relatedEvents.Add(orgEvent);
-                        }
+                        //if (orgEvent.Handled == false)
+                        //{
+                        //    relatedEvents.Add(orgEvent);
+                        //}
                     }
                 }
             }
@@ -344,7 +344,7 @@ namespace STUFV
         {
             Event orgEvent = (Event)newEventDataGrid.CurrentItem;
 
-            orgEvent.Handled = true;
+            //orgEvent.Handled = true;
             orgEvent.Active = true;
 
             messageLabel.Content = "Verwerken...";
@@ -355,7 +355,7 @@ namespace STUFV
         {
             Event orgEvent = (Event)newEventDataGrid.CurrentItem;
 
-            orgEvent.Handled = true;
+            //orgEvent.Handled = true;
             orgEvent.Active = false;
 
             messageLabel.Content = "Verwerken...";

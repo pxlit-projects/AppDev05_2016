@@ -40,7 +40,7 @@ namespace STUFV
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.BaseAddress = new Uri("http://localhost:54238/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
@@ -104,7 +104,6 @@ namespace STUFV
             article.DateTime = DateTime.Now.AddHours(2);
             article.Active = true;
             article.ThumbsUp = 0;
-
             AddArticle(article);
         }
 

@@ -31,7 +31,7 @@ namespace STUFV
         {
             InitializeComponent();
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.BaseAddress = new Uri("http://localhost:54238/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -237,7 +237,6 @@ namespace STUFV
         private async Task<IEnumerable<Event>> GetEvents()
         {
             IEnumerable<Event> events = null;
-            List<Event> relatedEvents = new List<Event>();
             try {
                 var eventUrl = "/api/event";
                 HttpResponseMessage response = await client.GetAsync(eventUrl);
@@ -245,13 +244,6 @@ namespace STUFV
                 if (response.IsSuccessStatusCode)
                 {
                     events = await response.Content.ReadAsAsync<IEnumerable<Event>>();
-                    foreach (Event orgEvent in events)
-                    {
-                        if (orgEvent.Handled == true)
-                        {
-                            relatedEvents.Add(orgEvent);
-                        }
-                    }
                 }
             }
             catch (HttpRequestException)
@@ -262,7 +254,7 @@ namespace STUFV
                 window.Show();
                 scherm.Close();
             }
-            return relatedEvents;
+            return events;
         }
 
         private async Task UpdateEvent(Event orgEvent)

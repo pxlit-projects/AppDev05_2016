@@ -12,6 +12,7 @@ namespace webapp_stufv.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(webapp_stufv.Models.STUFVModelContext context)
@@ -171,14 +172,13 @@ namespace webapp_stufv.Migrations
             context.Events.AddOrUpdate(
                 new Event
                 {
-                    Active = false,
+                    Active = true,
                     AlcoholFree = true,
                     Name = "Event 1",
                     Description = "Dit is een vette event",
                     End = DateTime.Parse("14-03-1996").AddDays(1),
                     Start = DateTime.Parse("14-03-1996"),
                     EntranceFee = 5,
-                    Handled = false,
                     OrganisationId = 1,
                     ZipCode = "3840",
                     Type = 1,
@@ -193,7 +193,6 @@ namespace webapp_stufv.Migrations
                     End = DateTime.Parse("14-03-1996").AddDays(1),
                     Start = DateTime.Parse("14-03-1996"),
                     EntranceFee = 5,
-                    Handled = true,
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
@@ -208,7 +207,6 @@ namespace webapp_stufv.Migrations
                     End = DateTime.Parse("14-03-1996").AddDays(1),
                     Start = DateTime.Parse("14-03-1996"),
                     EntranceFee = 5,
-                    Handled = true,
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
@@ -223,7 +221,6 @@ namespace webapp_stufv.Migrations
                     End = DateTime.Parse("14-03-1996").AddDays(1),
                     Start = DateTime.Parse("14-03-1996"),
                     EntranceFee = 5,
-                    Handled = true,
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
@@ -238,7 +235,6 @@ namespace webapp_stufv.Migrations
                     End = DateTime.Parse("14-03-1996").AddDays(1),
                     Start = DateTime.Parse("14-03-1996"),
                     EntranceFee = 5,
-                    Handled = true,
                     OrganisationId = 1,
                     ZipCode = "3600",
                     Type = 1,
