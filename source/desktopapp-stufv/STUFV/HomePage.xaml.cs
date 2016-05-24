@@ -35,7 +35,6 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             GetNewOrganisaties();
-            GetNewEvents();
             GetNewReviews();
 
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
@@ -91,14 +90,14 @@ namespace STUFV
             scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
         }
 
+        private void TipButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Organisation_Click(object sender, RoutedEventArgs e)
         {
             scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
-        }
-
-        private void EventButton_Click(object sender, RoutedEventArgs e)
-        {
-            scherm.displayFrame.Source = new Uri("NewEventPage.xaml", UriKind.Relative);
         }
 
         private void Review_Click(object sender, RoutedEventArgs e)
@@ -143,39 +142,6 @@ namespace STUFV
                 }
                 organisationLabel.Text = "Momenteel zijn er " + teller + " organisaties \ndie zich willen registeren.\n"
                + "Je kan ze wel of niet toelaten \nin de \"Nieuwe organisaties\" \ntab of door te klikken op \nbovenstaande afbeelding.";
-            }
-            catch (HttpRequestException)
-            {
-                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
-                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
-                LoginWindow window = new LoginWindow();
-                window.Show();
-                scherm.Close();
-            }
-        }
-
-        private async void GetNewEvents()
-        {
-            try
-            {
-                var eventUrl = "/api/event";
-                HttpResponseMessage response = await client.GetAsync(eventUrl);
-                IEnumerable<Event> events = null;
-                if (response.IsSuccessStatusCode)
-                {
-                    events = await response.Content.ReadAsAsync<IEnumerable<Event>>();
-                }
-
-                int teller = 0;
-                foreach (Event orgEvent in events)
-                {
-                    //if (orgEvent.Handled == false)
-                    //{
-                        teller++;
-                    //}
-                }
-                eventLabel.Text = "Momenteel zijn er " + teller + " evenementen \ndie aanvaard willen worden.\n"
-               + "Je kan ze wel of niet toelaten \nin de \"Nieuwe evenementen\" \ntab of door te klikken op \nbovenstaande afbeelding.";
             }
             catch (HttpRequestException)
             {
