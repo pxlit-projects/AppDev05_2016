@@ -85,13 +85,13 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ManageArticlePage.xaml", UriKind.Relative);
                     break;
                 case 9:
-                    scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
-                    break;
-                case 10:
                     scherm.displayFrame.Source = new Uri("ManagePartnerPage.xaml", UriKind.Relative);
                     break;
-                case 11:
+                case 10:
                     scherm.displayFrame.Source = new Uri("ManageTipPage.xaml", UriKind.Relative);
+                    break;
+                case 11:
+                    scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
                     break;
                 case 12:
                     scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
@@ -150,10 +150,10 @@ namespace STUFV
 
         public void CreateGraph(string filter,string time)
         {
+            List<KeyValuePair<string, int>> listKeys = listKeys = new List<KeyValuePair<string, int>>();
             switch (time)
             {
                 case "Vandaag":
-                    List<KeyValuePair<string, int>> listKeys = listKeys = new List<KeyValuePair<string, int>>();
                     DateTime currentHour = DateTime.Now.AddHours(-DateTime.Now.Hour);
 
                     switch (filter)
@@ -174,6 +174,7 @@ namespace STUFV
                                 listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
                                 currentHour = currentHour.AddHours(1);
                             }
+                            titleSeries.Title = "Aantal gebruikers vandaag";
                             break;
                         case "Aantal organisaties":
                             for (int i = 0; i <= DateTime.Now.Hour; i++)
@@ -191,6 +192,7 @@ namespace STUFV
                                 listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
                                 currentHour = currentHour.AddHours(1);
                             }
+                            titleSeries.Title = "Aantal organisaties vandaag";
                             break;
                         case "Aantal evenementen":
                             for (int i = 0; i <= DateTime.Now.Hour; i++)
@@ -208,6 +210,7 @@ namespace STUFV
                                 listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
                                 currentHour = currentHour.AddHours(1);
                             }
+                            titleSeries.Title = "Aantal evenementen vandaag";
                             break;
                         case "Aantal reviews":
                             for (int i = 0; i <= DateTime.Now.Hour; i++)
@@ -225,6 +228,7 @@ namespace STUFV
                                 listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
                                 currentHour = currentHour.AddHours(1);
                             }
+                            titleSeries.Title = "Aantal reviews vandaag";
                             break;
                         case "Aantal logins":
                             for (int i = 0; i <= DateTime.Now.Hour; i++)
@@ -242,15 +246,219 @@ namespace STUFV
                                 listKeys.Add(new KeyValuePair<string, int>(currentHour.ToString("HH:00"), counter));
                                 currentHour = currentHour.AddHours(1);
                             }
+                            titleSeries.Title = "Aantal logins vandaag";
                             break;
                     }
-
-                    titleSeries.Title = "Aantal logins per uur";
-                    ((LineSeries)chart.Series[0]).ItemsSource = listKeys;
+                    
                     break;
                 case "Gisteren":
+                    DateTime yesterdayHour = DateTime.Now.AddDays(-1).AddHours(-DateTime.Now.Hour);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i < 24; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).Hour == yesterdayHour.Hour &&
+                                        Convert.ToDateTime(user.RegisterDate).ToShortDateString() == DateTime.Now.AddDays(-1).ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(yesterdayHour.ToString("HH:00"), counter));
+                                yesterdayHour = yesterdayHour.AddHours(1);
+                            }
+                            titleSeries.Title = "Aantal gebruikers gisteren";
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i < 24; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).Hour == yesterdayHour.Hour &&
+                                        Convert.ToDateTime(organisation.RegisterDate).ToShortDateString() == DateTime.Now.AddDays(-1).ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(yesterdayHour.ToString("HH:00"), counter));
+                                yesterdayHour = yesterdayHour.AddHours(1);
+                            }
+                            titleSeries.Title = "Aantal organisaties gisteren";
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i < 24; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).Hour == yesterdayHour.Hour &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).ToShortDateString() == DateTime.Now.AddDays(-1).ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(yesterdayHour.ToString("HH:00"), counter));
+                                yesterdayHour = yesterdayHour.AddHours(1);
+                            }
+                            titleSeries.Title = "Aantal evenementen gisteren";
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i < 24; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).Hour == yesterdayHour.Hour &&
+                                        Convert.ToDateTime(review.DateTime).ToShortDateString() == DateTime.Now.AddDays(-1).ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(yesterdayHour.ToString("HH:00"), counter));
+                                yesterdayHour = yesterdayHour.AddHours(1);
+                            }
+                            titleSeries.Title = "Aantal reviews gisteren";
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i < 24; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.Hour == yesterdayHour.Hour &&
+                                        login.DateTime.ToShortDateString() == DateTime.Now.AddDays(-1).ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(yesterdayHour.ToString("HH:00"), counter));
+                                yesterdayHour = yesterdayHour.AddHours(1);
+                            }
+                            titleSeries.Title = "Aantal logins gisteren";
+                            break;
+                    }
                     break;
                 case "Deze week":
+                    DateTime currentDayWeek = DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek))+1);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i <= Convert.ToInt32(DateTime.Now.DayOfWeek)-1; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).DayOfWeek == currentDayWeek.DayOfWeek &&
+                                        Convert.ToDateTime(user.RegisterDate) <= DateTime.Now &&
+                                        Convert.ToDateTime(user.RegisterDate) >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
+                                        Convert.ToDateTime(user.RegisterDate).Month == DateTime.Now.Month &&
+                                        Convert.ToDateTime(user.RegisterDate).Year == DateTime.Now.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDayWeek.ToString("dddd"), counter));
+                                currentDayWeek = currentDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal gebruikers deze week";
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i <= Convert.ToInt32(DateTime.Now.DayOfWeek) - 1; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).DayOfWeek == currentDayWeek.DayOfWeek &&
+                                        Convert.ToDateTime(organisation.RegisterDate) <= DateTime.Now &&
+                                        Convert.ToDateTime(organisation.RegisterDate) >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
+                                        Convert.ToDateTime(organisation.RegisterDate).Month == DateTime.Now.Month &&
+                                        Convert.ToDateTime(organisation.RegisterDate).Year == DateTime.Now.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDayWeek.ToString("dddd"), counter));
+                                currentDayWeek = currentDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal organisaties deze week";
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i <= Convert.ToInt32(DateTime.Now.DayOfWeek) - 1; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).DayOfWeek == currentDayWeek.DayOfWeek &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate) <= DateTime.Now &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate) >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).Month == DateTime.Now.Month &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).Year == DateTime.Now.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDayWeek.ToString("dddd"), counter));
+                                currentDayWeek = currentDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal evenementen deze week";
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i <= Convert.ToInt32(DateTime.Now.DayOfWeek) - 1; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).DayOfWeek == currentDayWeek.DayOfWeek &&
+                                        Convert.ToDateTime(review.DateTime) <= DateTime.Now &&
+                                        Convert.ToDateTime(review.DateTime) >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
+                                        Convert.ToDateTime(review.DateTime).Month == DateTime.Now.Month &&
+                                        Convert.ToDateTime(review.DateTime).Year == DateTime.Now.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDayWeek.ToString("dddd"), counter));
+                                currentDayWeek = currentDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal reviews deze week";
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i <= Convert.ToInt32(DateTime.Now.DayOfWeek) - 1; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.DayOfWeek == currentDayWeek.DayOfWeek &&
+                                        login.DateTime <= DateTime.Now &&
+                                        login.DateTime >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
+                                        login.DateTime.Month == DateTime.Now.Month &&
+                                        login.DateTime.Year == DateTime.Now.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDayWeek.ToString("dddd"), counter));
+                                currentDayWeek = currentDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal logins deze week";
+                            break;
+                    }
                     break;
                 case "Vorige week":
                     break;
@@ -265,6 +473,7 @@ namespace STUFV
                 case "Afgelopen 10 jaar":
                     break;
             }
+            ((LineSeries)chart.Series[0]).ItemsSource = listKeys;
         }
 
         public async Task<IEnumerable<Article>> getArticles()

@@ -74,13 +74,13 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ManageArticlePage.xaml", UriKind.Relative);
                     break;
                 case 9:
-                    scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
-                    break;
-                case 10:
                     scherm.displayFrame.Source = new Uri("ManagePartnerPage.xaml", UriKind.Relative);
                     break;
-                case 11:
+                case 10:
                     scherm.displayFrame.Source = new Uri("ManageTipPage.xaml", UriKind.Relative);
+                    break;
+                case 11:
+                    scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
                     break;
                 case 12:
                     scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
@@ -98,7 +98,7 @@ namespace STUFV
 
         private void TipButton_Click(object sender, RoutedEventArgs e)
         {
-
+            scherm.displayFrame.Source = new Uri("TipPage.xaml", UriKind.Relative);
         }
 
         private void Organisation_Click(object sender, RoutedEventArgs e)
