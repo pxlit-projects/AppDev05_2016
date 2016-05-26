@@ -198,16 +198,24 @@ namespace STUFV
 
         public async Task<bool> Exist(String email)
         {
-            IEnumerable<User> users = await GetUsers();
-
-            for (int x = 0; x < users.Count(); x++)
+            try
             {
-                if (users.ElementAt(x).Email.Equals(email))
+                IEnumerable<User> users = await GetUsers();
+
+                for (int x = 0; x < users.Count(); x++)
                 {
-                    return true;
+                    if (users.ElementAt(x).Email.Equals(email))
+                    {
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            
         }
 
         private static string MD5Encrypt(string password, string salt)

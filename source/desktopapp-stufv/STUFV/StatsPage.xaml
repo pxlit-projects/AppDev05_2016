@@ -93,7 +93,7 @@
                         <TextBlock Text="Toon: " VerticalAlignment="Center" Margin="10,5,0,5"/>
                         <ComboBox x:Name="filterBox" Width="175" Margin="10,5,0,5"/>
                         <TextBlock Text="Tijdsweergave:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
-                        <ComboBox x:Name="timeBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,5,10,5"/>
+                        <ComboBox x:Name="timeBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="150" Margin="10,5,10,5"/>
                         <Button x:Name="createButton" Content="Create" Margin="0,5,10,5" Click="CreateButton_Click"/>
                     </StackPanel>
                 </Border>

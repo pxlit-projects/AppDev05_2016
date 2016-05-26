@@ -148,7 +148,7 @@ namespace STUFV
             }
         }
 
-        public void CreateGraph(string filter,string time)
+        public void CreateGraph(string filter, string time)
         {
             List<KeyValuePair<string, int>> listKeys = listKeys = new List<KeyValuePair<string, int>>();
             switch (time)
@@ -249,7 +249,7 @@ namespace STUFV
                             titleSeries.Title = "Aantal logins vandaag";
                             break;
                     }
-                    
+
                     break;
                 case "Gisteren":
                     DateTime yesterdayHour = DateTime.Now.AddDays(-1).AddHours(-DateTime.Now.Hour);
@@ -349,12 +349,12 @@ namespace STUFV
                     }
                     break;
                 case "Deze week":
-                    DateTime currentDayWeek = DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek))+1);
+                    DateTime currentDayWeek = DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1);
 
                     switch (filter)
                     {
                         case "Aantal gebruikers":
-                            for (int i = 0; i <= Convert.ToInt32(DateTime.Now.DayOfWeek)-1; i++)
+                            for (int i = 0; i <= Convert.ToInt32(DateTime.Now.DayOfWeek) - 1; i++)
                             {
                                 int counter = 0;
 
@@ -362,9 +362,9 @@ namespace STUFV
                                 {
                                     if (Convert.ToDateTime(user.RegisterDate).DayOfWeek == currentDayWeek.DayOfWeek &&
                                         Convert.ToDateTime(user.RegisterDate) <= DateTime.Now &&
-                                        Convert.ToDateTime(user.RegisterDate) >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
-                                        Convert.ToDateTime(user.RegisterDate).Month == DateTime.Now.Month &&
-                                        Convert.ToDateTime(user.RegisterDate).Year == DateTime.Now.Year)
+                                        Convert.ToDateTime(user.RegisterDate) >= currentDayWeek.Date &&
+                                        Convert.ToDateTime(user.RegisterDate).Month == currentDayWeek.Month &&
+                                        Convert.ToDateTime(user.RegisterDate).Year == currentDayWeek.Year)
                                     {
                                         counter++;
                                     }
@@ -383,9 +383,9 @@ namespace STUFV
                                 {
                                     if (Convert.ToDateTime(organisation.RegisterDate).DayOfWeek == currentDayWeek.DayOfWeek &&
                                         Convert.ToDateTime(organisation.RegisterDate) <= DateTime.Now &&
-                                        Convert.ToDateTime(organisation.RegisterDate) >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
-                                        Convert.ToDateTime(organisation.RegisterDate).Month == DateTime.Now.Month &&
-                                        Convert.ToDateTime(organisation.RegisterDate).Year == DateTime.Now.Year)
+                                        Convert.ToDateTime(organisation.RegisterDate) >= currentDayWeek.Date &&
+                                        Convert.ToDateTime(organisation.RegisterDate).Month == currentDayWeek.Month &&
+                                        Convert.ToDateTime(organisation.RegisterDate).Year == currentDayWeek.Year)
                                     {
                                         counter++;
                                     }
@@ -404,9 +404,9 @@ namespace STUFV
                                 {
                                     if (Convert.ToDateTime(orgEvent.RegisterDate).DayOfWeek == currentDayWeek.DayOfWeek &&
                                         Convert.ToDateTime(orgEvent.RegisterDate) <= DateTime.Now &&
-                                        Convert.ToDateTime(orgEvent.RegisterDate) >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
-                                        Convert.ToDateTime(orgEvent.RegisterDate).Month == DateTime.Now.Month &&
-                                        Convert.ToDateTime(orgEvent.RegisterDate).Year == DateTime.Now.Year)
+                                        Convert.ToDateTime(orgEvent.RegisterDate) >= currentDayWeek.Date &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).Month == currentDayWeek.Month &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).Year == currentDayWeek.Year)
                                     {
                                         counter++;
                                     }
@@ -425,9 +425,9 @@ namespace STUFV
                                 {
                                     if (Convert.ToDateTime(review.DateTime).DayOfWeek == currentDayWeek.DayOfWeek &&
                                         Convert.ToDateTime(review.DateTime) <= DateTime.Now &&
-                                        Convert.ToDateTime(review.DateTime) >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
-                                        Convert.ToDateTime(review.DateTime).Month == DateTime.Now.Month &&
-                                        Convert.ToDateTime(review.DateTime).Year == DateTime.Now.Year)
+                                        Convert.ToDateTime(review.DateTime) >= currentDayWeek.Date &&
+                                        Convert.ToDateTime(review.DateTime).Month == currentDayWeek.Month &&
+                                        Convert.ToDateTime(review.DateTime).Year == currentDayWeek.Year)
                                     {
                                         counter++;
                                     }
@@ -446,9 +446,9 @@ namespace STUFV
                                 {
                                     if (login.DateTime.DayOfWeek == currentDayWeek.DayOfWeek &&
                                         login.DateTime <= DateTime.Now &&
-                                        login.DateTime >= DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) + 1) &&
-                                        login.DateTime.Month == DateTime.Now.Month &&
-                                        login.DateTime.Year == DateTime.Now.Year)
+                                        login.DateTime >= currentDayWeek.Date &&
+                                        login.DateTime.Month == currentDayWeek.Month &&
+                                        login.DateTime.Year == currentDayWeek.Year)
                                     {
                                         counter++;
                                     }
@@ -461,16 +461,586 @@ namespace STUFV
                     }
                     break;
                 case "Vorige week":
+                    DateTime previousDayWeek = DateTime.Now.AddDays(-(Convert.ToInt32(DateTime.Now.DayOfWeek)) - 6);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i < 7; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).DayOfWeek == previousDayWeek.DayOfWeek &&
+                                        Convert.ToDateTime(user.RegisterDate) <= previousDayWeek.AddDays(7 - i) &&
+                                        Convert.ToDateTime(user.RegisterDate) >= previousDayWeek.Date &&
+                                        Convert.ToDateTime(user.RegisterDate).Month == previousDayWeek.Month &&
+                                        Convert.ToDateTime(user.RegisterDate).Year == previousDayWeek.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDayWeek.ToString("dddd"), counter));
+                                previousDayWeek = previousDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal gebruikers vorige week";
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i < 7; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).DayOfWeek == previousDayWeek.DayOfWeek &&
+                                        Convert.ToDateTime(organisation.RegisterDate) <= previousDayWeek.AddDays(7 - i) &&
+                                        Convert.ToDateTime(organisation.RegisterDate) >= previousDayWeek.Date &&
+                                        Convert.ToDateTime(organisation.RegisterDate).Month == previousDayWeek.Month &&
+                                        Convert.ToDateTime(organisation.RegisterDate).Year == previousDayWeek.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDayWeek.ToString("dddd"), counter));
+                                previousDayWeek = previousDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal organisaties vorige week";
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i < 7; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).DayOfWeek == previousDayWeek.DayOfWeek &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate) <= previousDayWeek.AddDays(7 - 1) &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate) >= previousDayWeek.Date &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).Month == previousDayWeek.Month &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).Year == previousDayWeek.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDayWeek.ToString("dddd"), counter));
+                                previousDayWeek = previousDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal evenementen vorige week";
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i < 7; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).DayOfWeek == previousDayWeek.DayOfWeek &&
+                                        Convert.ToDateTime(review.DateTime) <= previousDayWeek.AddDays(7 - 1) &&
+                                        Convert.ToDateTime(review.DateTime) >= previousDayWeek.Date &&
+                                        Convert.ToDateTime(review.DateTime).Month == previousDayWeek.Month &&
+                                        Convert.ToDateTime(review.DateTime).Year == previousDayWeek.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDayWeek.ToString("dddd"), counter));
+                                previousDayWeek = previousDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal reviews vorige week";
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i < 7; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.DayOfWeek == previousDayWeek.DayOfWeek &&
+                                        login.DateTime <= previousDayWeek.AddDays(7 - i) &&
+                                        login.DateTime >= previousDayWeek.Date &&
+                                        login.DateTime.Month == previousDayWeek.Month &&
+                                        login.DateTime.Year == previousDayWeek.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDayWeek.ToString("dddd"), counter));
+                                previousDayWeek = previousDayWeek.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal logins vorige week";
+                            break;
+                    }
                     break;
                 case "Deze maand":
+                    DateTime currentDay = DateTime.Now.AddDays(-DateTime.Now.Day + 1);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i < DateTime.Now.Day; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).ToShortDateString() == currentDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                currentDay = currentDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal gebruikers deze maand";
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i < DateTime.Now.Day; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).ToShortDateString() == currentDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                currentDay = currentDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal organisaties deze maand";
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i < DateTime.Now.Day; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).ToShortDateString() == currentDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                currentDay = currentDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal evenementen deze maand";
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i < DateTime.Now.Day; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).ToShortDateString() == currentDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                currentDay = currentDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal reviews deze maand";
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i < DateTime.Now.Day; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.ToShortDateString() == currentDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                currentDay = currentDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal logins deze maand";
+                            break;
+                    }
                     break;
                 case "Vorige maand":
+                    DateTime previousDay = DateTime.Now.AddMonths(-1).AddDays(-DateTime.Now.Day + 1);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i < DateTime.DaysInMonth(previousDay.Year, previousDay.Month); i++)
+                            {
+                                int counter = 0;
+                              
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).ToShortDateString() == previousDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                previousDay = previousDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal gebruikers vorige maand";
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i < DateTime.DaysInMonth(previousDay.Year, previousDay.Month); i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).ToShortDateString() == previousDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                previousDay = previousDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal organisaties vorige maand";
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i < DateTime.DaysInMonth(previousDay.Year, previousDay.Month); i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).ToShortDateString() == previousDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                previousDay = previousDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal evenementen vorige maand";
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i < DateTime.DaysInMonth(previousDay.Year, previousDay.Month); i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).ToShortDateString() == previousDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                previousDay = previousDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal reviews vorige maand";
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i < DateTime.DaysInMonth(previousDay.Year, previousDay.Month); i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.ToShortDateString() == previousDay.ToShortDateString())
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                previousDay = previousDay.AddDays(1);
+                            }
+                            titleSeries.Title = "Aantal logins vorige maand";
+                            break;
+                    }
                     break;
                 case "Dit jaar":
+                    DateTime currentMonth = DateTime.Now.AddMonths(-DateTime.Now.Month + 1);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i < DateTime.Now.Month; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).Month == currentMonth.Month &&
+                                        Convert.ToDateTime(user.RegisterDate).Year == currentMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentMonth.ToString("MMM"), counter));
+                                currentMonth = currentMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal gebruikers dit jaar";
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i < DateTime.Now.Month; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).Month == currentMonth.Month &&
+                                        Convert.ToDateTime(organisation.RegisterDate).Year == currentMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentMonth.ToString("MMM"), counter));
+                                currentMonth = currentMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal organisaties dit jaar";
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i < DateTime.Now.Month; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).Month == currentMonth.Month &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).Year == currentMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentMonth.ToString("MMM"), counter));
+                                currentMonth = currentMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal evenementen dit jaar";
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i < DateTime.Now.Month; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).Month == currentMonth.Month &&
+                                        Convert.ToDateTime(review.DateTime).Year == currentMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentMonth.ToString("MMM"), counter));
+                                currentMonth = currentMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal reviews dit jaar";
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i < DateTime.Now.Month; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.Month == currentMonth.Month &&
+                                        login.DateTime.Year == currentMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(currentMonth.ToString("MMM"), counter));
+                                currentMonth = currentMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal logins dit jaar";
+                            break;
+                    }
                     break;
                 case "Vorig jaar":
+                    DateTime previousMonth = DateTime.Now.AddYears(-1).AddMonths(-DateTime.Now.Month + 1);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i < 12; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).Month == previousMonth.Month &&
+                                        Convert.ToDateTime(user.RegisterDate).Year == previousMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonth.ToString("MMM"), counter));
+                                previousMonth = previousMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal gebruikers vorig jaar";
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i < 12; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).Month == previousMonth.Month &&
+                                        Convert.ToDateTime(organisation.RegisterDate).Year == previousMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonth.ToString("MMM"), counter));
+                                previousMonth = previousMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal organisaties vorig jaar";
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i < 12; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).Month == previousMonth.Month &&
+                                        Convert.ToDateTime(orgEvent.RegisterDate).Year == previousMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonth.ToString("MMM"), counter));
+                                previousMonth = previousMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal evenementen vorig jaar";
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i < 12; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).Month == previousMonth.Month &&
+                                        Convert.ToDateTime(review.DateTime).Year == previousMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonth.ToString("MMM"), counter));
+                                previousMonth = previousMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal reviews vorig jaar";
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i < 12; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.Month == previousMonth.Month &&
+                                        login.DateTime.Year == previousMonth.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonth.ToString("MMM"), counter));
+                                previousMonth = previousMonth.AddMonths(1);
+                            }
+                            titleSeries.Title = "Aantal logins vorig jaar";
+                            break;
+                    }
                     break;
                 case "Afgelopen 10 jaar":
+                    DateTime previousMonthYear = DateTime.Now.AddYears(-10);
+
+                    switch (filter)
+                    {
+                        case "Aantal gebruikers":
+                            for (int i = 0; i <= 10; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var user in users)
+                                {
+                                    if (Convert.ToDateTime(user.RegisterDate).Year == previousMonthYear.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonthYear.ToString("yyyy"), counter));
+                                previousMonthYear = previousMonthYear.AddYears(1);
+                            }
+                            titleSeries.Title = "Aantal gebruikers afgelopen 10 jaar";
+                            break;
+                        case "Aantal organisaties":
+                            for (int i = 0; i <= 10; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var organisation in organisations)
+                                {
+                                    if (Convert.ToDateTime(organisation.RegisterDate).Year == previousMonthYear.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonthYear.ToString("yyyy"), counter));
+                                previousMonthYear = previousMonthYear.AddYears(1);
+                            }
+                            titleSeries.Title = "Aantal organisaties afgelopen 10 jaar";
+                            break;
+                        case "Aantal evenementen":
+                            for (int i = 0; i <= 10; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var orgEvent in events)
+                                {
+                                    if (Convert.ToDateTime(orgEvent.RegisterDate).Year == previousMonthYear.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonthYear.ToString("yyyy"), counter));
+                                previousMonthYear = previousMonthYear.AddYears(1);
+                            }
+                            titleSeries.Title = "Aantal evenementen afgelopen 10 jaar";
+                            break;
+                        case "Aantal reviews":
+                            for (int i = 0; i <= 10; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var review in reviews)
+                                {
+                                    if (Convert.ToDateTime(review.DateTime).Year == previousMonthYear.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonthYear.ToString("yyyy"), counter));
+                                previousMonthYear = previousMonthYear.AddYears(1);
+                            }
+                            titleSeries.Title = "Aantal reviews afgelopen 10 jaar";
+                            break;
+                        case "Aantal logins":
+                            for (int i = 0; i <= 10; i++)
+                            {
+                                int counter = 0;
+
+                                foreach (var login in logins)
+                                {
+                                    if (login.DateTime.Year == previousMonthYear.Year)
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                listKeys.Add(new KeyValuePair<string, int>(previousMonthYear.ToString("yyyy"), counter));
+                                previousMonthYear = previousMonthYear.AddYears(1);
+                            }
+                            titleSeries.Title = "Aantal logins afgelopen 10 jaar";
+                            break;
+                    }
                     break;
             }
             ((LineSeries)chart.Series[0]).ItemsSource = listKeys;
