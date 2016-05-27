@@ -2,6 +2,7 @@ namespace webapp_stufv.Migrations
 {
     using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -60,223 +61,110 @@ namespace webapp_stufv.Migrations
             String salt = GenerateRandomSalt(rng, 16);
             String encPass = MD5Encrypt("123", salt);
 
-            context.Users.AddOrUpdate(
-                new User
-                {
-                    Id = 1,
-                    Active = true,
-                    BirthDate = DateTime.Parse("14-03-1996"),
-                    BirthPlace = "Hasselt",
-                    Email = "test@test.com",
-                    FirstName = "test",
-                    LastName = "test",
-                    MobileNr = "0485199853",
-                    RoleID = 1,
-                    Sex = "M",
-                    Street = "Stationstraat 32",
-                    ZipCode = "3840",
-                    TelNr = "012747032",
-                    PassWord = encPass,
-                    Salt = salt,
-                    ProfilePicture = "noimageavailable.png",
-                    RegisterDate = DateTime.Now
-                },
-                new User
-                {
-                    Id = 2,
-                    Active = true,
-                    BirthDate = DateTime.Parse("14-03-1996"),
-                    BirthPlace = "Tongeren",
-                    Email = "test@user.com",
-                    FirstName = "test",
-                    LastName = "test",
-                    MobileNr = "0485199853",
-                    RoleID = 2,
-                    Sex = "V",
-                    Street = "Teststraat 32",
-                    ZipCode = "3600",
-                    TelNr = "012747032",
-                    PassWord = encPass,
-                    Salt = salt,
-                    ProfilePicture = "noimageavailable.png",
-                    RegisterDate = DateTime.Now
-                }
-                );
+            for (int i = 1; i <= 30; i++)
+            {
+                context.Users.AddOrUpdate(
+                    new User
+                    {
+                        Id = i,
+                        Active = true,
+                        BirthDate = GenererateRandomDate(1950, 2016),
+                        BirthPlace = "Hasselt",
+                        Email = "test" + i + "@test.com",
+                        FirstName = "test" + i,
+                        LastName = "test",
+                        MobileNr = "0485199853",
+                        RoleID = 1,
+                        Sex = "M",
+                        Street = "Stationstraat 32",
+                        ZipCode = "3840",
+                        TelNr = "012747032",
+                        PassWord = encPass,
+                        Salt = salt,
+                        ProfilePicture = "noimageavailable.png",
+                        RegisterDate = GenererateRandomDate(2010, 2017)
+                    });
+            }
 
-            context.Articles.AddOrUpdate(
-                new Article
-                {
-                    Id = 1,
-                    Active = true,
-                    Title = "Artikel 1",
-                    Content = "Dit is artikel 1",
-                    DateTime = DateTime.Now,
-                    ThumbsUp = 0,
-                    UserId = 1
-                },
-                new Article
-                {
-                    Id = 2,
-                    Active = true,
-                    Title = "Artikel 2",
-                    Content = "Dit is artikel 2",
-                    DateTime = DateTime.Now,
-                    ThumbsUp = 0,
-                    UserId = 1
-                },
-                new Article
-                {
-                    Id = 3,
-                    Active = true,
-                    Title = "Artikel 3",
-                    Content = "Dit is artikel 3",
-                    DateTime = DateTime.Now,
-                    ThumbsUp = 0,
-                    UserId = 1
-                },
-                new Article
-                {
-                    Id = 4,
-                    Active = true,
-                    Title = "Artikel 4",
-                    Content = "Dit is artikel 4",
-                    DateTime = DateTime.Now,
-                    ThumbsUp = 0,
-                    UserId = 1
-                }
-                );
+            for (int i = 1; i <= 30; i++)
+            {
+                context.Articles.AddOrUpdate(
+                    new Article
+                    {
+                        Id = i,
+                        Active = true,
+                        Title = "Artikel " + i,
+                        Content = "Dit is artikel " + i,
+                        DateTime = GenererateRandomDate(2010, 2017),
+                        ThumbsUp = 0,
+                        UserId = i
+                    });
+            }
 
-            context.Organisations.AddOrUpdate(
-                new Organisation
-                {
-                    Id = 1,
-                    Active = true,
-                    Name = "Testorganisatie 1",
-                    Description = "Wij zijn een testorganisatie",
-                    isRegistered = true,
-                    RegisterDate = DateTime.Now,
-                    UserId = 1
-                },
-                new Organisation
-                {
-                    Id = 2,
-                    Active = false,
-                    Name = "Testorganisatie 2",
-                    Description = "Wij zijn een testorganisatie",
-                    isRegistered = false,
-                    UserId = 2
-                }
-                );
+            for (int i = 1; i <= 10; i++)
+            {
+                context.Organisations.AddOrUpdate(
+                    new Organisation
+                    {
+                        Id = i,
+                        Active = true,
+                        Name = "Testorganisatie " + i,
+                        Description = "Wij zijn een testorganisatie",
+                        isRegistered = true,
+                        RegisterDate = GenererateRandomDate(2010, 2017),
+                        UserId = i
+                    });
+            }
 
-            context.EventTypes.AddOrUpdate(
-                new EventTypes
-                {
-                    Id = 1,
-                    Description = "Feestje"
-                }
-                );
+            for (int i = 11; i <= 15; i++)
+            {
+                context.Organisations.AddOrUpdate(
+                    new Organisation
+                    {
+                        Id = i,
+                        Active = true,
+                        Name = "Testorganisatie " + i,
+                        Description = "Wij zijn een testorganisatie",
+                        isRegistered = false,
+                        UserId = i
+                    });
+            }
 
-            context.Events.AddOrUpdate(
-                new Event
-                {
-                    Id = 1,
-                    Active = true,
-                    AlcoholFree = true,
-                    Name = "Event 1",
-                    Description = "Dit is een vette event",
-                    End = DateTime.Now.AddDays(1),
-                    Start = DateTime.Now,
-                    EntranceFee = 5,
-                    OrganisationId = 1,
-                    ZipCode = "3840",
-                    Type = 1,
-                    Street = "Stationstraat 4",
-                    RegisterDate = DateTime.Now
-                },
-                new Event
-                {
-                    Id = 2,
-                    Active = true,
-                    AlcoholFree = false,
-                    Name = "Event 2",
-                    Description = "Dit is een vette event",
-                    End = DateTime.Now.AddDays(1),
-                    Start = DateTime.Now,
-                    EntranceFee = 5,
-                    OrganisationId = 1,
-                    ZipCode = "3600",
-                    Type = 1,
-                    Street = "Stationstraat 42",
-                    RegisterDate = DateTime.Now
-                },
-                new Event
-                {
-                    Id = 3,
-                    Active = true,
-                    AlcoholFree = false,
-                    Name = "Event 3",
-                    Description = "Dit is een vette event",
-                    End = DateTime.Now.AddDays(1),
-                    Start = DateTime.Now,
-                    EntranceFee = 5,
-                    OrganisationId = 1,
-                    ZipCode = "3600",
-                    Type = 1,
-                    Street = "Stationstraat 42",
-                    RegisterDate = DateTime.Now
-                },
-                new Event
-                {
-                    Id = 4,
-                    Active = true,
-                    AlcoholFree = true,
-                    Name = "Event 4",
-                    Description = "Dit is een vette event",
-                    End = DateTime.Now.AddDays(1),
-                    Start = DateTime.Now,
-                    EntranceFee = 5,
-                    OrganisationId = 1,
-                    ZipCode = "3600",
-                    Type = 1,
-                    Street = "Stationstraat 42",
-                    RegisterDate = DateTime.Now
-                },
-                new Event
-                {
-                    Id = 5,
-                    Active = true,
-                    AlcoholFree = false,
-                    Name = "Event 5",
-                    Description = "Dit is een vette event",
-                    End = DateTime.Now.AddDays(1),
-                    Start = DateTime.Now,
-                    EntranceFee = 5,
-                    OrganisationId = 1,
-                    ZipCode = "3600",
-                    Type = 1,
-                    Street = "Stationstraat 42",
-                    RegisterDate = DateTime.Now
-                }
-                );
+            for (int i = 1; i <= 30; i++)
+            {
+                Random rand = new Random();
+                DateTime startDate = GenererateRandomDate(2016, 2020);
+                context.Events.AddOrUpdate(
+                    new Event
+                    {
+                        Id = i,
+                        Active = true,
+                        AlcoholFree = true,
+                        Name = "Event " + i,
+                        Description = "Dit is een vette event",
+                        End = startDate.AddDays(rand.Next(1,11)),
+                        Start = startDate,
+                        EntranceFee = rand.Next(0,101),
+                        OrganisationId = rand.Next(1, 11),
+                        ZipCode = "3840",
+                        Type = 1,
+                        Street = "Stationstraat 4",
+                        RegisterDate = GenererateRandomDate(2010,2017)
+                    });
+            }
 
-            context.Tips.AddOrUpdate(
-                new Tip
-                {
-                    Active = true,
-                    TipText = "Tip 1"
-                },
-                new Tip
-                {
-                    Active = true,
-                    TipText = "Tip 2"
-                },
-                new Tip
-                {
-                    Active = true,
-                    TipText = "Tip 3"
-                }
-                );
-        }
+            for (int i = 1; i <= 10; i++)
+            {
+                context.Tips.AddOrUpdate(
+                    new Tip
+                    {
+                        Id = i,
+                        Active = true,
+                        TipText = "Tip " + i
+                    });
+            }
+
+            }
 
         private string GenerateRandomSalt(RNGCryptoServiceProvider rng, int size)
         {
@@ -298,6 +186,19 @@ namespace webapp_stufv.Migrations
             }
 
             return strBuilder.ToString();
+        }
+        private DateTime GenererateRandomDate(int startYear, int endYear)
+        {
+            Random rnd = new Random();
+
+            int year = rnd.Next(startYear, endYear);
+            int month = rnd.Next(1, 12);
+            int day = DateTime.DaysInMonth(year, month);
+
+            int Day = rnd.Next(1, day);
+
+            DateTime dt = new DateTime(year, month, Day);
+            return dt;
         }
     }
 }

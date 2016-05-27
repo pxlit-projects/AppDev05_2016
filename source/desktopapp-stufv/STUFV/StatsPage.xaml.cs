@@ -589,7 +589,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/MM"), counter));
                                 currentDay = currentDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal gebruikers deze maand";
@@ -606,7 +606,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/MM"), counter));
                                 currentDay = currentDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal organisaties deze maand";
@@ -623,7 +623,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/MM"), counter));
                                 currentDay = currentDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal evenementen deze maand";
@@ -640,7 +640,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/MM"), counter));
                                 currentDay = currentDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal reviews deze maand";
@@ -657,7 +657,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(currentDay.ToString("dd/MM"), counter));
                                 currentDay = currentDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal logins deze maand";
@@ -681,7 +681,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/MM"), counter));
                                 previousDay = previousDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal gebruikers vorige maand";
@@ -698,7 +698,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/MM"), counter));
                                 previousDay = previousDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal organisaties vorige maand";
@@ -715,7 +715,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/MM"), counter));
                                 previousDay = previousDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal evenementen vorige maand";
@@ -732,7 +732,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/MM"), counter));
                                 previousDay = previousDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal reviews vorige maand";
@@ -749,7 +749,7 @@ namespace STUFV
                                         counter++;
                                     }
                                 }
-                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/mm"), counter));
+                                listKeys.Add(new KeyValuePair<string, int>(previousDay.ToString("dd/MM"), counter));
                                 previousDay = previousDay.AddDays(1);
                             }
                             titleSeries.Title = "Aantal logins vorige maand";
