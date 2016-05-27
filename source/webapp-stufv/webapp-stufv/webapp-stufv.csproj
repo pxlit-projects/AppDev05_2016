@@ -330,9 +330,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Properties\PublishProfiles\webapp-stufv - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\webapp-stufv20160511012914 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\webapp-stufv20160511012914.pubxml" />
+    <None Include="Properties\PublishProfiles\webapp-stufv20160527045609 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
