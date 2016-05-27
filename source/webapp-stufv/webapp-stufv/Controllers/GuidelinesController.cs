@@ -7,8 +7,15 @@ using webapp_stufv.Repository;
 
 namespace webapp_stufv.Controllers {
     public class GuidelinesController : Controller {
+
+        /*
+         * Variables
+         */
         private IGuidelineRepository iguideline = new GuidelineRepository();
-        // GET: Guidelines
+        
+        /*
+         * Guidelines/Index
+         */
         public ActionResult Index ( ) {
             ViewBag.Title = "Richtlijnen";
             return View ( iguideline.getAllGuideLines() );

@@ -8,6 +8,9 @@ using webapp_stufv.Repository;
 namespace webapp_stufv.Controllers {   
     public class EmergencyController : Controller {
 
+        /*
+         * Variables
+         */
         private IEmergencyRepository _iemer = new EmergencyRepository();
 
         /*
