@@ -76,7 +76,7 @@
                     
                 <DataGrid x:Name="loginDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="385" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="75">
+                                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="75" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -91,7 +91,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="UserId" Width="100">
+                                <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="UserId" Width="100" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -106,7 +106,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="dateColumn" Binding="{Binding DateTime, StringFormat={}{0:dd-MM-yyyy a\\t h-mm tt}}" Header="Datum login" Width="215" IsReadOnly="True">
+                                <DataGridTextColumn x:Name="dateColumn" Binding="{Binding DateTime, StringFormat={}{0:dd-MM-yyyy a\\t h-mm tt}}" Header="Datum login" Width="215" IsReadOnly="True" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />

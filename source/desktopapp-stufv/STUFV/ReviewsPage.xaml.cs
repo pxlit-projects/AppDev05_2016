@@ -296,7 +296,7 @@ namespace STUFV
             Review review = (Review)ReviewsDataGrid.CurrentItem;
             bool originalActive = review.Active;
             
-            if (review.Handled == false && review.Flagged == "true" && review.Active == true)
+            if (review.Handled == false && review.Flagged == "True" && review.Active == true)
             {
                 if (MessageBox.Show(String.Format("Bent u zeker dat u deze review wilt deactiveren?"),
                     "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)

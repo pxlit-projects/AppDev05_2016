@@ -76,9 +76,9 @@
                 </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" >
-                    <DataGrid x:Name="ReviewsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="1000" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                    <DataGrid x:Name="ReviewsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True" Height="454" Width="1000" HorizontalScrollBarVisibility="Disabled">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50">
+                            <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -93,7 +93,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="User ID" Width="150">
+                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="User ID" Width="150" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -107,7 +107,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="reviewContentColumn" Binding="{Binding Content}" Header="Review" Width="200">
+                            <DataGridTextColumn x:Name="reviewContentColumn" Binding="{Binding Content}" Header="Review" Width="200" IsReadOnly="False" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -121,7 +121,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="reviewHandledColumn" Binding="{Binding Handled}" Header="Bekeken" Width="75">
+                            <DataGridTextColumn x:Name="reviewHandledColumn" Binding="{Binding Handled}" Header="Bekeken" Width="75" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -135,7 +135,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="reviewFlaggedColumn" Binding="{Binding Flagged}" Header="Flagged" Width="75">
+                            <DataGridTextColumn x:Name="reviewFlaggedColumn" Binding="{Binding Flagged}" Header="Flagged" Width="75" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -149,8 +149,8 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" />
-                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" IsReadOnly="True" Width="395">
+                            <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" IsReadOnly="True" CanUserResize="False"/>
+                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" IsReadOnly="True" Width="395" CanUserResize="False">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
