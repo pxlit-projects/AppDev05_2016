@@ -357,5 +357,12 @@ namespace STUFV
                 scherm.Close();
             }
         }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchTextBox.Text = "";
+            filterBox.SelectedIndex = 0;
+            LoadLogins();
+        }
     }
 }

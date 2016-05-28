@@ -8,7 +8,7 @@
       xmlns:local="clr-namespace:STUFV"
       mc:Ignorable="d" 
       d:DesignHeight="850" d:DesignWidth="1200"
-      Title="StatistiekenPage" Loaded="loadAllStats">
+      Title="StatistiekenPage">
 
     <Grid>
         <Grid.Resources>
@@ -90,6 +90,7 @@
                 </StackPanel>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="LightSkyBlue" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,25,0,0" Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
+                        <Button x:Name="refreshButton" Content="Refresh" Margin="10,5,0,5" Click="RefreshButton_Click"/>
                         <TextBlock Text="Toon: " VerticalAlignment="Center" Margin="10,5,0,5"/>
                         <ComboBox x:Name="filterBox" Width="175" Margin="10,5,0,5"/>
                         <TextBlock Text="Tijdsweergave:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>

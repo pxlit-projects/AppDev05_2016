@@ -350,5 +350,12 @@ namespace STUFV
             UserDetailsWindow userDetails = new UserDetailsWindow(user);
             userDetails.ShowDialog();
         }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchTextBox.Text = "";
+            filterBox.SelectedIndex = 0;
+            LoadReviews();
+        }
     }
 }

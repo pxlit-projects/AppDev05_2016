@@ -63,6 +63,7 @@
                 <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="LightSkyBlue" HorizontalAlignment="Left" Margin="10,25,0,0">
                     <StackPanel Orientation="Horizontal">
+                        <Button x:Name="refreshButton" Content="Refresh" Margin="10,5,0,5" Click="RefreshButton_Click"/>
                         <StackPanel VerticalAlignment="Center" Margin="10,5,0,5">
                             <TextBlock Text="Toon:" />
                             <RadioButton x:Name="alleReviewsButton" Content="Alle reviews" Margin="0,5,0,5" GroupName="reviews"/>
@@ -107,7 +108,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="reviewContentColumn" Binding="{Binding Content}" Header="Review" Width="200" IsReadOnly="False" CanUserResize="False">
+                            <DataGridTextColumn x:Name="reviewContentColumn" Binding="{Binding Content}" Header="Review" Width="200" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />

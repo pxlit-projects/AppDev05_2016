@@ -64,6 +64,7 @@
                 <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
                 <Border BorderThickness="2" BorderBrush="Black" CornerRadius="2" HorizontalAlignment="Left" Margin="10,25,0,0" Background="LightSkyBlue">
                     <StackPanel Orientation="Horizontal">
+                        <Button x:Name="refreshButton" Content="Refresh" Margin="10,5,0,5" Click="RefreshButton_Click"/>
                         <TextBlock Text="Zoek gebruiker " VerticalAlignment="Center" Margin="10,5,0,5"/>
                         <TextBox x:Name="searchTextBox" Width="175" Margin="10,5,0,5"/>
                         <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,5,0,5"/>

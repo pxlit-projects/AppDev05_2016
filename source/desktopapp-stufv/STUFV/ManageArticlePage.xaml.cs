@@ -390,5 +390,12 @@ namespace STUFV
                 await UpdateArticle(article);
             }
         }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchTextBox.Text = "";
+            filterBox.SelectedIndex = 0;
+            LoadArticles();
+        }
     }
 }

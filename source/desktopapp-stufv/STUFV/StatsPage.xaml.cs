@@ -40,6 +40,8 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            loadAllStats();
+
             List<string> filterItems = new List<string> { "Aantal gebruikers", "Aantal organisaties", "Aantal evenementen",
                 "Aantal reviews", "Aantal logins" };
 
@@ -102,7 +104,7 @@ namespace STUFV
             }
         }
 
-        public async void loadAllStats(object sender, RoutedEventArgs e)
+        public async void loadAllStats()
         {
             IEnumerable<Review> reviews = await GetReviews();
             IEnumerable<User> users = await GetUsers();
@@ -1198,6 +1200,11 @@ namespace STUFV
                 scherm.Close();
             }
             return logins;
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            loadAllStats();
         }
     }
 }
