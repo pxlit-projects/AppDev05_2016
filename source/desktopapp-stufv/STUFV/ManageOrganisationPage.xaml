@@ -71,7 +71,7 @@
                 </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top">
-                    <DataGrid x:Name="manageOrganisationDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="750" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                    <DataGrid x:Name="manageOrganisationDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="780" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50">
                                 <DataGridTextColumn.ElementStyle>
@@ -117,7 +117,7 @@
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn x:Name="organisationActiveColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" />
-                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" Width="295" IsReadOnly="True">
+                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" Width="325" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">

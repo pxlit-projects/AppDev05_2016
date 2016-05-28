@@ -30,7 +30,7 @@ namespace STUFV
         {
             InitializeComponent();
 
-            client.BaseAddress = new Uri("http://localhost:54238/");
+            client.BaseAddress = new Uri("http://webapp-stufv20160527104738.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -311,6 +311,7 @@ namespace STUFV
                     "Deactiveren", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     review.Active = false;
+                    review.Handled = true;
                 }
             }
             else

@@ -47,7 +47,7 @@ namespace STUFV
             loginTimer.Interval = TimeSpan.FromSeconds(1);
             loginTimer.Tick += LoginTimer_Tick;
 
-            client.BaseAddress = new Uri("http://localhost:54238/");
+            client.BaseAddress = new Uri("http://webapp-stufv20160527104738.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }

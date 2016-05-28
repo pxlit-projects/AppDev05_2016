@@ -72,7 +72,7 @@
                 </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
                 <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top">
-                <DataGrid x:Name="articlesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" RowHeight="50" Height="500" Width="900" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                <DataGrid x:Name="articlesDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" RowHeight="50" Height="500" Width="930" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="articleIdColumn" Binding="{Binding Id}" Header="Id" Width="50">
                             <DataGridTextColumn.ElementStyle>
@@ -154,7 +154,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="315" IsReadOnly="True">
+                        <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="345" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">

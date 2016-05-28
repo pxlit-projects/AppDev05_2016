@@ -119,7 +119,7 @@
                     <Border BorderBrush="Blue" BorderThickness="2" CornerRadius="10" Background="White">
                         <StackPanel>
                             <TextBlock FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Padding="5,0,5,0">
-                        <Hyperlink NavigateUri="http://webapp-stufv20160511012914.azurewebsites.net/" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Hyperlink NavigateUri="http://webapp-stufv20160527104738.azurewebsites.net/" RequestNavigate="Hyperlink_RequestNavigate">
                             Bekijk online
                         </Hyperlink>
                             </TextBlock>

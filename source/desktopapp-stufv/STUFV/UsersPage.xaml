@@ -71,7 +71,7 @@
                     </StackPanel>
                 </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
-                <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="875">
+                <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="900">
                 <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding Id}" Header="Id" Width="50">
@@ -159,7 +159,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="300" IsReadOnly="True">
+                        <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="325" IsReadOnly="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
