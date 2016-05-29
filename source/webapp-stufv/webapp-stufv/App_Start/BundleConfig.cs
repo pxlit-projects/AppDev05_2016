@@ -11,7 +11,6 @@ namespace webapp_stufv {
                       "~/Scripts/bootstrap-datetimepicker.min.js",
                       "~/Scripts/bootstrap-switch.min.js",
                       "~/Scripts/modernizr-*",
-                      "~/Scripts/jquery-{version}.js",
                       "~/Scripts/global.js",
                       "~/Scripts/jquery-12.4.js") );
 
