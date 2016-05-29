@@ -19,7 +19,6 @@ namespace webapp_stufv.Controllers {
                 ViewBag.Description = "Uw organisatie is nog niet geactiveerd.";
             } else if ( ( int ) Session[ "organisation" ] == 2 ) {
                 ViewBag.Description = "";
-<<<<<<< HEAD
                 ViewBag.Title = "Organisatie: " + iorganisation.GetOrganisationName((int)Session["userId"]);
                 using (var context = new STUFVModelContext())
                 {
@@ -30,17 +29,6 @@ namespace webapp_stufv.Controllers {
                     var events = context.Events.Where(e => e.OrganisationId == organisation.Id && e.Active == true).ToList();
                     var tuple = new Tuple<IEnumerable<Event>, Organisation, IEnumerable<EventTypes>>(events, organisation, eventTypes);
                     return View(tuple);
-=======
-                ViewBag.Title = "Organisatie: " + iorganisation.GetOrganisationName( ( int ) Session[ "userId" ] );
-                using ( var context = new STUFVModelContext( ) ) {
-                    int userId = Convert.ToInt32( Session[ "userId" ] );
-                    var organisations = context.Organisations.Where( o => o.UserId == userId ).ToList( );
-                    var organisation = organisations.ElementAt( 0 );
-                    var eventTypes = context.EventTypes.ToList( );
-                    var events = context.Events.Where( e => e.OrganisationId == organisation.Id && e.Active == true ).ToList( );
-                    var tuple = new Tuple<IEnumerable<Event>, Organisation, IEnumerable<EventTypes>>( events, organisation, eventTypes );
-                    return View( tuple );
->>>>>>> 8e3de11564f7efd1d9133a73bb6cb42a68590b09
                 }
             } else if ( ( int ) Session[ "organisation" ] == 3 ) {
                 ViewBag.Description = "Uw organisatie is geblokeerd.";

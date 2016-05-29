@@ -13,27 +13,19 @@ namespace webapp_stufv {
             bundles.Add ( new ScriptBundle ( "~/bundles/modernizr" ).Include (
                         "~/Scripts/modernizr-*" ) );
 
-            bundles.Add ( new ScriptBundle ( "~/bundles/bootstrap" ).Include (
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-<<<<<<< HEAD
                       "~/Scripts/respond.js",
                       "~/Scripts/bootstrap-datetimepicker.min.js",
                       "~/Scripts/bootstrap-switch.min.js",
                       "~/Scripts/modernizr-*",
                       "~/Scripts/global.js",
-                      "~/Scripts/jquery-12.4.js",
-=======
->>>>>>> 8e3de11564f7efd1d9133a73bb6cb42a68590b09
-                      "~/Scripts/respond.js" ) );
+                      "~/Scripts/jquery-12.4.js"));
 
             bundles.Add ( new StyleBundle ( "~/Content/css" ).Include (
                       "~/Content/bootstrap.css",
-<<<<<<< HEAD
                       "~/Content/global.css",
                       "~/Content/bootstrap-datetimepicker.min.css") );
-=======
-                      "~/Content/Global.css") );
->>>>>>> 8e3de11564f7efd1d9133a73bb6cb42a68590b09
         }
     }
 }
