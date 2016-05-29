@@ -36,13 +36,15 @@
                 <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                     <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Tip plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Nieuwe organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                    <ListBoxItem Content="Nieuwe evenementen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem IsSelected="True" Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer evenementen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer artikels" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer partners" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer tips" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Overzicht logins" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
@@ -61,6 +63,7 @@
                 <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="LightSkyBlue" HorizontalAlignment="Left" Margin="10,25,0,0">
                     <StackPanel Orientation="Horizontal">
+                        <Button x:Name="refreshButton" Content="Refresh" Margin="10,5,0,5" Click="RefreshButton_Click"/>
                         <StackPanel VerticalAlignment="Center" Margin="10,5,0,5">
                             <TextBlock Text="Toon:" />
                             <RadioButton x:Name="alleReviewsButton" Content="Alle reviews" Margin="0,5,0,5" GroupName="reviews"/>
@@ -74,9 +77,9 @@
                 </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" >
-                    <DataGrid x:Name="ReviewsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="1000" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                    <DataGrid x:Name="ReviewsDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True" Height="454" Width="1000" HorizontalScrollBarVisibility="Disabled">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50">
+                            <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -91,7 +94,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="User ID" Width="150">
+                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding UserId}" Header="User ID" Width="150" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -105,7 +108,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="reviewContentColumn" Binding="{Binding Content}" Header="Review" Width="200">
+                            <DataGridTextColumn x:Name="reviewContentColumn" Binding="{Binding Content}" Header="Review" Width="200" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -119,7 +122,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="reviewHandledColumn" Binding="{Binding Handled}" Header="Bekeken" Width="75">
+                            <DataGridTextColumn x:Name="reviewHandledColumn" Binding="{Binding Handled}" Header="Bekeken" Width="75" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -133,7 +136,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="reviewFlaggedColumn" Binding="{Binding Flagged}" Header="Flagged" Width="75">
+                            <DataGridTextColumn x:Name="reviewFlaggedColumn" Binding="{Binding Flagged}" Header="Flagged" Width="75" IsReadOnly="True" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -147,8 +150,8 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" />
-                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" IsReadOnly="True" Width="395">
+                            <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" IsReadOnly="True" CanUserResize="False"/>
+                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" IsReadOnly="True" Width="395" CanUserResize="False">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -1,8 +1,23 @@
-﻿
+﻿@section Content {
 
-@section Content {
-<h4>@ViewBag.Title</h4>
-<hr />
-    <p>@ViewBag.Comment</p>
+    <div class="page-header">
+
+    @if ( ViewBag.Title == "Oops!" ) {
+        <h1 class="text-danger">
+            @ViewBag.Title
+        </h1>
+        <div class="alert alert-danger">
+            @ViewBag.Comment
+        </div>
+    </div>
+    } else {
+        <h1 class="text-success">
+            @ViewBag.Title
+        </h1>
+        <div class="alert alert-success">
+            @ViewBag.Comment
+        </div>
+    </div>
+    }
 }
 

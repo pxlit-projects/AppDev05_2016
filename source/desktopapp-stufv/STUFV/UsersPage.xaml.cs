@@ -32,7 +32,7 @@ namespace STUFV
         {
             InitializeComponent();
 
-            client.BaseAddress = new Uri("http://webapp-stufv20160511012914.azurewebsites.net/");
+            client.BaseAddress = new Uri("http://webapp-stufv20160527104738.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -60,10 +60,10 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ArticlePage.xaml", UriKind.Relative);
                     break;
                 case 2:
-                    scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("TipPage.xaml", UriKind.Relative);
                     break;
                 case 3:
-                    scherm.displayFrame.Source = new Uri("NewEventPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("NewOrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 4:
                     scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
@@ -81,12 +81,18 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ManageArticlePage.xaml", UriKind.Relative);
                     break;
                 case 9:
-                    scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManagePartnerPage.xaml", UriKind.Relative);
                     break;
                 case 10:
-                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManageTipPage.xaml", UriKind.Relative);
                     break;
                 case 11:
+                    scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
+                    break;
+                case 12:
+                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    break;
+                case 13:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
             }
@@ -325,6 +331,13 @@ namespace STUFV
         private void ChangeRoleButton_Click(object sender, RoutedEventArgs e)
         {
             ChangeRole();
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchTextBox.Text = "";
+            filterBox.SelectedIndex = 0;
+            LoadUsers();
         }
     }
 }

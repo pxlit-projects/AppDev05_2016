@@ -143,6 +143,12 @@
     <Compile Include="ManageOrganisationPage.xaml.cs">
       <DependentUpon>ManageOrganisationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagePartnerPage.xaml.cs">
+      <DependentUpon>ManagePartnerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageTipPage.xaml.cs">
+      <DependentUpon>ManageTipPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -161,9 +167,6 @@
     <Compile Include="Models\STUFVModelContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserTypes.cs" />
-    <Compile Include="NewEventPage.xaml.cs">
-      <DependentUpon>NewEventPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="OrganisationEventsWindow.xaml.cs">
       <DependentUpon>OrganisationEventsWindow.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,9 @@
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="ReviewDetailsWindow.xaml.cs">
       <DependentUpon>ReviewDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TipPage.xaml.cs">
+      <DependentUpon>TipPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserDetailsWindow.xaml.cs">
       <DependentUpon>UserDetailsWindow.xaml</DependentUpon>
@@ -233,7 +239,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewEventPage.xaml">
+    <Page Include="ManagePartnerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageTipPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ReviewDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TipPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -398,6 +412,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\event.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\tip.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

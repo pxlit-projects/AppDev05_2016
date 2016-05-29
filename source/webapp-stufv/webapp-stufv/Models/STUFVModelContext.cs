@@ -34,7 +34,7 @@ namespace webapp_stufv.Models
 
         public STUFVModelContext() {
             Configuration.ProxyCreationEnabled = false;
-            Database.SetInitializer<STUFVModelContext> ( null );
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<STUFVModelContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

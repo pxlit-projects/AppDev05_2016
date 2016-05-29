@@ -8,7 +8,7 @@
       xmlns:local="clr-namespace:STUFV"
       mc:Ignorable="d" 
       d:DesignHeight="850" d:DesignWidth="1200"
-      Title="StatistiekenPage" Loaded="loadAllStats">
+      Title="StatistiekenPage">
 
     <Grid>
         <Grid.Resources>
@@ -42,13 +42,15 @@
                 <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                     <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Tip plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Nieuwe organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                    <ListBoxItem Content="Nieuwe evenementen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer evenementen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer artikels" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer partners" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer tips" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Overzicht logins" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem IsSelected="True" Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
@@ -67,50 +69,39 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <StackPanel>
                         <TextBlock Text=" Aantal gebruikers" Margin="10,25,0,0" FontSize="22" HorizontalAlignment="Center" FontWeight="DemiBold"/>
-                        <Label x:Name="userLabel" Content="" Width="150" Height="100" Margin="0,10,0,0" VerticalContentAlignment="Top" BorderThickness="0" FontSize="48" HorizontalContentAlignment="Center">
-
-                        </Label>
-
+                        <Label x:Name="userLabel" Content="" Width="150" Height="100" Margin="0,10,0,0" VerticalContentAlignment="Top" BorderThickness="0" FontSize="48" HorizontalContentAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Margin="10,0,0,0">
                         <TextBlock Text="Aantal organisaties" Margin="10,25,0,0" FontSize="22" HorizontalAlignment="Center" FontWeight="DemiBold"/>
-                        <Label x:Name="organisationLabel" Content="" Width="150" Height="100"  VerticalContentAlignment="Top" HorizontalContentAlignment="Center" BorderThickness="0" FontSize="48" Margin="0,10,0,0">
-
-                        </Label>
-
+                        <Label x:Name="organisationLabel" Content="" Width="150" Height="100"  VerticalContentAlignment="Top" HorizontalContentAlignment="Center" BorderThickness="0" FontSize="48" Margin="0,10,0,0"/>
                     </StackPanel>
                     <StackPanel Margin="20,0,0,0">
                         <TextBlock Text=" Aantal evenementen" Margin="0,25,0,0" FontSize="22" HorizontalAlignment="Center" FontWeight="DemiBold"/>
-                        <Label x:Name="eventLabel" Width="150" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" BorderThickness="0" Content="" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontSize="48">
-
-                        </Label>
-
+                        <Label x:Name="eventLabel" Width="150" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" BorderThickness="0" Content="" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontSize="48"/>
                     </StackPanel>
                     <StackPanel Margin="20,0,0,0">
                         <TextBlock Text=" Aantal reviews" Margin="0,25,0,0" FontSize="22" HorizontalAlignment="Center" FontWeight="DemiBold"/>
-                        <Label x:Name="reviewLabel" VerticalContentAlignment="Top" FontSize="48" HorizontalContentAlignment="Center" Width="150" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" BorderThickness="0" Content="">
-
-                        </Label>
-
+                        <Label x:Name="reviewLabel" VerticalContentAlignment="Top" FontSize="48" HorizontalContentAlignment="Center" Width="150" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" BorderThickness="0" Content=""/>
                     </StackPanel>
                     <StackPanel Margin="20,0,0,0">
                         <TextBlock Text="Aantal artikels" FontSize="22" Margin="10,25,0,0" FontWeight="DemiBold" HorizontalAlignment="Center"/>
                         <Label x:Name="artikelLabel" Content="" FontSize="48" Width="150" Height="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Margin="0,10,0,0" BorderThickness="0" VerticalAlignment="Top"/>
                     </StackPanel>
                 </StackPanel>
-                <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="LightSkyBlue" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,25,0,0" Visibility="Hidden">
+                <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="LightSkyBlue" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,25,0,0" Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
+                        <Button x:Name="refreshButton" Content="Refresh" Margin="10,5,0,5" Click="RefreshButton_Click"/>
                         <TextBlock Text="Toon: " VerticalAlignment="Center" Margin="10,5,0,5"/>
-                        <ComboBox x:Name="searchTextBox" Width="175" Margin="10,5,0,5"/>
+                        <ComboBox x:Name="filterBox" Width="175" Margin="10,5,0,5"/>
                         <TextBlock Text="Tijdsweergave:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
-                        <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,5,10,5"/>
-                        <Button Content="Create" Margin="0,5,10,5"/>
+                        <ComboBox x:Name="timeBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="150" Margin="10,5,10,5"/>
+                        <Button x:Name="createButton" Content="Create" Margin="0,5,10,5" Click="CreateButton_Click"/>
                     </StackPanel>
                 </Border>
                 <StackPanel>
-                    <DVC:Chart x:Name="chart" Margin="0,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="950" Height="400" Visibility="Hidden">
+                    <DVC:Chart x:Name="chart" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="950" Height="400" Visibility="Visible">
                         <DVC:Chart.Series>
-                            <DVC:LineSeries Title=" Monthly Count" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}"/>
+                            <DVC:LineSeries x:Name="titleSeries" Title="" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}"/>
                         </DVC:Chart.Series>
                     </DVC:Chart>
                 </StackPanel>

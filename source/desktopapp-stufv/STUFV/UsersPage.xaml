@@ -36,13 +36,15 @@
                 <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                     <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Tip plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Nieuwe organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                    <ListBoxItem Content="Nieuwe evenementen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem IsSelected="True" Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer evenementen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer artikels" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer partners" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer tips" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Overzicht logins" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
@@ -62,6 +64,7 @@
                 <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
                 <Border BorderThickness="2" BorderBrush="Black" CornerRadius="2" HorizontalAlignment="Left" Margin="10,25,0,0" Background="LightSkyBlue">
                     <StackPanel Orientation="Horizontal">
+                        <Button x:Name="refreshButton" Content="Refresh" Margin="10,5,0,5" Click="RefreshButton_Click"/>
                         <TextBlock Text="Zoek gebruiker " VerticalAlignment="Center" Margin="10,5,0,5"/>
                         <TextBox x:Name="searchTextBox" Width="175" Margin="10,5,0,5"/>
                         <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,5,0,5"/>
@@ -69,10 +72,10 @@
                     </StackPanel>
                 </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
-                <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="875">
+                <Border BorderBrush="Black" BorderThickness="2" CornerRadius="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="500" Width="900">
                 <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding Id}" Header="Id" Width="50">
+                            <DataGridTextColumn x:Name="userIdColumn" Binding="{Binding Id}" Header="Id" Width="50" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -87,7 +90,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="Voornaam" Width="125" IsReadOnly="True">
+                            <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="Voornaam" Width="125" IsReadOnly="True" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -101,7 +104,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Achternaam" Width="125" IsReadOnly="True">
+                            <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Achternaam" Width="125" IsReadOnly="True" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -115,7 +118,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="175" IsReadOnly="True">
+                            <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" Width="175" IsReadOnly="True" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -129,7 +132,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="roleColumn" Binding="{Binding RoleID}" Header="Rol" Width="SizeToHeader" IsReadOnly="True">
+                            <DataGridTextColumn x:Name="roleColumn" Binding="{Binding RoleID}" Header="Rol" Width="SizeToHeader" IsReadOnly="True" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -143,7 +146,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" IsReadOnly="True">
+                            <DataGridTextColumn x:Name="statusColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" IsReadOnly="True" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -157,7 +160,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="300" IsReadOnly="True">
+                            <DataGridTemplateColumn x:Name="optionColumn" Header="Opties" Width="325" IsReadOnly="True" CanUserResize="False">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">

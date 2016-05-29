@@ -15,6 +15,7 @@ namespace webapp_stufv.Controllers {
         private Random rnd = new Random();
 
         public ActionResult Index ( ) {
+
             List<Article> articleList = iarticle.getAllArticles ( );
             List<Article> articleLast3 = new List<Article>();
             int articleCount = articleList.Count;

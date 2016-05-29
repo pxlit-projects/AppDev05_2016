@@ -6,7 +6,9 @@ using System.Linq;
 using System.Web;
 
 namespace webapp_stufv.Models {
+    [Table("Articles")]
     public class Article {
+        [Key]
         public int Id { get; set; }
         [ForeignKey ( "User" )]
         public int UserId { get; set; }

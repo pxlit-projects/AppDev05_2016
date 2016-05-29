@@ -36,13 +36,15 @@
                 <ListBox x:Name="menuBox" HorizontalAlignment="Left" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                     <ListBoxItem Content="Home" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Artikel plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Tip plaatsen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Nieuwe organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
-                    <ListBoxItem Content="Nieuwe evenementen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Controle op reviews" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer gebruikers" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer organisaties" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem IsSelected="True" Content="Beheer evenementen" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Beheer artikels" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer partners" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
+                    <ListBoxItem Content="Beheer tips" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Overzicht logins" Foreground="White"  FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Statistieken" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                     <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
@@ -61,7 +63,8 @@
                 <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="LightSkyBlue"  HorizontalAlignment="Left" Margin="10,25,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Zoek evenement " VerticalAlignment="Center" Margin="10,5,0,5"/>
+                        <Button x:Name="refreshButton" Content="Refresh" Margin="10,5,0,5" Click="RefreshButton_Click"/>
+                        <TextBlock Text="Zoek evenement " VerticalAlignment="Center" Margin="10,5,0,5"/>
                     <TextBox x:Name="searchTextBox" Width="175" Margin="10,5,0,5" SelectionChanged="SearchTextBox_SelectionChanged"/>
                     <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
                     <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,5,10,5" SelectionChanged="FilterBox_SelectionChanged"/>
@@ -70,9 +73,9 @@
                 </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top">
-                <DataGrid x:Name="eventDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="850" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
+                <DataGrid x:Name="eventDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="890" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50">
+                            <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="50" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -87,7 +90,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="organisationIdColumn" Binding="{Binding OrganisationId}" Header="OrganisatieId" Width="SizeToHeader">
+                            <DataGridTextColumn x:Name="organisationIdColumn" Binding="{Binding OrganisationId}" Header="OrganisatieId" Width="SizeToHeader" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -102,7 +105,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Eventnaam" Width="150">
+                            <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Eventnaam" Width="150" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -116,7 +119,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="organisationDescriptionColumn" Binding="{Binding Description}" Header="Beschrijving" Width="200">
+                            <DataGridTextColumn x:Name="organisationDescriptionColumn" Binding="{Binding Description}" Header="Beschrijving" Width="200" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -130,22 +133,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="startDateColumn" Binding="{Binding Start, StringFormat={}{0:dd-MM-yyyy}}" Header="Start" Width="75" IsReadOnly="True">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                            <DataGridTextColumn.EditingElementStyle>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                    <Setter Property="AcceptsReturn" Value="true" />
-                                </Style>
-                            </DataGridTextColumn.EditingElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="endDateColumn" Binding="{Binding End, StringFormat={}{0:dd-MM-yyyy}}" Header="Einde" Width="75" IsReadOnly="True">
+                            <DataGridTextColumn x:Name="startDateColumn" Binding="{Binding Start, StringFormat={}{0:dd-MM-yyyy}}" Header="Start" Width="75" IsReadOnly="True" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -160,7 +148,7 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn x:Name="eventActiveColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader">
+                            <DataGridTextColumn x:Name="endDateColumn" Binding="{Binding End, StringFormat={}{0:dd-MM-yyyy}}" Header="Einde" Width="75" IsReadOnly="True" CanUserResize="False">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />
@@ -175,7 +163,22 @@
                                 </Style>
                             </DataGridTextColumn.EditingElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" Width="145" IsReadOnly="True">
+                            <DataGridTextColumn x:Name="eventActiveColumn" Binding="{Binding Active}" Header="Actief" Width="SizeToHeader" CanUserResize="False">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                            <DataGridTemplateColumn x:Name="infoButtonColumn" Header="Opties" Width="185" IsReadOnly="True" CanUserResize="False">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">

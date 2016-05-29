@@ -132,7 +132,8 @@ namespace webapp_stufv.Controllers
                 AlcoholFree = alcoholFree,
                 OrganisationId = iorganisation.GetOrganisationId((int)Session["userId"]),
                 Active = false,
-                Image = filename
+                Image = filename,
+                RegisterDate = DateTime.Now
             };
             using (var context = new STUFVModelContext())
             {

@@ -225,10 +225,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604240920013_InitialMigrations.cs" />
-    <Compile Include="Migrations\201604240920013_InitialMigrations.Designer.cs">
-      <DependentUpon>201604240920013_InitialMigrations.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -301,7 +297,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\close.png" />
-    <Content Include="Content\Global.css" />
+    <Content Include="Content\global.css" />
     <Content Include="Content\img\Calendar.png" />
     <Content Include="Content\img\collapse.png" />
     <Content Include="Content\img\euro.png" />
@@ -319,10 +315,8 @@
     <Content Include="Content\img\EventImages\noimageavailable.png" />
     <Content Include="Content\instafeed.js" />
     <Content Include="Content\instafeed.min.js" />
-    <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
-    <Content Include="Content\js\bootstrap-switch.min.js" />
-    <Content Include="Content\js\jquery.js" />
-    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-switch.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -336,11 +330,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Properties\PublishProfiles\webapp-stufv - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\webapp-stufv20160511012914 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\webapp-stufv20160511012914.pubxml" />
+    <None Include="Properties\PublishProfiles\webapp-stufv20160527045609 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\webapp-stufv20160527104738 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-12.4.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -400,11 +397,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604240920013_InitialMigrations.resx">
-      <DependentUpon>201604240920013_InitialMigrations.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
