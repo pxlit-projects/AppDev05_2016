@@ -1,25 +1,28 @@
-﻿@RenderBody( )
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="nl-be">
 
 <head>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @Styles.Render( "~/Content/css" )
-    @Scripts.Render( "~/bundles/jquery" )
-    @Scripts.Render( "~/bundles/bootstrap" )
-    @Scripts.Render( "~/bundles/modernizr" )
-    @Scripts.Render( "~/bundles/datepicker" )
+    @Scripts.Render( "~/bundles/scripts" )
     <title>@ViewBag.Title</title>
+
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
 </head>
 
 <body>
 
-    <div id="wrapper">
+    @RenderBody( )
 
-        <!-- Sidebar -->
+    <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
@@ -29,31 +32,30 @@
                     @Html.ActionLink( "Evenementen", "Index", "Events" )
                 </li>
                 <li>
-                    @Html.ActionLink( "Richtlijnen", "Index", "Guidelines" )
-                </li>
-                <li>
                     @Html.ActionLink( "Nieuws", "Index", "News" )
                 </li>
                 <li>
-                    @Html.ActionLink( "Instagram", "Index", "Instagram")
-                </li>
-                <li>
-                    @Html.ActionLink("Partner", "Index", "Partner")
+                    @Html.ActionLink( "Instagram", "Index", "Instagram" )
                 </li>
                 <li>
                     @Html.ActionLink( "FAQ", "Index", "FAQ" )
                 </li>
                 <li>
-                    @Html.ActionLink( "Contact", "Index", "Contact" )
+                    @Html.ActionLink( "Richtlijnen", "Index", "Guidelines" )
                 </li>
                 <li>
                     @Html.ActionLink( "Noodnummers", "Index", "Emergency" )
+                </li>
+                <li>
+                    @Html.ActionLink( "Partners", "Index", "Partner" )
+                </li>
+                <li>
+                    @Html.ActionLink( "Contact", "Index", "Contact" )
                 </li>
                 @if ( Session[ "email" ] == null ) {
                     <li>
                         @Html.ActionLink( "Registreren", "Register", "Account" )
                     </li>
-                @if ( Session[ "email" ] == null || Session[ "email" ].Equals ( "" ) ) {
                     <li class="login" data-toggle="modal" data-target="#modallogin">
                         Aanmelden
                     </li>
@@ -68,7 +70,7 @@
                         </li>
                     }
                     <li>
-                        @Html.ActionLink("Instellingen", "Index", "Settings" )
+                        @Html.ActionLink( "Instellingen", "Index", "Settings" )
                     </li>
                     <li class="logout" data-toggle="modal" data-target="#modallogout">
                         Afmelden
@@ -76,20 +78,11 @@
                 }
             </ul>
         </div>
-        <img src="~/Content/img/hamburger.png" id="menu-toggle" class="hamburger right menutoggle"/>
-        <!-- /#sidebar-wrapper -->
-        <!-- Page Content -->
+        <img src="~/Content/img/hamburger.png" id="menu-toggle" class="hamburger right menutoggle" />
         <div id="page-content-wrapper">
             @RenderSection( "content", required: false )
         </div>
-        <!-- /#page-content-wrapper -->
     </div>
-    <!-- /#wrapper -->
-
-    <div class="footer">
-        <p class="text-muted">Property of STUFV 2016 &copy;</p>
-    </div>
-
     <div id="modallogin" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -97,28 +90,27 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                Hello! Login met je e-mail adres en wachtwoord.
+                                Hallo! Login met je e-mail adres en wachtwoord.
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8">
                             <section id="loginForm">
-                                @using ( Html.BeginForm ( "Process", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name="loginform", id="loginform", @class = "form-horizontal", role = "form" } ) ) {
+                                @using ( Html.BeginForm( "Process", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "loginform", id = "loginform", @class = "form-horizontal", role = "form" } ) ) {
                                     <div class="form-group">
                                         <div class="col-md-offset-3 col-md-12">
                                             <div class="input-group" id="Email">
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <input type="text" class="form-control" name="Email" placeholder="E-mail"/>
+                                                <input type="text" class="form-control" name="Email" placeholder="E-mail" />
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="form-group">
-                                            <div class="col-md-offset-3 col-md-12">
-                                                <div class="input-group" id="Password">
-                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                                    <input type="password" class="form-control" name="Password"/>
-                                                </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-md-12">
+                                            <div class="input-group" id="Password">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input type="password" class="form-control" name="Password" />
                                             </div>
                                         </div>
                                     </div>
@@ -126,12 +118,8 @@
                                         <div class="col-md-offset-3 col-md-12">
                                             <input type="submit" value="Log in" class="btn btn-success" onclick="return Validate()" />
                                             @Html.ActionLink( "Registreer een nieuw account", "Register", "Account", new { @class = "inline" } )
-                                        <div class="form-group">
-                                            <div class="col-md-offset-3 col-md-10">
-                                                <input type="submit" value="Log in" class="btn btn-success" onclick="return Validate()"/>
-                                                @Html.ActionLink( "Registreer een nieuw account", "Register", "Account" )
-                                            </div>
                                         </div>
+                                    </div>
                                 }
                             </section>
                         </div>
@@ -172,47 +160,5 @@
             </div>
         </div>
     </div>
-    <!-- Input validation Scripts -->
-    <script>
-        function Validate() {
-            var email = ValidateEmail();
-            var password = ValidatePassword();
-            if (email && password) {
-                return true;
-            }
-            return false;
-        }
-        function ValidatePassword() {
-            var inputText = document.loginform.Password;
-            if (inputText.value == "") {
-                $('#Password').attr("class", "input-group has-error");
-                return false;
-            } else {
-                $('#Password').attr("class", "input-group has-success");
-                return true;
-            }
-        }
-        function ValidateEmail() {
-            var inputText = document.loginform.Email;
-            var mailformat = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if (inputText.value.match(mailformat)) {
-                $('#Email').attr("class", "input-group has-success");
-                return true;
-            } else {
-                $('#Email').attr("class", "input-group has-error");
-                return false;
-            }
-            
-        }
-
-    </script>
-
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
 </body>
 </html>
