@@ -18,7 +18,7 @@ namespace webapp_stufv {
                       "~/Scripts/bootstrap-switch.min.js",
                       "~/Scripts/modernizr-*",
                       "~/Scripts/global.js",
-                      "~/Scripts/jquery-12.4.js") );
+                      "~/Scripts/jquery-12.4.js",
                       "~/Scripts/respond.js" ) );
 
             bundles.Add ( new ScriptBundle ( "~/bundles/datepicker" ).Include (
@@ -26,7 +26,6 @@ namespace webapp_stufv {
 
             bundles.Add ( new StyleBundle ( "~/Content/css" ).Include (
                       "~/Content/bootstrap.css",
-                      "~/Content/Global.css" ) );
                       "~/Content/global.css",
                       "~/Content/bootstrap-datetimepicker.min.css") );
         }

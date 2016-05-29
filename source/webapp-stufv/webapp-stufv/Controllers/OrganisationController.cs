@@ -32,7 +32,7 @@ namespace webapp_stufv.Controllers
                     var organisations = context.Organisations.Where(o => o.UserId == userId).ToList();
                     var organisation = organisations.ElementAt(0);
                     var eventTypes = context.EventTypes.ToList();
-                    var events = context.Events.Where(e => e.OrganisationId == organisation.Id && e.Active = true).ToList();
+                    var events = context.Events.Where(e => e.OrganisationId == organisation.Id && e.Active == true).ToList();
                     var tuple = new Tuple<IEnumerable<Event>, Organisation, IEnumerable<EventTypes>>(events, organisation, eventTypes);
                     return View(tuple);
                 }

@@ -159,17 +159,6 @@ namespace webapp_stufv.Controllers {
             }
 
             int userId = _iuser.GetAllUsers( ).Single( e => e.Email == email ).Id;
-
-            var settings = new ProfileSettings {
-                Email = email.ToLower(),
-                ProfilePicture = "noimageavailable.png"
-            };
-            using (var context = new STUFVModelContext())
-            {
-                context.Users.Add(user);
-                context.SaveChanges();
-            }
-            int userId = iuser.GetAllUsers().Single(e => e.Email == email).Id;
             var settings = new ProfileSettings
             {
                 FirstName = true,
@@ -216,4 +205,3 @@ namespace webapp_stufv.Controllers {
             }
         }
     }
-}
