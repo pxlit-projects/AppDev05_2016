@@ -297,7 +297,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\close.png" />
-    <Content Include="Content\global.css" />
+    <Content Include="Content\Global.css" />
     <Content Include="Content\img\Calendar.png" />
     <Content Include="Content\img\collapse.png" />
     <Content Include="Content\img\euro.png" />
@@ -315,8 +315,10 @@
     <Content Include="Content\img\EventImages\noimageavailable.png" />
     <Content Include="Content\instafeed.js" />
     <Content Include="Content\instafeed.min.js" />
-    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
-    <Content Include="Scripts\bootstrap-switch.min.js" />
+    <Content Include="Content\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\js\bootstrap-switch.min.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -334,7 +336,6 @@
     <None Include="Properties\PublishProfiles\webapp-stufv20160527045609 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\webapp-stufv20160527104738 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-12.4.js" />
