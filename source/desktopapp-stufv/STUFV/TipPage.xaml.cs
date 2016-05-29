@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,11 +23,17 @@ namespace STUFV
     public partial class TipPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
+        HttpClient client = new HttpClient();
 
         public TipPage()
         {
             InitializeComponent();
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
+            
+
+            client.BaseAddress = new Uri("http://webapp-stufv20160527104738.azurewebsites.net/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,6 +84,40 @@ namespace STUFV
                 case 13:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
+            }
+        }
+
+        private void PlaceTipButton_Click(object sender, RoutedEventArgs e)
+        {
+            Tip Tip = new Tip();
+
+            
+            Tip.TipText = contentTextBox.Text;
+            
+            Tip.Active = true;
+            
+            AddTip(Tip);
+        }
+
+        private async void AddTip(Tip tip)
+        {
+            try
+            {
+                var userUrl = "/api/tip";
+                HttpResponseMessage response = await client.PostAsJsonAsync(userUrl, tip);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Tip succesvol toegevoegd!");
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
         }
     }

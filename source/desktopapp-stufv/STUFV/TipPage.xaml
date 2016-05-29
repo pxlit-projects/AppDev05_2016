@@ -66,8 +66,30 @@
                     <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                 </ListBox>
             </Viewbox>
-            <StackPanel DockPanel.Dock="Left">
+            <StackPanel DockPanel.Dock="Right" Background="WhiteSmoke">
+                <TextBlock Text="Tips" FontSize="40" Foreground="White" Padding="10,5,0,5">
+                    <TextBlock.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF144563" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Background>
+                </TextBlock>
+                <TextBlock Text="Tip plaatsen" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
+                <Border BorderThickness="2" CornerRadius="2" BorderBrush="Black" Width="825" Height="500" Margin="10,25,0,0">
+                    <StackPanel>
+                        <DockPanel Background="#336699">
+                            <Label Content="Tip :" Foreground="White" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
+                            
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17" VerticalScrollBarVisibility="Auto"/>
+                        </DockPanel>
+                        
 
+                    </StackPanel>
+                </Border>
+                <Button x:Name="placeTipButton" Content="Tip plaatsen" Background="White" BorderBrush="Black" BorderThickness="1" Margin="10,15,0,0" HorizontalAlignment="Left" Click="PlaceTipButton_Click"/>
             </StackPanel>
         </DockPanel>
     </Grid>

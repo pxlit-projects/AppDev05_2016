@@ -128,6 +128,9 @@
     <Compile Include="EditArticleWindow.xaml.cs">
       <DependentUpon>EditArticleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditTipWindow.xaml.cs">
+      <DependentUpon>EditTipWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MailWindow.xaml.cs">
       <DependentUpon>MailWindow.xaml</DependentUpon>
     </Compile>
@@ -162,9 +165,11 @@
     <Compile Include="Models\Logout.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Organisation.cs" />
+    <Compile Include="Models\Partner.cs" />
     <Compile Include="Models\Passenger.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\STUFVModelContext.cs" />
+    <Compile Include="Models\Tip.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserTypes.cs" />
     <Compile Include="OrganisationEventsWindow.xaml.cs">
@@ -216,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditArticleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditTipWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
