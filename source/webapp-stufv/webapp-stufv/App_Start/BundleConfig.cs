@@ -17,7 +17,8 @@ namespace webapp_stufv {
 
             bundles.Add( new StyleBundle( "~/Content/css" ).Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/global.css" ) );
+                      "~/Content/global.css",
+                      "~/Content/bootstrap-datetimepicker.min.css") );
         }
     }
 }

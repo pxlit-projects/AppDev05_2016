@@ -13,7 +13,7 @@ namespace webapp_stufv.Repository
             using (var context = new STUFVModelContext())
             {
                 List<Event> events = new List<Event>();
-                events = context.Events.Where(e => e.Active==true).ToList();
+                events = context.Events.ToList();
                 return events;
             }
         }
