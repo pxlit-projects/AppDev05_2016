@@ -193,7 +193,7 @@ namespace STUFV
                 scherm.Close();
             }
         }
-        private async void ChangeTipButton_Click(object sender, RoutedEventArgs e)
+        private void ChangeTipButton_Click(object sender, RoutedEventArgs e)
         {
             Tip tip = (Tip)TipsDataGrid.CurrentItem;
             

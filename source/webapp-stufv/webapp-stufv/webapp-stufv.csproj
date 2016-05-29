@@ -288,7 +288,9 @@
     <Compile Include="Web_Api_Controllers\GuidelineController.cs" />
     <Compile Include="Web_Api_Controllers\LoginController.cs" />
     <Compile Include="Web_Api_Controllers\OrganisationsController.cs" />
+    <Compile Include="Web_Api_Controllers\PartnerController.cs" />
     <Compile Include="Web_Api_Controllers\ReviewController.cs" />
+    <Compile Include="Web_Api_Controllers\TipController.cs" />
     <Compile Include="Web_Api_Controllers\UserController.cs" />
   </ItemGroup>
   <ItemGroup>
