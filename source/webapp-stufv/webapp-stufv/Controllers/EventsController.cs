@@ -26,9 +26,11 @@ namespace webapp_stufv.Controllers {
         public ActionResult Index( ) {
             ViewBag.Title = "Evenementen";
             _events = ievent.GetAllUnexpiredEvents( );
+
             var model = from r in _events
                         orderby r.Id
                         select r;
+
             return View( model );
         }
 
