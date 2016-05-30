@@ -1,11 +1,4 @@
 ﻿@section content {
-    <link rel="stylesheet" type="text/css" href="~/Content/Global.css">
-    <script src="~/Content/js/jquery.min.js"></script>
-    <script>
-        function closeBox() {
-            $("#box").hide();
-        }
-    </script>
 
     <div class="container">
         @foreach ( var item in ViewBag.Tips ) {
@@ -19,18 +12,20 @@
             </div>
         }
 
-        <div class="jumbotron">
-            <h1>Welkom op de website van STUFV</h1>
-            <p>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato de more elogio revocari iussisse, quod inexorabiles quoque principes factitarunt. et exitiale hoc vitium, quod in aliis non numquam intepescit, in illo aetatis progressu effervescebat, obstinatum eius propositum accendente adulatorum cohorte.</p>
-            @if ( Session[ "email" ] == null || Session[ "email" ].Equals( "" ) ) {
-                <p align="center" class="btn btn-info" style="text-transform: none; margin-left: 390px" data-toggle="modal" data-target="#modallogin">Log in</p>
-                <a href="@Url.Action("Register", "Account")">
-                    <p align="center" class="btn btn-success" style="text-transform: none; margin-left: 20px">Schrijf in</p>
-                </a>
-            } else {
-                <p align="center" class="btn btn-danger" style="text-transform: none; margin-left: 390px" data-toggle="modal" data-target="#modallogout">Afmelden</p>
-            }
+        <div class="page-header">
+            <div class="jumbotron">
+                <h1>Welkom op de website van STUFV</h1>
+                <p>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato de more elogio revocari iussisse, quod inexorabiles quoque principes factitarunt. et exitiale hoc vitium, quod in aliis non numquam intepescit, in illo aetatis progressu effervescebat, obstinatum eius propositum accendente adulatorum cohorte.</p>
+                @if ( Session[ "email" ] == null || Session[ "email" ].Equals( "" ) ) {
+                    <p align="center" class="btn btn-info" style="text-transform: none; margin-left: 390px" data-toggle="modal" data-target="#modallogin">Log in</p>
+                    <a href="@Url.Action("Register", "Account")">
+                        <p align="center" class="btn btn-success" style="text-transform: none; margin-left: 20px">Schrijf in</p>
+                    </a>
+                } else {
+                    <p align="center" class="btn btn-danger" style="text-transform: none; margin-left: 390px" data-toggle="modal" data-target="#modallogout">Afmelden</p>
+                }
 
+            </div>
         </div>
         <div class="col-md-3">
             <a class="twitter-timeline" data-chrome="noscrollbar" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>

@@ -1,6 +1,16 @@
 ﻿@model IEnumerable<webapp_stufv.Models.Event>
 @section content{
     <div class="container">
+        @foreach ( var item in ViewBag.Tips ) {
+            <div id="box">
+                <div class="col-md-11">
+                    <p id="tip">@item.TipText</p>
+                </div>
+                <div class="col-md-1">
+                    <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
+                </div>
+            </div>
+        }
         <div class="page-header">
             <div class="well">
                 <h1>@ViewBag.Title</h1>

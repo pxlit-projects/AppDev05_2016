@@ -16,8 +16,14 @@ namespace webapp_stufv.Controllers {
          * News/Index
          */
         public ActionResult Index( ) {
+            Random rnd = new Random( );
+
             ViewBag.Title = "Nieuws";
-            ViewBag.Tips = _itips.GetAllTips( );
+            List<Tip> tips = _itips.GetAllTips( );
+            int r = rnd.Next( tips.Count );
+            List<Tip> tipsRandom = new List<Tip>( );
+            tipsRandom.Add( tips[ r ] );
+            ViewBag.Tips = tipsRandom;
             return View( _iarticle.getAllArticles( ) );
         }
 

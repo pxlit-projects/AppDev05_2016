@@ -89,3 +89,7 @@ function IsEmpty(id, text) {
         return true;
     }
 }
+
+function closeBox() {
+    $("#box").hide();
+}

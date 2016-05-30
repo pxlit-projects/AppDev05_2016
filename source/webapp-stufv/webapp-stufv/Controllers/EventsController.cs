@@ -18,12 +18,22 @@ namespace webapp_stufv.Controllers {
         private IAttendanceRepository iattend = new AttendanceRepository( );
         private IDesDriverRepository idesdriver = new DesDriverRepository( );
         private IPassengerRepository ipassenger = new PassengerRepository( );
+        private ITipRepository _itips = new TipRepository( );
         private List<Event> _events;
 
         /*
          * Events/Index
          */
         public ActionResult Index( ) {
+            Random rnd = new Random( );
+
+            ViewBag.Title = "Nieuws";
+            List<Tip> tips = _itips.GetAllTips( );
+            int rand = rnd.Next( tips.Count );
+            List<Tip> tipsRandom = new List<Tip>( );
+            tipsRandom.Add( tips[ rand ] );
+            ViewBag.Tips = tipsRandom;
+
             ViewBag.Title = "Evenementen";
             _events = ievent.GetAllUnexpiredEvents( );
 
