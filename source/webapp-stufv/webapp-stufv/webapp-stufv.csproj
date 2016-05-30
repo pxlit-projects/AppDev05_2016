@@ -337,6 +337,7 @@
     <None Include="Properties\PublishProfiles\webapp-stufv20160527104738 - Web Deploy.pubxml" />
     <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Properties\PublishProfiles\webapp-stufv20160527104738.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

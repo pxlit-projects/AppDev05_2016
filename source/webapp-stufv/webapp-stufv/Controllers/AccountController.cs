@@ -183,7 +183,7 @@ namespace webapp_stufv.Controllers
             }
             NewUserProfileSettings(email);
         }
-        private void NewUserProfileSettings(string email) {
+        private void NewUserProfileSettings(String email) {
             int userId = _iuser.GetAllUsers().Single(e => e.Email == email).Id;
             var settings = new ProfileSettings
             {
