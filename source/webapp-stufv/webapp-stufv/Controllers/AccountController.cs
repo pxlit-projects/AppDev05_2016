@@ -88,24 +88,32 @@ namespace webapp_stufv.Controllers
          */
         public ActionResult CreateAccount()
         {
-            if (Session["email"] == null)
+            try
             {
-                String email = Request.Form["Email"];
-                if (_iuser.Exist(email))
+                if (Session["email"] == null)
                 {
-                    ViewBag.Title = "Oops!";
-                    ViewBag.Comment = "Dit email adress is al in gebruik";
+                    String email = Request.Form["Email"];
+                    if (_iuser.Exist(email))
+                    {
+                        ViewBag.Title = "Oops!";
+                        ViewBag.Comment = "Dit email adress is al in gebruik";
+                    }
+                    else {
+                        CreateUser(email);
+                        ViewBag.Title = "Gelukt!";
+                        ViewBag.Comment = "Je bent geregistreerd.";
+                    }
+
+                    return View();
                 }
                 else {
-                    CreateUser(email);
-                    ViewBag.Title = "Gelukt!";
-                    ViewBag.Comment = "Je bent geregistreerd.";
+                    return RedirectToAction("Index", "Home");
                 }
-
-                return View();
             }
-            else {
-                return RedirectToAction("Index", "Home");
+            catch (Exception ex) {
+                ViewBag.Title = "Oops!";
+                ViewBag.Comment = "Er is iets mis gegaan met de registratie. Probeer het later opniew.";
+                return View();
             }
         }
 
@@ -114,7 +122,7 @@ namespace webapp_stufv.Controllers
          */
         public ActionResult ChangePassword()
         {
-            if (Session["email"] == null)
+            if (Session["email"] != null)
             {
                 string salt = _iuser.GetSalt(Session["Email"].ToString());
                 var encpass = MD5Encrypt(Request.Form["OldPass"], salt);
@@ -183,7 +191,7 @@ namespace webapp_stufv.Controllers
             }
             NewUserProfileSettings(email);
         }
-        private void NewUserProfileSettings(string email) {
+        private void NewUserProfileSettings(String email) {
             int userId = _iuser.GetAllUsers().Single(e => e.Email == email).Id;
             var settings = new ProfileSettings
             {
