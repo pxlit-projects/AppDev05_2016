@@ -178,11 +178,11 @@ namespace STUFV
             return partners;
         }
 
-        public async Task UpdateOrganisation(Partner partner)
+        public async Task UpdatePartner(Partner partner)
         {
             try
             {
-                var partnerUrl = "/api/partners/" + partner.Id;
+                var partnerUrl = "/api/partner/" + partner.Id;
                 HttpResponseMessage response = await client.PutAsJsonAsync(partnerUrl, partner);
 
                 if (response.IsSuccessStatusCode)
@@ -269,16 +269,11 @@ namespace STUFV
             if (originalActive != partner.Active)
             {
                 messageLabel.Content = "Verwerken...";
-                await UpdateOrganisation(partner);
+                await UpdatePartner(partner);
             }
         }
 
-        private void editPartner_Click(object sender, RoutedEventArgs e)
-        {
-            Partner partner = (Partner)managePartnerDataGrid.CurrentItem;
-            EditPartnerWindow editpartner = new EditPartnerWindow(partner);
-            editpartner.ShowDialog();
-        }
+
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {

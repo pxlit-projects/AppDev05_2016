@@ -65,7 +65,7 @@
                 <Border BorderThickness="2" CornerRadius="2" BorderBrush="Black" Width="825" Height="86" Margin="10,25,0,0">
                     <StackPanel>
                         <DockPanel Background="#C0C0C0">
-                            <TextBlock Text="Naam:" Foreground="White" VerticalAlignment="Center" FontSize="14" Margin="10,0,0,0"/>
+                            <TextBlock Text="Naam: (verplicht)" Foreground="White" VerticalAlignment="Center" FontSize="14" Margin="10,0,0,0"/>
                             <TextBox x:Name="nameTextBox" Text="" Background="#C0C0C0" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="14" Margin="10,0,0,0"/>
                         </DockPanel>
                         <DockPanel>
@@ -73,12 +73,12 @@
                             </DockPanel>
 
                         <DockPanel Background="#C0C0C0" Height="28">
-                            <TextBlock Text="Link partner" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Text="Link partner (verplicht)" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <TextBox x:Name="linkBox" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" Background="#C0C0C0"/>
                             
                         </DockPanel>
                         <DockPanel Background="#C0C0C0" Height="28">
-                            <TextBlock Text="Link afbeelding (optioneel)" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" />
+                            <TextBlock Text="Link afbeelding (verplicht)" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" />
                             <TextBox x:Name="urlAfbeelding" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" Background="#C0C0C0"/>
                         </DockPanel>
 

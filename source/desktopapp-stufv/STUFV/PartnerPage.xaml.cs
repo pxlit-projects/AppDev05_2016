@@ -90,9 +90,18 @@ namespace STUFV
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            
+
             Partner partner = new Partner();
             partner.Name = nameTextBox.Text;
-            partner.Image = urlAfbeelding.Text;
+            if (urlAfbeelding.Text.ToString().Length <=0)
+            {
+                partner.Image = "partner.jpg";
+            } else
+            {
+                partner.Image = urlAfbeelding.Text;
+            }
+            
             partner.URL = linkBox.Text;
             partner.Active = true;
             AddPartner(partner);
@@ -102,16 +111,13 @@ namespace STUFV
         {
             try
             {
-                var partnerUrl = "/api/partners";
+                var partnerUrl = "/api/partner";
                 HttpResponseMessage response = await client.PostAsJsonAsync(partnerUrl, partner);
 
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show(String.Format("Partner succesvol toegevoegd!"));
-                } else
-                {
-                    MessageBox.Show("Er is een probleem");
-                }
+                } 
             }
             catch (HttpRequestException)
             {
