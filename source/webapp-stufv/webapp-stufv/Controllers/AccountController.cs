@@ -88,24 +88,32 @@ namespace webapp_stufv.Controllers
          */
         public ActionResult CreateAccount()
         {
-            if (Session["email"] == null)
+            try
             {
-                String email = Request.Form["Email"];
-                if (_iuser.Exist(email))
+                if (Session["email"] == null)
                 {
-                    ViewBag.Title = "Oops!";
-                    ViewBag.Comment = "Dit email adress is al in gebruik";
+                    String email = Request.Form["Email"];
+                    if (_iuser.Exist(email))
+                    {
+                        ViewBag.Title = "Oops!";
+                        ViewBag.Comment = "Dit email adress is al in gebruik";
+                    }
+                    else {
+                        CreateUser(email);
+                        ViewBag.Title = "Gelukt!";
+                        ViewBag.Comment = "Je bent geregistreerd.";
+                    }
+
+                    return View();
                 }
                 else {
-                    CreateUser(email);
-                    ViewBag.Title = "Gelukt!";
-                    ViewBag.Comment = "Je bent geregistreerd.";
+                    return RedirectToAction("Index", "Home");
                 }
-
-                return View();
             }
-            else {
-                return RedirectToAction("Index", "Home");
+            catch (Exception ex) {
+                ViewBag.Title = "Oops!";
+                ViewBag.Comment = "Er is iets mis gegaan met de registratie. Probeer het later opniew.";
+                return View();
             }
         }
 
