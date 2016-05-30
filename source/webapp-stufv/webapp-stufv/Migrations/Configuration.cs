@@ -74,13 +74,25 @@ namespace webapp_stufv.Migrations {
                         ProfilePicture = "noimageavailable.png",
                         RegisterDate = GenererateRandomDate( 2010, 2017 )
                     } );
+                context.ProfileSettings.AddOrUpdate(
+                    new ProfileSettings {
+                        UserId = i,
+                        Email = true,
+                        FirstName = true,
+                        LastName = true,
+                        BirthDate = true,
+                        Street = true,
+                        ZipCode = true,
+                        MobileNr = true,
+                        TelNr = true,
+                    });
             }
 
             for ( int i = 1 ; i <= 10 ; i++ ) {
                 context.EventTypes.AddOrUpdate(
                     new EventTypes {
                         Id = i,
-                        Description = "Type " + i,
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt euismod dolor, eu dignissim tortor eleifend a. Mauris ac laoreet arcu, ut condimentum nibh. Ut ullamcorper laoreet eros et commodo. Ut a risus quis justo mollis facilisis. Aliquam et turpis ut tellus pharetra malesuada quis nec risus. Curabitur aliquet porta neque vel maximus. Sed vel mi sit amet risus molestie sollicitudin ut at ex. Donec tincidunt ante nec nunc rutrum elementum.",
                     } );
             }
 
@@ -89,8 +101,8 @@ namespace webapp_stufv.Migrations {
                     new Article {
                         Id = i,
                         Active = true,
-                        Title = "Artikel " + i,
-                        Content = "Dit is artikel " + i,
+                        Title = "Lorem Ipsum",
+                        Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt euismod dolor, eu dignissim tortor eleifend a. Mauris ac laoreet arcu, ut condimentum nibh. Ut ullamcorper laoreet eros et commodo. Ut a risus quis justo mollis facilisis. Aliquam et turpis ut tellus pharetra malesuada quis nec risus. Curabitur aliquet porta neque vel maximus. Sed vel mi sit amet risus molestie sollicitudin ut at ex. Donec tincidunt ante nec nunc rutrum elementum.",
                         DateTime = GenererateRandomDate( 2010, 2017 ),
                         ThumbsUp = 0,
                         UserId = i,
@@ -98,30 +110,61 @@ namespace webapp_stufv.Migrations {
                     } );
             }
 
-            for ( int i = 1 ; i <= 10 ; i++ ) {
-                context.Organisations.AddOrUpdate(
-                    new Organisation {
-                        Id = i,
+            context.Organisations.AddOrUpdate(
+                    new Organisation
+                    {
+                        Id = 1,
                         Active = true,
-                        Name = "Testorganisatie " + i,
-                        Description = "Wij zijn een testorganisatie",
+                        Name = "Lorem Ipsum",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt euismod dolor, eu dignissim tortor eleifend a. Mauris ac laoreet arcu, ut condimentum nibh. Ut ullamcorper laoreet eros et commodo. Ut a risus quis justo mollis facilisis. Aliquam et turpis ut tellus pharetra malesuada quis nec risus. Curabitur aliquet porta neque vel maximus. Sed vel mi sit amet risus molestie sollicitudin ut at ex. Donec tincidunt ante nec nunc rutrum elementum.",
                         isRegistered = true,
-                        RegisterDate = GenererateRandomDate( 2010, 2017 ),
-                        UserId = i
-                    } );
-            }
-
-            for ( int i = 11 ; i <= 15 ; i++ ) {
-                context.Organisations.AddOrUpdate(
-                    new Organisation {
-                        Id = i,
+                        RegisterDate = GenererateRandomDate(2010, 2017),
+                        UserId = 1
+                    });
+            context.Organisations.AddOrUpdate(
+                    new Organisation
+                    {
+                        Id = 2,
                         Active = true,
-                        Name = "Testorganisatie " + i,
-                        Description = "Wij zijn een testorganisatie",
+                        Name = "Lorem Ipsum",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt euismod dolor, eu dignissim tortor eleifend a. Mauris ac laoreet arcu, ut condimentum nibh. Ut ullamcorper laoreet eros et commodo. Ut a risus quis justo mollis facilisis. Aliquam et turpis ut tellus pharetra malesuada quis nec risus. Curabitur aliquet porta neque vel maximus. Sed vel mi sit amet risus molestie sollicitudin ut at ex. Donec tincidunt ante nec nunc rutrum elementum.",
+                        isRegistered = true,
+                        RegisterDate = GenererateRandomDate(2010, 2017),
+                        UserId = 1
+                    });
+            context.Organisations.AddOrUpdate(
+                    new Organisation
+                    {
+                        Id = 3,
+                        Active = true,
+                        Name = "Lorem Ipsum",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt euismod dolor, eu dignissim tortor eleifend a. Mauris ac laoreet arcu, ut condimentum nibh. Ut ullamcorper laoreet eros et commodo. Ut a risus quis justo mollis facilisis. Aliquam et turpis ut tellus pharetra malesuada quis nec risus. Curabitur aliquet porta neque vel maximus. Sed vel mi sit amet risus molestie sollicitudin ut at ex. Donec tincidunt ante nec nunc rutrum elementum.",
+                        isRegistered = true,
+                        RegisterDate = GenererateRandomDate(2010, 2017),
+                        UserId = 1
+                    });
+            context.Organisations.AddOrUpdate(
+                    new Organisation
+                    {
+                        Id = 4,
+                        Active = true,
+                        Name = "Lorem Ipsum",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt euismod dolor, eu dignissim tortor eleifend a. Mauris ac laoreet arcu, ut condimentum nibh. Ut ullamcorper laoreet eros et commodo. Ut a risus quis justo mollis facilisis. Aliquam et turpis ut tellus pharetra malesuada quis nec risus. Curabitur aliquet porta neque vel maximus. Sed vel mi sit amet risus molestie sollicitudin ut at ex. Donec tincidunt ante nec nunc rutrum elementum.",
                         isRegistered = false,
-                        UserId = i
-                    } );
-            }
+                        RegisterDate = GenererateRandomDate(2010, 2017),
+                        UserId = 1
+                    });
+            context.Organisations.AddOrUpdate(
+                    new Organisation
+                    {
+                        Id = 5,
+                        Active = true,
+                        Name = "Lorem Ipsum",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt euismod dolor, eu dignissim tortor eleifend a. Mauris ac laoreet arcu, ut condimentum nibh. Ut ullamcorper laoreet eros et commodo. Ut a risus quis justo mollis facilisis. Aliquam et turpis ut tellus pharetra malesuada quis nec risus. Curabitur aliquet porta neque vel maximus. Sed vel mi sit amet risus molestie sollicitudin ut at ex. Donec tincidunt ante nec nunc rutrum elementum.",
+                        isRegistered = false,
+                        RegisterDate = GenererateRandomDate(2010, 2017),
+                        UserId = 1
+                    });
 
             for ( int i = 1 ; i <= 30 ; i++ ) {
                 Random rand = new Random( );
@@ -131,8 +174,8 @@ namespace webapp_stufv.Migrations {
                         Id = i,
                         Active = true,
                         AlcoholFree = true,
-                        Name = "Event " + i,
-                        Description = "Dit is een vette event",
+                        Name = "Lorem Ipsum",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt euismod dolor, eu dignissim tortor eleifend a. Mauris ac laoreet arcu, ut condimentum nibh. Ut ullamcorper laoreet eros et commodo. Ut a risus quis justo mollis facilisis. Aliquam et turpis ut tellus pharetra malesuada quis nec risus. Curabitur aliquet porta neque vel maximus. Sed vel mi sit amet risus molestie sollicitudin ut at ex. Donec tincidunt ante nec nunc rutrum elementum.",
                         End = startDate.AddDays( rand.Next( 1, 11 ) ),
                         Start = startDate,
                         EntranceFee = rand.Next( 0, 101 ),
