@@ -385,6 +385,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Organisation\ChangeEvent.cshtml" />
     <Content Include="Views\Partner\Index.cshtml" />
+    <Content Include="Views\Organisation\NewEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

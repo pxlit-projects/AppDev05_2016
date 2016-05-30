@@ -14,7 +14,7 @@ namespace webapp_stufv.Repository
         {
             using (var context = new STUFVModelContext())
             {
-                return context.Articles.ToList();
+                return context.Articles.Where(a => a.Active == true ).ToList();
             }
         }
 

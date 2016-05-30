@@ -119,8 +119,8 @@ namespace webapp_stufv.Controllers {
                 context.Events.Add( newEvent );
                 context.SaveChanges( );
             }
-            Index( );
-            return View( @"~\Views\Organisation\Index.cshtml" );
+
+            return View( );
         }
 
         private void EventImgUpload( HttpPostedFileBase file ) {
