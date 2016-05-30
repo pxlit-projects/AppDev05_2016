@@ -122,7 +122,7 @@ namespace webapp_stufv.Controllers
          */
         public ActionResult ChangePassword()
         {
-            if (Session["email"] == null)
+            if (Session["email"] != null)
             {
                 string salt = _iuser.GetSalt(Session["Email"].ToString());
                 var encpass = MD5Encrypt(Request.Form["OldPass"], salt);
