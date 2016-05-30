@@ -178,6 +178,9 @@
     <Compile Include="OrganisationEventsWindow.xaml.cs">
       <DependentUpon>OrganisationEventsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PartnerPage.xaml.cs">
+      <DependentUpon>PartnerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Repository\ArticleRepository.cs" />
     <Compile Include="Repository\AttendanceRepository.cs" />
     <Compile Include="Repository\DesDriverRepository.cs" />
@@ -264,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrganisationEventsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartnerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
