@@ -306,6 +306,7 @@
     <Content Include="Content\img\hamburger.png" />
     <Content Include="Content\img\info.png" />
     <Content Include="Content\img\kruisje.jpg" />
+    <Content Include="Content\img\location.png" />
     <Content Include="Content\img\news.jpg" />
     <Content Include="Content\img\noimageavailable.png" />
     <Content Include="Content\img\partnerImages\partner.jpg" />
