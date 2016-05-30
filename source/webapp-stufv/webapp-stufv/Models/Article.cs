@@ -20,5 +20,6 @@ namespace webapp_stufv.Models {
         public DateTime DateTime { get; set; }
         public int ThumbsUp { get; set; }
         public Boolean Active { get; set; }
+        public String imgLink { get; set; }
     }
 }

@@ -20,14 +20,18 @@
             </p> <br />
             <div>
                 <div class="right">
-                    <img src="~/Content/img/EventImages/noimageavailable.png" class="articleimg" />
+                    @if ( Model.imgLink == null ) {
+                        <img src="~/Content/img/noimageavailable.png" class= "articleimg" />
+                    } else {
+                    <img src=@Html.DisplayFor( model => model.imgLink ) class="articleimg" />
+                    }
                 </div>
                 @Html.DisplayFor( model => model.Content )
             </div>
         </div>
 
         @if ( Session[ "email" ] == null || Session[ "email" ].Equals ( "" ) ) {
-            <br />
+            <br /> <br />
             <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-info" role="alert">
