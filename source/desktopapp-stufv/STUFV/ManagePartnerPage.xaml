@@ -30,22 +30,7 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Grid Background="{TemplateBinding Background}">
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup x:Name="CommonStates">
-                                        <VisualState x:Name="Normal"/>
-                                        <VisualState x:Name="MouseOver"/>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+            
         </Grid.Resources>
         <DockPanel>
             <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
