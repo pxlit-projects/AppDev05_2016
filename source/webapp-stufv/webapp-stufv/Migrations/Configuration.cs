@@ -140,7 +140,8 @@ namespace webapp_stufv.Migrations {
                         ZipCode = "3840",
                         Type = 1,
                         Street = "Stationstraat 4",
-                        RegisterDate = GenererateRandomDate( 2010, 2017 )
+                        RegisterDate = GenererateRandomDate( 2010, 2017 ),
+                        Image = "noimageavailable.png"
                     } );
             }
 
