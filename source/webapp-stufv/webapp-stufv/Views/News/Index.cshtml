@@ -4,6 +4,17 @@
 
     <div class="container">
 
+        @foreach ( var item in ViewBag.Tips ) {
+            <div id="box">
+                <div class="col-md-11">
+                    <p id="tip">@item.TipText</p>
+                </div>
+                <div class="col-md-1">
+                    <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
+                </div>
+            </div>
+        }
+
         <div class="page-header">
             <div class="well">
                 <h1>@ViewBag.Title</h1>
@@ -15,12 +26,12 @@
             <div class="media">
                 <div class="media-left">
                     <a href=@Url.Action("Details", "News", new { id = item.Id })>
-                        <img src="~/Content/img/EventImages/noimageavailable.png" class="noimage"/>
+                        <img src="~/Content/img/EventImages/noimageavailable.png" class="noimage" />
                     </a>
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">@item.Title</h4>
-                    @item.Content.Substring( 0, item.Content.Length/2 ) ...
+                    @item.Content.Substring( 0, item.Content.Length / 2 ) ...
                 </div>
             </div> <br />
 
