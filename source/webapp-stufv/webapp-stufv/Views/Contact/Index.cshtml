@@ -1,58 +1,62 @@
 ﻿@section content {
     <div class="container">
-        <div class="well page-header">
-            <h1>@ViewBag.Title</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-1">
-                <label>Email</label>
+        @using ( Html.BeginForm( "SendMessage", "Contact", FormMethod.Post, new { name = "contactForm", id = "contactForm", @class = "form-horizontal", role = "form" } ) ) {
+            <div class="well page-header">
+                <div class="well">
+                    <h1>@ViewBag.Title</h1>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <input type="text" class="form-control input-sm" />
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Email</label>
+                </div>
             </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-1">
-                <label>Naam</label>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control input-sm" name="email" />
+                </div>
             </div>
-            <div class="col-md-1 col-md-offset-4">
-                <label>Voornaam</label>
+            <br />
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Naam</label>
+                </div>
+                <div class="col-md-1 col-md-offset-4">
+                    <label>Voornaam</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <input type="text" class="form-control input-sm" />
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control input-sm" name="name" />
+                </div>
+                <div class="col-md-3 col-md-offset-2">
+                    <input type="text" class="form-control input-sm" name="firstname" />
+                </div>
             </div>
-            <div class="col-md-3 col-md-offset-2">
-                <input type="text" class="form-control input-sm" />
+            <br />
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Onderwerp</label>
+                </div>
             </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-1">
-                <label>Onderwerp</label>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control input-sm" name="subject" />
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <input type="text" class="form-control input-sm" />
+            <br />
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Omschrijving</label>
+                </div>
             </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-1">
-                <label>Oschrijving</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <textarea type="text" class="form-control" ></textarea>
-            </div>
-        </div>
-        <button type="button" class="btn btn-primary" style="float: right">Send</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea rows="10" type="text" class="form-control input-lg" name="description"></textarea>
+                </div>
+            </div> <br />
+            <input type="submit" class="btn btn-primary right" value="submit" />
+        }
     </div>
-    
+
 }
