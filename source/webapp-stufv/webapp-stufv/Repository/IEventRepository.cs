@@ -11,5 +11,6 @@ namespace webapp_stufv.Repository
         string getCity(string Zipcode);
         List<Event> GetAllEvents();
         List<Event> GetAllUnexpiredEvents();
+        List<Event> GetAllUnexpiredEventsByDate();
     }
 }

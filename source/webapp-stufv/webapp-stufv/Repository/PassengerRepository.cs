@@ -63,11 +63,7 @@ namespace webapp_stufv.Repository
             eventId = 0;
             IDesDriverRepository ides = new DesDriverRepository();
             List<DesDriver> desdriver = ides.GetAllDrivers();
-            for (int x = 0; x < desdriver.Count(); x++) {
-                if (desdriver.ElementAt(x).Id.Equals(desId)) {
-                    eventId = desdriver.ElementAt(x).EventId;
-                }
-            }
+            eventId = desdriver.Single(d => d.Id == desId).EventId;
             var passenger = new Passenger { UserId = userId, DesDriverId = desId, EventId = eventId, Active = true, Accepted = false};
             using (var context = new STUFVModelContext())
             {

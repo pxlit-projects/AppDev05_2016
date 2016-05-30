@@ -387,6 +387,7 @@
     <Content Include="Views\Organisation\ChangeEvent.cshtml" />
     <Content Include="Views\Partner\Index.cshtml" />
     <Content Include="Views\Organisation\NewEvent.cshtml" />
+    <Content Include="Views\Contact\SendMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

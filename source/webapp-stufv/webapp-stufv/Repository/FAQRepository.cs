@@ -12,7 +12,7 @@ namespace webapp_stufv.Repository
         {
             using (var context = new STUFVModelContext())
             {
-                return context.FAQs.ToList();
+                return context.FAQs.Where(e=> e.Active).ToList();
             }
         }
     }

@@ -1,0 +1,31 @@
+﻿@section Content {
+
+    <div class="container">
+
+        @if ( ViewBag.Title == "Oops!" ) {
+            <div class="page-header">
+                <div class="well">
+                    <h1 class="text-danger">
+                        @ViewBag.Title
+                    </h1>
+                </div>
+            </div>
+            <div class="alert alert-danger">
+                @ViewBag.Comment
+            </div>
+        } else {
+            <div class="page-header">
+                <div class="well">
+                    <h1 class="text-success">
+                        @ViewBag.Title
+                    </h1>
+                </div>
+            </div>
+            <div class="alert alert-success">
+                @ViewBag.Comment
+            </div>
+        }
+
+    </div>
+
+}

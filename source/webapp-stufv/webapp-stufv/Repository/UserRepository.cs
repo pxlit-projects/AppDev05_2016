@@ -37,14 +37,7 @@ namespace webapp_stufv.Repository
             String salt = "";
 
             List<User> users = GetAllUsers();
-            int x;
-            for (x = 0; x < users.Count(); x++)
-            {
-                if (users.ElementAt(x).Email.Equals(email))
-                {
-                    salt = users.ElementAt(x).Salt;
-                }
-            }
+            salt = users.Single(u => u.Email == email).Salt;
             return salt;
         }
 

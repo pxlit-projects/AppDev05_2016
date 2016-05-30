@@ -1,39 +1,62 @@
 ﻿@section content {
     <div class="container">
-        <div class="well">
-            <h1 class="page-header">@ViewBag.Title</h1>
-        </div>       
-        <table style="width: 1000px; height: 50px; margin-left: 100px;">
-            <tr>
-                <td colspan="2" >Email</td>
-            </tr>
-            <tr>
-                <td style="padding-bottom: 1em"><input type="text" style="width: 300px" /></td>
-            </tr>
-            <tr>
-                <td>Naam</td>
-                <td>Voornaam</td>
-            </tr>
-            <tr>
-                <td style="padding-bottom: 1em"><input type="text" style="width: 300px" /></td>
-                <td style="padding-bottom: 1em"><input type="text" style="width: 300px" /></td>
-            </tr>
-            <tr>
-                <td colspan="2">Onderwerp</td>
-            </tr>
-            <tr>
-                <td colspan="2" style="padding-bottom: 1em"><input type="text" style="width: 300px" /></td>
-            </tr>
-            <tr>
-                <td colspan="2">Omschrijving</td>
-            </tr>
-            <tr>
-                <td colspan="2"><textarea name="Text1" style="width: 800px; height: 200px; resize: vertical"></textarea></td>
-            </tr>
-        </table>
-        <hr class="seperator" />
-        <button type="button" class="btn btn-primary">Send</button>
-        <a href="mailto:stufv1@hotmail.com">Sendlul</a>
+        @using ( Html.BeginForm( "SendMessage", "Contact", FormMethod.Post, new { name = "contactForm", id = "contactForm", @class = "form-horizontal", role = "form" } ) ) {
+            <div class="well page-header">
+                <div class="well">
+                    <h1>@ViewBag.Title</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control input-sm" name="email" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Naam</label>
+                </div>
+                <div class="col-md-1 col-md-offset-4">
+                    <label>Voornaam</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control input-sm" name="name" />
+                </div>
+                <div class="col-md-3 col-md-offset-2">
+                    <input type="text" class="form-control input-sm" name="firstname" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Onderwerp</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control input-sm" name="subject" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Omschrijving</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea rows="10" type="text" class="form-control input-lg" name="description"></textarea>
+                </div>
+            </div> <br />
+            <input type="submit" class="btn btn-primary right" value="submit" />
+        }
     </div>
-    
+
 }

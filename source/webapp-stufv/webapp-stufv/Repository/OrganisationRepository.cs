@@ -52,28 +52,14 @@ namespace webapp_stufv.Repository
         public string GetOrganisationName(int userId) {
             string name = "";
             List<Organisation> organisations = GetAllOrganisations();
-            int x;
-            for (x = 0; x < organisations.Count(); x++)
-            {
-                if (organisations.ElementAt(x).UserId.Equals(userId) && organisations.ElementAt(x).Active == true)
-                {
-                    name = organisations.ElementAt(x).Name;
-                }
-            }
+            name = organisations.Single(o => o.UserId == userId && o.Active).Name;
             return name;
         }
         public int GetOrganisationId(int userId)
         {
             int id = 0;
             List<Organisation> organisations = GetAllOrganisations();
-            int x;
-            for (x = 0; x < organisations.Count(); x++)
-            {
-                if (organisations.ElementAt(x).UserId.Equals(userId) && organisations.ElementAt(x).Active == true)
-                {
-                    id = organisations.ElementAt(x).Id;
-                }
-            }
+            id = organisations.Single(o => o.UserId == userId && o.Active).Id;
             return id;
         }
     }
