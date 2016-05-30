@@ -157,7 +157,6 @@ namespace webapp_stufv.Controllers
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             String salt = GenerateRandomSalt(rng, 16);
             String encPass = MD5Encrypt(password, salt);
-
             var user = new User
             {
                 FirstName = firstName,
@@ -177,13 +176,14 @@ namespace webapp_stufv.Controllers
                 ProfilePicture = "noimageavailable.png",
                 RegisterDate = DateTime.Now
             };
-
             using (var context = new STUFVModelContext())
             {
                 context.Users.Add(user);
                 context.SaveChanges();
             }
-
+            NewUserProfileSettings(email);
+        }
+        private void NewUserProfileSettings(string email) {
             int userId = _iuser.GetAllUsers().Single(e => e.Email == email).Id;
             var settings = new ProfileSettings
             {
@@ -204,7 +204,6 @@ namespace webapp_stufv.Controllers
                 context.SaveChanges();
             }
         }
-
         /*
          * Generates a random salt to add to the password
          */
