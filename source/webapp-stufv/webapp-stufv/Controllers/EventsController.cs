@@ -313,8 +313,9 @@ namespace webapp_stufv.Controllers {
             if ( CanAccess( ) ) {
                 ViewBag.id = id;
                 idesdriver.unSetDES( ( int ) Session[ "userId" ], id );
+                int userId = (int)Session["userId"];
                 using ( var context = new STUFVModelContext( ) ) {
-                    DesDriver driver = context.DesDrivers.Single( e => e.UserId == ( int ) Session[ "userId" ] && e.EventId == id );
+                    DesDriver driver = context.DesDrivers.Single( e => e.UserId == userId && e.EventId == id );
                     List<Passenger> passengers = context.Passengers.Where( e => e.DesDriverId == driver.Id ).ToList( );
                     for ( int i = 0 ; i < passengers.Count( ) ; i++ ) {
                         passengers.ElementAt( i ).Active = false;
