@@ -18,12 +18,12 @@ namespace webapp_stufv.Controllers {
         public ActionResult Index( ) {
             Random rnd = new Random( );
 
-            ViewBag.Title = "Nieuws";
             List<Tip> tips = _itips.GetAllTips( );
             int r = rnd.Next( tips.Count );
             List<Tip> tipsRandom = new List<Tip>( );
             tipsRandom.Add( tips[ r ] );
             ViewBag.Tips = tipsRandom;
+            ViewBag.Title = "Nieuws";
             return View( _iarticle.getAllArticles( ) );
         }
 
