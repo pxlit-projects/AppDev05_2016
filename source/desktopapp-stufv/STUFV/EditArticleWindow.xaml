@@ -7,7 +7,16 @@
         mc:Ignorable="d"
         Title="Artikel wijzigen" Height="675" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="WhiteSmoke" Icon="images/favicon.ico">
     <Grid>
-
+        <StackPanel>
+            <TextBlock Text="Review" FontSize="40" Padding="10,5,0,5" Foreground="White">
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF144563" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+            </TextBlock>
+        </StackPanel>
         <StackPanel>
             <TextBlock Text="Artikel wijzigen" FontSize="40" Padding="10,5,0,5" Foreground="White">
                 <TextBlock.Background>
@@ -24,12 +33,16 @@
                         <TextBox x:Name="titleTextBox" Background="#336699" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
                     </DockPanel>
                     <DockPanel>
-                        <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17" VerticalScrollBarVisibility="Auto"/>
+                        <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="400" FontSize="17" VerticalScrollBarVisibility="Auto"/>
                     </DockPanel>
-                    <DockPanel Background="#C0C0C0" Height="24">
+                    <DockPanel Background="#C0C0C0" Height="28">
                         <TextBlock Text="Auteur:" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
                         <TextBlock x:Name="authorBlock" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
                         <TextBlock x:Name="dateBlock" Foreground="White" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,10,0"/>
+                    </DockPanel>
+                    <DockPanel Background="#C0C0C0" Height="28">
+                        <TextBlock Text="Link afbeelding (optioneel)" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" />
+                        <TextBox x:Name="urlAfbeelding" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" Background="#C0C0C0"/>
                     </DockPanel>
                 </StackPanel>
             </Border>

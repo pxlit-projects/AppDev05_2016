@@ -42,6 +42,7 @@ namespace STUFV
             contentTextBox.Text = article.Content;
             authorBlock.Text = author.FirstName + " " + author.LastName;
             dateBlock.Text = article.DateTime.ToLongDateString();
+            urlAfbeelding.Text = article.imgLink;
 
             this.Closing += EditArticleWindow_Closing;
         }
@@ -116,7 +117,7 @@ namespace STUFV
 
         private async Task<bool> CheckClose()
         {
-            if (article.Title != titleTextBox.Text || article.Content != contentTextBox.Text)
+            if (article.Title != titleTextBox.Text || article.Content != contentTextBox.Text || article.imgLink != urlAfbeelding.Text)
             {
                 MessageBoxResult result = MessageBox.Show("Wijzigingen opslaan?",
                     "Sluit venster", MessageBoxButton.YesNoCancel, MessageBoxImage.Exclamation);
@@ -125,6 +126,7 @@ namespace STUFV
                 {
                     article.Title = titleTextBox.Text;
                     article.Content = contentTextBox.Text;
+                    article.imgLink = urlAfbeelding.Text;
                     return await UpdateArticle(article);
                 }
                 else if (result == MessageBoxResult.No)
@@ -144,10 +146,11 @@ namespace STUFV
 
         private async void SaveArticleButton_Click(object sender, RoutedEventArgs e)
         {
-            if (article.Title != titleTextBox.Text || article.Content != contentTextBox.Text)
+            if (article.Title != titleTextBox.Text || article.Content != contentTextBox.Text || article.imgLink != urlAfbeelding.Text)
             {
                 article.Title = titleTextBox.Text;
                 article.Content = contentTextBox.Text;
+                article.imgLink = urlAfbeelding.Text;
                 await UpdateArticle(article);
             }
         }

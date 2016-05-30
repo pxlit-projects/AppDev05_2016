@@ -67,18 +67,23 @@
                                 <TextBox x:Name="titleTextBox" Text="" Background="#336699" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
                             </DockPanel>
                             <DockPanel>
-                                <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17" VerticalScrollBarVisibility="Auto"/>
+                                <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="400" FontSize="17" VerticalScrollBarVisibility="Auto"/>
                             </DockPanel>
-                            <DockPanel Background="#C0C0C0" Height="24">
+                        
+                        <DockPanel Background="#C0C0C0" Height="28">
                                 <TextBlock Text="Auteur:" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 <TextBlock x:Name="authorBlock" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                <TextBlock x:Name="dateBlock" Foreground="White" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,10,0"/>
-                            </DockPanel>
-                            
-                        </StackPanel>
+                            <TextBlock x:Name="dateBlock" Foreground="White" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,10,0"/>
+                        </DockPanel>
+                            <DockPanel Background="#C0C0C0" Height="28">
+                            <TextBlock Text="Link afbeelding (optioneel)" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" />
+                            <TextBox x:Name="urlAfbeelding" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" Background="#C0C0C0"/>
+                        </DockPanel>
+                        
+                    </StackPanel>
                     </Border>
                 <Button x:Name="placeArticleButton" Content="Artikel plaatsen" Background="White" BorderBrush="Black" BorderThickness="1" Margin="10,15,0,0" HorizontalAlignment="Left" Click="PlaceArticleButton_Click"/>
-                </StackPanel>
+            </StackPanel>
             
         </DockPanel>
         

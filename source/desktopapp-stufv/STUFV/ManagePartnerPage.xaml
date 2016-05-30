@@ -78,14 +78,18 @@
                 <TextBlock Text="Overzicht" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" Background="LightSkyBlue" HorizontalAlignment="Left" Margin="10,25,0,0">
                     <StackPanel Orientation="Horizontal">
+                        
                         <Button x:Name="refreshButton" Content="Refresh" Margin="10,5,0,5" Click="RefreshButton_Click"/>
                         <TextBlock Text="Zoek partner " VerticalAlignment="Center" Margin="10,5,0,5"/>
                         <TextBox x:Name="searchTextBox" Width="175" Margin="10,5,0,5" SelectionChanged="SearchTextBox_SelectionChanged"/>
                         <TextBlock Text="Filter op:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0"/>
                         <ComboBox x:Name="filterBox" ItemsSource="{Binding}" HorizontalAlignment="Right" Width="125" Margin="10,5,10,5" SelectionChanged="FilterBox_SelectionChanged"/>
+                        
                     </StackPanel>
+                    
                 </Border>
                 <Label x:Name="messageLabel" Content="" Foreground="Gray" Margin="30,10,0,0"/>
+                
                 <Border CornerRadius="2" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top">
                     <DataGrid x:Name="managePartnerDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="454" Width="780" IsReadOnly="True" HorizontalScrollBarVisibility="Disabled">
                         <DataGrid.Columns>
@@ -104,7 +108,7 @@
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="partnerNameColumn" Binding="{Binding Name}" Header="Organisatienaam" Width="150" CanUserResize="False">
+                            <DataGridTextColumn x:Name="partnerNameColumn" Binding="{Binding Name}" Header="Partner naam" Width="150" CanUserResize="False">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -146,6 +150,8 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
+                    
+                    
                 </Border>
             </StackPanel>
 

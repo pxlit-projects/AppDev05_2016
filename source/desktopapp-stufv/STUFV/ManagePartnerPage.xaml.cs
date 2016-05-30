@@ -273,7 +273,7 @@ namespace STUFV
         private void editPartner_Click(object sender, RoutedEventArgs e)
         {
             Partner partner = (Partner)managePartnerDataGrid.CurrentItem;
-            EditPartnerWindow editpartner = new EditPartnerWindow(partner)
+            EditPartnerWindow editpartner = new EditPartnerWindow(partner);
             editpartner.ShowDialog();
         }
 
