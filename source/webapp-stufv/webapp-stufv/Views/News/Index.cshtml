@@ -3,19 +3,17 @@
     @model IEnumerable<webapp_stufv.Models.Article>
 
     <div class="container">
-
-        @foreach ( var item in ViewBag.Tips ) {
-            <div id="box">
-                <div class="col-md-11">
-                    <p id="tip">@item.TipText</p>
-                </div>
-                <div class="col-md-1">
-                    <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
-                </div>
-            </div>
-        }
-
         <div class="page-header">
+            @foreach ( var item in ViewBag.Tips ) {
+                <div id="box">
+                    <div class="col-md-11">
+                        <p id="tip">@item.TipText</p>
+                    </div>
+                    <div class="col-md-1">
+                        <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
+                    </div>
+                </div>
+            }
             <div class="well">
                 <h1>@ViewBag.Title</h1>
             </div>
@@ -27,9 +25,9 @@
                 <div class="media-left">
                     <a href=@Url.Action("Details", "News", new { id = item.Id })>
                         @if ( item.imgLink == null ) {
-                            <img src="~/Content/img/noimageavailable.png" class="noimage" />
+                            <img src="~/Content/img/noimageavailable.png" class="img-thumbnail noimage" />
                         } else {
-                            <img src=@item.imgLink class="noimage" />
+                            <img src=@item.imgLink class="img-thumbnail noimage" />
                         }
                     </a>
                 </div>

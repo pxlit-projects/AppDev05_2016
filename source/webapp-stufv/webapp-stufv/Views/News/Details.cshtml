@@ -9,28 +9,29 @@
                 <h1>@ViewBag.Title</h1>
             </div>
         </div>
-
-        <div class="article">
-            <p class="text-muted">
-                @ViewBag.Date
-                <a href=@Url.Action("AddThumbsUp", "News", new { id = Html.DisplayFor( model => model.Id ) }, null )>
-                    <img class="thumbsup" src="~/Content/img/thumbsup.png" />
-                </a>
-                @Html.DisplayFor( model => model.ThumbsUp )
-            </p> <br />
-            <div>
-                <div class="right">
-                    @if ( Model.imgLink == null ) {
-                        <img src="~/Content/img/noimageavailable.png" class= "articleimg" />
-                    } else {
-                    <img src=@Html.DisplayFor( model => model.imgLink ) class="articleimg" />
-                    }
+        <div class="row">
+            <div class="article">
+                <p class="text-muted">
+                    @ViewBag.Date
+                    <a href=@Url.Action("AddThumbsUp", "News", new { id = Html.DisplayFor( model => model.Id ) }, null )>
+                        <img class="thumbsup" src="~/Content/img/thumbsup.png" />
+                    </a>
+                    @Html.DisplayFor( model => model.ThumbsUp )
+                </p> <br />
+                <div>
+                    <div class="right">
+                        @if ( Model.imgLink == null ) {
+                            <img src="~/Content/img/noimageavailable.png" class="img-thumbnail articleimg" />
+                        } else {
+                            <img src=@Html.DisplayFor( model => model.imgLink ) class="img-thumbnail articleimg" />
+                        }
+                    </div>
+                    @Html.DisplayFor( model => model.Content )
                 </div>
-                @Html.DisplayFor( model => model.Content )
             </div>
         </div>
 
-        @if ( Session[ "email" ] == null || Session[ "email" ].Equals ( "" ) ) {
+        @if ( Session[ "email" ] == null || Session[ "email" ].Equals( "" ) ) {
             <br /> <br />
             <div class="row">
                 <div class="col-md-12">

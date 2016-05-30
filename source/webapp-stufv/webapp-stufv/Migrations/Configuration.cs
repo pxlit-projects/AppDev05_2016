@@ -94,7 +94,7 @@ namespace webapp_stufv.Migrations {
                         DateTime = GenererateRandomDate( 2010, 2017 ),
                         ThumbsUp = 0,
                         UserId = i,
-                        imgLink = "http://chimpmania.com/forum/attachment.php?attachmentid=42952&stc=1&thumb=1&d=1380007206"
+                        imgLink = "https://scontent-amt2-1.xx.fbcdn.net/t31.0-8/s960x960/13308529_10209788524855093_7854628716781566876_o.jpg"
                     } );
             }
 

@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<webapp_stufv.Models.Event>
 @section content{
     <div class="container">
-        @foreach ( var item in ViewBag.Tips ) {
-            <div id="box">
-                <div class="col-md-11">
-                    <p id="tip">@item.TipText</p>
-                </div>
-                <div class="col-md-1">
-                    <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
-                </div>
-            </div>
-        }
         <div class="page-header">
+            @foreach ( var item in ViewBag.Tips ) {
+                <div id="box">
+                    <div class="col-md-11">
+                        <p id="tip">@item.TipText</p>
+                    </div>
+                    <div class="col-md-1">
+                        <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
+                    </div>
+                </div>
+            }
             <div class="well">
                 <h1>@ViewBag.Title</h1>
             </div>
@@ -85,7 +85,7 @@
                     <div class="col-md-12">
                         <div class="eventpage">
                             <div class="row">
-                                <div class="col-lg-2"><img class="eventimg" src="~/Content/img/EventImages/@item.Image" /></div>
+                                <div class="col-lg-2"><img class="img-thumbnail eventimg" src="~/Content/img/EventImages/@item.Image" /></div>
                                 <div class="col-lg-5">
                                     <table class="eventshort">
                                         <tbody>
