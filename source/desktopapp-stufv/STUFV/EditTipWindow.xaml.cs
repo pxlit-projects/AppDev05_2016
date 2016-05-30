@@ -23,7 +23,6 @@ namespace STUFV
     {
         HttpClient client = new HttpClient();
         private Tip tip;
-       
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
 
         public EditTipWindow(Tip tip)
@@ -35,8 +34,7 @@ namespace STUFV
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             this.tip = tip;
-            contentTextBox.Text = tip.TipText;
-            
+            tipTextBox.Text = tip.TipText;
 
             this.Closing += EditTipWindow_Closing;
         }
@@ -75,19 +73,18 @@ namespace STUFV
             return false;
         }
 
-     
+       
 
         private async Task<bool> CheckClose()
         {
-            if (tip.TipText != contentTextBox.Text)
+            if (tip.TipText!= tipTextBox.Text)
             {
                 MessageBoxResult result = MessageBox.Show("Wijzigingen opslaan?",
                     "Sluit venster", MessageBoxButton.YesNoCancel, MessageBoxImage.Exclamation);
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    
-                    tip.TipText = contentTextBox.Text;
+                    tip.TipText = tipTextBox.Text;
                     return await UpdateTip(tip);
                 }
                 else if (result == MessageBoxResult.No)
@@ -107,10 +104,9 @@ namespace STUFV
 
         private async void SaveTipButton_Click(object sender, RoutedEventArgs e)
         {
-            if (tip.TipText != contentTextBox.Text)
+            if (tip.TipText != tipTextBox.Text)
             {
-                
-                tip.TipText = contentTextBox.Text;
+                tip.TipText = tipTextBox.Text;
                 await UpdateTip(tip);
             }
         }

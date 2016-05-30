@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:STUFV"
         mc:Ignorable="d"
-        Title="Tip Wijzigen" Height="675" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="WhiteSmoke" Icon="images/favicon.ico">
+        Title="EditTipWindow" Height="900" Width="1200">
     <Grid>
+        <StackPanel>
+            <TextBlock Text="Review" FontSize="40" Padding="10,5,0,5" Foreground="White">
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF144563" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+            </TextBlock>
+        </StackPanel>
         <StackPanel>
             <TextBlock Text="Tip wijzigen" FontSize="40" Padding="10,5,0,5" Foreground="White">
                 <TextBlock.Background>
@@ -19,12 +29,13 @@
             <Border BorderThickness="2" BorderBrush="Black" Width="825" Height="500" Margin="10,25,0,0">
                 <StackPanel>
                     <DockPanel Background="#336699">
-                        <TextBlock Text="Tip :" Foreground="White" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
-                        <TextBox x:Name="titleTextBox" Background="#336699" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
+                        <TextBlock Text="Tip:" Foreground="White" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
+                        <TextBox x:Name="titleTextBox" Background="#336699" IsReadOnly="True" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="26" Margin="10,0,0,0"/>
                     </DockPanel>
                     <DockPanel>
-                        <TextBox x:Name="contentTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="430" FontSize="17" VerticalScrollBarVisibility="Auto"/>
+                        <TextBox x:Name="tipTextBox" TextWrapping="Wrap" AcceptsReturn="True" Foreground="Blue" BorderThickness="0" Height="400" FontSize="17" VerticalScrollBarVisibility="Auto"/>
                     </DockPanel>
+                    
                     
                 </StackPanel>
             </Border>
@@ -35,5 +46,6 @@
             </DockPanel>
 
         </StackPanel>
+
     </Grid>
 </Window>

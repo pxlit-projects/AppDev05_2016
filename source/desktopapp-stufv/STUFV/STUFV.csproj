@@ -128,9 +128,6 @@
     <Compile Include="EditArticleWindow.xaml.cs">
       <DependentUpon>EditArticleWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditPartnerWindow.xaml.cs">
-      <DependentUpon>EditPartnerWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EditTipWindow.xaml.cs">
       <DependentUpon>EditTipWindow.xaml</DependentUpon>
     </Compile>
@@ -227,10 +224,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditArticleWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EditPartnerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
