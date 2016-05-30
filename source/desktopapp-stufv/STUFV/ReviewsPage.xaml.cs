@@ -69,30 +69,33 @@ namespace STUFV
                     scherm.displayFrame.Source = new Uri("ReviewsPage.xaml", UriKind.Relative);
                     break;
                 case 5:
-                    scherm.displayFrame.Source = new Uri("UsersPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("PartnerPage.xaml", UriKind.Relative);
                     break;
                 case 6:
-                    scherm.displayFrame.Source = new Uri("ManageOrganisationPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("UsersPage.xaml", UriKind.Relative);
                     break;
                 case 7:
-                    scherm.displayFrame.Source = new Uri("ManageEventPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManageOrganisationPage.xaml", UriKind.Relative);
                     break;
                 case 8:
-                    scherm.displayFrame.Source = new Uri("ManageArticlePage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManageEventPage.xaml", UriKind.Relative);
                     break;
                 case 9:
-                    scherm.displayFrame.Source = new Uri("ManagePartnerPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManageArticlePage.xaml", UriKind.Relative);
                     break;
                 case 10:
-                    scherm.displayFrame.Source = new Uri("ManageTipPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManagePartnerPage.xaml", UriKind.Relative);
                     break;
                 case 11:
-                    scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManageTipPage.xaml", UriKind.Relative);
                     break;
                 case 12:
-                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    scherm.displayFrame.Source = new Uri("ManageLoginPage.xaml", UriKind.Relative);
                     break;
                 case 13:
+                    scherm.displayFrame.Source = new Uri("StatsPage.xaml", UriKind.Relative);
+                    break;
+                case 14:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
             }
