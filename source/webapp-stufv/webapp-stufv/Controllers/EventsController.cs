@@ -18,17 +18,27 @@ namespace webapp_stufv.Controllers {
         private IAttendanceRepository iattend = new AttendanceRepository( );
         private IDesDriverRepository idesdriver = new DesDriverRepository( );
         private IPassengerRepository ipassenger = new PassengerRepository( );
+        private ITipRepository _itips = new TipRepository( );
         private List<Event> _events;
 
         /*
          * Events/Index
          */
         public ActionResult Index( ) {
+            Random rnd = new Random( );
+
+            List<Tip> tips = _itips.GetAllTips( );
+            int rand = rnd.Next( tips.Count );
+            List<Tip> tipsRandom = new List<Tip>( );
+            tipsRandom.Add( tips[ rand ] );
+            ViewBag.Tips = tipsRandom;
             ViewBag.Title = "Evenementen";
             _events = ievent.GetAllUnexpiredEvents( );
+
             var model = from r in _events
                         orderby r.Id
                         select r;
+
             return View( model );
         }
 
@@ -63,29 +73,35 @@ namespace webapp_stufv.Controllers {
          * Events/Attend
          */
         public ActionResult Attend( int id ) {
-            ViewBag.Title = "Attend";
-            ViewBag.id = id;
-            if ( Session[ "email" ] == null || Session[ "email" ].Equals( "" ) ) {
-                ViewBag.MyMessageToUsers = "Voor deze functie moet u inloggen.";
-                return View( );
-            } else {
-                int userid = ( int ) Session[ "userId" ];
-                try { iattend.SignAttend( userid, id ); } catch ( System.Data.Entity.Infrastructure.DbUpdateException e ) {
-                    ViewBag.MyMessageToUsers = "Je hebt je al aangemeld voor dit evenement";
+            if ( CanAccess( ) ) {
+                ViewBag.Title = "Attend";
+                ViewBag.id = id;
+                if ( Session[ "email" ] == null || Session[ "email" ].Equals( "" ) ) {
+                    ViewBag.MyMessageToUsers = "Voor deze functie moet u inloggen.";
+                    return View( );
+                } else {
+                    int userid = ( int ) Session[ "userId" ];
+                    try { iattend.SignAttend( userid, id ); } catch ( System.Data.Entity.Infrastructure.DbUpdateException e ) {
+                        ViewBag.MyMessageToUsers = "Je hebt je al aangemeld voor dit evenement";
+                        return View( );
+                    }
+
+                    ViewBag.MyMessageToUsers = "U bent aangemeld voor dit evenement";
                     return View( );
                 }
-
-                ViewBag.MyMessageToUsers = "U bent aangemeld voor dit evenement";
-                return View( );
             }
+            return RedirectToAction( "Details", "Events", new { id = id } );
         }
 
         /*
          * Events/RemoveAttend
          */
         public ActionResult RemoveAttend( int id ) {
-            iattend.UnSignAttend( ( int ) Session[ "userId" ], id );
-            ViewBag.id = id;
+            if ( CanAccess( ) ) {
+                iattend.UnSignAttend( ( int ) Session[ "userId" ], id );
+                ViewBag.id = id;
+                return RedirectToAction( "Details", "Events", new { id = id } );
+            }
             return RedirectToAction( "Details", "Events", new { id = id } );
         }
 
@@ -135,6 +151,13 @@ namespace webapp_stufv.Controllers {
             using ( var context = new STUFVModelContext( ) ) {
                 IEnumerable<Event> events = context.Events.ToList( );
                 DateTime date;
+                Random rnd = new Random( );
+
+                List<Tip> tips = _itips.GetAllTips( );
+                int r = rnd.Next( tips.Count );
+                List<Tip> tipsRandom = new List<Tip>( );
+                tipsRandom.Add( tips[ r ] );
+                ViewBag.Tips = tipsRandom;
 
                 if ( Session[ "AlcoholFree" ] != null ) {
                     events = filterAlcohol( events, Session[ "AlcoholFree" ].ToString( ) );
@@ -212,31 +235,35 @@ namespace webapp_stufv.Controllers {
          * Events/AddReview
          */
         public ActionResult AddReview( int id ) {
-            string comment = Request.Form[ "Comment" ];
-            int eventid = id;
+            if ( CanAccess( ) ) {
+                string comment = Request.Form[ "Comment" ];
+                int eventid = id;
 
-            using ( var context = new STUFVModelContext( ) ) {
-                var review = new Review( );
-                review.Active = true;
-                review.DateTime = System.DateTime.Now;
-                review.EventId = id;
-                int userId;
-                Int32.TryParse( Session[ "userId" ].ToString( ), out userId );
-                review.UserId = userId;
-                review.Flagged = false;
-                review.Content = comment;
-                review.Status = "okay";
-                context.Reviews.Add( review );
-                context.SaveChanges( );
+                using ( var context = new STUFVModelContext( ) ) {
+                    var review = new Review( );
+                    review.Active = true;
+                    review.DateTime = System.DateTime.Now;
+                    review.EventId = id;
+                    int userId;
+                    Int32.TryParse( Session[ "userId" ].ToString( ), out userId );
+                    review.UserId = userId;
+                    review.Flagged = false;
+                    review.Content = comment;
+                    review.Status = "okay";
+                    context.Reviews.Add( review );
+                    context.SaveChanges( );
+                }
+
+                return RedirectToAction( "Details", "Events", new { id = eventid } );
             }
-
-            return RedirectToAction( "Details", "Events", new { id = eventid } );
+            return RedirectToAction( "Details", "Events", new { id = id } );
         }
 
         /*
          * Events/FlagReaction
          */
         public ActionResult FlagReaction( int id ) {
+            CanAccess( );
             using ( var context = new STUFVModelContext( ) ) {
                 Review review = context.Reviews.Find( id );
                 review.Flagged = true;
@@ -251,11 +278,15 @@ namespace webapp_stufv.Controllers {
          * Events/DeleteReaction
          */
         public ActionResult DeleteReaction( int id, int eventId ) {
-            using ( var context = new STUFVModelContext( ) ) {
-                Review review = context.Reviews.Find( id );
-                context.Reviews.Remove( review );
-                context.SaveChanges( );
+            if ( CanAccess( ) ) {
+                using ( var context = new STUFVModelContext( ) ) {
+                    Review review = context.Reviews.Find( id );
+                    context.Reviews.Remove( review );
+                    context.SaveChanges( );
 
+                    return RedirectToAction( "Details", "Events", new { id = eventId } );
+                }
+            } else {
                 return RedirectToAction( "Details", "Events", new { id = eventId } );
             }
         }
@@ -265,10 +296,13 @@ namespace webapp_stufv.Controllers {
         * Events/BobProcess
         */
         public ActionResult BobProcess( int id ) {
-            int NrOfPlaces;
-            int.TryParse( Request.Form[ "Item2.NrOfPlaces" ], out NrOfPlaces );
-            ViewBag.id = id;
-            idesdriver.SetDES( ( int ) Session[ "userId" ], id, NrOfPlaces );
+            if ( CanAccess( ) ) {
+                int NrOfPlaces;
+                int.TryParse( Request.Form[ "Item2.NrOfPlaces" ], out NrOfPlaces );
+                ViewBag.id = id;
+                idesdriver.SetDES( ( int ) Session[ "userId" ], id, NrOfPlaces );
+                return RedirectToAction( "Details", "Events", new { id = id } );
+            }
             return RedirectToAction( "Details", "Events", new { id = id } );
         }
 
@@ -276,81 +310,110 @@ namespace webapp_stufv.Controllers {
          * Events/RemoveBob
          */
         public ActionResult RemoveBob( int id ) {
-            ViewBag.id = id;
-            idesdriver.unSetDES( ( int ) Session[ "userId" ], id );
-            using ( var context = new STUFVModelContext( ) ) {
-                DesDriver driver = context.DesDrivers.Single( e => e.UserId == ( int ) Session[ "userId" ] && e.EventId == id );
-                List<Passenger> passengers = context.Passengers.Where( e => e.DesDriverId == driver.Id ).ToList( );
-                for ( int i = 0 ; i < passengers.Count( ) ; i++ ) {
-                    passengers.ElementAt( i ).Active = false;
+            if ( CanAccess( ) ) {
+                ViewBag.id = id;
+                idesdriver.unSetDES( ( int ) Session[ "userId" ], id );
+                using ( var context = new STUFVModelContext( ) ) {
+                    DesDriver driver = context.DesDrivers.Single( e => e.UserId == ( int ) Session[ "userId" ] && e.EventId == id );
+                    List<Passenger> passengers = context.Passengers.Where( e => e.DesDriverId == driver.Id ).ToList( );
+                    for ( int i = 0 ; i < passengers.Count( ) ; i++ ) {
+                        passengers.ElementAt( i ).Active = false;
+                    }
+                    context.SaveChanges( );
                 }
-                context.SaveChanges( );
+                return RedirectToAction( "Details", "Events", new { id = id } );
             }
-            return RedirectToAction( "Details", "Events", new { id = id } );
+            return RedirectToAction( "Index", "Events" );
         }
 
         /*
          * Events/FindBob
          */
         public ActionResult FindBob( int id ) {
-            ViewBag.Title = "Find bob";
-            ViewBag.EventId = id;
-            ViewBag.Description = "Heb je al een bob? Kijk hieronder en vind een bob of schijf jezelf in als bob.";
-            return View( idesdriver.ActiveDriversPerEvent( id, ( int ) Session[ "userId" ] ) );
+            if ( CanAccess( ) ) {
+                ViewBag.Title = "Find bob";
+                ViewBag.EventId = id;
+                ViewBag.Description = "Heb je al een bob? Kijk hieronder en vind een bob of schijf jezelf in als bob.";
+                return View( idesdriver.ActiveDriversPerEvent( id, ( int ) Session[ "userId" ] ) );
+            }
+            return RedirectToAction( "Index", "Events" );
         }
 
         /*
          * Events/JoinBob
          */
         public ActionResult JoinBob( int id ) {
-            ViewBag.Title = "Find bob";
-            int eventId = 0;
-            if ( ipassenger.IsPassenger( id, ( int ) Session[ "userId" ], out eventId ) ) {
-                ViewBag.Title = "Je bent al geacepteerd door een bob.";
-            } else {
-                ipassenger.NewPassenger( ( int ) Session[ "userId" ], id, out eventId );
+            if ( CanAccess( ) ) {
+                ViewBag.Title = "Find bob";
+                int eventId = 0;
+                if ( ipassenger.IsPassenger( id, ( int ) Session[ "userId" ], out eventId ) ) {
+                    ViewBag.Title = "Je bent al geacepteerd door een bob.";
+                } else {
+                    ipassenger.NewPassenger( ( int ) Session[ "userId" ], id, out eventId );
+                }
+                return RedirectToAction( "Details", "Events", new { id = eventId } );
             }
-            return RedirectToAction( "Details", "Events", new { id = eventId } );
+            return RedirectToAction( "Index", "Events" );
         }
 
         /*
          * Events/BobSettings
          */
         public ActionResult BobSettings( int id ) {
-            ViewBag.Title = "BOB instelligen";
-            ViewBag.EventId = id;
-            List<DesDriver> drivers = idesdriver.GetAllDrivers( );
-            int userId = ( int ) Session[ "userId" ];
-            DesDriver driver = drivers.Single( e => e.UserId == userId && e.EventId == id );
-            List<Passenger> passengers = ipassenger.GetAllPassengers( );
-            List<Passenger> acceptedPassengers = passengers.Where( e => e.DesDriverId == driver.Id && e.Accepted && e.Active ).ToList( );
-            List<Passenger> notAcceptedPassengers = passengers.Where( e => e.DesDriverId == driver.Id && !e.Accepted && e.Active ).ToList( );
-            var tuple = new Tuple<IEnumerable<Passenger>, IEnumerable<Passenger>>( acceptedPassengers, notAcceptedPassengers );
-            return View( tuple );
+            if ( CanAccess( ) ) {
+                ViewBag.Title = "BOB instelligen";
+                ViewBag.EventId = id;
+                List<DesDriver> drivers = idesdriver.GetAllDrivers( );
+                int userId = ( int ) Session[ "userId" ];
+                DesDriver driver = drivers.Single( e => e.UserId == userId && e.EventId == id );
+                List<Passenger> passengers = ipassenger.GetAllPassengers( );
+                List<Passenger> acceptedPassengers = passengers.Where( e => e.DesDriverId == driver.Id && e.Accepted && e.Active ).ToList( );
+                List<Passenger> notAcceptedPassengers = passengers.Where( e => e.DesDriverId == driver.Id && !e.Accepted && e.Active ).ToList( );
+                var tuple = new Tuple<IEnumerable<Passenger>, IEnumerable<Passenger>>( acceptedPassengers, notAcceptedPassengers );
+                return View( tuple );
+            } else {
+                return RedirectToAction( "Index", "Events" );
+            }
         }
 
         /*
          * Events/AcceptPas
          */
         public ActionResult AcceptPas( int pasId, int eventId ) {
-            using ( var context = new STUFVModelContext( ) ) {
-                Passenger passenger = context.Passengers.Single( e => e.Id == pasId );
-                passenger.Accepted = true;
-                context.SaveChanges( );
+            if ( CanAccess( ) ) {
+                using ( var context = new STUFVModelContext( ) ) {
+                    Passenger passenger = context.Passengers.Single( e => e.Id == pasId );
+                    passenger.Accepted = true;
+                    context.SaveChanges( );
+                }
+                return RedirectToAction( "BobSettings", "Events", new { id = eventId } );
+            } else {
+                return RedirectToAction( "Index", "Events" );
             }
-            return RedirectToAction( "BobSettings", "Events", new { id = eventId } );
         }
 
         /*
          * Events/RemovePas
          */
         public ActionResult RemovePas( int pasId, int eventId ) {
-            using ( var context = new STUFVModelContext( ) ) {
-                Passenger passenger = context.Passengers.Single( e => e.Id == pasId );
-                passenger.Accepted = false;
-                context.SaveChanges( );
+            if ( CanAccess( ) ) {
+                using ( var context = new STUFVModelContext( ) ) {
+                    Passenger passenger = context.Passengers.Single( e => e.Id == pasId );
+                    passenger.Accepted = false;
+                    context.SaveChanges( );
+                }
+                return RedirectToAction( "BobSettings", "Events", new { id = eventId } );
+            } else {
+                return RedirectToAction( "Index", "Events" );
             }
-            return RedirectToAction( "BobSettings", "Events", new { id = eventId } );
+        }
+        private Boolean CanAccess( ) {
+            Boolean canAccess = true;
+            if ( Session[ "email" ] == null ) {
+                RedirectToAction( "Home", "index" );
+                canAccess = false;
+            }
+            return canAccess;
         }
     }
 }

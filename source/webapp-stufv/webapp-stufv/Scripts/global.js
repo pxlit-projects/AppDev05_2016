@@ -50,7 +50,7 @@ function ValidateReg() {
 
 function ValidateRegEmail() {
     var inputText = document.registerform.Email;
-    var mailformat = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var mailformat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (inputText.value.match(mailformat)) {
         $('#emailValidation').attr("class", "col-md-10 has-success");
         return true;
@@ -88,4 +88,8 @@ function IsEmpty(id, text) {
         $(id).attr("class", "col-md-10 has-success");
         return true;
     }
+}
+
+function closeBox() {
+    $("#box").hide();
 }

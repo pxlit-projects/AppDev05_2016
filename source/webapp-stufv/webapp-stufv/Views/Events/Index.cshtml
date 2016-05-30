@@ -2,6 +2,16 @@
 @section content{
     <div class="container">
         <div class="page-header">
+            @foreach ( var item in ViewBag.Tips ) {
+                <div id="box">
+                    <div class="col-md-11">
+                        <p id="tip">@item.TipText</p>
+                    </div>
+                    <div class="col-md-1">
+                        <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
+                    </div>
+                </div>
+            }
             <div class="well">
                 <h1>@ViewBag.Title</h1>
             </div>
@@ -69,57 +79,62 @@
                 </div>
             </div><!-- /.navbar-collapse -->
         </nav>
-        @foreach ( var item in Model ) {
-            <div class="eventpage">
-                <div class="row">
-                    <div class="col-lg-2"><img class="eventimg" src="~/Content/img/EventImages/@item.Image" /></div>
-                    <div class="col-lg-8">
-                        <table class="eventshort">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h4>
-                                            @item.Name
-                                        </h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shortdesciption">
-                                        @if ( item.Description.Length > 500 ) {
-                                            <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@item.Description.Substring( 0, 500 )...</p>
-                                        } else {
-                                            <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@item.Description</p>
-                                        }
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img class="iconimg" src="~/Content/img/Calendar.png" />@item.Start.ToShortDateString( )
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        @if ( item.EntranceFee == 0 ) {
-                                            <p><img class="iconimg" src="~/Content/img/euro.png" />Gratis</p>
-                                        } else {
-                                            <p><img class="iconimg" src="~/Content/img/euro.png" />@item.EntranceFee euro</p>
-                                        }
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="@Url.Action("Details","Events", new { id = item.Id})">
-                                            <p class="btn btn-info">Meer info</p>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+        <div class="row">
+            <div class="col-md-12">
+                @foreach ( var item in Model ) {
+                    <div class="col-md-12">
+                        <div class="eventpage">
+                            <div class="row">
+                                <div class="col-lg-2"><img class="img-thumbnail eventimg" src="~/Content/img/EventImages/@item.Image" /></div>
+                                <div class="col-lg-5">
+                                    <table class="eventshort">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h4>
+                                                        @item.Name
+                                                    </h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="shortdesciption">
+                                                    @if ( item.Description.Length > 200 ) {
+                                                        <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@item.Description.Substring( 0, 200 )...</p>
+                                                    } else {
+                                                        <p class="pclear"><img class="iconimg" src="~/Content/img/info.png" />@item.Description</p>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img class="iconimg" src="~/Content/img/Calendar.png" />@item.Start.ToShortDateString( )
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @if ( item.EntranceFee == 0 ) {
+                                                        <p><img class="iconimg" src="~/Content/img/euro.png" />Gratis</p>
+                                                    } else {
+                                                        <p><img class="iconimg" src="~/Content/img/euro.png" />@item.EntranceFee euro</p>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a href="@Url.Action("Details","Events", new { id = item.Id})">
+                                                        <p class="btn btn-info">Meer info</p>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
-        }
+        </div>
     </div>
 
 }
-

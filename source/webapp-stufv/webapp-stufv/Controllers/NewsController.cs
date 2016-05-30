@@ -10,11 +10,19 @@ namespace webapp_stufv.Controllers {
     public class NewsController : Controller {
 
         private IArticleRepository _iarticle = new ArticleRepository( );
+        private ITipRepository _itips = new TipRepository( );
 
         /*
          * News/Index
          */
         public ActionResult Index( ) {
+            Random rnd = new Random( );
+
+            List<Tip> tips = _itips.GetAllTips( );
+            int r = rnd.Next( tips.Count );
+            List<Tip> tipsRandom = new List<Tip>( );
+            tipsRandom.Add( tips[ r ] );
+            ViewBag.Tips = tipsRandom;
             ViewBag.Title = "Nieuws";
             return View( _iarticle.getAllArticles( ) );
         }
