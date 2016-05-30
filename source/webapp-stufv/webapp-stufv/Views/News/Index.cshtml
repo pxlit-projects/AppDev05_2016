@@ -24,7 +24,7 @@
             <div class="media">
                 <div class="media-left">
                     <a href=@Url.Action("Details", "News", new { id = item.Id })>
-                        @if ( item.imgLink == null ) {
+                        @if ( item.imgLink == "" ) {
                             <img src="~/Content/img/noimageavailable.png" class="img-thumbnail noimage" />
                         } else {
                             <img src=@item.imgLink class="img-thumbnail noimage" />

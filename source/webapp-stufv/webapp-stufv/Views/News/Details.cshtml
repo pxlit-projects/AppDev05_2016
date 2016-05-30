@@ -20,7 +20,7 @@
                 </p> <br />
                 <div>
                     <div class="right">
-                        @if ( Model.imgLink == null ) {
+                        @if ( Model.imgLink =="" ) {
                             <img src="~/Content/img/noimageavailable.png" class="img-thumbnail articleimg" />
                         } else {
                             <img src=@Html.DisplayFor( model => model.imgLink ) class="img-thumbnail articleimg" />
