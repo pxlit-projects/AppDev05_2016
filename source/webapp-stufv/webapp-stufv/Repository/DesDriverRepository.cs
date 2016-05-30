@@ -13,16 +13,7 @@ namespace webapp_stufv.Repository
         {
             List<DesDriver> allDrivers = GetAllDrivers();
             List<DesDriver> activeDrivers = new List<DesDriver>();
-            int x;
-            for (x = 0; x < allDrivers.Count(); x++)
-            {
-                if (allDrivers.ElementAt(x).EventId.Equals(eventId) && allDrivers.ElementAt(x).Active.Equals(true) 
-                    && allDrivers.ElementAt(x).NrOfPlaces > allDrivers.ElementAt(x).NrOfFilled && allDrivers.ElementAt(x).UserId != userId
-                    && !ipassenger.SignedUp(allDrivers.ElementAt(x).Id,userId))
-                {
-                    activeDrivers.Add(allDrivers.ElementAt(x));
-                }
-            }
+            activeDrivers = allDrivers.Where(e => e.EventId == eventId && e.Active && e.NrOfPlaces > e.NrOfFilled && e.UserId != userId && !ipassenger.SignedUp(e.Id, userId)).ToList();
             return activeDrivers;
         }
 

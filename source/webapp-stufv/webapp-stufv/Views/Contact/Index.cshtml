@@ -1,39 +1,58 @@
 ﻿@section content {
     <div class="container">
-        <div class="well">
-            <h1 class="page-header">@ViewBag.Title</h1>
-        </div>       
-        <table style="width: 1000px; height: 50px; margin-left: 100px;">
-            <tr>
-                <td colspan="2" >Email</td>
-            </tr>
-            <tr>
-                <td style="padding-bottom: 1em"><input type="text" style="width: 300px" /></td>
-            </tr>
-            <tr>
-                <td>Naam</td>
-                <td>Voornaam</td>
-            </tr>
-            <tr>
-                <td style="padding-bottom: 1em"><input type="text" style="width: 300px" /></td>
-                <td style="padding-bottom: 1em"><input type="text" style="width: 300px" /></td>
-            </tr>
-            <tr>
-                <td colspan="2">Onderwerp</td>
-            </tr>
-            <tr>
-                <td colspan="2" style="padding-bottom: 1em"><input type="text" style="width: 300px" /></td>
-            </tr>
-            <tr>
-                <td colspan="2">Omschrijving</td>
-            </tr>
-            <tr>
-                <td colspan="2"><textarea name="Text1" style="width: 800px; height: 200px; resize: vertical"></textarea></td>
-            </tr>
-        </table>
-        <hr class="seperator" />
-        <button type="button" class="btn btn-primary">Send</button>
-        <a href="mailto:stufv1@hotmail.com">Sendlul</a>
+        <div class="well page-header">
+            <h1>@ViewBag.Title</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <label>Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1">
+                <label>Naam</label>
+            </div>
+            <div class="col-md-1 col-md-offset-4">
+                <label>Voornaam</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" />
+            </div>
+            <div class="col-md-3 col-md-offset-2">
+                <input type="text" class="form-control input-sm" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1">
+                <label>Onderwerp</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1">
+                <label>Oschrijving</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <textarea type="text" class="form-control" ></textarea>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" style="float: right">Send</button>
     </div>
     
 }

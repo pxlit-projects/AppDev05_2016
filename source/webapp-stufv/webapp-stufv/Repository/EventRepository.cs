@@ -27,6 +27,17 @@ namespace webapp_stufv.Repository
             }
         }
 
+        public List<Event> GetAllUnexpiredEventsByDate()
+        {
+            using (var context = new STUFVModelContext())
+            {
+                List<Event> events = new List<Event>();
+                events = context.Events.OrderBy(o => o.Start).ToList();
+                events = events.Where(o => o.Start > DateTime.Today && o.Active == true).Take(4).ToList();
+                return events;
+            }
+        }
+
         public string getCity(string Zipcode)
         {
             List<Cities> cities = new List<Cities>();

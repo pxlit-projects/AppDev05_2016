@@ -17,22 +17,26 @@ namespace webapp_stufv.Controllers {
         public ActionResult Index ( ) {
 
             List<Article> articleList = iarticle.getAllArticles ( );
-            List<Article> articleLast3 = new List<Article>();
+            List<Article> articleLast4 = new List<Article>();
             int articleCount = articleList.Count;
             for (int i = articleCount - 1; i > articleCount - 5; i--)
             {
-                articleLast3.Add(articleList.ElementAt(i));
+                articleLast4.Add(articleList.ElementAt(i));
             }
-            ViewBag.Articles = articleLast3;
-          
-            List<Event> eventList = ievent.GetAllEvents();
-            List<Event> eventLast3 = new List<Event>();
+            ViewBag.Articles = articleLast4;
+
+            /*List<Event> eventList = ievent.GetAllUnexpiredEvents();
+            List<Event> eventLast4 = new List<Event>();
             int eventCount = eventList.Count;
             for (int i = eventCount - 1; i > eventCount - 5; i--)
             {
-                eventLast3.Add(eventList.ElementAt(i));
+                eventLast4.Add(eventList.ElementAt(i));
             }
-            ViewBag.Events = eventLast3;
+            ViewBag.Events = eventLast4;*/
+
+            List<Event> eventList = ievent.GetAllUnexpiredEventsByDate();
+            ViewBag.Events = eventList;
+
 
             List<Tip> tips = itips.GetAllTips();
             int r = rnd.Next(tips.Count);
