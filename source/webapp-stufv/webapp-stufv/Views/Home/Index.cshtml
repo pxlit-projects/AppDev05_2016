@@ -1,107 +1,98 @@
 ﻿@section content {
-<link rel="stylesheet" type="text/css" href="~/Content/Global.css">
-<script src="~/Content/js/jquery.min.js"></script>
-<script>
-    function closeBox() {
-        $("#box").hide();
-    }
-</script>
-
-<div class="container">
-@foreach (var item in ViewBag.Tips)
-{
-    <div id="box">
-        <div class="col-md-11">
-            <p id="tip">@item.TipText</p>
-        </div>
-        <div class="col-md-1">
-            <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
-        </div>   
-    </div>    
-}
-    
-    <div class="jumbotron">
-        <h1>Welkom op de website van STUFV</h1>
-        <p>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato de more elogio revocari iussisse, quod inexorabiles quoque principes factitarunt. et exitiale hoc vitium, quod in aliis non numquam intepescit, in illo aetatis progressu effervescebat, obstinatum eius propositum accendente adulatorum cohorte.</p>
-        @if (Session["email"] == null || Session["email"].Equals(""))
-        {
-            <p align="center" class="btn btn-info" style="text-transform: none; margin-left: 390px" data-toggle="modal" data-target="#modallogin">Log in</p>
-            <a href="@Url.Action("Register", "Account")">
-                <p align="center" class="btn btn-success" style="text-transform: none; margin-left: 20px">Schrijf in</p>
-            </a>
-        }
-        else
-        {
-            <p align="center" class="btn btn-danger" style="text-transform: none; margin-left: 390px" data-toggle="modal" data-target="#modallogout">Afmelden</p>
-        }
-        
-    </div>
-<div class="col-md-3">
-    <a class="twitter-timeline" data-chrome="noscrollbar" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
+    <link rel="stylesheet" type="text/css" href="~/Content/Global.css">
+    <script src="~/Content/js/jquery.min.js"></script>
     <script>
+        function closeBox() {
+            $("#box").hide();
+        }
+    </script>
+
+    <div class="container">
+        @foreach ( var item in ViewBag.Tips ) {
+            <div id="box">
+                <div class="col-md-11">
+                    <p id="tip">@item.TipText</p>
+                </div>
+                <div class="col-md-1">
+                    <img onclick="closeBox()" id="closeImg" align="right" src="~/Content/img/close.png" />
+                </div>
+            </div>
+        }
+
+        <div class="jumbotron">
+            <h1>Welkom op de website van STUFV</h1>
+            <p>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato de more elogio revocari iussisse, quod inexorabiles quoque principes factitarunt. et exitiale hoc vitium, quod in aliis non numquam intepescit, in illo aetatis progressu effervescebat, obstinatum eius propositum accendente adulatorum cohorte.</p>
+            @if ( Session[ "email" ] == null || Session[ "email" ].Equals( "" ) ) {
+                <p align="center" class="btn btn-info" style="text-transform: none; margin-left: 390px" data-toggle="modal" data-target="#modallogin">Log in</p>
+                <a href="@Url.Action("Register", "Account")">
+                    <p align="center" class="btn btn-success" style="text-transform: none; margin-left: 20px">Schrijf in</p>
+                </a>
+            } else {
+                <p align="center" class="btn btn-danger" style="text-transform: none; margin-left: 390px" data-toggle="modal" data-target="#modallogout">Afmelden</p>
+            }
+
+        </div>
+        <div class="col-md-3">
+            <a class="twitter-timeline" data-chrome="noscrollbar" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
+            <script>
                 !function (d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }
                 }
                 (document, "script", "twitter-wjs");
-    </script>
-</div>
-    <div class="col-md-4 col-md-offset-1">
-        <h2 style="color: #29abe0">Artikels</h2>
-    </div>
-    <div class="col-md-4">
-        <a href="@Url.Action("Index", "News")">
-            <h2 style="color: #29abe0"><u>Bekijk alle artikels</u></h2>
-        </a>
-    </div>
-    @foreach (var item in ViewBag.Articles)
-    {
-        <div class="col-md-4 col-md-offset-1" style="height: 400px; width: 300px">
-            <table>
-                <tr>
-                    <td><h3>@item.Title</h3></td>
-                </tr>
-                <tr>
-                    <td align="center"><img src="~/Content/img/news.jpg" /></td>
-                </tr>
-                <tr>
-                    <td>
-                        @if (item.Content.Length > 100)
-                        {
-                            <p>@item.Content.Substring(0, 100)...</p>
-                        }
-                        else
-                        {
-                            <p>@item.Content</p>
-                        }
-                    </td>
-                </tr>
-                <tr>
+            </script>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <h2 style="color: #29abe0">Artikels</h2>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("Index", "News")">
+                <h2 style="color: #29abe0"><u>Bekijk alle artikels</u></h2>
+            </a>
+        </div>
+        @foreach ( var item in ViewBag.Articles ) {
+            <div class="col-md-4 col-md-offset-1" style="height: 400px; width: 300px">
+                <table>
+                    <tr>
+                        <td><h3>@item.Title</h3></td>
+                    </tr>
+                    <tr>
+                        <td align="center"><img src="~/Content/img/news.jpg" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if ( item.Content.Length > 100 ) {
+                                <p>@item.Content.Substring( 0, 100 )...</p>
+                            } else {
+                                <p>@item.Content</p>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
                         <td align="center">
                             <a href="@Url.Action("Details", "News", new { id = item.Id})">
                                 <p type="button" class="btn btn-info">Bekijk</p>
                             </a>
                         </td>
-                </tr>
-            </table>
+                    </tr>
+                </table>
+            </div>
+        }
+        <div class="col-md-6">
+            <h2 style="color: #29abe0">Aankomende evenementen</h2>
         </div>
-    }
-    <div class="col-md-6">
-        <h2 style="color: #29abe0">Aankomende evenementen</h2>
-    </div>
-    <div class="col-md-6">
-        <a href="@Url.Action("Index", "Events")">
-            <h2 style="color: #29abe0"><u>Bekijk alle evenementen</u></h2>
-        </a>
-    </div>
-        @foreach (var item in ViewBag.Events)
-    {
+        <div class="col-md-6">
+            <a href="@Url.Action("Index", "Events")">
+                <h2 style="color: #29abe0"><u>Bekijk alle evenementen</u></h2>
+            </a>
+        </div>
+        @foreach ( var item in ViewBag.Events ) {
             <div class="col-md-3" style="height: 400px">
                 <table>
                     <tr>
                         <td><h3>@item.Name</h3></td>
                     </tr>
                     <tr>
-                        <td><p>@item.Start.ToShortDateString()</p></td>
+                        <td><p>@item.Start.ToShortDateString( )</p></td>
                     </tr>
                     <tr>
                         <td align="center"><img src="~/Content/img/EventImages/@item.Image" style="width: 75%; height: 75%; max-height:225px; margin-bottom: 10px; border-radius: 3px;" /></td>
@@ -116,6 +107,6 @@
                 </table>
             </div>
         }
-    
-</div>
+
+    </div>
 }

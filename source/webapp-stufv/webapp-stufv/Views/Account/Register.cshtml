@@ -2,106 +2,109 @@
 @section Content {
 
     <div class="container">
-
         <div class="page-header">
             <div class="well">
                 <h1> Registratie </h1>
             </div>
-            <h4> Vul je gegevens in. </h4>
         </div>
-        @using ( Html.BeginForm( "CreateAccount", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "registerform", id = "registerform", @class = "form-horizontal", role = "form" } ) ) {
-            @Html.AntiForgeryToken( )
-            <div class="form-group">
-                <div class="col-md-2 control-label">Email adres: </div>
-                <div class="col-md-10" id="emailValidation">
-                    @Html.TextBoxFor( m => m.Email, new { @class = "form-control" } )
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Wachtwoord: </div>
-                <div class="col-md-10" id="Passwordvalidation">
-                    @Html.PasswordFor( m => m.PassWord, new { @class = "form-control" } )
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Controle wachtwoord: </div>
-                <div class="col-md-10" id="CheckpassValidation">
-                    <input class="form-control" id="CheckPass" name="CheckPass" type="password">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Voornaam: </div>
-                <div class="col-md-10" id="namevalidation">
-                    @Html.TextBoxFor( m => m.FirstName, new { @class = "form-control" } )
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Achternaam: </div>
-                <div class="col-md-10" id="lastnamevalidation">
-                    @Html.TextBoxFor( m => m.LastName, new { @class = "form-control" } )
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Geboortedatum: </div>
-                <div class="col-md-10" id="birthdatevalidation">
-                    <div class="input-append date form_datetime">
-                        <input class="form-control" id="BirthDate" name="BirthDate" size="16" type="text" value="" readonly>
-                        <span class="add-on"><i class="icon-th"></i></span>
+        <div class="row">
+            <div class="col-md-7">
+                <h4 class="text-success">
+                    Vul je gegevens in.
+                </h4>
+                @using ( Html.BeginForm( "CreateAccount", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { name = "registerform", id = "registerform", @class = "form-horizontal", role = "form" } ) ) {
+                    @Html.AntiForgeryToken( )
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Email adres: </div>
+                        <div class="col-md-10" id="emailValidation">
+                            @Html.TextBoxFor( m => m.Email, new { @class = "form-control" } )
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Wachtwoord: </div>
+                        <div class="col-md-10" id="Passwordvalidation">
+                            @Html.PasswordFor( m => m.PassWord, new { @class = "form-control" } )
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Controle wachtwoord: </div>
+                        <div class="col-md-10" id="CheckpassValidation">
+                            <input class="form-control" id="CheckPass" name="CheckPass" type="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Voornaam: </div>
+                        <div class="col-md-10" id="namevalidation">
+                            @Html.TextBoxFor( m => m.FirstName, new { @class = "form-control" } )
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Achternaam: </div>
+                        <div class="col-md-10" id="lastnamevalidation">
+                            @Html.TextBoxFor( m => m.LastName, new { @class = "form-control" } )
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Geboortedatum: </div>
+                        <div class="col-md-10" id="birthdatevalidation">
+                            <div class="input-append date form_datetime">
+                                <input class="form-control" id="BirthDate" name="BirthDate" size="16" type="text" value="" readonly>
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
 
-                    <script type="text/javascript">
-                        $(".form_datetime").datetimepicker({
-                            language: 'nl',
-                            format: "dd MM yyyy",
-                            autoclose: true,
-                            minView: 2
-                        });
-                    </script>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Geboorteplaats: </div>
-                <div class="col-md-10" id="birthplacevalidation">
-                    @Html.EditorFor( m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control" } } )
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Geslacht: </div>
-                <div class="col-md-10" id="sexvalidation">
-                    <table>
-                        <tr>
-                            <td>
-                                @Html.RadioButtonFor( m => m.Sex, "M", new { htmlAttributes = new { @class = "radio" } } )
-                                @Html.Label( "Man" )
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.RadioButtonFor( m => m.Sex, "V", new { htmlAttributes = new { @class = "radio" } } )
-                                @Html.Label( "Vrouw" )
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Straat en huisnummer: </div>
-                <div class="col-md-10" id="streetvalidation">
-                    @Html.EditorFor( m => m.Street, new { htmlAttributes = new { @class = "form-control" } } )
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Postcode: </div>
-                <div class="col-md-10" id="zipcodevalidation">
-                    @Html.EditorFor( m => m.ZipCode, new { htmlAttributes = new { @class = "form-control" } } )
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 control-label">Telefoon nummer: </div>
-                <div class="col-md-10" id="telnrvalidation">
-                    @Html.EditorFor( m => m.TelNr, new { htmlAttributes = new { @class = "form-control" } } )
-                </div>
-            </div>
+                            <script type="text/javascript">
+                                $(".form_datetime").datetimepicker({
+                                    language: 'nl',
+                                    format: "dd MM yyyy",
+                                    autoclose: true,
+                                    minView: 2
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Geboorteplaats: </div>
+                        <div class="col-md-10" id="birthplacevalidation">
+                            @Html.EditorFor( m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control" } } )
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Geslacht: </div>
+                        <div class="col-md-10" id="sexvalidation">
+                            <table>
+                                <tr>
+                                    <td>
+                                        @Html.RadioButtonFor( m => m.Sex, "M", new { htmlAttributes = new { @class = "radio" } } )
+                                        @Html.Label( "Man" )
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.RadioButtonFor( m => m.Sex, "V", new { htmlAttributes = new { @class = "radio" } } )
+                                        @Html.Label( "Vrouw" )
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Straat en huisnummer: </div>
+                        <div class="col-md-10" id="streetvalidation">
+                            @Html.EditorFor( m => m.Street, new { htmlAttributes = new { @class = "form-control" } } )
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Postcode: </div>
+                        <div class="col-md-10" id="zipcodevalidation">
+                            @Html.EditorFor( m => m.ZipCode, new { htmlAttributes = new { @class = "form-control" } } )
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">Telefoon nummer: </div>
+                        <div class="col-md-10" id="telnrvalidation">
+                            @Html.EditorFor( m => m.TelNr, new { htmlAttributes = new { @class = "form-control" } } )
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-md-2 control-label">GSM nummer: </div>
                         <div class="col-md-10" id="mobilenrvalidation">
@@ -114,8 +117,19 @@
                             <input type="submit" class="btn btn-info" value="Registreer" onclick="return ValidateReg()" />
                         </div>
                     </div>
-        }
+                }
 
+            </div>
+            <div class="col-md-4 right">
+                <a class="twitter-timeline" data-chrome="noscrollbar" href="https://twitter.com/stufv1" data-widget-id="727961645478256641">Tweets door @@stufv1</a>
+                <script>
+                    !function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }
+                    }
+                    (document, "script", "twitter-wjs");
+                </script>
+            </div>
+        </div>
     </div>
 }
 
