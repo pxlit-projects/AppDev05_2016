@@ -12,7 +12,7 @@ using webapp_stufv.Models;
 
 namespace webapp_stufv.Web_Api_Controllers
 {
-    public class PartnerController : ApiController
+    public class partnerController : ApiController
     {
         private STUFVModelContext _context = new STUFVModelContext();
 
@@ -79,7 +79,7 @@ namespace webapp_stufv.Web_Api_Controllers
             }
             catch (DBConcurrencyException ex)
             {
-                if (!PartnerExists(id))
+                if (!partnerExists(id))
                 {
                     return NotFound();
                 }
@@ -108,7 +108,7 @@ namespace webapp_stufv.Web_Api_Controllers
         }
 
         // Returns true if a review with the specified ID was found
-        private bool PartnerExists(int id)
+        private bool partnerExists(int id)
         {
             return _context.Partners.Find(id) != null;
         }

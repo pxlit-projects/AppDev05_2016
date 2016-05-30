@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,11 +23,15 @@ namespace STUFV
     public partial class PartnerPage : Page
     {
         HomeWindow scherm = (HomeWindow)Application.Current.MainWindow;
+        HttpClient client = new HttpClient();
 
         public PartnerPage()
         {
             InitializeComponent();
             menuBox.SelectionChanged += MenuBox_SelectionChanged;
+            client.BaseAddress = new Uri("http://webapp-stufv20160527104738.azurewebsites.net/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         private void MenuBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,6 +85,41 @@ namespace STUFV
                 case 14:
                     scherm.displayFrame.Source = new Uri("LogoutPage.xaml", UriKind.Relative);
                     break;
+            }
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            Partner partner = new Partner();
+            partner.Name = nameTextBox.Text;
+            partner.Image = urlAfbeelding.Text;
+            partner.URL = linkBox.Text;
+            partner.Active = true;
+            AddPartner(partner);
+        }
+
+        private async void AddPartner(Partner partner)
+        {
+            try
+            {
+                var partnerUrl = "/api/partners";
+                HttpResponseMessage response = await client.PostAsJsonAsync(partnerUrl, partner);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show(String.Format("Partner succesvol toegevoegd!"));
+                } else
+                {
+                    MessageBox.Show("Er is een probleem");
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Verbinding met de server verbroken. Probeer later opnieuw. U zal worden doorverwezen naar het loginscherm.",
+                    "Serverfout", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginWindow window = new LoginWindow();
+                window.Show();
+                scherm.Close();
             }
         }
     }

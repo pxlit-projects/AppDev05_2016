@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:STUFV"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="900" d:DesignWidth="1200"
       Title="PartnerPage">
 
     <Grid>
@@ -51,9 +51,40 @@
                     <ListBoxItem Content="Logout" Foreground="White" FontSize="20" FontWeight="Medium" Padding="10,0" Height="87"/>
                 </ListBox>
             </Viewbox>
-            
+
             <StackPanel DockPanel.Dock="Right" Background="WhiteSmoke">
-                
+                <TextBlock Text="Partner" FontSize="40" Foreground="White" Padding="10,5,0,5">
+                    <TextBlock.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="2.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF144563" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Background>
+                </TextBlock>
+                <TextBlock Text="Partner toevoegen" Margin="10,25,0,0" FontSize="26" FontWeight="DemiBold"/>
+                <Border BorderThickness="2" CornerRadius="2" BorderBrush="Black" Width="825" Height="86" Margin="10,25,0,0">
+                    <StackPanel>
+                        <DockPanel Background="#C0C0C0">
+                            <TextBlock Text="Naam:" Foreground="White" VerticalAlignment="Center" FontSize="14" Margin="10,0,0,0"/>
+                            <TextBox x:Name="nameTextBox" Text="" Background="#C0C0C0" Foreground="White" BorderThickness="0" VerticalAlignment="Center" FontSize="14" Margin="10,0,0,0"/>
+                        </DockPanel>
+                        <DockPanel>
+                            
+                            </DockPanel>
+
+                        <DockPanel Background="#C0C0C0" Height="28">
+                            <TextBlock Text="Link partner" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBox x:Name="linkBox" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" Background="#C0C0C0"/>
+                            
+                        </DockPanel>
+                        <DockPanel Background="#C0C0C0" Height="28">
+                            <TextBlock Text="Link afbeelding (optioneel)" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" />
+                            <TextBox x:Name="urlAfbeelding" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" Background="#C0C0C0"/>
+                        </DockPanel>
+
+                    </StackPanel>
+                </Border>
+                <Button x:Name="addButton" Content="Voeg toe" Background="White" BorderBrush="Black" BorderThickness="1" Margin="10,15,0,0" HorizontalAlignment="Left" Click="addButton_Click"/>
             </StackPanel>
         </DockPanel>
     </Grid>
