@@ -111,6 +111,15 @@ namespace STUFV
             article.Content = contentTextBox.Text;
             article.UserId = scherm.user.Id;
             article.DateTime = DateTime.Now.AddHours(2);
+
+            if (urlAfbeelding.Text.ToString().Length <= 0)
+            {
+                article.imgLink = "news.jpg";
+            }
+            else
+            {
+                article.imgLink = urlAfbeelding.Text;
+            }
             article.imgLink = urlAfbeelding.Text;
             article.Active = true;
             article.ThumbsUp = 0;
