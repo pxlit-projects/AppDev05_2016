@@ -68,7 +68,7 @@ namespace STUFV
                 errorBox.Content = "";
             }
 
-            if (emailBox.Text == "E-mailadres")
+            if (emailBox.Text == "E-mail")
             {
                 emailBox.Text = "";
                 emailBox.Foreground = new SolidColorBrush(Colors.Black);
